@@ -54,6 +54,7 @@ public class ShapeFactory {
         final Class<? extends Shape> shapeClass =
                 registeredShapes.get(shapeID);
         try {
+            //Constructor can have parameters.
             final Constructor<? extends Shape> shapeConstructor =
                     shapeClass.getConstructor();
             final Shape shape = shapeConstructor.newInstance();
