@@ -1,0 +1,6 @@
+#root {
+    -fx-background-image: url("File:src/assets/gameBackground.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
