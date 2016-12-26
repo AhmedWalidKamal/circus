@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -25,7 +25,8 @@ public class TestController implements Initializable {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         final Rectangle rect = new Rectangle(50, 50);
-        rect.setFill(Color.BROWN);
+        //rect.setFill(Color.BROWN);
+		rect.setFill(Paint.valueOf("WHITE"));
         rect.setTranslateX(50);
         rect.setTranslateY(50);
         root.setOnMouseClicked(new EventHandler<MouseEvent>() {

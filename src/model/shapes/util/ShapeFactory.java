@@ -5,7 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 
+import model.Color;
 import model.shapes.Shape;
+import model.shapes.types.ShapeType;
 
 /**
  * A Singleton factory that is
@@ -16,7 +18,7 @@ import model.shapes.Shape;
 public class ShapeFactory {
 	private static ShapeFactory factoryInstance = new
             ShapeFactory();
-    private HashMap<String, Class<? extends Shape>>
+    private HashMap<String, Class<? extends ShapeType>>
 			registeredShapes = null;
 
     /**
@@ -40,7 +42,7 @@ public class ShapeFactory {
      * @param shapeClass the shape class
      */
     public void registerShape(final String shapeID,
-                                  final Class<? extends Shape>
+                                  final Class<? extends ShapeType>
 										  shapeClass) {
         registeredShapes.put(shapeID, shapeClass);
     }
@@ -50,15 +52,13 @@ public class ShapeFactory {
      * @param shapeID the shape id
      * @return the shape object
      */
-    public Shape createShape(final String shapeID) {
-        final Class<? extends Shape> shapeClass =
+    public Shape createShape(final String shapeID, final Color color) {
+        final Class<? extends ShapeType> shapeTypeClass =
                 registeredShapes.get(shapeID);
         try {
-            //Constructor can have parameters.
-            final Constructor<? extends Shape> shapeConstructor =
-                    shapeClass.getConstructor();
-            final Shape shape = shapeConstructor.newInstance();
-            return shape;
+            final Constructor<? extends ShapeType> shapeConstructor =
+                    shapeTypeClass.getConstructor();
+            return shapeConstructor.newInstance().createShape(color);
         } catch (NoSuchMethodException | SecurityException
                 | InstantiationException
                 | IllegalAccessException
