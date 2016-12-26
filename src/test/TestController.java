@@ -3,20 +3,10 @@ package test;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 public class TestController implements Initializable {
     @FXML
@@ -24,49 +14,78 @@ public class TestController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        final Rectangle rect = new Rectangle(50, 50);
-        //rect.setFill(Color.BROWN);
-		rect.setFill(Paint.valueOf("WHITE"));
-        rect.setTranslateX(50);
-        rect.setTranslateY(50);
-        root.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(final MouseEvent event) {
-                final FadeTransition fadeTransition =
-                        new FadeTransition(Duration.millis(3000), rect);
-                fadeTransition.setFromValue(1.0f);
-                fadeTransition.setToValue(0.3f);
-                fadeTransition.setCycleCount(2);
-                fadeTransition.setAutoReverse(true);
-                final TranslateTransition translateTransition =
-                        new TranslateTransition(Duration.millis(2000), rect);
-                translateTransition.setFromX(50);
-                translateTransition.setToX(350);
-                translateTransition.setCycleCount(2);
-                translateTransition.setAutoReverse(true);
-                final RotateTransition rotateTransition =
-                        new RotateTransition(Duration.millis(3000), rect);
-                rotateTransition.setByAngle(180f);
-                rotateTransition.setCycleCount(4);
-                rotateTransition.setAutoReverse(true);
-                final ScaleTransition scaleTransition =
-                        new ScaleTransition(Duration.millis(2000), rect);
-                scaleTransition.setToX(2f);
-                scaleTransition.setToY(2f);
-                scaleTransition.setCycleCount(2);
-                scaleTransition.setAutoReverse(true);
+//        Rectangle rect1 = new Rectangle(50, 50);
+//        rect1.setFill(Color.BROWN);
+//        rect1.setTranslateX(50);
+//        rect1.setTranslateY(50);
+//        Rectangle rect2 = new Rectangle(50, 50);
+//        rect2.setFill(Color.CHOCOLATE);
+//        rect2.setTranslateX(150);
+//        rect2.setTranslateY(50);
+//
+//        TranslateTransition rect1Transition = new TranslateTransition
+//                (Duration.millis(5000), rect1);
+//        rect1Transition.setFromY(50);
+//        rect1Transition.setToY(1000);
+//        rect1Transition.setCycleCount(Timeline.INDEFINITE);
+//        rect1Transition.setAutoReverse(true);
+//
+//        TranslateTransition rect2Transition = new TranslateTransition
+//                (Duration.millis(5000), rect2);
+//        rect2Transition.setFromY(50);
+//        rect2Transition.setToY(1000);
+//        rect2Transition.setCycleCount(Timeline.INDEFINITE);
+//        rect2Transition.setAutoReverse(true);
+//
+//        Thread t1 = new Thread("Move rect1") {
+//            @Override
+//            public void run() {
+//                synchronized (rect1Transition) {
+//                    try {
+//                        rect1Transition.wait();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//
+//        Thread t2 = new Thread("Move rect2") {
+//            @Override
+//            public void run() {
+//                synchronized (rect1Transition) {
+//                    rect1Transition.notify();
+//                }
+//                rect1Transition.play();
+//                rect2Transition.play();
+//            }
+//        };
+//
+//        root.getChildren().add(rect1);
+//        root.getChildren().add(rect2);
+//        t1.start();
+//        t2.start();
+//
+//        BooleanBinding binding = new SimpleBooleanProperty(false)
+//                .and(new SimpleBooleanProperty(true));
+//        binding.addListener((observable, oldValue, newValue) -> {
+//        });
 
-                final ParallelTransition parallelTransition = new ParallelTransition();
-                parallelTransition.getChildren().addAll(
-                        fadeTransition,
-                        translateTransition,
-                        rotateTransition,
-                        scaleTransition
-                );
-                parallelTransition.setCycleCount(Timeline.INDEFINITE);
-                parallelTransition.play();
-            }
-        });
-        root.getChildren().add(rect);
+        final ImageView img = new ImageView("File:src/assets/Blue.png");
+        System.out.print(img.getImage().getWidth());
+//        img.setTranslateX(100);
+//        img.setTranslateY(100);
+//        img.setPreserveRatio(true);
+//        img.setFitWidth(150);
+//        img.setPreserveRatio(true);
+//        img.setSmooth(true);
+//        img.setCache(true);
+//        TranslateTransition transition = new TranslateTransition(Duration.millis(5000), img);
+//        transition.setFromY(100);
+//        transition.setToY(1000);
+//        transition.setCycleCount(3);
+//        transition.setAutoReverse(true);
+//        root.getChildren().add(img);
+//        transition.play();
     }
 }
