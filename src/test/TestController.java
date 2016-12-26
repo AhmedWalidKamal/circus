@@ -1,5 +1,12 @@
 package test;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.beans.property.BooleanProperty;
@@ -12,9 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class TestController implements Initializable {
     @FXML
@@ -30,6 +34,7 @@ public class TestController implements Initializable {
         rect2.setFill(Color.CHOCOLATE);
         rect2.setTranslateX(150);
         rect2.setTranslateY(50);
+
         TranslateTransition rect1Transition = new TranslateTransition
                 (Duration.millis(5000), rect1);
         rect1Transition.setFromY(50);
@@ -43,6 +48,7 @@ public class TestController implements Initializable {
         rect2Transition.setToY(1000);
         rect2Transition.setCycleCount(Timeline.INDEFINITE);
         rect2Transition.setAutoReverse(true);
+
         Thread t1 = new Thread("Move rect1") {
             @Override
             public void run() {
@@ -66,6 +72,7 @@ public class TestController implements Initializable {
                 rect2Transition.play();
             }
         };
+
         root.getChildren().add(rect1);
         root.getChildren().add(rect2);
         t1.start();
