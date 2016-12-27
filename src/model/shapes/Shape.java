@@ -2,7 +2,6 @@ package model.shapes;
 
 import javafx.scene.image.ImageView;
 import model.Color;
-import util.Point;
 
 public interface Shape {
 
@@ -10,9 +9,13 @@ public interface Shape {
 
 	public void setColor(Color color);
 
-	public Point getCenter();
+	public void setX(double x);
 
-	public void setCenter(Point center);
+	public void setY(double y);
+
+	public double getX();
+
+	public double getY();
 
 	public double getWidth();
 

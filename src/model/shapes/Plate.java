@@ -2,29 +2,24 @@ package model.shapes;
 
 import javafx.scene.image.ImageView;
 import model.Color;
-import model.shapes.types.PlateType;
-import util.Point;
+import model.shapes.util.ShapeFactory;
 
-public class Plate extends PlateType implements Shape {
+public class Plate implements Shape {
 
-	private Point center;
 	private ImageView plateImage;
 	private Color plateColor;
-
+	private static final String KEY = "PLATE";
+	static {
+		ShapeFactory.getInstance().
+		registerShape(KEY, Plate.class);
+	}
 	public Plate() {
-		center = new Point();
-		plateImage = new ImageView();
+		this.plateImage = new ImageView();
 	}
 
-	public Plate(final Color color) {
-		center = new Point();
-		plateImage = new ImageView();
+	public Plate(final Color color, final ImageView plateImage) {
+		this.plateImage = plateImage;
 		this.plateColor = color;
-	}
-
-	@Override
-	public Point getCenter() {
-		return this.center;
 	}
 
 	@Override
@@ -58,7 +53,22 @@ public class Plate extends PlateType implements Shape {
 	}
 
 	@Override
-	public void setCenter(final Point center) {
-		this.center = center;
+	public void setX(final double x) {
+		this.plateImage.setX(x);
+	}
+
+	@Override
+	public void setY(final double y) {
+		this.plateImage.setY(y);
+	}
+
+	@Override
+	public double getX() {
+		return this.plateImage.getX();
+	}
+
+	@Override
+	public double getY() {
+		return this.plateImage.getY();
 	}
 }
