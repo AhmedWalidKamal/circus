@@ -24,28 +24,28 @@ public class PlayerComparator implements Comparator<Player> {
                     } else {
                         if (playerOne.getScore().getTime().getSeconds()
                                 > playerTwo.getScore().getTime().getSeconds()) {
-                            return GREATER_THAN;
+                            return SMALLER_THAN;
                         } else if (playerOne.getScore().getTime().getSeconds()
                                 < playerTwo.getScore().getTime().getSeconds()) {
-                            return SMALLER_THAN;
+                            return GREATER_THAN;
                         }
                     }
                 } else {
                     if (playerOne.getScore().getTime().getMinutes()
                             > playerTwo.getScore().getTime().getMinutes()) {
-                        return GREATER_THAN;
+                        return SMALLER_THAN;
                     } else if (playerOne.getScore().getTime().getMinutes()
                             < playerTwo.getScore().getTime().getMinutes()) {
-                        return SMALLER_THAN;
+                        return GREATER_THAN;
                     }
                 }
             } else {
                 if (playerOne.getScore().getTime().getHours()
                         > playerTwo.getScore().getTime().getHours()) {
-                    return GREATER_THAN;
+                    return SMALLER_THAN;
                 } else if (playerOne.getScore().getTime().getHours()
                         < playerTwo.getScore().getTime().getHours()) {
-                    return SMALLER_THAN;
+                    return GREATER_THAN;
                 }
             }
         } else {
@@ -57,8 +57,6 @@ public class PlayerComparator implements Comparator<Player> {
                 return SMALLER_THAN;
             }
         }
-
         return EQUAL;
     }
-
 }
