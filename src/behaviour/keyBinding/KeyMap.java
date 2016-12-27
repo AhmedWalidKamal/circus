@@ -1,75 +1,85 @@
 package behaviour.keyBinding;
 
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Holds a keyMap to a {@link Node} that allows the execution of some operations
+ * on it whenever a contained key is triggered.
+ */
 public class KeyMap {
+    /**
+     * Key mapping between {@link KeyCode} and its equivalent {@link KeyHandler}.
+     */
     private Map<KeyCode, KeyHandler> keyMap = null;
-    private Node node = null;
-    private Pane pane = null;
 
-    public KeyMap(Node node, Pane pane) {
+    /**
+     * {@link javafx.scene.Node} to act upon.
+     */
+    private Node node = null;
+
+    /**
+     * Instantiates a new KeyMap given the node to act upon when its keyHandler
+     * is triggered whenever a key is pressed/released.
+     * @param node
+     */
+    public KeyMap(final Node node) {
         keyMap = new HashMap<>();
         this.node = node;
-        this.pane = pane;
-        setOnKeyPressed(node);
-        setOnKeyReleased(node);
     }
 
+    /**
+     * Adds a new keyHandler to this node.
+     * @param keyHandler {@link KeyHandler} handler to key triggering.
+     */
     public void addKeyHandler(KeyHandler keyHandler) {
         keyHandler.setKeyMap(this);
         keyMap.put(keyHandler.getKeyCode(), keyHandler);
     }
 
+    /**
+     * Gets the node acted upon.
+     * @return {@link Node} node acted upon.
+     */
     public Node getNode() {
         return this.node;
     }
 
-    private void setOnKeyPressed(Node node) {
-        pane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                KeyHandler handler = keyMap.get(event.getCode());
-                if (handler == null) {
-                    return;
-                }
-                handler.setState(KeyState.PRESSED);
-                executeKeyHandlers();
-            }
-        });
+    /**
+     * Checks if this key map has an equivalent {@link KeyHandler} to a given
+     * {@link KeyCode}
+     * @param keyCode {@link KeyCode}.
+     * @return A boolean value defining if this keyMap contains this key code.
+     */
+    public boolean containsKey(KeyCode keyCode) {
+        return keyMap.containsKey(keyCode);
     }
 
-    private void setOnKeyReleased(Node node) {
-        pane.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                KeyHandler handler = keyMap.get(event.getCode());
-                if (handler == null) {
-                    return;
-                }
-                handler.setState(KeyState.RELEASED);
-                executeKeyHandlers();
-            }
-        });
-    }
-
-    private void executeKeyHandlers() {
+    /**
+     * Executes all equivalent {@link KeyHandler}s that can react to the given
+     * {@link KeyCode}.
+     * @param keyCode {@link KeyCode} Given key code to be acted upon triggering.
+     * @param pressed A boolean value defining whether the given key is pressed
+     * or released.
+     */
+    public void executeKeyCommand(KeyCode keyCode, boolean pressed) {
+        if (!containsKey(keyCode)) {
+            throw new RuntimeException("No equivalent key handler");
+        }
+        KeyHandler keyHandler = keyMap.get(keyCode);
+        keyHandler.setPressed(pressed);
         for (KeyHandler handler : keyMap.values()) {
-            if (handler.getState() == KeyState.RELEASED) {
-                continue;
+            if (handler.isPressed()) {
+                new Thread("Execute " + keyCode.getName()) {
+                    @Override
+                    public void run() {
+                        handler.execute();
+                    }
+                }.start();
             }
-            new Thread("Execute " + handler.toString()) {
-                @Override
-                public void run() {
-                    handler.execute();
-                }
-            }.start();
         }
     }
 }

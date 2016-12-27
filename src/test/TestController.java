@@ -3,13 +3,10 @@ package test;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.LeftArrowKeyHandler;
 import behaviour.shapeCreating.ShapeCreator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import model.shapes.Shape;
 
 public class TestController implements Initializable {
@@ -18,12 +15,13 @@ public class TestController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        final Rectangle rect = new Rectangle(50, 50);
-        rect.setX(500);
-        rect.setY(100);
-        final KeyMap keyMap = new KeyMap(rect, root);
-        keyMap.addKeyHandler(new LeftArrowKeyHandler());
-        root.getChildren().add(rect);
+
+//        Rectangle rect = new Rectangle(50, 50);
+//        rect.setX(500);
+//        rect.setY(100);
+//        KeyMap keyMap = new KeyMap(rect, root);
+//        keyMap.addKeyHandler(new LeftArrowKeyHandler());
+//        root.getChildren().add(rect);
 //        Rectangle rect1 = new Rectangle(50, 50);
 //        rect1.setFill(Color.BROWN);
 //        rect1.setTranslateX(50);
