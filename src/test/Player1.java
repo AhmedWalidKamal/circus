@@ -1,5 +1,7 @@
 package test;
 
+import behaviour.keyBinding.KeyMap;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
@@ -12,7 +14,7 @@ public class Player1 extends Player {
     public Player1() {
         state = PlayerState.NOT_MOVING;
         observerList = new ArrayList<>();
-        keyMap = new KeyMap();
+//        keyMap = new KeyMap();
     }
 
     @Override

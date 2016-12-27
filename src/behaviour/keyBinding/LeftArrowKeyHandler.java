@@ -14,10 +14,15 @@ public class LeftArrowKeyHandler extends KeyHandler {
         this.keyMap = keyMap;
     }
 
+    public LeftArrowKeyHandler() {
+        keyCode = KeyCode.LEFT;
+        state = KeyState.RELEASED;
+    }
+
     @Override
     public void execute() {
         Node node = this.keyMap.getNode();
-        //TODO: execute handler on node.
+        node.setTranslateX(node.getTranslateX() - 5);
     }
 
     @Override
@@ -33,5 +38,15 @@ public class LeftArrowKeyHandler extends KeyHandler {
     @Override
     public KeyCode getKeyCode() {
         return this.keyCode;
+    }
+
+    @Override
+    public KeyMap getKeyMap() {
+        return this.keyMap;
+    }
+
+    @Override
+    public void setKeyMap(KeyMap keyMap) {
+        this.keyMap = keyMap;
     }
 }

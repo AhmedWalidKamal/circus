@@ -1,12 +1,14 @@
 package test;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import behaviour.keyBinding.KeyMap;
+import behaviour.keyBinding.LeftArrowKeyHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class TestController implements Initializable {
     @FXML
@@ -14,6 +16,12 @@ public class TestController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
+        Rectangle rect = new Rectangle(50, 50);
+        rect.setX(500);
+        rect.setY(100);
+        KeyMap keyMap = new KeyMap(rect, root);
+        keyMap.addKeyHandler(new LeftArrowKeyHandler());
+        root.getChildren().add(rect);
 //        Rectangle rect1 = new Rectangle(50, 50);
 //        rect1.setFill(Color.BROWN);
 //        rect1.setTranslateX(50);
@@ -71,8 +79,9 @@ public class TestController implements Initializable {
 //        binding.addListener((observable, oldValue, newValue) -> {
 //        });
 
-        final ImageView img = new ImageView("File:src/assets/Blue.png");
-        System.out.print(img.getImage().getWidth());
+//        final ImageView img = new ImageView("File:src/assets/Blue.png");
+//        System.out.print(img.getImage().getWidth());
+
 //        img.setTranslateX(100);
 //        img.setTranslateY(100);
 //        img.setPreserveRatio(true);

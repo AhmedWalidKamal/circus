@@ -1,5 +1,7 @@
 package test;
 
+import behaviour.keyBinding.KeyMap;
+
 import java.util.Observable;
 
 public abstract class Player extends Observable {
