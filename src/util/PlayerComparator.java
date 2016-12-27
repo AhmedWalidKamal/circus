@@ -25,8 +25,7 @@ public class PlayerComparator implements Comparator<Player> {
                         if (playerOne.getScore().getTime().getSeconds()
                                 > playerTwo.getScore().getTime().getSeconds()) {
                             return SMALLER_THAN;
-                        } else if (playerOne.getScore().getTime().getSeconds()
-                                < playerTwo.getScore().getTime().getSeconds()) {
+                        } else {
                             return GREATER_THAN;
                         }
                     }
@@ -34,8 +33,7 @@ public class PlayerComparator implements Comparator<Player> {
                     if (playerOne.getScore().getTime().getMinutes()
                             > playerTwo.getScore().getTime().getMinutes()) {
                         return SMALLER_THAN;
-                    } else if (playerOne.getScore().getTime().getMinutes()
-                            < playerTwo.getScore().getTime().getMinutes()) {
+                    } else {
                         return GREATER_THAN;
                     }
                 }
@@ -43,8 +41,7 @@ public class PlayerComparator implements Comparator<Player> {
                 if (playerOne.getScore().getTime().getHours()
                         > playerTwo.getScore().getTime().getHours()) {
                     return SMALLER_THAN;
-                } else if (playerOne.getScore().getTime().getHours()
-                        < playerTwo.getScore().getTime().getHours()) {
+                } else {
                     return GREATER_THAN;
                 }
             }
@@ -52,11 +49,9 @@ public class PlayerComparator implements Comparator<Player> {
             if (playerOne.getScore().getPoints()
                     > playerTwo.getScore().getPoints()) {
                 return GREATER_THAN;
-            } else if (playerOne.getScore().getPoints()
-                    < playerTwo.getScore().getPoints()) {
+            } else {
                 return SMALLER_THAN;
             }
         }
-        return EQUAL;
     }
 }
