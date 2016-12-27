@@ -16,12 +16,12 @@ public class TestController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        Rectangle rect = new Rectangle(50, 50);
-        rect.setX(500);
-        rect.setY(100);
-        KeyMap keyMap = new KeyMap(rect, root);
-        keyMap.addKeyHandler(new LeftArrowKeyHandler());
-        root.getChildren().add(rect);
+//        Rectangle rect = new Rectangle(50, 50);
+//        rect.setX(500);
+//        rect.setY(100);
+//        KeyMap keyMap = new KeyMap(rect, root);
+//        keyMap.addKeyHandler(new LeftArrowKeyHandler());
+//        root.getChildren().add(rect);
 //        Rectangle rect1 = new Rectangle(50, 50);
 //        rect1.setFill(Color.BROWN);
 //        rect1.setTranslateX(50);

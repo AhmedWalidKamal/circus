@@ -8,18 +8,19 @@ import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Handler;
 
+/**
+ * Holds a keyMap to each player that allows the execution of some operations
+ * on its representation in view.
+ */
 public class KeyMap {
     private Map<KeyCode, KeyHandler> keyMap = null;
     private Node node = null;
-    private Pane pane = null;
 
-    public KeyMap(Node node, Pane pane) {
+    public KeyMap(Node node) {
         keyMap = new HashMap<>();
         this.node = node;
-        this.pane = pane;
-        setOnKeyPressed(node);
-        setOnKeyReleased(node);
     }
 
     public void addKeyHandler(KeyHandler keyHandler) {
@@ -31,45 +32,25 @@ public class KeyMap {
         return this.node;
     }
 
-    private void setOnKeyPressed(Node node) {
-        pane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                KeyHandler handler = keyMap.get(event.getCode());
-                if (handler == null) {
-                    return;
-                }
-                handler.setState(KeyState.PRESSED);
-                executeKeyHandlers();
-            }
-        });
+    public boolean containsKey(KeyCode keyCode) {
+        return keyMap.containsKey(keyCode);
     }
 
-    private void setOnKeyReleased(Node node) {
-        pane.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                KeyHandler handler = keyMap.get(event.getCode());
-                if (handler == null) {
-                    return;
-                }
-                handler.setState(KeyState.RELEASED);
-                executeKeyHandlers();
-            }
-        });
-    }
-
-    private void executeKeyHandlers() {
+    public void executeKeyCommand(KeyCode keyCode, boolean pressed) {
+        if (!containsKey(keyCode)) {
+            return;
+        }
+        KeyHandler keyHandler = keyMap.get(keyCode);
+        keyHandler.setPressed(pressed);
         for (KeyHandler handler : keyMap.values()) {
-            if (handler.getState() == KeyState.RELEASED) {
-                continue;
+            if (handler.isPressed()) {
+                new Thread("Execute " + keyCode.getName()) {
+                    @Override
+                    public void run() {
+                        handler.execute();
+                    }
+                }.start();
             }
-            new Thread("Execute " + handler.toString()) {
-                @Override
-                public void run() {
-                    handler.execute();
-                }
-            }.start();
         }
     }
 }

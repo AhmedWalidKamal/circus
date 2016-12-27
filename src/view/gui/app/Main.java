@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public final void start(Stage primaryStage) throws Exception{
         Pane root = FXMLLoader.load(getClass().getResource(
                 "/view/gui/gameplay/GameViewFxml.fxml"));
         ImageView background = new ImageView("file:src/assets/game_background.png");
@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static final void main(String[] args) {
         launch(args);
     }
 }

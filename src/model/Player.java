@@ -7,7 +7,6 @@ public class Player  {
     private Score score;
     private String name;
 
-
     public Player() {
         score = new Score();
     }
