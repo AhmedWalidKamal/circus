@@ -1,6 +1,7 @@
 package controller;
 
 import behaviour.keyBinding.KeyMap;
+import behaviour.keyBinding.LeftArrowKeyHandler;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;

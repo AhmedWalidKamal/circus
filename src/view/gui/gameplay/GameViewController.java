@@ -23,10 +23,18 @@ public class GameViewController implements Initializable {
      */
     private MainController mainController = null;
 
+    /**
+     * Instance of {@link GameView}.
+     */
+    private GameView gameView = null;
+
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
+        root.requestFocus();
         mainController = new MainController();
+        gameView = new GameView();
+        gameView.setRootPane(this.root);
         setKeyBinding();
     }
 
@@ -42,7 +50,6 @@ public class GameViewController implements Initializable {
                         event.getCode(), true);
             }
         });
-
         root.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(final KeyEvent event) {
