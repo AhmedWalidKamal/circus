@@ -35,6 +35,7 @@ public class GameViewController implements Initializable {
         mainController = new MainController();
         gameView = new GameView();
         gameView.setRootPane(this.root);
+        mainController.setGameView(gameView);
         setKeyBinding();
     }
 
@@ -57,5 +58,9 @@ public class GameViewController implements Initializable {
                         event.getCode(), false);
             }
         });
+    }
+
+    public GameView getGameView() {
+        return this.gameView;
     }
 }

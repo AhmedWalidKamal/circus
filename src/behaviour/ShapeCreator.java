@@ -1,11 +1,12 @@
 package behaviour;
 
-import java.util.Random;
-
+import javafx.scene.image.ImageView;
 import model.Color;
 import model.shapes.Shape;
 import model.shapes.util.ShapeFactory;
 import util.Point;
+
+import java.util.Random;
 
 public class ShapeCreator {
 
@@ -24,6 +25,7 @@ public class ShapeCreator {
 	}
 
 	public static void main(final String[] args) {
+
 		try {
 			Class.forName("model.shapes.types.PlateType");
 		} catch (final ClassNotFoundException e) {

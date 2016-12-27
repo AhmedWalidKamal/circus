@@ -1,5 +1,8 @@
 package controller;
 
+import view.gui.gameplay.GameView;
+import view.gui.gameplay.GameViewController;
+
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
  * is used to control a single task, also acts as a link between model and view.
@@ -23,6 +26,9 @@ public class MainController {
     /**
      * Constructs new instances from sub-controllers.
      */
+
+    private GameView gameView = null;
+
     public MainController() {
         inputController = new InputController();
         playersController = new PlayersController();
@@ -54,5 +60,21 @@ public class MainController {
      */
     public ShapesController getShapesController() {
         return this.shapesController;
+    }
+
+    /**
+     * Sets {@link GameView} to the main controller of the main MVC.
+     * @param gameView
+     */
+    public void setGameView(final GameView gameView) {
+        this.gameView = gameView;
+    }
+
+    /**
+     * Gets {@link GameView} of the main MVC.
+     * @return
+     */
+    public GameView getGameView() {
+        return this.gameView;
     }
 }
