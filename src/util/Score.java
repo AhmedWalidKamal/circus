@@ -1,11 +1,13 @@
 package util;
 
-import util.Time;
-
-public class Score {
+public class Score implements Comparable<Score>{
 
     private int currentScore;
     private Time currentTime;
+
+    public Score() {
+
+    }
 
     public int getPoints(){
         return this.currentScore;
@@ -23,4 +25,16 @@ public class Score {
         return this.currentTime;
     }
 
+    @Override
+    public int compareTo(Score score) {
+        if (currentScore == score.getPoints()) {
+            return  currentTime.compareTo(score.getTime());
+        } else {
+            if (currentScore > score.getPoints()) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
+    }
 }

@@ -12,7 +12,6 @@ public class Point {
 
 	}
 
-
 	public void setX(final double x) {
 		this.x = x;
 	}
@@ -28,4 +27,5 @@ public class Point {
 	public double getY() {
 		return this.y;
 	}
+
 }

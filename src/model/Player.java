@@ -2,7 +2,7 @@ package model;
 
 import util.Score;
 
-public class Player  {
+public class Player implements Comparable<Player> {
 
     private Score score;
     private String name;
@@ -27,4 +27,13 @@ public class Player  {
         return this.score;
     }
 
+    @Override
+    public int compareTo(Player player) {
+
+        if (score.compareTo(player.getScore()) != 0) {
+            return score.compareTo(player.getScore());
+        } else {
+            return name.compareTo(player.getPlayerName());
+        }
+    }
 }

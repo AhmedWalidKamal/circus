@@ -1,7 +1,5 @@
 package model;
 
-import util.PlayerComparator;
-
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -10,7 +8,7 @@ public class Scoreboard  {
     private Set<Player> scoreboard;
 
     public Scoreboard() {
-        scoreboard = new TreeSet<>(new PlayerComparator());
+        scoreboard = new TreeSet<>();
     }
 
     public void setScoreboard(Set<Player> scoreboard) {
@@ -19,10 +17,14 @@ public class Scoreboard  {
 
     public void addNewPlayer(Player player) {
 
+        //TODO check for the existence of a player in a cleaner way + handling the exceptions properly.
+
         if (scoreboard.contains(player)) {
             throw new RuntimeException("Player exists");
         } else {
             scoreboard.add(player);
         }
     }
+
+    //TODO Test the sorting implementation of the Scoreboard
 }
