@@ -53,13 +53,13 @@ public class Plate implements Shape {
 	}
 
 	@Override
-	public void setX(final double x) {
-		this.plateImage.setX(x);
+	public void setX(final double topLeftX) {
+		this.plateImage.setX(topLeftX);
 	}
 
 	@Override
-	public void setY(final double y) {
-		this.plateImage.setY(y);
+	public void setY(final double topLeftY) {
+		this.plateImage.setY(topLeftY);
 	}
 
 	@Override
