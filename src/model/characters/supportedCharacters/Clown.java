@@ -1,6 +1,7 @@
-package model.characters;
+package model.characters.supportedCharacters;
 
-import util.Score;
+import model.Color;
+import model.characters.Character;
 import model.shapes.Shape;
 import util.Point;
 
@@ -10,14 +11,13 @@ import java.util.List;
 public class Clown implements Character {
 
     private Point center;
-    private Score score;
     private List<Shape> shapesList;
     private String characterKey;
 
     public Clown() {
         center = new Point();
-        score = new Score();
         shapesList = new LinkedList<>();
+        characterKey = "clown";
     }
 
     @Override
@@ -46,22 +46,13 @@ public class Clown implements Character {
     }
 
     @Override
-    public Score getScore() {
-        return this.score;
-    }
-
-    @Override
-    public void setScore(Score score) {
-        this.score = score;
-    }
-
-    @Override
     public String getCharacterKey() {
         return this.characterKey;
     }
 
     @Override
-    public void setCharacterKey(String characterKey) {
-        this.characterKey = characterKey;
+    public Object[] getSupportedColors() {
+        return ClownColor.values();
     }
+
 }

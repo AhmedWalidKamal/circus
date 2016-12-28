@@ -5,9 +5,14 @@ package controller;
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public class ShapesController {
+public class ShapesController implements Runnable {
 
     public ShapesController() {
+
+    }
+
+    @Override
+    public void run() {
 
     }
 }

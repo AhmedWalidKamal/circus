@@ -1,7 +1,8 @@
 package controller;
 
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import view.gui.gameplay.GameView;
-import view.gui.gameplay.GameViewController;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -76,5 +77,21 @@ public class MainController {
      */
     public GameView getGameView() {
         return this.gameView;
+    }
+
+    /**
+     * Adds a {@link Node} to the root {@link Pane} of a {@link GameView}.
+     * @param node Node to be added to root pane.
+     */
+    public void addToRootPane(final Node node) {
+        gameView.getRootPane().getChildren().add(node);
+    }
+
+    /**
+     * Starts a new game, calls control to run over view (e.g: render players,
+     * create shapes and move them.. etc).
+     */
+    public void startNewGame() {
+        shapesController.run();
     }
 }

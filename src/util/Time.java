@@ -1,7 +1,7 @@
 package util;
 
 
-public class Time {
+public class Time implements Comparable<Time>{
 
     private int seconds;
     private int minutes;
@@ -34,5 +34,32 @@ public class Time {
 
     public int getHours() {
         return this.hours;
+    }
+
+    @Override
+    public int compareTo(Time time) {
+        if (hours == time.getHours()) {
+            if (minutes == time.getMinutes()) {
+                if (seconds == time.getSeconds()) {
+                    return 0;
+                } else {
+                    if (seconds > time.getSeconds()) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+            } else {
+                if (minutes > time.getMinutes()) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        } if (hours > time.getHours()) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }
