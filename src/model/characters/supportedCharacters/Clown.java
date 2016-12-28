@@ -1,6 +1,5 @@
 package model.characters.supportedCharacters;
 
-import model.Color;
 import model.characters.Character;
 import model.shapes.Shape;
 import util.Point;
@@ -12,12 +11,11 @@ public class Clown implements Character {
 
     private Point center;
     private List<Shape> shapesList;
-    private String characterKey;
+    private static final String KEY = "clown";
 
     public Clown() {
         center = new Point();
         shapesList = new LinkedList<>();
-        characterKey = "clown";
     }
 
     @Override
@@ -47,7 +45,7 @@ public class Clown implements Character {
 
     @Override
     public String getCharacterKey() {
-        return this.characterKey;
+        return this.KEY;
     }
 
     @Override

@@ -32,5 +32,6 @@ public class Test extends Application {
         primaryStage.setScene(new Scene(root, 1024, 800));
         primaryStage.show();
         root.requestFocus();
+        root.setFocusTraversable(true);
     }
 }

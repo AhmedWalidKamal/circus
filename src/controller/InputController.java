@@ -42,8 +42,9 @@ public class InputController {
     public void executeKeyCommand(final KeyCode keyCode, final boolean pressed) {
         for (KeyMap keyMap : keyMapList) {
             if (keyMap.containsKey(keyCode)) {
-                keyMap.executeKeyCommand(keyCode, pressed);
+                keyMap.setKeyHandlerPressed(keyCode, pressed);
             }
+            keyMap.executeAllPressedKeyCommands();
         }
     }
 }

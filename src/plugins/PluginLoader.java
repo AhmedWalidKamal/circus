@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class pluginLoader {
+public class PluginLoader {
 
     private static final String CHARACTER = "character";
     private static final String SHAPE = "shape";
@@ -17,7 +17,7 @@ public class pluginLoader {
             "supportedCharacters.";
     private static final String PACKAGE_NAME_SHAPE = "model.shapes.";
 
-    public static String load (String key, File file) {
+    public static String load(String key, File file) {
         if (file == null) {
             return null;
         }
