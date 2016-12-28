@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import behaviour.shapeCreating.ShapeCreator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.shapes.Shape;
 
@@ -100,7 +102,9 @@ public class TestController implements Initializable {
 		}
         final ShapeCreator creator = new ShapeCreator();
         final Shape newShape = creator.createShape();
-        root.getChildren().add(newShape.getImageView());
+        ImageView iv = newShape.getImageView();
+        iv.toFront();
+        root.getChildren().add(iv);
 //        transition.play();
     }
 }
