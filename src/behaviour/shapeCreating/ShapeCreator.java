@@ -24,13 +24,13 @@ public class ShapeCreator {
 		final String randomShape
 		= (String)supportedShapes[genRandomNumber(supportedShapes.length)];
 		final double initialX = genRandomNumber(SCREEN_WIDTH);
-		final double initalY = 0;
+		final double initialY = 0;
 		final String url = this.shapeCreatorHelper.getUrl(randomShape + "_" + randomColor);
 		System.out.println(url);
 		final Shape newShape = ShapeFactory.
 				getInstance().createShape(randomShape, randomColor, new ImageView(url));
 		newShape.setX(initialX);
-		newShape.setY(initalY);
+		newShape.setY(initialY);
 		return newShape;
 	}
 

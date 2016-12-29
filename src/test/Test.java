@@ -12,10 +12,6 @@ import java.io.IOException;
 
 public class Test extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage primaryStage) throws IOException {
         Pane root = FXMLLoader.load(getClass().getResource("TestFxml.fxml"));
@@ -23,15 +19,21 @@ public class Test extends Application {
 //        background.fitHeightProperty().bind(root.heightProperty());
 //        background.fitWidthProperty().bind(root.widthProperty());
 //        root.getChildren().add(background);
-        root.setStyle(
-                "-fx-background-image: url(\"File:src/assets/game_background"
-                        + ".png\");\n"
-                        + "    -fx-background-size: stretch;"
-        );
+
+//        root.setStyle(
+//                "-fx-background-image: url(\"File:src/assets/game_background"
+//                        + ".png\");\n"
+//                        + "    -fx-background-size: stretch;"
+//        );
+
         primaryStage.setTitle("Circus");
         primaryStage.setScene(new Scene(root, 1024, 800));
         primaryStage.show();
         root.requestFocus();
         root.setFocusTraversable(true);
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

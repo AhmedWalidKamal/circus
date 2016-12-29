@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import view.gui.gameplay.GameViewController;
 
 
 public class Main extends Application {
@@ -18,6 +19,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1024, 800));
         primaryStage.show();
         root.requestFocus();
+        root.toFront();
     }
 
     public static final void main(String[] args) {

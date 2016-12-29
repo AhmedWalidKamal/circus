@@ -31,9 +31,9 @@ public class MainController {
     private GameView gameView = null;
 
     public MainController() {
-        inputController = new InputController();
-        playersController = new PlayersController();
-        shapesController = new ShapesController();
+        inputController = new InputController(this);
+        playersController = new PlayersController(this);
+        shapesController = new ShapesController(this);
     }
 
     /**
@@ -92,6 +92,6 @@ public class MainController {
      * create shapes and move them.. etc).
      */
     public void startNewGame() {
-        shapesController.run();
+        playersController.start();
     }
 }

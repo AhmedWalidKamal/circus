@@ -19,10 +19,16 @@ public class InputController {
     private List<KeyMap> keyMapList = null;
 
     /**
+     * Reference to {@link MainController}.
+     */
+    private MainController mainController = null;
+
+    /**
      * Creates a new instance of {@link InputController}.
      */
-    public InputController() {
+    public InputController(final MainController mainController) {
         keyMapList = new ArrayList<>();
+        this.mainController = mainController;
     }
 
     /**

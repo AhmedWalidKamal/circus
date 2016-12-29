@@ -1,15 +1,14 @@
 package view.gui.gameplay;
 
 
-import behaviour.keyBinding.AKeyHandler;
+import behaviour.keyBinding.keyHandlers.AKeyHandler;
 import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.LeftArrowKeyHandler;
+import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
 import controller.MainController;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
@@ -19,7 +18,8 @@ public class GameViewController implements Initializable {
     /**
      * Root pane.
      */
-    @FXML private AnchorPane root;
+    @FXML
+    private AnchorPane root;
 
     /**
      * Instance of {@link MainController} that allows control over both model
@@ -41,7 +41,7 @@ public class GameViewController implements Initializable {
         gameView.setRootPane(this.root);
         mainController.setGameView(gameView);
         setKeyBinding();
-        test();
+        mainController.startNewGame();
     }
 
     /**
@@ -57,23 +57,5 @@ public class GameViewController implements Initializable {
 
     public GameView getGameView() {
         return this.gameView;
-    }
-
-    private void test() {
-        Rectangle rect = new Rectangle(50, 50);
-        rect.setX(500);
-        rect.setY(100);
-        KeyMap keyMap = new KeyMap(rect);
-        keyMap.addKeyHandler(new LeftArrowKeyHandler());
-        mainController.getInputController().addKeyMap(keyMap);
-        root.getChildren().add(rect);
-
-        Rectangle rect2 = new Rectangle(50, 50);
-        rect2.setX(500);
-        rect2.setY(200);
-        KeyMap keyMap1 = new KeyMap(rect2);
-        keyMap1.addKeyHandler(new AKeyHandler());
-        mainController.getInputController().addKeyMap(keyMap1);
-        root.getChildren().add(rect2);
     }
 }

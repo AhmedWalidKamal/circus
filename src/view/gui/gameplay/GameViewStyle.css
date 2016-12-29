@@ -3,4 +3,5 @@
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
     -fx-background-size: stretch;
+    -fx-smooth: true;
 }

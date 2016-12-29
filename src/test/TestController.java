@@ -1,13 +1,10 @@
 package test;
 
-import behaviour.keyBinding.AKeyHandler;
-import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.LeftArrowKeyHandler;
-import controller.InputController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
+import model.characters.Character;
+import model.characters.supportedCharacters.RedClown;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,14 +16,14 @@ public class TestController implements Initializable {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
 
-        Rectangle rect = new Rectangle(50, 50);
-        rect.setX(500);
-        rect.setY(100);
-        KeyMap keyMap = new KeyMap(rect);
-        keyMap.addKeyHandler(new LeftArrowKeyHandler());
-        keyMap.addKeyHandler(new AKeyHandler());
-        root.getChildren().add(rect);
-//        Rectangle rect1 = new Rectangle(50, 50);
+//        Rectangle rect = new Rectangle(50, 50);
+//        rect.setX(500);
+//        rect.setY(100);
+//        KeyMap keyMap = new KeyMap(rect);
+//        keyMap.addKeyHandler(new LeftArrowKeyHandler());
+//        keyMap.addKeyHandler(new AKeyHandler());
+//
+
 //        rect1.setFill(Color.BROWN);
 //        rect1.setTranslateX(50);
 //        rect1.setTranslateY(50);
@@ -102,6 +99,7 @@ public class TestController implements Initializable {
 		} catch (final ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+
 //        final ShapeCreator creator = new ShapeCreator();
 //        final Shape newShape = creator.createShape();
 //        ImageView iv = newShape.getImageView();

@@ -1,5 +1,7 @@
-package behaviour.keyBinding;
+package behaviour.keyBinding.keyHandlers;
 
+import behaviour.keyBinding.KeyHandler;
+import behaviour.keyBinding.KeyMap;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 
