@@ -1,12 +1,15 @@
 package view.gui.gameplay;
 
 
+import behaviour.keyBinding.keyHandlers.AKeyHandler;
+import behaviour.keyBinding.KeyMap;
+import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
 import controller.MainController;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +18,8 @@ public class GameViewController implements Initializable {
     /**
      * Root pane.
      */
-    @FXML private AnchorPane root;
+    @FXML
+    private AnchorPane root;
 
     /**
      * Instance of {@link MainController} that allows control over both model
@@ -31,12 +35,13 @@ public class GameViewController implements Initializable {
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
-        root.requestFocus();
+        root.setFocusTraversable(true);
         mainController = new MainController();
         gameView = new GameView();
         gameView.setRootPane(this.root);
         mainController.setGameView(gameView);
         setKeyBinding();
+        mainController.startNewGame();
     }
 
     /**
@@ -44,20 +49,10 @@ public class GameViewController implements Initializable {
      * {@link javafx.scene.input.KeyCode} to {@link controller.InputController}.
      */
     private void setKeyBinding() {
-        root.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                mainController.getInputController().executeKeyCommand(
-                        event.getCode(), true);
-            }
-        });
-        root.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(final KeyEvent event) {
-                mainController.getInputController().executeKeyCommand(
-                        event.getCode(), false);
-            }
-        });
+        root.setOnKeyPressed(event -> mainController.getInputController()
+                .executeKeyCommand(event.getCode(), true));
+        root.setOnKeyReleased(event -> mainController.getInputController()
+                .executeKeyCommand(event.getCode(), false));
     }
 
     public GameView getGameView() {

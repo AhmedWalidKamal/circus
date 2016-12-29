@@ -66,20 +66,33 @@ public class KeyMap {
      * or released.
      */
     public void executeKeyCommand(KeyCode keyCode, boolean pressed) {
+        setKeyHandlerPressed(keyCode, pressed);
+        executeAllPressedKeyCommands();
+    }
+
+    /**
+     * Executes all contained {@link KeyHandler}s that are pressed.
+     */
+    public void executeAllPressedKeyCommands() {
+        for (KeyHandler handler : keyMap.values()) {
+            if (handler.isPressed()) {
+                handler.execute();
+            }
+        }
+    }
+
+    /**
+     * Sets an equivalent {@link KeyHandler} to triggered {@link KeyCode}
+     * as pressed.
+     * @param keyCode Triggered {@link KeyCode}.
+     * @param pressed A boolean value defining whether this key is pressed or
+     * released.
+     */
+    public void setKeyHandlerPressed(KeyCode keyCode, boolean pressed) {
         if (!containsKey(keyCode)) {
             throw new RuntimeException("No equivalent key handler");
         }
         KeyHandler keyHandler = keyMap.get(keyCode);
         keyHandler.setPressed(pressed);
-        for (KeyHandler handler : keyMap.values()) {
-            if (handler.isPressed()) {
-                new Thread("Execute " + keyCode.getName()) {
-                    @Override
-                    public void run() {
-                        handler.execute();
-                    }
-                }.start();
-            }
-        }
     }
 }

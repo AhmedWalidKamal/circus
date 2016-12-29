@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import view.gui.gameplay.GameViewController;
 
 
 public class Main extends Application {
@@ -14,13 +15,11 @@ public class Main extends Application {
     public final void start(Stage primaryStage) throws Exception{
         Pane root = FXMLLoader.load(getClass().getResource(
                 "/view/gui/gameplay/GameViewFxml.fxml"));
-        ImageView background = new ImageView("file:src/assets/game_background.png");
-        background.fitHeightProperty().bind(root.heightProperty());
-        background.fitWidthProperty().bind(root.widthProperty());
-        root.getChildren().add(background);
         primaryStage.setTitle("Circus");
-        primaryStage.setScene(new Scene(root, 1024, 800));
+        primaryStage.setScene(new Scene(root, 1280, 1024));
         primaryStage.show();
+        root.requestFocus();
+        root.toFront();
     }
 
     public static final void main(String[] args) {

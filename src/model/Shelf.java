@@ -3,35 +3,28 @@ package model;
 import javafx.scene.image.ImageView;
 
 public class Shelf {
+    private ImageView imageView = null;
+    /* TODO: Orientation -> right_to_left / left_to_right, according to
+     * orientation, a shelf is set by AnchorPane.setAnchor, to right or left.*/
+    private static final String URL = "File:src/assets/shelf.png";
 
-	private ImageView shelfImage;
-	public Shelf(final ImageView shelfImage, final double topleftX, final double topLeftY) {
-		this.shelfImage = shelfImage;
-		this.shelfImage.setX(topleftX);
-		this.shelfImage.setY(topLeftY);
-	}
+    public Shelf(final double y) {
+        imageView = new ImageView(URL);
+        imageView.setY(y);
+    }
+    public Shelf() {
+        imageView = new ImageView(URL);
+    }
 
-	public void setImageView(final ImageView shelfImage) {
-		this.shelfImage = shelfImage;
-	}
+    public ImageView getImageView() {
+        return imageView;
+    }
 
-	public ImageView getImageView() {
-		return this.shelfImage;
-	}
+    public double getY() {
+        return imageView.getY();
+    }
 
-	public void setX(final double topLeftX) {
-		this.shelfImage.setX(topLeftX);
-	}
-
-	public void setY(final double topLeftY) {
-		this.shelfImage.setY(topLeftY);
-	}
-
-	public double getX() {
-		return this.shelfImage.getX();
-	}
-
-	public double getY() {
-		return this.shelfImage.getY();
-	}
+    public void setY(final double y) {
+        imageView.setY(y);
+    }
 }

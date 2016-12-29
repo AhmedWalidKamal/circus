@@ -1,15 +1,13 @@
 package test;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import behaviour.shapeCreating.ShapeCreator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import model.shapes.Shape;
+import model.characters.Character;
+import model.characters.supportedCharacters.RedClown;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class TestController implements Initializable {
     @FXML
@@ -21,10 +19,11 @@ public class TestController implements Initializable {
 //        Rectangle rect = new Rectangle(50, 50);
 //        rect.setX(500);
 //        rect.setY(100);
-//        KeyMap keyMap = new KeyMap(rect, root);
+//        KeyMap keyMap = new KeyMap(rect);
 //        keyMap.addKeyHandler(new LeftArrowKeyHandler());
-//        root.getChildren().add(rect);
-//        Rectangle rect1 = new Rectangle(50, 50);
+//        keyMap.addKeyHandler(new AKeyHandler());
+//
+
 //        rect1.setFill(Color.BROWN);
 //        rect1.setTranslateX(50);
 //        rect1.setTranslateY(50);
@@ -100,11 +99,12 @@ public class TestController implements Initializable {
 		} catch (final ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-        final ShapeCreator creator = new ShapeCreator();
-        final Shape newShape = creator.createShape();
-        ImageView iv = newShape.getImageView();
-        iv.toFront();
-        root.getChildren().add(iv);
+
+//        final ShapeCreator creator = new ShapeCreator();
+//        final Shape newShape = creator.createShape();
+//        ImageView iv = newShape.getImageView();
+//        iv.toFront();
+//        root.getChildren().add(iv);
 //        transition.play();
     }
 }

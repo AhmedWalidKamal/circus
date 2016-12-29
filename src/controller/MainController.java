@@ -1,7 +1,9 @@
 package controller;
 
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import model.Shelf;
 import view.gui.gameplay.GameView;
 
 /**
@@ -31,9 +33,9 @@ public class MainController {
     private GameView gameView = null;
 
     public MainController() {
-        inputController = new InputController();
-        playersController = new PlayersController();
-        shapesController = new ShapesController();
+        inputController = new InputController(this);
+        playersController = new PlayersController(this);
+        shapesController = new ShapesController(this);
     }
 
     /**
@@ -92,6 +94,14 @@ public class MainController {
      * create shapes and move them.. etc).
      */
     public void startNewGame() {
-        shapesController.run();
+        //TODO: Separate in another controller.
+        Shelf shelf1 = new Shelf(100);
+        Shelf shelf2 = new Shelf(100);
+        AnchorPane.setLeftAnchor(shelf1.getImageView(), - 50.0);
+        AnchorPane.setRightAnchor(shelf2.getImageView(), - 50.0);
+        gameView.getRootPane().getChildren().add(shelf1.getImageView());
+        gameView.getRootPane().getChildren().add(shelf2.getImageView());
+
+        playersController.start();
     }
 }

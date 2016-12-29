@@ -19,10 +19,16 @@ public class InputController {
     private List<KeyMap> keyMapList = null;
 
     /**
+     * Reference to {@link MainController}.
+     */
+    private MainController mainController = null;
+
+    /**
      * Creates a new instance of {@link InputController}.
      */
-    public InputController() {
+    public InputController(final MainController mainController) {
         keyMapList = new ArrayList<>();
+        this.mainController = mainController;
     }
 
     /**
@@ -42,8 +48,9 @@ public class InputController {
     public void executeKeyCommand(final KeyCode keyCode, final boolean pressed) {
         for (KeyMap keyMap : keyMapList) {
             if (keyMap.containsKey(keyCode)) {
-                keyMap.executeKeyCommand(keyCode, pressed);
+                keyMap.setKeyHandlerPressed(keyCode, pressed);
             }
+            keyMap.executeAllPressedKeyCommands();
         }
     }
 }
