@@ -16,7 +16,7 @@ public class Main extends Application {
         Pane root = FXMLLoader.load(getClass().getResource(
                 "/view/gui/gameplay/GameViewFxml.fxml"));
         primaryStage.setTitle("Circus");
-        primaryStage.setScene(new Scene(root, 1024, 800));
+        primaryStage.setScene(new Scene(root, 1280, 1024));
         primaryStage.show();
         root.requestFocus();
         root.toFront();
