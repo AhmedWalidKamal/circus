@@ -36,31 +36,26 @@ public class Test extends Application {
         path.getElements().add(new MoveTo(50,50));
         path.getElements().add(new LineTo(50,50));
         path.getElements().add(new LineTo(200,50));
-
-        PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.millis(4000));
-        pathTransition.setPath(path);
-        pathTransition.setNode(rectPath);
-       // pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-       // pathTransition.setCycleCount(Timeline.INDEFINITE);
-        //pathTransition.setAutoReverse(true);
-        pathTransition.play();
+        rectPath.setX(200);
+        rectPath.setY(50);
         long prevTime = System.nanoTime();
         while(rectPath.getX()<1024&&rectPath.getY()<800){
-            Path path1 = new Path();
             long currentTime = System.nanoTime();
             double dt = 3 * (currentTime - prevTime) / 1e8;
            //change x and y coor according to time
             double x = rectPath.getX() + dt * rectPath.getX();
-            double y = rectPath.getY() + dt * rectPath.getY();
+            double y = rectPath.getY() + 6*dt * rectPath.getY();
             prevTime = currentTime;
-            path1.getElements().add(new MoveTo(rectPath.getX(),rectPath.getY()));
-            path1.getElements().add(new LineTo(x,y));
-            PathTransition pathTransition1 = new PathTransition();
-            pathTransition1.setDuration(Duration.millis(4000));
-            pathTransition1.setPath(path);
-            pathTransition1.setNode(rectPath);
-            pathTransition1.play();
+            path.getElements().add(new LineTo(x,y));
+            PathTransition pathTransition = new PathTransition();
+            pathTransition.setDuration(Duration.seconds(30));
+            pathTransition.setPath(path);
+            pathTransition.setNode(rectPath);
+            pathTransition.play();
+            rectPath.setX(x);
+            rectPath.setY(y);
+
+
         }
         primaryStage.setTitle("Circus");
         primaryStage.setScene(new Scene(root, 1024, 800));
