@@ -41,7 +41,7 @@ public class PlayersController {
         mainController.addToRootPane(redClown.getImageView());
         mainController.addToRootPane(greenClown.getImageView());
 
-        //Testing purpose, KeyMap should be included inside Character/Player class.
+        //TODO Testing purpose, KeyMap should be included inside Character/Player class.
         KeyMap redClownKeyMap = new KeyMap(redClown.getImageView());
         KeyMap greenClownKeyMap = new KeyMap(greenClown.getImageView());
         redClownKeyMap.addKeyHandler(new LeftArrowKeyHandler());

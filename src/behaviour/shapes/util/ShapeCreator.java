@@ -1,4 +1,4 @@
-package behaviour.shapeCreating;
+package behaviour.shapes.util;
 
 import java.util.Random;
 
