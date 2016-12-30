@@ -1,11 +1,13 @@
 package model;
 
+import model.characters.Character;
 import util.Score;
 
 public class Player implements Comparable<Player> {
 
     private Score score;
     private String name;
+    private Character character;
 
     public Player() {
         score = new Score();
@@ -25,6 +27,14 @@ public class Player implements Comparable<Player> {
 
     public Score getScore() {
         return this.score;
+    }
+
+    public Character getCharacter() {
+        return this.character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
     @Override
