@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Acts as a link between view and registered keymapss, whenever view takes in
+ * Acts as a link between view and registered keymaps, whenever view takes in
  * an input it signals it to {@link InputController}, having references to all
  * keymaps it can execute a command accordingly.
  */
-public class InputController {
-
+public final class InputController {
     /**
      * List for all registered {@link KeyMap}s.
      */

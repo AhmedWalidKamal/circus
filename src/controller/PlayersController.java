@@ -22,16 +22,33 @@ import java.util.List;
  * a signal from {@link InputController} to move a player, update some player's
  * score... etc) and update the view accordingly.
  */
-public class PlayersController {
+public final class PlayersController {
+    /**
+     * Reference to {@link MainController}.
+     */
     private MainController mainController = null;
+
+    /**
+     * Distance to be set initially from the side of the screen for each
+     * character, one on the right, one on the left.
+     */
     private static final double SIDE_DISTANCE = 50.0;
+
+    /**
+     * Distance to be set initially from the bottom of the screen for both
+     * characters.
+     */
     private static final double BOTTOM_DISTANCE = 15.0;
 
+    /**
+     * Constructs a new {@link PlayersController}
+     * @param mainController
+     */
     public PlayersController(final MainController mainController) {
         this.mainController = mainController;
     }
 
-    public void start() {
+    public void prepareGame() {
         Character redClown = new RedClown();
         Character greenClown = new GreenClown();
         AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);

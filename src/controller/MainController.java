@@ -10,7 +10,7 @@ import view.gui.gameplay.GameView;
  * Acts as the Main Controller for MVC, has references to sub-controllers each
  * is used to control a single task, also acts as a link between model and view.
  */
-public class MainController {
+public final class MainController {
     /**
      * {@link InputController} instance.
      */
@@ -27,19 +27,24 @@ public class MainController {
     private ShapesController shapesController = null;
 
     /**
+     * {@link GameUtilController} instance.
+     */
+    private GameUtilController gameUtilController = null;
+
+    /**
      * Constructs new instances from sub-controllers.
      */
-
     private GameView gameView = null;
 
     public MainController() {
         inputController = new InputController(this);
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
+        gameUtilController = new GameUtilController(this);
     }
 
     /**
-     * Gets an instance to {@link InputController} which allows control on
+     * Gets the used instance to {@link InputController} which allows control over
      * input.
      * @return {@link InputController} instance.
      */
@@ -48,8 +53,8 @@ public class MainController {
     }
 
     /**
-     * Gets an instance to {@link PlayersController} which allows control on
-     * players.
+     * Gets the used instance to {@link PlayersController} which allows control
+     * over players.
      * @return {@link PlayersController} instance.
      */
     public PlayersController getPlayersController() {
@@ -57,8 +62,8 @@ public class MainController {
     }
 
     /**
-     * Gets an instance to {@link ShapesController} which allows control on
-     * shapes.
+     * Gets the used instance to {@link ShapesController} which allows control
+     * over shapes.
      * @return {@link ShapesController} instance.
      */
     public ShapesController getShapesController() {
@@ -66,8 +71,17 @@ public class MainController {
     }
 
     /**
+     * Gets the used instance to {@link GameUtilController} which allows control
+     * over all game utilities (Score, Shelves... etc).
+     * @return {@link GameUtilController} instance.
+     */
+    public GameUtilController getGameUtilController() {
+        return this.gameUtilController;
+    }
+
+    /**
      * Sets {@link GameView} to the main controller of the main MVC.
-     * @param gameView
+     * @param gameView GameView for the controller to set nodes on.
      */
     public void setGameView(final GameView gameView) {
         this.gameView = gameView;
@@ -75,7 +89,7 @@ public class MainController {
 
     /**
      * Gets {@link GameView} of the main MVC.
-     * @return
+     * @return Currently working {@link GameView}.
      */
     public GameView getGameView() {
         return this.gameView;
@@ -94,14 +108,7 @@ public class MainController {
      * create shapes and move them.. etc).
      */
     public void startNewGame() {
-        //TODO: Separate in another controller.
-        Shelf shelf1 = new Shelf(100);
-        Shelf shelf2 = new Shelf(100);
-        AnchorPane.setLeftAnchor(shelf1.getImageView(), - 50.0);
-        AnchorPane.setRightAnchor(shelf2.getImageView(), - 50.0);
-        gameView.getRootPane().getChildren().add(shelf1.getImageView());
-        gameView.getRootPane().getChildren().add(shelf2.getImageView());
-
-        playersController.start();
+        gameUtilController.prepareGame();
+        playersController.prepareGame();
     }
 }

@@ -4,8 +4,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class ShapeCreatorHelper {
-	private static final String BUNDLE_NAME
-	= "behaviour.shapes.shape-images";
+	private static final String BUNDLE_NAME = "behaviour.shapes.shape-images";
 
 	private final ResourceBundle resourceBundle;
 

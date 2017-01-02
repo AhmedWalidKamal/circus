@@ -8,9 +8,16 @@ import javafx.scene.image.ImageView;
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public class ShapesController {
+public final class ShapesController {
+    /**
+     * {@link MainController} reference.
+     */
     private MainController mainController = null;
 
+    /**
+     * Constructs a new {@link ShapesController}.
+     * @param mainController
+     */
     public ShapesController(final MainController mainController) {
         this.mainController = mainController;
     }
