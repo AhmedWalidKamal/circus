@@ -6,5 +6,16 @@ import util.Point;
 import java.util.List;
 
 public interface Character {
+
     public ImageView getImageView();
+
+    public double getY();
+
+    public double getX();
+
+    public void setY(double y);
+
+    public void setX(double x);
+
+    public String getKey();
 }
