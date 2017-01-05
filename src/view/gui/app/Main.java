@@ -15,6 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Circus");
         primaryStage.setScene(new Scene(root, 1280, 1024));
         root.prefWidthProperty().bind(primaryStage.getScene().widthProperty());
+        root.prefHeightProperty().bind(primaryStage.getScene().heightProperty());
         primaryStage.show();
         root.requestFocus();
         root.toFront();

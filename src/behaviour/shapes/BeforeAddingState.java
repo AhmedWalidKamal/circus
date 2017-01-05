@@ -35,7 +35,7 @@ class BeforeAddingState implements ShapeState {
                 break;
             case RIGHT:
                 //Note : change fixed dimension later.
-                path.getElements().add(new MoveTo(1280 - 350 , -shelf.getImageView().getFitWidth()));
+                path.getElements().add(new MoveTo(mainController.getGameView().getRootPane().getWidth() - 350 , -shelf.getImageView().getFitWidth()));
                 PathTransition rightTransition = new PathTransition();
                 rightTransition.setDuration(Duration.seconds(8));
                 rightTransition.setPath(path);
