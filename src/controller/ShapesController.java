@@ -15,16 +15,25 @@ public final class ShapesController {
      */
     private MainController mainController = null;
 
+    private ShapeCreator shapeCreator = null;
+
     /**
      * Constructs a new {@link ShapesController}.
      * @param mainController
      */
     public ShapesController(final MainController mainController) {
         this.mainController = mainController;
+        shapeCreator = new ShapeCreator();
     }
 
     public void startGame() {
-        Shape shape = ShapeCreator.createShape();
+        try {
+            Class.forName("model.shapes.Plate");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        Shape shape = shapeCreator.createShape();
         ShapeContext context = new ShapeContext(shape, mainController);
+        context.handleShapeState();
     }
 }

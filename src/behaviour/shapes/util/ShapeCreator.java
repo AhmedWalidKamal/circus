@@ -8,12 +8,9 @@ import model.shapes.Shape;
 import model.shapes.util.ShapeFactory;
 
 public class ShapeCreator {
-
 	private static final int SCREEN_WIDTH = 1000;
-	private static ShapeCreatorHelper shapeCreatorHelper = null;
 
-	static {
-		shapeCreatorHelper = new ShapeCreatorHelper();
+	public ShapeCreator() {
 	}
 
 	public static Shape createShape() {
@@ -25,7 +22,7 @@ public class ShapeCreator {
 		= (String)supportedShapes[genRandomNumber(supportedShapes.length)];
 		final double initialX = genRandomNumber(SCREEN_WIDTH);
 		final double initialY = 0;
-		final String url = shapeCreatorHelper.getUrl(randomShape + "_" + randomColor);
+		final String url = ShapeCreatorHelper.getUrl(randomShape + "_" + randomColor);
 		System.out.println(url);
 		final Shape newShape = ShapeFactory.
 				getInstance().createShape(randomShape, randomColor, new ImageView(url));

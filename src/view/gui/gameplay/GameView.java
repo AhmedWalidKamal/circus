@@ -7,7 +7,6 @@ import javafx.scene.layout.Pane;
  * main view.
  */
 public class GameView {
-
     /**
      * {@link Pane} root pane which acts as a root for all elements inside a
      * FXML view, this pane usually requests focus in {@link GameViewController}.

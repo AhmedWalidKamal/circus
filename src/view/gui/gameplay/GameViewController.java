@@ -1,15 +1,10 @@
 package view.gui.gameplay;
 
 
-import behaviour.keyBinding.keyHandlers.AKeyHandler;
-import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
 import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;

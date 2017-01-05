@@ -8,13 +8,15 @@ import model.shapes.util.ShapeFactory;
 public class Plate implements Shape {
 
 	private ImageView plateImage;
+
 	private Color plateColor;
 
 	private static final String KEY = "PLATE";
+
 	static {
-		ShapeFactory.getInstance().
-		registerShape(KEY, Plate.class);
+		ShapeFactory.getInstance().registerShape(KEY, Plate.class);
 	}
+
 	public Plate() {
 		this.plateImage = new ImageView();
 	}

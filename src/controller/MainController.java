@@ -110,5 +110,6 @@ public final class MainController {
     public void startNewGame() {
         gameUtilController.prepareGame();
         playersController.prepareGame();
+        shapesController.startGame();
     }
 }

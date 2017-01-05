@@ -19,8 +19,9 @@ class BeforeAddingState implements ShapeState {
 
     @Override
     public final void handle(final Shape shape) {
+        mainController.getGameView().getRootPane()
+                .getChildren().add(shape.getImageView());
         Shelf shelf = mainController.getGameUtilController().getNextShelf();
-        double y = shelf.getY();
         switch (shelf.getOrientation()) {
             case LEFT:
                 //Note : change fixed dimension later.

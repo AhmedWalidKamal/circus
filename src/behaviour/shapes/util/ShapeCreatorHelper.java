@@ -4,15 +4,12 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class ShapeCreatorHelper {
-	private static final String BUNDLE_NAME = "behaviour.shapes.shape-images";
+	private static final String BUNDLE_NAME = "behaviour.shapes.util.shape-images";
 
-	private final ResourceBundle resourceBundle;
+	private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(
+			BUNDLE_NAME);
 
-	public ShapeCreatorHelper() {
-		resourceBundle = ResourceBundle.getBundle(BUNDLE_NAME);
-	}
-
-	public String getUrl(final String key) {
+	public static String getUrl(final String key) {
 		try {
 			return resourceBundle.getString(key);
 		} catch (final MissingResourceException e) {

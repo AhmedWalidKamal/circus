@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 
 public class AKeyHandler extends KeyHandler {
+
     public AKeyHandler() {
         super.keyCode = KeyCode.A;
         super.pressed = false;
