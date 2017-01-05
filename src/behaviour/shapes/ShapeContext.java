@@ -1,15 +1,18 @@
 package behaviour.shapes;
 
+import controller.MainController;
 import model.shapes.Shape;
 
 /**
  * Acts as a controller for the many consequent states a shape can be in,
  */
-public class ShapeContext {
+public final class ShapeContext {
     /**
      * Current {@link ShapeState}.
      */
     private ShapeState shapeState = null;
+
+    private MainController mainController = null;
 
     /**
      * {@link Shape} to apply states on.
@@ -20,9 +23,10 @@ public class ShapeContext {
      * Constructs a new Context for shape.
      * @param shape {@link Shape} shape to apply states on.
      */
-    public ShapeContext(Shape shape) {
+    public ShapeContext(final Shape shape, final MainController mainController) {
         this.shape = shape;
-        shapeState = new BeforeAddingState();
+        this.mainController = mainController;
+        shapeState = new BeforeAddingState(this.mainController);
     }
 
     /**

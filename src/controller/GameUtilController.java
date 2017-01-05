@@ -29,6 +29,8 @@ public final class GameUtilController {
      */
     private static final double Y_SHELF = 100;
 
+    private int counter;
+
     /**
      * Constructs a new {@link GameUtilController} that is used to control
      * game utilities.
@@ -37,6 +39,7 @@ public final class GameUtilController {
     public GameUtilController(final MainController mainController) {
         this.mainController = mainController;
         shelves = new ArrayList<>();
+        counter = -1;
     }
 
     /**
@@ -44,16 +47,21 @@ public final class GameUtilController {
      * shelves, score... etc.).
      */
     public void prepareGame() {
-        Shelf leftShelf = new Shelf(Y_SHELF);
+        Shelf leftShelf = new Shelf(Y_SHELF, Shelf.Orientation.LEFT);
         shelves.add(leftShelf);
         AnchorPane.setLeftAnchor(leftShelf.getImageView(), SIDE_ANCHOR_DISTANCE);
         mainController.getGameView().getRootPane().getChildren().add(
                 leftShelf.getImageView());
 
-        Shelf rightShelf = new Shelf(Y_SHELF);
+        Shelf rightShelf = new Shelf(Y_SHELF, Shelf.Orientation.RIGHT);
         shelves.add(rightShelf);
         AnchorPane.setRightAnchor(rightShelf.getImageView(), SIDE_ANCHOR_DISTANCE);
         mainController.getGameView().getRootPane().getChildren().add(
                 rightShelf.getImageView());
+    }
+
+    public Shelf getNextShelf() {
+        counter = (counter + 1) % shelves.size();
+        return shelves.get(counter);
     }
 }

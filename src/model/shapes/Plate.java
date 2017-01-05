@@ -1,5 +1,6 @@
 package model.shapes;
 
+import behaviour.shapes.ShapeContext;
 import javafx.scene.image.ImageView;
 import model.Color;
 import model.shapes.util.ShapeFactory;
@@ -8,6 +9,7 @@ public class Plate implements Shape {
 
 	private ImageView plateImage;
 	private Color plateColor;
+
 	private static final String KEY = "PLATE";
 	static {
 		ShapeFactory.getInstance().

@@ -1,7 +1,8 @@
 package controller;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import behaviour.shapes.ShapeContext;
+import behaviour.shapes.util.ShapeCreator;
+import model.shapes.Shape;
 
 /**
  * Acts as a controller to shapes behavior, using a subroutine that handles
@@ -20,5 +21,10 @@ public final class ShapesController {
      */
     public ShapesController(final MainController mainController) {
         this.mainController = mainController;
+    }
+
+    public void startGame() {
+        Shape shape = ShapeCreator.createShape();
+        ShapeContext context = new ShapeContext(shape, mainController);
     }
 }

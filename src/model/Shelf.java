@@ -8,9 +8,17 @@ public class Shelf {
      * orientation, a shelf is set by AnchorPane.setAnchor, to right or left.*/
     private static final String URL = "File:src/assets/shelf.png";
 
-    public Shelf(final double y) {
+    public enum Orientation {
+        LEFT,
+        RIGHT;
+    }
+
+    private Orientation orientation;
+
+    public Shelf(final double y, final Orientation orientation) {
         imageView = new ImageView(URL);
         imageView.setY(y);
+        this.orientation = orientation;
     }
     public Shelf() {
         imageView = new ImageView(URL);
@@ -26,5 +34,9 @@ public class Shelf {
 
     public void setY(final double y) {
         imageView.setY(y);
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
     }
 }
