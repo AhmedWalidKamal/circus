@@ -26,7 +26,7 @@ class BeforeAddingState implements ShapeState {
         switch (shelf.getOrientation()) {
             case LEFT:
                 //Note : change fixed dimension later.
-                path.getElements().add(new MoveTo(350,shelf.getY()));
+                path.getElements().add(new MoveTo(0,shelf.getY()));
                 path.getElements().add(new LineTo(shelf.getImageView().getImage().getWidth(),shelf.getY()));
                 break;
             case RIGHT:
@@ -42,6 +42,9 @@ class BeforeAddingState implements ShapeState {
         transition.setPath(path);
         transition.setNode(shape.getImageView());
         transition.play();
+        shape.getImageView().setX(shelf.getImageView().getImage().getWidth());
+        shape.getImageView().setY(shelf.getY());
+
     }
 
     @Override
