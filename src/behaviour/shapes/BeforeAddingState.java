@@ -2,7 +2,6 @@ package behaviour.shapes;
 
 import controller.MainController;
 import javafx.animation.PathTransition;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -22,11 +21,12 @@ class BeforeAddingState implements ShapeState {
     public final void handle(final Shape shape) {
         mainController.getGameView().getRootPane()
                 .getChildren().add(shape.getImageView());
+
         Shelf shelf = mainController.getGameUtilController().getNextShelf();
         switch (shelf.getOrientation()) {
             case LEFT:
                 //Note : change fixed dimension later.
-                path.getElements().add(new MoveTo(350,shelf.getY()));
+                path.getElements().add(new MoveTo(0,shelf.getY()));
                 path.getElements().add(new LineTo(shelf.getImageView().getImage().getWidth(),shelf.getY()));
                 break;
             case RIGHT:

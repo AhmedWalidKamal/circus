@@ -8,7 +8,6 @@ import javafx.util.Duration;
 import model.shapes.Shape;
 
 class FallingState implements ShapeState {
-
     @Override
     public final void handle(final Shape shape) {
         Path path = new Path();

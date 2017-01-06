@@ -39,5 +39,7 @@ public final class ShapesController {
         Shape shape = shapePool.create();
         ShapeContext context = new ShapeContext(shape, mainController);
         context.handleShapeState();
+        context.goNext();
+        context.handleShapeState();
     }
 }

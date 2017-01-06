@@ -18,6 +18,7 @@ public class Shelf {
         imageView.setY(y);
         this.orientation = orientation;
     }
+
     public Shelf() {
         imageView = new ImageView(URL);
     }
