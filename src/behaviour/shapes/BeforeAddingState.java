@@ -42,6 +42,9 @@ class BeforeAddingState implements ShapeState {
         transition.setPath(path);
         transition.setNode(shape.getImageView());
         transition.play();
+        shape.getImageView().setX(shelf.getImageView().getImage().getWidth());
+        shape.getImageView().setY(shelf.getY());
+
     }
 
     @Override

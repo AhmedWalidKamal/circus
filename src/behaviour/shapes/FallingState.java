@@ -12,7 +12,7 @@ class FallingState implements ShapeState {
     public final void handle(final Shape shape) {
         Path path = new Path();
         long prevTime = System.nanoTime();
-        path.getElements().add(new MoveTo(shape.getImageView().getX(),shape.getImageView().getX()));
+        path.getElements().add(new MoveTo(shape.getImageView().getX(),shape.getImageView().getY()));
         while (shape.getImageView().getX() < 1024 && shape.getImageView().getY() < 800){
             long currentTime = System.nanoTime();
             double dt = 3 * (currentTime - prevTime) / 1e8;
