@@ -35,7 +35,7 @@ public class GameViewController implements Initializable {
         gameView = new GameView();
         gameView.setRootPane(this.root);
         mainController.setGameView(gameView);
-        setKeyBinding();
+        //setKeyBinding();
         mainController.startNewGame();
     }
 
@@ -43,12 +43,12 @@ public class GameViewController implements Initializable {
      * Adds a key input handler to a root pane to send the entered
      * {@link javafx.scene.input.KeyCode} to {@link controller.InputController}.
      */
-    private void setKeyBinding() {
+    /*private void setKeyBinding() {
         root.setOnKeyPressed(event -> mainController.getInputController()
                 .executeKeyCommand(event.getCode(), true));
         root.setOnKeyReleased(event -> mainController.getInputController()
                 .executeKeyCommand(event.getCode(), false));
-    }
+    }*/
 
     public GameView getGameView() {
         return this.gameView;

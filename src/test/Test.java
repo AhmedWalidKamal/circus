@@ -30,7 +30,7 @@ public class Test extends Application {
 //                        + "    -fx-background-size: stretch;"
 //        );
         ///demo
-        final Rectangle rectPath = new Rectangle (10, 10, 40, 40);
+       /* final Rectangle rectPath = new Rectangle (10, 10, 40, 40);
         rectPath.setFill(Color.BLUE);
         root.getChildren().add(rectPath);
         Path path = new Path();
@@ -64,7 +64,7 @@ public class Test extends Application {
         primaryStage.setScene(new Scene(root, 1024, 800));
         primaryStage.show();
         root.requestFocus();
-        root.setFocusTraversable(true);
+        root.setFocusTraversable(true);*/
 
     }
 
