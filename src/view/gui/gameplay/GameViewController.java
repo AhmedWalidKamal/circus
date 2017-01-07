@@ -1,13 +1,13 @@
 package view.gui.gameplay;
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class GameViewController implements Initializable {
     /**

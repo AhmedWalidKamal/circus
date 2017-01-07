@@ -1,13 +1,11 @@
 package test;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import model.characters.Character;
-import model.characters.supportedCharacters.RedClown;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class TestController implements Initializable {
     @FXML
@@ -94,17 +92,21 @@ public class TestController implements Initializable {
 //        transition.setToY(1000);
 //        transition.setCycleCount(3);
 //        transition.setAutoReverse(true);
-        try {
-			Class.forName("model.shapes.Plate");
-		} catch (final ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-//        final ShapeCreator creator = new ShapeCreator();
-//        final Shape newShape = creator.createShape();
-//        ImageView iv = newShape.getImageView();
+//        try {
+//			Class.forName("model.shapes.Plate");
+//		} catch (final ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//
+//        final Shape newShape = ShapeCreator.createShape();
+//        final ImageView iv = newShape.getImageView();
+//        iv.setTranslateX(-3);
+//        iv.setTranslateY(3);
 //        iv.toFront();
 //        root.getChildren().add(iv);
-//        transition.play();
+        //transition.play();
+
+
+
     }
 }
