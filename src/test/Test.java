@@ -78,9 +78,6 @@ public class Test extends Application {
         timerLabel.setTextFill(Color.RED);
         timerLabel.setStyle("-fx-font-size: 4em;");
 
-        if (timeline != null) {
-            timeline.stop();
-        }
         timeSeconds.set(STARTTIME);
         timeline = new Timeline();
         timeline.getKeyFrames().add(
@@ -88,8 +85,8 @@ public class Test extends Application {
                 new KeyValue(timeSeconds, 0)));
         timeline.play();
 
-        final VBox vb = new VBox(20);             // gap between components is 20
-        vb.setAlignment(Pos.CENTER);        // center the components within VBox
+        final VBox vb = new VBox(20);   // gap between components is 20
+        vb.setAlignment(Pos.CENTER);    // center the components within VBox
         vb.setPrefWidth(primaryStage.getScene().getWidth());
         vb.getChildren().add(timerLabel);
         vb.setLayoutY(30);
@@ -98,7 +95,6 @@ public class Test extends Application {
         primaryStage.show();
         root.requestFocus();
         root.setFocusTraversable(true);
-
     }
 
     public static void main(final String[] args) {

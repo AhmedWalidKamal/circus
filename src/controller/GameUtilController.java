@@ -1,11 +1,19 @@
 package controller;
 
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import model.Shelf;
-
 import java.util.ArrayList;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
+import model.Shelf;
 
 /**
  * Acts as a controller to all game utilities (score, shelves, ... etc).
@@ -31,7 +39,37 @@ public final class GameUtilController {
      */
     private static final double Y_SHELF = 100;
 
+    /**
+     * Value of Y-Axis for the timer to be put in view.
+     */
+    private static final double Y_TIMER = 30;
+
+    /**
+     * Value of X-Axis for the timer to be put in view.
+     */
+	private static final double X_TIMER = 620;
+
     private int counter;
+
+    /**
+     * The total time for the game.
+     */
+    private static final Integer GAMETIME = 60;
+
+    /**
+     * Timeline object that progresses the actual time.
+     */
+    private Timeline timeline = null;
+
+    /**
+     * The label that contains the current time.
+     */
+    private final Label timerLabel;
+
+    /**
+     * The total time for the game.
+     */
+    private final IntegerProperty timeSeconds;
 
     /**
      * Constructs a new {@link GameUtilController} that is used to control
@@ -40,8 +78,11 @@ public final class GameUtilController {
      */
     public GameUtilController(final MainController mainController) {
         this.mainController = mainController;
-        shelves = new ArrayList<>();
-        counter = -1;
+        this.shelves = new ArrayList<>();
+        this.timeline = new Timeline();
+        this.timerLabel = new Label();
+        this.timeSeconds = new SimpleIntegerProperty(GAMETIME);
+        this.counter = -1;
     }
 
     /**
@@ -49,20 +90,44 @@ public final class GameUtilController {
      * shelves, score... etc.).
      */
     public void prepareGame() {
-        Shelf leftShelf = new Shelf(Y_SHELF, Shelf.Orientation.LEFT);
+        final Shelf leftShelf = new Shelf(Y_SHELF, Shelf.Orientation.LEFT);
         shelves.add(leftShelf);
         AnchorPane.setLeftAnchor(leftShelf.getImageView(), SIDE_ANCHOR_DISTANCE);
         mainController.getGameView().getRootPane().getChildren().add(
                 leftShelf.getImageView());
 
-        Shelf rightShelf = new Shelf(Y_SHELF, Shelf.Orientation.RIGHT);
+        final Shelf rightShelf = new Shelf(Y_SHELF, Shelf.Orientation.RIGHT);
         shelves.add(rightShelf);
         AnchorPane.setRightAnchor(rightShelf.getImageView(), SIDE_ANCHOR_DISTANCE);
         mainController.getGameView().getRootPane().getChildren().add(
                 rightShelf.getImageView());
+        initializeGameTimer();
     }
 
-    public Shelf getNextShelf() {
+    /**
+     * Initializes the game timer, creates the label that holds the time and
+     * adds it to the game view.
+     */
+    private void initializeGameTimer() {
+    	this.timerLabel.textProperty().bind(timeSeconds.asString());
+        this.timerLabel.setTextFill(Color.RED);
+        this.timerLabel.setStyle("-fx-font-size: 4em;");
+        this.timeSeconds.set(GAMETIME);
+        this.timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(GAMETIME + 1),
+                new KeyValue(timeSeconds, 0)));
+        this.timeline.play();
+
+        final HBox hBox = new HBox(20);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.getChildren().add(this.timerLabel);
+        hBox.setLayoutY(Y_TIMER);
+        hBox.setLayoutX(X_TIMER);
+
+        this.mainController.getGameView().getRootPane().getChildren().add(hBox);
+	}
+
+	public Shelf getNextShelf() {
         counter = (counter + 1) % shelves.size();
         return shelves.get(counter);
     }
