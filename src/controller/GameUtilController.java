@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import model.Shelf;
@@ -38,16 +38,6 @@ public final class GameUtilController {
      * Value of Y-Axis for the shelf to be put in view.
      */
     private static final double Y_SHELF = 100;
-
-    /**
-     * Value of Y-Axis for the timer to be put in view.
-     */
-    private static final double Y_TIMER = 30;
-
-    /**
-     * Value of X-Axis for the timer to be put in view.
-     */
-	private static final double X_TIMER = 620;
 
     private int counter;
 
@@ -117,14 +107,14 @@ public final class GameUtilController {
                 new KeyFrame(Duration.seconds(GAMETIME + 1),
                 new KeyValue(timeSeconds, 0)));
         this.timeline.play();
-
-        final HBox hBox = new HBox(20);
-        hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().add(this.timerLabel);
-        hBox.setLayoutY(Y_TIMER);
-        hBox.setLayoutX(X_TIMER);
-
-        this.mainController.getGameView().getRootPane().getChildren().add(hBox);
+        final StackPane stackPane = new StackPane();
+        stackPane.getChildren().add(this.timerLabel);
+        StackPane.setAlignment(this.timerLabel, Pos.TOP_CENTER);
+        AnchorPane.setRightAnchor(stackPane, 0.0);
+        AnchorPane.setLeftAnchor(stackPane, 0.0);
+        AnchorPane.setTopAnchor(stackPane, 0.0);
+        AnchorPane.setBottomAnchor(stackPane, 0.0);
+        this.mainController.getGameView().getRootPane().getChildren().add(stackPane);
 	}
 
 	public Shelf getNextShelf() {
