@@ -1,5 +1,8 @@
 package model.characters.supportedCharacters;
 
+import behaviour.keyBinding.KeyMap;
+import behaviour.keyBinding.keyHandlers.AKeyHandler;
+import behaviour.keyBinding.keyHandlers.DKeyHandler;
 import javafx.scene.image.ImageView;
 import model.characters.Character;
 
@@ -8,9 +11,13 @@ public class GreenClown implements Character {
     private static final String KEY = "grownClown";
     private static final String URL = "File:src/assets/green_clown.png";
     private static ImageView imageView = null;
+    private KeyMap keyMap = null;
 
     public GreenClown() {
         imageView = new ImageView(URL);
+        keyMap = new KeyMap(imageView);
+        keyMap.addKeyHandler(new AKeyHandler());
+        keyMap.addKeyHandler(new DKeyHandler());
     }
 
     @Override
@@ -41,5 +48,15 @@ public class GreenClown implements Character {
     @Override
     public String getKey() {
         return KEY;
+    }
+
+    @Override
+    public KeyMap getKeyMap() {
+        return this.keyMap;
+    }
+
+    @Override
+    public void setKeyMap(final KeyMap keyMap) {
+        this.keyMap = keyMap;
     }
 }

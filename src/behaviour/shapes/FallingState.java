@@ -9,9 +9,6 @@ import javafx.util.Duration;
 import model.Shelf;
 import model.shapes.Shape;
 
-import static model.Shelf.Orientation.LEFT;
-import static model.Shelf.Orientation.RIGHT;
-
 class FallingState implements ShapeState {
     private MainController mainController;
     private Path path;
