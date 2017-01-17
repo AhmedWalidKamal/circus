@@ -32,7 +32,7 @@ public class RedClown implements Character {
 
     @Override
     public double getX() {
-        return imageView.getX();
+        return imageView.getX() + imageView.getTranslateX();
     }
 
     @Override

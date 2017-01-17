@@ -7,6 +7,7 @@ import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
 import behaviour.keyBinding.keyHandlers.RightArrowKeyHandler;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import model.Player;
 import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
@@ -58,10 +59,20 @@ public final class PlayersController {
 
         Character redClown = new RedClown();
         Character greenClown = new GreenClown();
-        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
-        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
         AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
+        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
+        redClown.setX(SIDE_DISTANCE);
+        redClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
+                .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
+                .getImage().getHeight());
         AnchorPane.setRightAnchor(greenClown.getImageView(), SIDE_DISTANCE);
+        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
+        greenClown.setX(mainController.getGameView().getRootPane().prefWidthProperty()
+                .doubleValue() - SIDE_DISTANCE - greenClown.getImageView()
+                .getImage().getWidth());
+        greenClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
+                .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
+                .getImage().getHeight());
 
         mainController.getInputController().addKeyMap(redClown.getKeyMap());
         mainController.getInputController().addKeyMap(greenClown.getKeyMap());
@@ -72,5 +83,9 @@ public final class PlayersController {
         player2.setCharacter(greenClown);
         players.add(player1);
         players.add(player2);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

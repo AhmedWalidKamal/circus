@@ -23,7 +23,6 @@ public class ShapeCreator {
 		final double initialX = genRandomNumber(SCREEN_WIDTH);
 		final double initialY = 0;
 		final String url = ShapeCreatorHelper.getUrl(randomShape + "_" + randomColor);
-		System.out.println(url);
 		final Shape newShape = ShapeFactory.
 				getInstance().createShape(randomShape, randomColor, new ImageView(url));
 		newShape.setX(initialX);
