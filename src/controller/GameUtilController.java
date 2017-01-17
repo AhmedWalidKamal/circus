@@ -1,8 +1,6 @@
 package controller;
 
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import model.Shelf;
 
 import java.util.ArrayList;

@@ -1,9 +1,7 @@
 package controller;
 
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import model.Shelf;
 import view.gui.gameplay.GameView;
 
 /**

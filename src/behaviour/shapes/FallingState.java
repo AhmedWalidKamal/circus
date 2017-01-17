@@ -4,7 +4,6 @@ import controller.MainController;
 import javafx.animation.PathTransition;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import model.shapes.Shape;

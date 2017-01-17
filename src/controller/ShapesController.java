@@ -2,6 +2,7 @@ package controller;
 
 import behaviour.shapes.ShapeContext;
 import behaviour.shapes.util.ShapePool;
+import javafx.application.Platform;
 import model.shapes.Shape;
 
 /**
@@ -31,10 +32,34 @@ public final class  ShapesController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Shape shape = shapePool.create();
-        ShapeContext context = new ShapeContext(shape, mainController);
-        context.handleShapeState();
-        context.goNext();
-        context.handleShapeState();
+        Thread mainPlateThread = new Thread("Main Plates") {
+            private int counter = 0;
+            @Override
+            public void run() {
+                while (true) {
+                    Thread thread = new Thread("Plate" + counter) {
+                        @Override
+                        public void run() {
+                            Shape shape = shapePool.create();
+                            ShapeContext context = new ShapeContext(shape, mainController);
+
+                            context.handleShapeState();
+                            context.goNext();
+                            context.handleShapeState();
+                        }
+                    };
+                    thread.setDaemon(true);
+                    Platform.runLater(thread);
+                    counter++;
+                    try {
+                        sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        mainPlateThread.setDaemon(true);
+        mainPlateThread.start();
     }
 }
