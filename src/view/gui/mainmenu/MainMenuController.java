@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import view.gui.app.util.SceneNavigator;
 
 public class MainMenuController implements Initializable {
 	/**
@@ -30,6 +31,10 @@ public class MainMenuController implements Initializable {
      */
     private MainMenu mainMenu = null;
 
+    @FXML
+    private void openGameView() {
+    	SceneNavigator.loadPane(SceneNavigator.GAMEVIEW);
+    }
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
