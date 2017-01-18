@@ -21,6 +21,6 @@ public class LeftArrowKeyHandler extends KeyHandler {
     @Override
     public void execute() {
         Node node = super.keyMap.getNode();
-        node.setTranslateX(node.getTranslateX() - 5);
+        node.setTranslateX(node.getTranslateX() - 10);
     }
 }

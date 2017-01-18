@@ -1,19 +1,10 @@
 package controller;
 
-import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.keyHandlers.AKeyHandler;
-import behaviour.keyBinding.keyHandlers.DKeyHandler;
-import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
-import behaviour.keyBinding.keyHandlers.RightArrowKeyHandler;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import model.Player;
 import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
-import view.gui.app.Main;
-import view.gui.gameplay.GameViewController;
 
 import java.util.ArrayList;
 import java.util.List;
