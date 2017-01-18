@@ -1,19 +1,12 @@
 package controller;
 
-import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.keyHandlers.AKeyHandler;
-import behaviour.keyBinding.keyHandlers.DKeyHandler;
-import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
-import behaviour.keyBinding.keyHandlers.RightArrowKeyHandler;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import model.Player;
 import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
-import view.gui.app.Main;
-import view.gui.gameplay.GameViewController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,32 +33,50 @@ public final class PlayersController {
      */
     private static final double BOTTOM_DISTANCE = 15.0;
 
+    private List<Player> players = null;
+
     /**
      * Constructs a new {@link PlayersController}
      * @param mainController
      */
     public PlayersController(final MainController mainController) {
         this.mainController = mainController;
+        players = new ArrayList<>();
     }
 
     public void prepareGame() {
+        Player player1 = new Player();
+        Player player2 = new Player();
+
         Character redClown = new RedClown();
         Character greenClown = new GreenClown();
-        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
-        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
         AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
+        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
+        redClown.setX(SIDE_DISTANCE);
+        redClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
+                .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
+                .getImage().getHeight());
         AnchorPane.setRightAnchor(greenClown.getImageView(), SIDE_DISTANCE);
+        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
+        greenClown.setX(mainController.getGameView().getRootPane().prefWidthProperty()
+                .doubleValue() - SIDE_DISTANCE - greenClown.getImageView()
+                .getImage().getWidth());
+        greenClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
+                .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
+                .getImage().getHeight());
+
+        mainController.getInputController().addKeyMap(redClown.getKeyMap());
+        mainController.getInputController().addKeyMap(greenClown.getKeyMap());
         mainController.addToRootPane(redClown.getImageView());
         mainController.addToRootPane(greenClown.getImageView());
 
-        //TODO Testing purpose, KeyMap should be included inside Character/Player class.
-        KeyMap redClownKeyMap = new KeyMap(redClown.getImageView());
-        KeyMap greenClownKeyMap = new KeyMap(greenClown.getImageView());
-        redClownKeyMap.addKeyHandler(new LeftArrowKeyHandler());
-        redClownKeyMap.addKeyHandler(new RightArrowKeyHandler());
-        greenClownKeyMap.addKeyHandler(new AKeyHandler());
-        greenClownKeyMap.addKeyHandler(new DKeyHandler());
-        mainController.getInputController().addKeyMap(redClownKeyMap);
-        mainController.getInputController().addKeyMap(greenClownKeyMap);
+        player1.setCharacter(redClown);
+        player2.setCharacter(greenClown);
+        players.add(player1);
+        players.add(player2);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

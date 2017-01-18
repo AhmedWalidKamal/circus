@@ -32,7 +32,7 @@ public final class  ShapesController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Thread mainPlateThread = new Thread("Main Plates") {
+        Thread mainPlateThread = new Thread("Main Plate Thread") {
             private int counter = 0;
             @Override
             public void run() {
@@ -42,7 +42,6 @@ public final class  ShapesController {
                         public void run() {
                             Shape shape = shapePool.create();
                             ShapeContext context = new ShapeContext(shape, mainController);
-
                             context.handleShapeState();
                             context.goNext();
                             context.handleShapeState();
@@ -50,16 +49,22 @@ public final class  ShapesController {
                     };
                     thread.setDaemon(true);
                     Platform.runLater(thread);
-                    counter++;
+                    counter = (counter + 1) % 1000;
                     try {
                         sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+//                    break;
                 }
             }
         };
         mainPlateThread.setDaemon(true);
+        try {
+            mainPlateThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mainPlateThread.start();
     }
 }
