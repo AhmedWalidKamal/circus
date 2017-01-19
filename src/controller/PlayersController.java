@@ -3,8 +3,7 @@ package controller;
 import javafx.scene.layout.AnchorPane;
 import model.Player;
 import model.characters.Character;
-import model.characters.supportedCharacters.GreenClown;
-import model.characters.supportedCharacters.RedClown;
+import model.characters.util.CharacterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,7 @@ public final class PlayersController {
      * Reference to {@link MainController}.
      */
     private MainController mainController = null;
+
 
     /**
      * Distance to be set initially from the side of the screen for each
@@ -42,14 +42,31 @@ public final class PlayersController {
     public PlayersController(final MainController mainController) {
         this.mainController = mainController;
         players = new ArrayList<>();
+
     }
 
     public void prepareGame() {
+
+        //TODO
+        // This is somehow can be considered as a dynamic way for loading these classes in
+        // order to be registered in the Character Factory so we can use it in our development
+        // cycle till we integrate it with the dynamic class loading from the game GUI itself specifically
+        // "The Game options module".
+        // so it will be edited later.
+
+        try {
+            Class.forName("model.characters.supportedCharacters.GreenClown");
+            Class.forName("model.characters.supportedCharacters.RedClown");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         Player player1 = new Player();
         Player player2 = new Player();
-
-        Character redClown = new RedClown();
-        Character greenClown = new GreenClown();
+        Character redClown = CharacterFactory.getInstance().createCharacter("redClown");
+        Character greenClown = CharacterFactory.getInstance().createCharacter("greenClown");
+        redClown.instantiateCharacterControls();
+        greenClown.instantiateCharacterControls();
         AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
         AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
         redClown.setX(SIDE_DISTANCE);

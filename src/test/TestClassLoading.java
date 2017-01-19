@@ -6,6 +6,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
+import javafx.scene.image.ImageView;
+import model.characters.Character;
+
 import model.characters.util.CharacterFactory;
 
 public class TestClassLoading {
@@ -24,7 +27,22 @@ public class TestClassLoading {
         final String str = (String) keyField.get(null);
         System.out.println(str);
         System.out.println(CharacterFactory.getInstance().getRegisteredCharacters());
-        //Character anas = CharacterFactory.getInstance().createCharacter("greenClown");
+
+        // This will cause a Runtime exception as Internal Graphics are not initialized yet in an implicit way.
+        Character anas = CharacterFactory.getInstance().createCharacter("greenClown");
+        anas.instantiateCharacterControls();
+        System.out.println(anas);
+
+        // This will cause a Runtime exception as Internal Graphics are not initialized yet in an implicit way.
+        /*Character walid = new GreenClown();*/
+
+        // This is the real cause of the Runtime exception explicitly as the Internal graphics are not initialized yet.
+        /*ImageView image = new ImageView("File:src/assets/green_clown.png");*/
+
+        // This form of initializing the ImageView with the no args constructor will not cause any abnormal behavior.
+        ImageView imageLol = new ImageView();
         //System.out.println(anas);
+
+
     }
 }

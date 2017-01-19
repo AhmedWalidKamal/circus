@@ -5,19 +5,21 @@ import behaviour.keyBinding.keyHandlers.AKeyHandler;
 import behaviour.keyBinding.keyHandlers.DKeyHandler;
 import javafx.scene.image.ImageView;
 import model.characters.Character;
+import model.characters.util.CharacterFactory;
 
 public class GreenClown implements Character {
-    //might not be used at all.
-    private static final String KEY = "grownClown";
+
+    private static String KEY = "greenClown";
     private static final String URL = "File:src/assets/green_clown.png";
-    private static ImageView imageView = null;
-    private KeyMap keyMap = null;
+    private ImageView imageView;
+    private KeyMap keyMap;
 
     public GreenClown() {
-        imageView = new ImageView(URL);
-        keyMap = new KeyMap(imageView);
-        keyMap.addKeyHandler(new AKeyHandler());
-        keyMap.addKeyHandler(new DKeyHandler());
+
+    }
+
+    static {
+        CharacterFactory.getInstance().registerCharacter(KEY,GreenClown.class);
     }
 
     @Override
@@ -58,5 +60,13 @@ public class GreenClown implements Character {
     @Override
     public void setKeyMap(final KeyMap keyMap) {
         this.keyMap = keyMap;
+    }
+
+    @Override
+    public void instantiateCharacterControls() {
+        imageView = new ImageView(URL);
+        keyMap = new KeyMap(imageView);
+        keyMap.addKeyHandler(new AKeyHandler());
+        keyMap.addKeyHandler(new DKeyHandler());
     }
 }

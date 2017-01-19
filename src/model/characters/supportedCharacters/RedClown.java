@@ -1,23 +1,27 @@
 package model.characters.supportedCharacters;
 
 import behaviour.keyBinding.KeyMap;
+import behaviour.keyBinding.keyHandlers.AKeyHandler;
+import behaviour.keyBinding.keyHandlers.DKeyHandler;
 import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
 import behaviour.keyBinding.keyHandlers.RightArrowKeyHandler;
 import javafx.scene.image.ImageView;
 import model.characters.Character;
+import model.characters.util.CharacterFactory;
 
 public class RedClown implements Character {
-    //might not be used at all.
-    private static final String KEY = "redClown";
+
+    private static String KEY = "redClown";
     private static final String URL = "File:src/assets/red_clown.png";
-    private static ImageView imageView = null;
-    private static KeyMap keyMap = null;
+    private ImageView imageView;
+    private KeyMap keyMap;
 
     public RedClown() {
-        imageView = new ImageView(URL);
-        keyMap = new KeyMap(imageView);
-        keyMap.addKeyHandler(new RightArrowKeyHandler());
-        keyMap.addKeyHandler(new LeftArrowKeyHandler());
+
+    }
+
+    static {
+        CharacterFactory.getInstance().registerCharacter(KEY,RedClown.class);
     }
 
     @Override
@@ -58,5 +62,13 @@ public class RedClown implements Character {
     @Override
     public void setKeyMap(final KeyMap keyMap) {
         this.keyMap = keyMap;
+    }
+
+    @Override
+    public void instantiateCharacterControls() {
+        imageView = new ImageView(URL);
+        keyMap = new KeyMap(imageView);
+        keyMap.addKeyHandler(new RightArrowKeyHandler());
+        keyMap.addKeyHandler(new LeftArrowKeyHandler());
     }
 }
