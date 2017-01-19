@@ -19,4 +19,6 @@ public interface Character {
     public KeyMap getKeyMap();
 
     public void setKeyMap(KeyMap keyMap);
+
+    public void instantiateCharacterControls();
 }

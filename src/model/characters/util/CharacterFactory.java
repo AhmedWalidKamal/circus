@@ -1,6 +1,5 @@
 package model.characters.util;
 
-import model.Color;
 import model.characters.Character;
 
 import java.lang.reflect.Constructor;
@@ -19,6 +18,7 @@ public class CharacterFactory {
      */
     private CharacterFactory() {
         registeredCharacters = new HashMap<>();
+
     }
 
     /**
@@ -45,7 +45,7 @@ public class CharacterFactory {
      * @param CharacterID the character id
      * @return the character object
      */
-    public Character createCharacter(final String CharacterID, final Color color) {
+    public Character createCharacter(final String CharacterID) {
         final Class<? extends Character> characterTypeClass =
                 registeredCharacters.get(CharacterID);
         try {
@@ -68,4 +68,8 @@ public class CharacterFactory {
     public Collection<String> getRegisteredCharacters() {
         return registeredCharacters.keySet();
     }
+
+
+
+
 }
