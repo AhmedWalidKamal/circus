@@ -11,8 +11,10 @@ public class SceneNavigator {
 
 	public void changeScene(final String fxml,
 			final Stage primaryStage, final double width,
-			final double height) throws IOException {
+			final double height, final String styleSheetURL)
+					throws IOException {
 		final Pane root = FXMLLoader.load(getClass().getResource(fxml));
+		root.getStylesheets().add(this.getClass().getResource(styleSheetURL).toExternalForm());
 		primaryStage.setScene(new Scene(root, width, height));
         root.prefWidthProperty().bind(primaryStage.getScene().widthProperty());
         root.prefHeightProperty().bind(primaryStage.getScene().heightProperty());

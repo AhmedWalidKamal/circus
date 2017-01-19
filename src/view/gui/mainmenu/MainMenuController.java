@@ -43,7 +43,8 @@ public class MainMenuController implements Initializable {
     	sceneNavigator.changeScene(Main.GAMEVIEW,
     			(Stage) this.newGameButton.getScene().getWindow(),
     			this.newGameButton.getScene().getWidth(),
-    			this.newGameButton.getScene().getHeight()
+    			this.newGameButton.getScene().getHeight(),
+    			Main.GAMEVIEW_STYLESHEET
     			);
     }
 

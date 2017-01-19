@@ -10,11 +10,13 @@ public class Main extends Application {
 
 	public static final String MAINMENU = "/view/gui/mainmenu/MainMenuFxml.fxml";
 	public static final String GAMEVIEW = "/view/gui/gameplay/GameViewFxml.fxml";
+	public static final String MAINMENU_STYLESHEET = "/view/gui/mainmenu/MainMenuStyle.css";
+	public static final String GAMEVIEW_STYLESHEET = "/view/gui/gameplay/GameViewStyle.css";
 
     @Override
     public final void start(final Stage primaryStage) throws Exception {
         final Pane root = FXMLLoader.load(getClass().getResource(MAINMENU));
-    	//root.getStylesheets().add(this.getClass().getResource("/view/gui/gameplay/GameViewStyle.css").toExternalForm());
+    	root.getStylesheets().add(this.getClass().getResource(MAINMENU_STYLESHEET).toExternalForm());
         primaryStage.setTitle("Circus");
         primaryStage.setScene(new Scene(root, 1280, 1024));
         root.prefWidthProperty().bind(primaryStage.getScene().widthProperty());
