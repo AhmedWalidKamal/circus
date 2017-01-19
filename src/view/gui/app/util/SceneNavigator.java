@@ -3,12 +3,13 @@ package view.gui.app.util;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
-import view.gui.app.MainViewController;
+import view.gui.mainview.MainViewController;
 
 public class SceneNavigator {
 
 	public static final String MAINMENU = "/view/gui/mainmenu/MainMenuFxml.fxml";
 	public static final String GAMEVIEW = "/view/gui/gameplay/GameViewFxml.fxml";
+	public static final String MAINVIEW = "/view/gui/mainview/MainViewFxml.fxml";
 
 	private static MainViewController mainViewController;
 

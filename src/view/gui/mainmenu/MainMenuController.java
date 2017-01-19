@@ -4,10 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.MainController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import view.gui.app.util.SceneNavigator;
 
 public class MainMenuController implements Initializable {
@@ -15,7 +16,7 @@ public class MainMenuController implements Initializable {
      * Root pane.
      */
     @FXML
-    private AnchorPane root;
+    private StackPane root;
 
     @FXML
     private Button newGameButton;
@@ -32,9 +33,15 @@ public class MainMenuController implements Initializable {
     private MainMenu mainMenu = null;
 
     @FXML
-    private void openGameView() {
+    private void openGameView(final ActionEvent event) {
     	SceneNavigator.loadPane(SceneNavigator.GAMEVIEW);
     }
+
+    @FXML
+    private void exitGame(final ActionEvent event) {
+    	System.exit(0);
+    }
+
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
@@ -43,7 +50,7 @@ public class MainMenuController implements Initializable {
         mainMenu = new MainMenu();
         mainMenu.setRootPane(this.root);
         mainController.setMainMenu(mainMenu);
-        mainController.startNewGame();
+        //mainController.startNewGame();
     }
 
     public MainMenu getMainMenu() {

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import view.gui.app.util.SceneNavigator;
+import view.gui.mainview.MainViewController;
 
 public class Main extends Application {
 
@@ -15,7 +16,7 @@ public class Main extends Application {
     public final void start(final Stage primaryStage) throws Exception {
         //final Pane root = FXMLLoader.load(getClass().getResource(
           //      "/view/gui/mainmenu/MainMenuFxml.fxml"));
-        //root.getStylesheets().add(this.getClass().getResource("/view/gui/gameplay/GameViewStyle.css").toExternalForm());
+    	//root.getStylesheets().add(this.getClass().getResource("/view/gui/gameplay/GameViewStyle.css").toExternalForm());
         primaryStage.setTitle("Circus");
         primaryStage.setScene(createScene(loadMainPane()));
         //root.prefWidthProperty().bind(primaryStage.getScene().widthProperty());
@@ -33,9 +34,9 @@ public class Main extends Application {
 	}
 	private Pane loadMainPane() throws IOException {
 		final FXMLLoader loader = new FXMLLoader();
-        final Pane mainPane = (Pane) loader.load(
+        final Pane mainPane = loader.load(
             getClass().getResourceAsStream(
-                SceneNavigator.MAINMENU));
+                SceneNavigator.MAINVIEW));
         final MainViewController mainViewController = loader.getController();
         SceneNavigator.setMainViewController(mainViewController);
         SceneNavigator.loadPane(SceneNavigator.MAINMENU);

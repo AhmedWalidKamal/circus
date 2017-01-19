@@ -1,4 +1,4 @@
-package view.gui.app;
+package view.gui.mainview;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
