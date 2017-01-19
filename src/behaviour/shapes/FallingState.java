@@ -18,17 +18,21 @@ import util.Point;
 class FallingState implements ShapeState {
     private MainController mainController;
     private Path path;
+    //TODO: Alternate with Shelf.Orientation instead.
     private Shelf shelf;
     private boolean lock = false;
-    private boolean stopped = false;
-    private static final double FETCING_INSET = 5;
+    private enum State {
+        FALLING, FETCHED, NOT_FETCHED;
+    }
+    private State state;
     private boolean horizontal = true;
-    int counter = 0;
 
-    protected FallingState(final MainController mainController, Path path,Shelf shelf) {
+    protected FallingState(final MainController mainController, final Path path,
+                           final Shelf shelf) {
         this.mainController = mainController;
         this.path = path;
         this.shelf = shelf;
+        state = State.FALLING;
     }
 
     @Override
@@ -36,22 +40,20 @@ class FallingState implements ShapeState {
         Thread control = new Thread("Plate Control") {
             @Override
             public void run() {
-                int counter = 0;
-                while (!stopped) {
+                while (state == FallingState.State.FALLING) {
                     if (!lock) {
                         Point nextPoint = getNextTransitionPoint(shape);
                         if (nextPoint == null) {
-                            stopped = true;
+                            state = FallingState.State.NOT_FETCHED;
                             break;
                         }
                         Transition transition = getNextTransition(nextPoint,
                                 shape.getImageView());
                         lock = true;
                         transition.setOnFinished(event -> {
-//                            System.out.println("Finished");
                             lock = false;
-                            if (checkFetching(nextPoint)) {
-                                stopped = true;
+                            if (checkFetching(nextPoint, shape)) {
+                                state = FallingState.State.FETCHED;
                             } else {
                                 lock = false;
                             }
@@ -68,15 +70,11 @@ class FallingState implements ShapeState {
                             try {
                                 wait();
                             } catch (InterruptedException e) {
-//                                System.out.println(nextPoint.getX() + " " + nextPoint.getY());
-                                counter++;
                                 continue;
                             }
                         }
                     }
                 }
-                System.out.println("-------->" + counter);
-
             }
         };
         control.setDaemon(true);
@@ -90,14 +88,33 @@ class FallingState implements ShapeState {
 
     @Override
     public final void goNext(final ShapeContext context) {
-        if (true) { //fetched
-            context.setShapeState(new FetchedState());
-        } else {
-            context.setShapeState(new AddedToShapePoolState());
-        }
+        /*TODO: This might cause some problems as we need to block the main plate
+        until the plate finishes transition but it's not possible as UI threads (Platform)
+        cannot be blocked in any way possible (can't use wait/sleep ..etc).. until then...
+         */
+        Thread next = new Thread("Proceeding to next state") {
+            @Override
+            public void run() {
+                while (state == FallingState.State.FALLING) {
+                    try {
+                        sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (state == FallingState.State.FETCHED) {
+                        context.setShapeState(new FetchedState());
+                    } else {
+                        context.setShapeState(new AddedToShapePoolState());
+                    }
+                }
+            }
+        };
+        next.setDaemon(true);
+        next.start();
     }
 
     private Point getNextTransitionPoint(final Shape shape) {
+        //TODO: Decrease number of lines in this method.
         if (horizontal) {
             double x = 0;
             double y = shelf.getY();
@@ -153,25 +170,34 @@ class FallingState implements ShapeState {
         return transition;
     }
 
-    private boolean checkFetching(final Point point) {
+    private boolean checkFetching(final Point point, final Shape shape) {
+        //TODO: Make it more readable for regular human beings.
         for (Player player : mainController.getPlayersController().getPlayers()) {
-            double leftStackX = player.getCharacter().getX()
-                    + player.getLeftStackXInset();
-            double leftStackY = player.getCharacter().getY()
-                    - player.getLeftStackYInset();
-            double rightStackX = player.getCharacter().getX()
-                    + player.getRightStackXInset();
-            double rightStackY = player.getCharacter().getY()
-                    - player.getRightStackYInset();
-            if (Math.abs(leftStackX - point.getX()) <= 10
-                    && Math.abs(point.getY() - rightStackY ) <= 5) {
-                System.out.println("yeah fam");
-            }
-            if (Math.abs(point.getY() - leftStackY) <= 5
-                    && Math.abs(point.getX() - leftStackX) <= 25) {
+            Point leftStack = new Point(player.getCharacter().getX() + player
+                    .getLeftStackXInset(), player.getCharacter().getY() - player
+                    .getLeftStackYInset());
+            Point rightStack = new Point(player.getCharacter().getX() + player
+                    .getRightStackXInset(), player.getCharacter().getY() - player
+                    .getRightStackYInset());
+            if (Math.abs(leftStack.getX() - point.getX()) <= shape.getImageView()
+                    .getImage().getWidth() / 4
+                    && Math.abs(leftStack.getY() - point.getY()) <= 5) {
+                shape.setX(player.getCharacter().getImageView().getX());
+                shape.getImageView().translateXProperty().bind(player.getCharacter()
+                        .getImageView().translateXProperty());
+                shape.setY(player.getCharacter().getY() - player.getLeftStackYInset());
+                player.addToLeftStack(shape);
                 return true;
-            } else if (Math.abs(point.getY() - rightStackY) <= 5 && Math.abs(
-                    point.getX() - rightStackX) <= 25) {
+            }
+            if (Math.abs(rightStack.getX() - point.getX()) <= shape.getImageView()
+                    .getImage().getWidth() / 4
+                    && Math.abs(rightStack.getY() - point.getY()) <= 5) {
+                shape.setX(player.getCharacter().getImageView().getX() + player
+                        .getRightStackXInset() - player.getLeftStackXInset());
+                shape.getImageView().translateXProperty().bind(player.getCharacter()
+                        .getImageView().translateXProperty());
+                shape.setY(player.getCharacter().getY() - player.getRightStackYInset());
+                player.addToRightStack(shape);
                 return true;
             }
         }

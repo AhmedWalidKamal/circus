@@ -1,9 +1,7 @@
 package model;
 
-import javafx.scene.layout.AnchorPane;
 import model.characters.Character;
 import model.shapes.Shape;
-import util.Point;
 import util.Score;
 
 import java.util.Stack;
@@ -15,8 +13,10 @@ public class Player implements Comparable<Player> {
     private Character character;
     private Stack<Shape> leftStack = null;
     private Stack<Shape> rightStack = null;
-    private static final double LEFT_STACK_X_INSET = 50;
-    private static final double RIGHT_STACK_X_INSET = 175;
+
+    //TODO: Separate this stuff in Character class.
+    private double leftStackXInset = 50;
+    private double rightStackXInset = 175;
     private double leftStackYInset = 0;
     private double rightStackYInset = 0;
 
@@ -70,7 +70,7 @@ public class Player implements Comparable<Player> {
     }
 
     public double getLeftStackXInset() {
-        return LEFT_STACK_X_INSET;
+        return leftStackXInset;
     }
 
     public double getLeftStackYInset() {
@@ -78,7 +78,7 @@ public class Player implements Comparable<Player> {
     }
 
     public double getRightStackXInset() {
-        return RIGHT_STACK_X_INSET;
+        return rightStackXInset;
     }
 
     public double getRightStackYInset() {

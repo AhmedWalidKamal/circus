@@ -45,6 +45,8 @@ public final class  ShapesController {
                             context.handleShapeState();
                             context.goNext();
                             context.handleShapeState();
+                            context.goNext();
+                            System.out.println("Went next");
                         }
                     };
                     thread.setDaemon(true);
@@ -60,11 +62,6 @@ public final class  ShapesController {
             }
         };
         mainPlateThread.setDaemon(true);
-        try {
-            mainPlateThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         mainPlateThread.start();
     }
 }
