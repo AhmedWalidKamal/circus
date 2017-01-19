@@ -1,14 +1,16 @@
 package view.gui.mainmenu;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import view.gui.app.Main;
 import view.gui.app.util.SceneNavigator;
 
 public class MainMenuController implements Initializable {
@@ -18,42 +20,35 @@ public class MainMenuController implements Initializable {
     @FXML
     private StackPane root;
 
+    /**
+     * Button to start a new game.
+     */
     @FXML
     private Button newGameButton;
 
     /**
-     * Instance of {@link MainController} that allows control over both model
-     * and view.
+     * Scene Navigator objects that allows changing the scene.
      */
-    private MainController mainController = null;
-
-    /**
-     * Instance of {@link MainMenu}.
-     */
-    private MainMenu mainMenu = null;
-
-    @FXML
-    private void openGameView(final ActionEvent event) {
-    	SceneNavigator.loadPane(SceneNavigator.GAMEVIEW);
-    }
-
-    @FXML
-    private void exitGame(final ActionEvent event) {
-    	System.exit(0);
-    }
+    private SceneNavigator sceneNavigator = null;
 
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
         root.setFocusTraversable(true);
-        mainController = new MainController();
-        mainMenu = new MainMenu();
-        mainMenu.setRootPane(this.root);
-        mainController.setMainMenu(mainMenu);
-        //mainController.startNewGame();
+        sceneNavigator = new SceneNavigator();
     }
 
-    public MainMenu getMainMenu() {
-        return this.mainMenu;
+    @FXML
+    private void openGameView(final ActionEvent event) throws IOException {
+    	sceneNavigator.changeScene(Main.GAMEVIEW,
+    			(Stage) this.newGameButton.getScene().getWindow(),
+    			this.newGameButton.getScene().getWidth(),
+    			this.newGameButton.getScene().getHeight()
+    			);
+    }
+
+    @FXML
+    private void exitGame(final ActionEvent event) {
+    	System.exit(0);
     }
 }

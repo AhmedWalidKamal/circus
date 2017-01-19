@@ -3,26 +3,21 @@ package view.gui.app.util;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
-import view.gui.mainview.MainViewController;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class SceneNavigator {
 
-	public static final String MAINMENU = "/view/gui/mainmenu/MainMenuFxml.fxml";
-	public static final String GAMEVIEW = "/view/gui/gameplay/GameViewFxml.fxml";
-	public static final String MAINVIEW = "/view/gui/mainview/MainViewFxml.fxml";
-
-	private static MainViewController mainViewController;
-
-	public static void setMainViewController(final MainViewController mainViewController) {
-		SceneNavigator.mainViewController = mainViewController;
-	}
-
-	public static void loadPane(final String fxml) {
-		try {
-			mainViewController.setCurrentPane(FXMLLoader.
-					load(SceneNavigator.class.getResource(fxml)));
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
+	public void changeScene(final String fxml,
+			final Stage primaryStage, final double width,
+			final double height) throws IOException {
+		final Pane root = FXMLLoader.load(getClass().getResource(fxml));
+		primaryStage.setScene(new Scene(root, width, height));
+        root.prefWidthProperty().bind(primaryStage.getScene().widthProperty());
+        root.prefHeightProperty().bind(primaryStage.getScene().heightProperty());
+        primaryStage.show();
+        root.requestFocus();
+        root.toFront();
 	}
 }

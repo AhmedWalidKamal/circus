@@ -3,7 +3,6 @@ package controller;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import view.gui.gameplay.GameView;
-import view.gui.mainmenu.MainMenu;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -34,8 +33,6 @@ public final class MainController {
      * Constructs new instances from sub-controllers.
      */
     private GameView gameView = null;
-
-    private MainMenu mainMenu = null;
 
     public MainController() {
         inputController = new InputController(this);
@@ -96,21 +93,6 @@ public final class MainController {
         return this.gameView;
     }
 
-    /**
-     * Sets {@link MainMenu} to the main controller of the main MVC.
-     * @param mainMenu MainMenu for the controller
-     */
-    public void setMainMenu(final MainMenu mainMenu) {
-        this.mainMenu = mainMenu;
-    }
-
-    /**
-     * Gets {@link MainMenu} of the main MVC.
-     * @return the current {@link MainMeny}
-     */
-    public MainMenu getMainMenu() {
-        return this.mainMenu;
-    }
     /**
      * Adds a {@link Node} to the root {@link Pane} of a {@link GameView}.
      * @param node Node to be added to root pane.
