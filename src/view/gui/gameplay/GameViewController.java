@@ -5,6 +5,7 @@ import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import model.shapes.Shape;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,12 +27,15 @@ public class GameViewController implements Initializable {
      * Instance of {@link GameView}.
      */
     private GameView gameView = null;
+    private Shape shape1;
+    private Shape shape2;
+    private Shape shape3;
 
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
         root.setFocusTraversable(true);
-        mainController = new MainController();
+        mainController = new MainController(this);
         gameView = new GameView();
         gameView.setRootPane(this.root);
         mainController.setGameView(gameView);

@@ -3,6 +3,7 @@ package controller;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import view.gui.gameplay.GameView;
+import view.gui.gameplay.GameViewController;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -28,19 +29,26 @@ public final class MainController {
      * {@link GameUtilController} instance.
      */
     private GameUtilController gameUtilController = null;
+    /**
+     * {@link GameViewController} instance.
+     */
+    private GameViewController gameViewController=null;
 
     /**
      * Constructs new instances from sub-controllers.
      */
     private GameView gameView = null;
 
-    public MainController() {
+    public MainController(GameViewController GameviewController) {
         inputController = new InputController(this);
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
         gameUtilController = new GameUtilController(this);
+        this.gameViewController=GameviewController;
     }
-
+    public GameViewController getGameViewController(){
+        return this.gameViewController;
+    }
     /**
      * Gets the used instance to {@link InputController} which allows control over
      * input.

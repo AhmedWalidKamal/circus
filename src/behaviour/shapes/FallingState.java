@@ -101,6 +101,7 @@ class FallingState extends Observable implements ShapeState {
     protected final void goNext(final Shape shape, final Player player) {
         if (state == FallingState.State.FETCHED) {
             new FetchedState(mainController, player, context).handle(shape);
+
         } else {
             //hehe
         }
