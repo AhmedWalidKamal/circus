@@ -16,22 +16,25 @@ import model.shapes.Shape;
 import util.Point;
 
 class FallingState implements ShapeState {
-    private final MainController mainController;
-    private final Path path;
+    private MainController mainController = null;
+    private Path path = null;
     //TODO: Alternate with Shelf.Orientation instead.
-    private final Shelf shelf;
+    private Shelf shelf = null;
     private boolean lock = false;
+    private ShapeContext context = null;
     private enum State {
         FALLING, FETCHED, NOT_FETCHED;
     }
     private State state;
+    private Player player = null;
     private boolean horizontal = true;
 
     protected FallingState(final MainController mainController, final Path path,
-                           final Shelf shelf) {
+                           final Shelf shelf, final ShapeContext context) {
         this.mainController = mainController;
         this.path = path;
         this.shelf = shelf;
+        this.context = context;
         state = State.FALLING;
     }
 
@@ -52,10 +55,11 @@ class FallingState implements ShapeState {
                         lock = true;
                         transition.setOnFinished(event -> {
                             lock = false;
-                            if (checkFetching(nextPoint, shape)) {
-                                state = FallingState.State.FETCHED;
-                            } else {
+                            player = fetch(nextPoint, shape);
+                            if (player == null) {
                                 lock = false;
+                            } else {
+                                state = FallingState.State.FETCHED;
                             }
                             interrupt();
                         });
@@ -75,6 +79,7 @@ class FallingState implements ShapeState {
                         }
                     }
                 }
+                goNext(shape);
             }
         };
         control.setDaemon(true);
@@ -82,37 +87,16 @@ class FallingState implements ShapeState {
     }
 
     @Override
-    public final boolean hasNext() {
-        return true;
+    public void setContext(final ShapeContext context) {
+        this.context = context;
     }
 
-    @Override
-    public final void goNext(final ShapeContext context) {
-        /*TODO: This might cause some problems as we need to block the main plate
-        until the plate finishes transition but it's not possible as UI threads (Platform)
-        cannot be blocked in any way possible (can't use wait/sleep ..etc).. until then...
-         */
-        final Thread next = new Thread("Proceeding to next state") {
-            @Override
-            public void run() {
-                while (state == FallingState.State.FALLING) {
-                    try {
-                        sleep(10);
-                    } catch (final InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (state == FallingState.State.FETCHED) {
-                    	//System.out.println("STATE CHANGED TO FETCHED");
-                        context.setShapeState(new FetchedState(mainController));
-                        context.handleShapeState();
-                    } else {
-                        context.setShapeState(new AddedToShapePoolState());
-                    }
-                }
-            }
-        };
-        next.setDaemon(true);
-        next.start();
+    private final void goNext(final Shape shape) {
+        if (state == FallingState.State.FETCHED) {
+            new FetchedState(mainController, player, context).handle(shape);
+        } else {
+            //hehe
+        }
     }
 
     private Point getNextTransitionPoint(final Shape shape) {
@@ -172,7 +156,7 @@ class FallingState implements ShapeState {
         return transition;
     }
 
-    private boolean checkFetching(final Point point, final Shape shape) {
+    private Player fetch(final Point point, final Shape shape) {
         //TODO: Make it more readable for regular human beings.
         for (final Player player : mainController.getPlayersController().getPlayers()) {
             final Point leftStack = new Point(player.getCharacter().getX() + player
@@ -189,7 +173,7 @@ class FallingState implements ShapeState {
                         .getImageView().translateXProperty());
                 shape.setY(player.getCharacter().getY() - player.getLeftStackYInset());
                 player.addToLeftStack(shape);
-                return true;
+                return player;
             }
             if (Math.abs(rightStack.getX() - point.getX()) <= shape.getImageView()
                     .getImage().getWidth() / 4
@@ -200,9 +184,9 @@ class FallingState implements ShapeState {
                         .getImageView().translateXProperty());
                 shape.setY(player.getCharacter().getY() - player.getRightStackYInset());
                 player.addToRightStack(shape);
-                return true;
+                return player;
             }
         }
-        return false;
+        return null;
     }
 }

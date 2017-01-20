@@ -9,14 +9,21 @@ import util.Score;
 
 class FetchedState extends Observable implements ShapeState {
 
-	private final MainController mainController;
+	private MainController mainController = null;
+	private Player player = null;
+	private ShapeContext context = null;
 
-	protected FetchedState(final MainController mainController) {
+	protected FetchedState(final MainController mainController, final Player player,
+						   final ShapeContext context) {
 		this.mainController = mainController;
+		this.player = player;
+		this.context = context;
 	}
 
     @Override
     public final void handle(final Shape shape) {
+		//TODO: Replace with player in field.
+
     	//System.out.println("Shape FETCHED");
     	for (final Player player : this.mainController.getPlayersController().getPlayers()) {
     		if (player.getLeftStack().size() >= 3) {
@@ -84,16 +91,12 @@ class FetchedState extends Observable implements ShapeState {
     	}
     }
 
-    @Override
-    public final boolean hasNext() {
-        return false;
-    }
+	@Override
+	public void setContext(final ShapeContext context) {
+		this.context = context;
+	}
 
-    @Override
-    public final void goNext(final ShapeContext context) {
-    }
-
-    // TODO: Use this to update the view.
+	// TODO: Use this to update the view.
     @Override
     public void notifyObservers() {
         super.notifyObservers();

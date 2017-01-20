@@ -13,13 +13,17 @@ import model.shapes.Shape;
 class BeforeAddingState implements ShapeState {
 
     private MainController mainController = null;
+    private ShapeContext context = null;
     private static final double EDGE_DISTANCE = 10;
     private static final double DURATION = 4;
-    Path path = new Path();
-    Shelf shelf;
+    private Path path = null;
+    private Shelf shelf = null;
 
-    protected BeforeAddingState(final MainController mainController) {
+    protected BeforeAddingState(final MainController mainController,
+                                final ShapeContext context) {
         this.mainController = mainController;
+        this.context = context;
+        this.path = new Path();
     }
 
     @Override
@@ -33,7 +37,6 @@ class BeforeAddingState implements ShapeState {
                 shape.setX(0);
                 shape.setY(shelf.getY());
                 path.getElements().add(new LineTo(x, shelf.getY()));
-
                 break;
             case RIGHT:
                 x = mainController.getGameView().getRootPane().getPrefWidth()
@@ -50,15 +53,15 @@ class BeforeAddingState implements ShapeState {
         }
         mainController.getGameView().getRootPane()
                 .getChildren().add(shape.getImageView());
+        goNext(shape);
     }
 
     @Override
-    public final boolean hasNext() {
-        return true;
+    public void setContext(final ShapeContext context) {
+        this.context = context;
     }
 
-    @Override
-    public final void goNext(final ShapeContext context) {
-        context.setShapeState(new FallingState(mainController, path, shelf));
+    private final void goNext(final Shape shape) {
+        new FallingState(mainController, path, shelf, context).handle(shape);
     }
 }

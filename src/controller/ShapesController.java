@@ -42,10 +42,7 @@ public final class  ShapesController {
                         public void run() {
                             final Shape shape = shapePool.create();
                             final ShapeContext context = new ShapeContext(shape, mainController);
-                            context.handleShapeState();
-                            context.goNext();
-                            context.handleShapeState();
-                            context.goNext();
+                            context.handle();
                             //System.out.println("Went next");
                         }
                     };

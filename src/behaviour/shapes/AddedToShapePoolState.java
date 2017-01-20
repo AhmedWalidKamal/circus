@@ -10,12 +10,7 @@ class AddedToShapePoolState implements ShapeState {
     }
 
     @Override
-    public final boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public final void goNext(final ShapeContext context) {
+    public void setContext(final ShapeContext context) {
 
     }
 }

@@ -26,36 +26,13 @@ public final class ShapeContext {
     public ShapeContext(final Shape shape, final MainController mainController) {
         this.shape = shape;
         this.mainController = mainController;
-        shapeState = new BeforeAddingState(this.mainController);
+        shapeState = new BeforeAddingState(mainController, this);
     }
 
     /**
      * Handles current shape state.
      */
-    public void handleShapeState() {
+    public void handle() {
         shapeState.handle(shape);
-    }
-
-    /**
-     * Transits state to next shape state.
-     */
-    public void goNext() {
-        shapeState.goNext(this);
-    }
-
-    /**
-     * Gets current shape state.
-     * @return {@link ShapeState} current shape state.
-     */
-    public ShapeState getShapeState() {
-        return shapeState;
-    }
-
-    /**
-     * Sets current {@link ShapeState}.
-     * @param shapeState {@link ShapeState} to be set.
-     */
-    public void setShapeState(final ShapeState shapeState) {
-        this.shapeState = shapeState;
     }
 }
