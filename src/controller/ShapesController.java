@@ -5,12 +5,15 @@ import behaviour.shapes.util.ShapePool;
 import javafx.application.Platform;
 import model.shapes.Shape;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Acts as a controller to shapes behavior, using a subroutine that handles
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public final class  ShapesController {
+public final class  ShapesController  {
     /**
      * {@link MainController} reference.
      */
@@ -61,4 +64,5 @@ public final class  ShapesController {
         mainPlateThread.setDaemon(true);
         mainPlateThread.start();
     }
+
 }

@@ -94,6 +94,7 @@ class FallingState implements ShapeState {
     private final void goNext(final Shape shape) {
         if (state == FallingState.State.FETCHED) {
             new FetchedState(mainController, player, context).handle(shape);
+
         } else {
             //hehe
         }

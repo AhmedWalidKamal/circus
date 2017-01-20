@@ -3,7 +3,6 @@ package behaviour.shapes;
 import java.util.Observable;
 
 import controller.MainController;
-import javafx.application.Platform;
 import model.Player;
 import model.shapes.Shape;
 
@@ -12,12 +11,12 @@ class FetchedState extends Observable implements ShapeState {
 	private MainController mainController = null;
 	private Player player = null;
 	private ShapeContext context = null;
-
 	protected FetchedState(final MainController mainController,
 			final Player player, final ShapeContext context) {
 		this.mainController = mainController;
 		this.player = player;
 		this.context = context;
+		this.addObserver(this.mainController.getGameViewController());
 	}
 
     @Override
@@ -31,15 +30,11 @@ class FetchedState extends Observable implements ShapeState {
     						&& shape1.getColor().
     						equals(shape3.getColor())) {
     				this.mainController.getGameUtilController().updateScore(player);
-    				Platform.runLater(() -> {
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape1.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape2.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape3.getImageView());
-						notifyObservers();
-					});
+    				this.mainController.getGameViewController().setShape1(shape1);
+                    this.mainController.getGameViewController().setShape2(shape2);
+                    this.mainController.getGameViewController().setShape3(shape3);
+					setChanged();
+                    notifyObservers();
     			} else {
 					player.addToLeftStack(shape3);
 					player.addToLeftStack(shape2);
@@ -55,16 +50,12 @@ class FetchedState extends Observable implements ShapeState {
     			if (shape1.getColor().
     					equals(shape2.getColor())
     					&& shape1.getColor().equals(shape3.getColor())) {
-    				this.mainController.getGameUtilController().updateScore(player);
-    				Platform.runLater(() -> {
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape1.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape2.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape3.getImageView());
-						notifyObservers();
-					});
+                    this.mainController.getGameUtilController().updateScore(player);
+                    this.mainController.getGameViewController().setShape1(shape1);
+                    this.mainController.getGameViewController().setShape2(shape2);
+                    this.mainController.getGameViewController().setShape3(shape3);
+                    setChanged();
+                    notifyObservers();
     			} else {
     				player.addToRightStack(shape3);
     				player.addToRightStack(shape2);
