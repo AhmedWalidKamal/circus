@@ -7,7 +7,7 @@ import model.shapes.Shape;
 class AddedToShapePoolState implements ShapeState {
 
 	private final MainController mainController;
-	private final ShapeContext context;
+	private ShapeContext context;
 
 	public AddedToShapePoolState(final MainController mainController, final ShapeContext context) {
 		this.mainController = mainController;
@@ -15,10 +15,20 @@ class AddedToShapePoolState implements ShapeState {
 	}
 	@Override
 	public void handle(final Shape shape) {
+		System.out.println("Hellooo");
 		Platform.runLater(() -> {
 			this.context.getShapePool().addReusableShape(shape);
 			this.mainController.getGameView().
 			getRootPane().getChildren().remove(shape.getImageView());
         });
 	}
+    @Override
+    public ShapeContext getContext() {
+        return this.context;
+    }
+
+    @Override
+    public void setContext(final ShapeContext context) {
+    	this.context = context;
+    }
 }

@@ -42,4 +42,8 @@ public final class ShapeContext {
     public void handle() {
         shapeState.handle(shape);
     }
+
+    public MainController getMainController() {
+        return mainController;
+    }
 }

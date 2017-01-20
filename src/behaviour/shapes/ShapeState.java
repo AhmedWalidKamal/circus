@@ -9,4 +9,8 @@ public interface ShapeState {
      * @param shape Shape to be handled.
      */
     void handle(final Shape shape);
+
+    ShapeContext getContext();
+
+    void setContext(final ShapeContext context);
 }
