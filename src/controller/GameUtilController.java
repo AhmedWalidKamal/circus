@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
@@ -58,10 +59,15 @@ public final class GameUtilController {
      */
     private final Label timerLabel;
 
+    private final Label firstPlayerLabel;
+    private final Label secondPlayerLabel;
+
     /**
      * The total time for the game.
      */
     private final IntegerProperty timeSeconds;
+    private final IntegerProperty firstPlayerScore;
+    private final IntegerProperty secondPlayerScore;
 
     /**
      * Constructs a new {@link GameUtilController} that is used to control
@@ -73,6 +79,10 @@ public final class GameUtilController {
         this.shelves = new ArrayList<>();
         this.timeline = new Timeline();
         this.timerLabel = new Label();
+        this.firstPlayerLabel = new Label();
+        this.secondPlayerLabel = new Label();
+        this.firstPlayerScore = new SimpleIntegerProperty(0);
+        this.secondPlayerScore = new SimpleIntegerProperty(0);
         this.timeSeconds = new SimpleIntegerProperty(GAMETIME);
         this.counter = -1;
     }
@@ -94,8 +104,37 @@ public final class GameUtilController {
         mainController.getGameView().getRootPane().getChildren().add(
                 rightShelf.getImageView());
         initializeGameTimer();
-        //initializePlayersScores();
+        initializePlayersScores();
     }
+
+	private void initializePlayersScores() {
+		this.firstPlayerLabel.textProperty().bind(firstPlayerScore.asString());
+		this.secondPlayerLabel.textProperty().bind(secondPlayerScore.asString());
+		this.firstPlayerLabel.setTextFill(Color.RED);
+		this.firstPlayerLabel.setStyle("-fx-font-size: 4em;");
+		this.secondPlayerLabel.setTextFill(Color.RED);
+		this.secondPlayerLabel.setStyle("-fx-font-size: 4em;");
+        this.firstPlayerScore.set(0);
+        this.secondPlayerScore.set(0);
+        final StackPane pane1 = new StackPane();
+        pane1.getChildren().add(this.firstPlayerLabel);
+        StackPane.setAlignment(this.firstPlayerLabel, Pos.TOP_LEFT);
+        AnchorPane.setRightAnchor(pane1, 0.0);
+        AnchorPane.setLeftAnchor(pane1, 0.0);
+        AnchorPane.setTopAnchor(pane1, 0.0);
+        AnchorPane.setBottomAnchor(pane1, 0.0);
+        this.mainController.getGameView().
+        getRootPane().getChildren().add(pane1);
+        final StackPane pane2 = new StackPane();
+        pane2.getChildren().add(this.secondPlayerLabel);
+        StackPane.setAlignment(this.secondPlayerLabel, Pos.TOP_RIGHT);
+        AnchorPane.setRightAnchor(pane2, 0.0);
+        AnchorPane.setLeftAnchor(pane2, 0.0);
+        AnchorPane.setTopAnchor(pane2, 0.0);
+        AnchorPane.setBottomAnchor(pane2, 0.0);
+        this.mainController.getGameView().
+        getRootPane().getChildren().add(pane2);
+	}
 
 	/**
      * Initializes the game timer, creates the label that holds the time and
@@ -128,7 +167,14 @@ public final class GameUtilController {
 
 	public void updateScore(final Player player) {
 		final Score currentScore = player.getScore();
-		currentScore.setPoints(currentScore.getPoints() + 1);
+		currentScore.setPoints(currentScore.getPoints() + 100);
 		player.setScore(currentScore);
+		Platform.runLater(() -> {
+			if (player.getCharacter().getKey().equals("greenClown")) {
+				secondPlayerScore.set(player.getScore().getPoints());
+			} else {
+				firstPlayerScore.set(player.getScore().getPoints());
+			}
+		});
 	}
 }
