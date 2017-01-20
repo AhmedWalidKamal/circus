@@ -1,12 +1,9 @@
 package behaviour.shapes;
 
 import controller.MainController;
-import javafx.animation.PathTransition;
-import javafx.animation.Transition;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.util.Duration;
 import model.Shelf;
 import model.shapes.Shape;
 
@@ -27,7 +24,7 @@ class BeforeAddingState implements ShapeState {
     }
 
     @Override
-    public final void handle(Shape shape) {
+    public final void handle(final Shape shape) {
         shelf = mainController.getGameUtilController().getNextShelf();
         double x = 0;
         switch (shelf.getOrientation()) {
@@ -57,11 +54,19 @@ class BeforeAddingState implements ShapeState {
     }
 
     @Override
+    public ShapeContext getContext() {
+        return context;
+    }
+
+    @Override
     public void setContext(final ShapeContext context) {
         this.context = context;
     }
 
     private final void goNext(final Shape shape) {
-        new FallingState(mainController, path, shelf, context).handle(shape);
+        final FallingState fallingState = new FallingState(mainController, path,
+                shelf, context);
+        fallingState.addObserver(new FallingStateObserver());
+        fallingState.handle(shape);
     }
 }

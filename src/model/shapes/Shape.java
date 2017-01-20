@@ -1,6 +1,5 @@
 package model.shapes;
 
-import behaviour.shapes.ShapeContext;
 import javafx.scene.image.ImageView;
 import model.Color;
 
