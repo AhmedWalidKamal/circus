@@ -1,5 +1,6 @@
 package model.shapes;
 
+import javafx.beans.InvalidationListener;
 import javafx.scene.image.ImageView;
 import model.Color;
 import model.shapes.util.ShapeFactory;

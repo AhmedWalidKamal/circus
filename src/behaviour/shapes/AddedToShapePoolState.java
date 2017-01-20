@@ -10,6 +10,11 @@ class AddedToShapePoolState implements ShapeState {
     }
 
     @Override
+    public ShapeContext getContext() {
+        return null;
+    }
+
+    @Override
     public void setContext(final ShapeContext context) {
 
     }

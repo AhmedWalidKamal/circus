@@ -15,19 +15,25 @@ import model.Shelf;
 import model.shapes.Shape;
 import util.Point;
 
-class FallingState implements ShapeState {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+class FallingState extends Observable implements ShapeState {
     private MainController mainController = null;
     private Path path = null;
     //TODO: Alternate with Shelf.Orientation instead.
     private Shelf shelf = null;
     private boolean lock = false;
     private ShapeContext context = null;
-    private enum State {
+    protected enum State {
         FALLING, FETCHED, NOT_FETCHED;
     }
     private State state;
     private Player player = null;
     private boolean horizontal = true;
+    private List<Observer> observers = null;
 
     protected FallingState(final MainController mainController, final Path path,
                            final Shelf shelf, final ShapeContext context) {
@@ -36,6 +42,7 @@ class FallingState implements ShapeState {
         this.shelf = shelf;
         this.context = context;
         state = State.FALLING;
+        observers = new ArrayList<>();
     }
 
     @Override
@@ -55,12 +62,7 @@ class FallingState implements ShapeState {
                         lock = true;
                         transition.setOnFinished(event -> {
                             lock = false;
-                            player = fetch(nextPoint, shape);
-                            if (player == null) {
-                                lock = false;
-                            } else {
-                                state = FallingState.State.FETCHED;
-                            }
+                            notifyObservers(shape);
                             interrupt();
                         });
                         Platform.runLater(() -> {
@@ -79,7 +81,6 @@ class FallingState implements ShapeState {
                         }
                     }
                 }
-                goNext(shape);
             }
         };
         control.setDaemon(true);
@@ -87,11 +88,17 @@ class FallingState implements ShapeState {
     }
 
     @Override
+    public ShapeContext getContext() {
+        return context;
+    }
+
+
+    @Override
     public void setContext(final ShapeContext context) {
         this.context = context;
     }
 
-    private final void goNext(final Shape shape) {
+    protected final void goNext(final Shape shape, final Player player) {
         if (state == FallingState.State.FETCHED) {
             new FetchedState(mainController, player, context).handle(shape);
         } else {
@@ -188,5 +195,21 @@ class FallingState implements ShapeState {
             }
         }
         return null;
+    }
+
+    protected void setState(final State state) {
+        this.state = state;
+    }
+
+    @Override
+    public synchronized void addObserver(final Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void notifyObservers(final Object shape) {
+        for (Observer o : observers) {
+            o.update(this, shape);
+        }
     }
 }

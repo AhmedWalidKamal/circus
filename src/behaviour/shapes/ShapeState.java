@@ -10,5 +10,7 @@ public interface ShapeState {
      */
     void handle(final Shape shape);
 
+    ShapeContext getContext();
+
     void setContext(final ShapeContext context);
 }

@@ -7,7 +7,7 @@ import javafx.application.Platform;
 import model.Player;
 import model.shapes.Shape;
 
-class FetchedState extends Observable implements ShapeState {
+class FetchedState implements ShapeState {
 
 	private MainController mainController = null;
 	private Player player = null;
@@ -38,7 +38,6 @@ class FetchedState extends Observable implements ShapeState {
 								getRootPane().getChildren().remove(shape2.getImageView());
 						this.mainController.getGameView().
 								getRootPane().getChildren().remove(shape3.getImageView());
-						notifyObservers();
 					});
     			} else {
 					player.addToLeftStack(shape3);
@@ -63,7 +62,6 @@ class FetchedState extends Observable implements ShapeState {
 								getRootPane().getChildren().remove(shape2.getImageView());
 						this.mainController.getGameView().
 								getRootPane().getChildren().remove(shape3.getImageView());
-						notifyObservers();
 					});
     			} else {
     				player.addToRightStack(shape3);
@@ -75,13 +73,12 @@ class FetchedState extends Observable implements ShapeState {
     }
 
 	@Override
+	public ShapeContext getContext() {
+		return context;
+	}
+
+	@Override
 	public void setContext(final ShapeContext context) {
 		this.context = context;
 	}
-
-	// TODO: Use this to update the view.
-    @Override
-    public void notifyObservers() {
-        super.notifyObservers();
-    }
 }

@@ -57,11 +57,19 @@ class BeforeAddingState implements ShapeState {
     }
 
     @Override
+    public ShapeContext getContext() {
+        return context;
+    }
+
+    @Override
     public void setContext(final ShapeContext context) {
         this.context = context;
     }
 
     private final void goNext(final Shape shape) {
-        new FallingState(mainController, path, shelf, context).handle(shape);
+        FallingState fallingState = new FallingState(mainController, path,
+                shelf, context);
+        fallingState.addObserver(new FallingStateObserver());
+        fallingState.handle(shape);
     }
 }
