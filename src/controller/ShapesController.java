@@ -5,9 +5,6 @@ import behaviour.shapes.util.ShapePool;
 import javafx.application.Platform;
 import model.shapes.Shape;
 
-import java.util.Observable;
-import java.util.Observer;
-
 /**
  * Acts as a controller to shapes behavior, using a subroutine that handles
  * creation, falling, fetching... etc and sends data to other controllers
@@ -44,7 +41,8 @@ public final class  ShapesController  {
                         @Override
                         public void run() {
                             final Shape shape = shapePool.create();
-                            final ShapeContext context = new ShapeContext(shape, mainController);
+                            final ShapeContext context = new ShapeContext(shape, mainController, shapePool);
+
                             context.handle();
                             //System.out.println("Went next");
                         }

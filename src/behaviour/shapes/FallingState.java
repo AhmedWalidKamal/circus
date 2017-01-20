@@ -86,17 +86,12 @@ class FallingState implements ShapeState {
         control.start();
     }
 
-    @Override
-    public void setContext(final ShapeContext context) {
-        this.context = context;
-    }
-
     private final void goNext(final Shape shape) {
         if (state == FallingState.State.FETCHED) {
             new FetchedState(mainController, player, context).handle(shape);
 
         } else {
-            //hehe
+            new AddedToShapePoolState(mainController, context).handle(shape);
         }
     }
 

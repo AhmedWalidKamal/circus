@@ -32,19 +32,19 @@ public final class MainController {
     /**
      * {@link GameViewController} instance.
      */
-    private GameViewController gameViewController=null;
+    private GameViewController gameViewController = null;
 
     /**
      * Constructs new instances from sub-controllers.
      */
     private GameView gameView = null;
 
-    public MainController(GameViewController GameviewController) {
+    public MainController(final GameViewController GameviewController) {
         inputController = new InputController(this);
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
         gameUtilController = new GameUtilController(this);
-        this.gameViewController=GameviewController;
+        this.gameViewController = GameviewController;
     }
     public GameViewController getGameViewController(){
         return this.gameViewController;

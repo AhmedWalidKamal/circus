@@ -30,6 +30,7 @@ public class GameViewController implements Initializable, Observer {
      * Instance of {@link GameView}.
      */
     private GameView gameView = null;
+
     private Shape shape1;
     private Shape shape2;
     private Shape shape3;
@@ -60,25 +61,31 @@ public class GameViewController implements Initializable, Observer {
     public GameView getGameView() {
         return this.gameView;
     }
-    public void setShape1(Shape shape1){
-        this.shape1=shape1;
+
+    public void setShape1(final Shape shape1){
+        this.shape1 = shape1;
     }
-    public void setShape2(Shape shape2){
-        this.shape2=shape2;
+
+    public void setShape2(final Shape shape2){
+        this.shape2 = shape2;
     }
-    public void setShape3(Shape shape3) { this.shape3=shape3; }
+
+    public void setShape3(final Shape shape3) {
+    	this.shape3 = shape3;
+    }
+
 	@Override
 	public void update(final Observable arg0, final Object arg1) {
         Platform.runLater(() -> {
             this.mainController.getGameView().
                     getRootPane().getChildren().remove(shape1.getImageView());
-            shape1=null;
+            shape1 = null;
             this.mainController.getGameView().
                     getRootPane().getChildren().remove(shape2.getImageView());
-            shape2=null;
+            shape2 = null;
             this.mainController.getGameView().
                     getRootPane().getChildren().remove(shape3.getImageView());
-            shape3=null;
+            shape3 = null;
         });
 	}
 }

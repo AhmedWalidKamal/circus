@@ -1,16 +1,24 @@
 package behaviour.shapes;
 
+import controller.MainController;
+import javafx.application.Platform;
 import model.shapes.Shape;
 
 class AddedToShapePoolState implements ShapeState {
 
-    @Override
-    public final void handle(final Shape shape) {
-    	System.out.println("Shape fell off the screen");
-    }
+	private final MainController mainController;
+	private final ShapeContext context;
 
-    @Override
-    public void setContext(final ShapeContext context) {
-
-    }
+	public AddedToShapePoolState(final MainController mainController, final ShapeContext context) {
+		this.mainController = mainController;
+		this.context = context;
+	}
+	@Override
+	public void handle(final Shape shape) {
+		Platform.runLater(() -> {
+			this.context.getShapePool().addReusableShape(shape);
+			this.mainController.getGameView().
+			getRootPane().getChildren().remove(shape.getImageView());
+        });
+	}
 }

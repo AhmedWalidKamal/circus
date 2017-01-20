@@ -11,6 +11,7 @@ class FetchedState extends Observable implements ShapeState {
 	private MainController mainController = null;
 	private Player player = null;
 	private ShapeContext context = null;
+
 	protected FetchedState(final MainController mainController,
 			final Player player, final ShapeContext context) {
 		this.mainController = mainController;
@@ -65,12 +66,6 @@ class FetchedState extends Observable implements ShapeState {
     	}
     }
 
-	@Override
-	public void setContext(final ShapeContext context) {
-		this.context = context;
-	}
-
-	// TODO: Use this to update the view.
     @Override
     public void notifyObservers() {
         super.notifyObservers();
