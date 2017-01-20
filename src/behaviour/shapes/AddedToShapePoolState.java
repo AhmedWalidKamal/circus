@@ -15,7 +15,6 @@ class AddedToShapePoolState implements ShapeState {
 	}
 	@Override
 	public void handle(final Shape shape) {
-		System.out.println("Hellooo");
 		Platform.runLater(() -> {
 			this.context.getShapePool().addReusableShape(shape);
 			this.mainController.getGameView().
