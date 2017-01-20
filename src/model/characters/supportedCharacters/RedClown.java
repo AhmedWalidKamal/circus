@@ -3,8 +3,6 @@ package model.characters.supportedCharacters;
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.AKeyHandler;
 import behaviour.keyBinding.keyHandlers.DKeyHandler;
-import behaviour.keyBinding.keyHandlers.LeftArrowKeyHandler;
-import behaviour.keyBinding.keyHandlers.RightArrowKeyHandler;
 import javafx.scene.image.ImageView;
 import model.characters.Character;
 import model.characters.util.CharacterFactory;
@@ -68,7 +66,7 @@ public class RedClown implements Character {
     public void instantiateCharacterControls() {
         imageView = new ImageView(URL);
         keyMap = new KeyMap(imageView);
-        keyMap.addKeyHandler(new RightArrowKeyHandler());
-        keyMap.addKeyHandler(new LeftArrowKeyHandler());
+        keyMap.addKeyHandler(new AKeyHandler());
+        keyMap.addKeyHandler(new DKeyHandler());
     }
 }

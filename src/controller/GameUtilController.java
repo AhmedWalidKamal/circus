@@ -13,7 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import model.Player;
 import model.Shelf;
+import util.Score;
 
 /**
  * Acts as a controller to all game utilities (score, shelves, ... etc).
@@ -115,11 +117,18 @@ public final class GameUtilController {
         AnchorPane.setLeftAnchor(stackPane, 0.0);
         AnchorPane.setTopAnchor(stackPane, 0.0);
         AnchorPane.setBottomAnchor(stackPane, 0.0);
-        this.mainController.getGameView().getRootPane().getChildren().add(stackPane);
+        this.mainController.getGameView().
+        getRootPane().getChildren().add(stackPane);
 	}
 
 	public Shelf getNextShelf() {
         counter = (counter + 1) % shelves.size();
         return shelves.get(counter);
     }
+
+	public void updateScore(final Player player) {
+		final Score currentScore = player.getScore();
+		currentScore.setPoints(currentScore.getPoints() + 1);
+		player.setScore(currentScore);
+	}
 }
