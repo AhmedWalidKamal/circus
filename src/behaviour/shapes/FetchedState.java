@@ -3,6 +3,7 @@ package behaviour.shapes;
 import java.util.Observable;
 
 import controller.MainController;
+import javafx.application.Platform;
 import model.Player;
 import model.shapes.Shape;
 import util.Score;
@@ -42,17 +43,19 @@ class FetchedState extends Observable implements ShapeState {
     					System.out.println("Shapes colors: " + shape1.getColor()
     					+ " " + shape2.getColor() + " " + shape3.getColor());
     					System.out.println(player.getScore().getPoints());
-//    					this.mainController.getGameView().
-//    					getRootPane().getChildren().remove(shape1.getImageView());
-//    					this.mainController.getGameView().
-//    					getRootPane().getChildren().remove(shape2.getImageView());
-//    					this.mainController.getGameView().
-//    					getRootPane().getChildren().remove(shape3.getImageView());
-    					notifyObservers();
+						Platform.runLater(() -> {
+							this.mainController.getGameView().
+									getRootPane().getChildren().remove(shape1.getImageView());
+							this.mainController.getGameView().
+									getRootPane().getChildren().remove(shape2.getImageView());
+							this.mainController.getGameView().
+									getRootPane().getChildren().remove(shape3.getImageView());
+							notifyObservers();
+						});
     				} else {
-    					player.getLeftStack().push(shape1);
-    					player.getLeftStack().push(shape2);
-    					player.getLeftStack().push(shape3);
+						player.getLeftStack().push(shape3);
+						player.getLeftStack().push(shape2);
+						player.getLeftStack().push(shape1);
     				}
     				break;
     			}

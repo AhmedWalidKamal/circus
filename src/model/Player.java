@@ -69,6 +69,22 @@ public class Player implements Comparable<Player> {
         rightStackYInset += shape.getImageView().getImage().getHeight();
     }
 
+    public Shape popFromLeftStack() {
+        if (leftStack.isEmpty()) {
+            return null;
+        }
+        leftStackYInset -= leftStack.peek().getImageView().getImage().getHeight();
+        return leftStack.pop();
+    }
+
+    public Shape popFromRightStack() {
+        if (rightStack.isEmpty()) {
+            return null;
+        }
+        rightStackYInset -= rightStack.peek().getImageView().getImage().getHeight();
+        return rightStack.pop();
+    }
+
     public double getLeftStackXInset() {
         return leftStackXInset;
     }
