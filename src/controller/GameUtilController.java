@@ -10,7 +10,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -93,9 +92,10 @@ public final class GameUtilController {
         mainController.getGameView().getRootPane().getChildren().add(
                 rightShelf.getImageView());
         initializeGameTimer();
+        //initializePlayersScores();
     }
 
-    /**
+	/**
      * Initializes the game timer, creates the label that holds the time and
      * adds it to the game view.
      */

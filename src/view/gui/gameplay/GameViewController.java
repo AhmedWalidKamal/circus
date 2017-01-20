@@ -2,6 +2,8 @@ package view.gui.gameplay;
 
 
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import controller.MainController;
@@ -9,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-public class GameViewController implements Initializable {
+public class GameViewController implements Initializable, Observer {
     /**
      * Root pane.
      */
@@ -53,4 +55,9 @@ public class GameViewController implements Initializable {
     public GameView getGameView() {
         return this.gameView;
     }
+
+	@Override
+	public void update(final Observable arg0, final Object arg1) {
+
+	}
 }

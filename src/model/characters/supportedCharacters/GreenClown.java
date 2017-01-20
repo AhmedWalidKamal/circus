@@ -19,7 +19,7 @@ public class GreenClown implements Character {
     }
 
     static {
-        CharacterFactory.getInstance().registerCharacter(KEY,GreenClown.class);
+        CharacterFactory.getInstance().registerCharacter(KEY, GreenClown.class);
     }
 
     @Override

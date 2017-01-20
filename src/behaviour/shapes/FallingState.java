@@ -16,10 +16,10 @@ import model.shapes.Shape;
 import util.Point;
 
 class FallingState implements ShapeState {
-    private MainController mainController;
-    private Path path;
+    private final MainController mainController;
+    private final Path path;
     //TODO: Alternate with Shelf.Orientation instead.
-    private Shelf shelf;
+    private final Shelf shelf;
     private boolean lock = false;
     private enum State {
         FALLING, FETCHED, NOT_FETCHED;
@@ -37,17 +37,17 @@ class FallingState implements ShapeState {
 
     @Override
     public final void handle(final Shape shape) {
-        Thread control = new Thread("Plate Control") {
+        final Thread control = new Thread("Plate Control") {
             @Override
             public void run() {
                 while (state == FallingState.State.FALLING) {
                     if (!lock) {
-                        Point nextPoint = getNextTransitionPoint(shape);
+                        final Point nextPoint = getNextTransitionPoint(shape);
                         if (nextPoint == null) {
                             state = FallingState.State.NOT_FETCHED;
                             break;
                         }
-                        Transition transition = getNextTransition(nextPoint,
+                        final Transition transition = getNextTransition(nextPoint,
                                 shape.getImageView());
                         lock = true;
                         transition.setOnFinished(event -> {
@@ -69,7 +69,7 @@ class FallingState implements ShapeState {
                         synchronized (this) {
                             try {
                                 wait();
-                            } catch (InterruptedException e) {
+                            } catch (final InterruptedException e) {
                                 continue;
                             }
                         }
@@ -92,17 +92,19 @@ class FallingState implements ShapeState {
         until the plate finishes transition but it's not possible as UI threads (Platform)
         cannot be blocked in any way possible (can't use wait/sleep ..etc).. until then...
          */
-        Thread next = new Thread("Proceeding to next state") {
+        final Thread next = new Thread("Proceeding to next state") {
             @Override
             public void run() {
                 while (state == FallingState.State.FALLING) {
                     try {
                         sleep(10);
-                    } catch (InterruptedException e) {
+                    } catch (final InterruptedException e) {
                         e.printStackTrace();
                     }
                     if (state == FallingState.State.FETCHED) {
-                        context.setShapeState(new FetchedState());
+                    	//System.out.println("STATE CHANGED TO FETCHED");
+                        context.setShapeState(new FetchedState(mainController));
+                        context.handleShapeState();
                     } else {
                         context.setShapeState(new AddedToShapePoolState());
                     }
@@ -117,7 +119,7 @@ class FallingState implements ShapeState {
         //TODO: Decrease number of lines in this method.
         if (horizontal) {
             double x = 0;
-            double y = shelf.getY();
+            final double y = shelf.getY();
             switch (shelf.getOrientation()) {
                 case LEFT:
                     x = shelf.getImageView().getImage().getWidth() - 10;
@@ -131,7 +133,7 @@ class FallingState implements ShapeState {
             }
             return new Point(x, y);
         }
-        double dt = 0.1;
+        final double dt = 0.1;
         double x = 0;
         switch (shelf.getOrientation()) {
             case LEFT:
@@ -145,8 +147,8 @@ class FallingState implements ShapeState {
             default:
                 break;
         }
-        double y = shape.getImageView().getY() + 0.1 * dt *shape.getImageView().getY();
-        Pane root = mainController.getGameView().getRootPane();
+        final double y = shape.getImageView().getY() + 0.1 * dt *shape.getImageView().getY();
+        final Pane root = mainController.getGameView().getRootPane();
         if (x > root.prefWidthProperty().doubleValue() || y > root
                 .prefHeightProperty().doubleValue()) {
             return null;
@@ -155,14 +157,14 @@ class FallingState implements ShapeState {
     }
 
     private Transition getNextTransition(final Point point, final ImageView shapeImageView) {
-        PathTransition transition = new PathTransition();
+        final PathTransition transition = new PathTransition();
         transition.setNode(shapeImageView);
         if (horizontal) {
             transition.setPath(path);
             transition.setDuration(Duration.seconds(0.8));
             return transition;
         }
-        Path nextPath = new Path();
+        final Path nextPath = new Path();
         nextPath.getElements().add(new MoveTo(shapeImageView.getX(), shapeImageView.getY()));
         nextPath.getElements().add(new LineTo(point.getX(), point.getY()));
         transition.setPath(nextPath);
@@ -172,11 +174,11 @@ class FallingState implements ShapeState {
 
     private boolean checkFetching(final Point point, final Shape shape) {
         //TODO: Make it more readable for regular human beings.
-        for (Player player : mainController.getPlayersController().getPlayers()) {
-            Point leftStack = new Point(player.getCharacter().getX() + player
+        for (final Player player : mainController.getPlayersController().getPlayers()) {
+            final Point leftStack = new Point(player.getCharacter().getX() + player
                     .getLeftStackXInset(), player.getCharacter().getY() - player
                     .getLeftStackYInset());
-            Point rightStack = new Point(player.getCharacter().getX() + player
+            final Point rightStack = new Point(player.getCharacter().getX() + player
                     .getRightStackXInset(), player.getCharacter().getY() - player
                     .getRightStackYInset());
             if (Math.abs(leftStack.getX() - point.getX()) <= shape.getImageView()

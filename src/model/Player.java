@@ -1,10 +1,10 @@
 package model;
 
+import java.util.Stack;
+
 import model.characters.Character;
 import model.shapes.Shape;
 import util.Score;
-
-import java.util.Stack;
 
 public class Player implements Comparable<Player> {
 
@@ -15,8 +15,8 @@ public class Player implements Comparable<Player> {
     private Stack<Shape> rightStack = null;
 
     //TODO: Separate this stuff in Character class.
-    private double leftStackXInset = 50;
-    private double rightStackXInset = 175;
+    private final double leftStackXInset = 50;
+    private final double rightStackXInset = 175;
     private double leftStackYInset = 0;
     private double rightStackYInset = 0;
 
@@ -26,7 +26,7 @@ public class Player implements Comparable<Player> {
         rightStack = new Stack<>();
     }
 
-    public void setPlayerName(String name) {
+    public void setPlayerName(final String name) {
         this.name = name;
     }
 
@@ -34,7 +34,7 @@ public class Player implements Comparable<Player> {
         return this.name;
     }
 
-    public void setScore(Score score) {
+    public void setScore(final Score score) {
         this.score = score;
     }
 
@@ -46,12 +46,12 @@ public class Player implements Comparable<Player> {
         return this.character;
     }
 
-    public void setCharacter(Character character) {
+    public void setCharacter(final Character character) {
         this.character = character;
     }
 
     @Override
-    public int compareTo(Player player) {
+    public int compareTo(final Player player) {
         if (score.compareTo(player.getScore()) != 0) {
             return score.compareTo(player.getScore());
         } else {
@@ -59,12 +59,12 @@ public class Player implements Comparable<Player> {
         }
     }
 
-    public void addToLeftStack(Shape shape) {
+    public void addToLeftStack(final Shape shape) {
         leftStack.add(shape);
         leftStackYInset += shape.getImageView().getImage().getHeight();
     }
 
-    public void addToRightStack(Shape shape) {
+    public void addToRightStack(final Shape shape) {
         rightStack.add(shape);
         rightStackYInset += shape.getImageView().getImage().getHeight();
     }
@@ -83,5 +83,12 @@ public class Player implements Comparable<Player> {
 
     public double getRightStackYInset() {
         return rightStackYInset;
+    }
+
+    public Stack<Shape> getLeftStack() {
+    	return this.leftStack;
+    }
+    public Stack<Shape> getRightStack() {
+    	return this.rightStack;
     }
 }

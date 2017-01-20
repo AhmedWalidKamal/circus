@@ -29,24 +29,24 @@ public final class  ShapesController {
     public void startGame() {
         try {
             Class.forName("model.shapes.Plate");
-        } catch (ClassNotFoundException e) {
+        } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Thread mainPlateThread = new Thread("Main Plate Thread") {
+        final Thread mainPlateThread = new Thread("Main Plate Thread") {
             private int counter = 0;
             @Override
             public void run() {
                 while (true) {
-                    Thread thread = new Thread("Plate" + counter) {
+                    final Thread thread = new Thread("Plate" + counter) {
                         @Override
                         public void run() {
-                            Shape shape = shapePool.create();
-                            ShapeContext context = new ShapeContext(shape, mainController);
+                            final Shape shape = shapePool.create();
+                            final ShapeContext context = new ShapeContext(shape, mainController);
                             context.handleShapeState();
                             context.goNext();
                             context.handleShapeState();
                             context.goNext();
-                            System.out.println("Went next");
+                            //System.out.println("Went next");
                         }
                     };
                     thread.setDaemon(true);
@@ -54,7 +54,7 @@ public final class  ShapesController {
                     counter = (counter + 1) % 1000;
                     try {
                         sleep(2000);
-                    } catch (InterruptedException e) {
+                    } catch (final InterruptedException e) {
                         e.printStackTrace();
                     }
 //                    break;

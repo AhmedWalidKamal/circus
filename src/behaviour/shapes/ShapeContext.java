@@ -55,7 +55,7 @@ public final class ShapeContext {
      * Sets current {@link ShapeState}.
      * @param shapeState {@link ShapeState} to be set.
      */
-    public void setShapeState(ShapeState shapeState) {
+    public void setShapeState(final ShapeState shapeState) {
         this.shapeState = shapeState;
     }
 }
