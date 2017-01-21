@@ -1,87 +1,70 @@
 package view.gui.mainmenu;
 
 
-import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
-import java.util.List;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import util.MenuBox;
+import util.MenuItem;
+import view.gui.app.Main;
+import view.gui.app.util.SceneNavigator;
+
+import java.io.IOException;
 
 public class MainMenuViewHelper {
 
-    private LinearGradient gradient;
-    private static final Color MOUSE_ENTERED_TEXT_COLOR = Color.WHITE;
-    private static final Color MOUSE_EXITED_TEXT_COLOR = Color.DARKGRAY;
-    private static final Color MOUSE_EXITED_REC_COLOR = Color.BLACK;
-    private static final Color MOUSE_PRESSED_REC_COLOR = Color.DARKVIOLET;
-    private static MainMenuViewHelper mainMenuViewHelperInstance = null;
+    private static MainMenuViewHelper instance;
 
-   MainMenuViewHelper() {
+    private MainMenuViewHelper() {
 
-       gradient  =  new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE,
-               new Stop(0, Color.DARKVIOLET),
-               new Stop(0.1, Color.BLACK),
-               new Stop(0.9, Color.BLACK),
-               new Stop(1, Color.DARKVIOLET));
     }
 
-   static MainMenuViewHelper getInstance() {
-        if (mainMenuViewHelperInstance == null) {
-            mainMenuViewHelperInstance = new MainMenuViewHelper();
+    public static MainMenuViewHelper getInstance() {
+        if (instance == null) {
+            instance = new MainMenuViewHelper();
         }
-        return  mainMenuViewHelperInstance;
+        return  instance;
     }
 
-    void buttonPressed(List<Node> childrenObjects) {
-       Rectangle rect;
-        if (childrenObjects.get(0) instanceof Rectangle) {
-            rect = (Rectangle) childrenObjects.get(0);
-        } else {
-            rect = (Rectangle) childrenObjects.get(1);
-        }
-        rect.setFill(MOUSE_PRESSED_REC_COLOR);
-    }
+    public void configureTheMainMenu(Pane root, Text title, SceneNavigator sceneNavigator) {
 
-    void buttonEntered(List<Node> childrenObjects) {
-        Rectangle rect;
-        Text txt;
-        if (childrenObjects.get(0) instanceof Rectangle) {
-            rect = (Rectangle) childrenObjects.get(0);
-            txt = (Text) childrenObjects.get(1);
-        } else {
-            rect = (Rectangle) childrenObjects.get(1);
-            txt = (Text) childrenObjects.get(0);
-        }
-        rect.setFill(gradient);
-        txt.setFill(MOUSE_ENTERED_TEXT_COLOR);
-    }
 
-    void buttonExited(List<Node> childrenObjects) {
-        Rectangle rect;
-        Text txt;
-        if (childrenObjects.get(0) instanceof Rectangle) {
-            rect = (Rectangle) childrenObjects.get(0);
-            txt = (Text) childrenObjects.get(1);
-        } else {
-            rect = (Rectangle) childrenObjects.get(1);
-            txt = (Text) childrenObjects.get(0);
-        }
-        rect.setFill(MOUSE_EXITED_REC_COLOR);
-        txt.setFill(MOUSE_EXITED_TEXT_COLOR);
-    }
+        MenuItem newGame = new MenuItem("NEW GAME");
+        newGame.setOnMouseClicked(event -> {
+            try {
+                sceneNavigator.changeScene(Main.GAMEVIEW,
+                        (Stage) root.getScene().getWindow(),
+                        root.getScene().getWidth(),
+                        root.getScene().getHeight(),
+                        Main.GAMEVIEW_STYLESHEET
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-    void buttonReleased(List<Node> childrenObjects) {
-        Rectangle rect;
-        if (childrenObjects.get(0) instanceof Rectangle) {
-            rect = (Rectangle) childrenObjects.get(0);
-        } else {
-            rect = (Rectangle) childrenObjects.get(1);
-        }
-        rect.setFill(gradient);
+        MenuItem exit = new MenuItem("EXIT");
+        exit.setOnMouseClicked(event -> {
+            System.exit(0);
+        });
+        MenuBox menu = new MenuBox(
+                newGame,
+                new MenuItem("LOAD GAME"),
+                new MenuItem("OPTIONS"),
+                new MenuItem("HELP"),
+                exit);
+        menu.setTranslateX(100);
+        menu.setTranslateY(300);
+
+        root.getChildren().add(menu);
+        menu.setLayoutX(0);
+        menu.setLayoutY(150);
+
+        title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
+
     }
 
 }
