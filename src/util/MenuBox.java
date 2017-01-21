@@ -16,10 +16,10 @@ public class MenuBox extends VBox{
     }
 
     private Line createSeparator() {
-        Line sep = new Line();
-        sep.setEndX(250);
-        sep.setStroke(Color.DARKGREY);
-        return sep;
+        Line separator = new Line();
+        separator.setEndX(250);
+        separator.setStroke(Color.DARKGREY);
+        return separator;
     }
 
     }
