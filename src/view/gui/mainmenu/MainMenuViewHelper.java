@@ -57,11 +57,8 @@ public class MainMenuViewHelper {
                 new MenuItem("HELP"),
                 exit);
         menu.setTranslateX(100);
-        menu.setTranslateY(300);
-
+        menu.setTranslateY(450);
         root.getChildren().add(menu);
-        menu.setLayoutX(0);
-        menu.setLayoutY(150);
 
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
 
