@@ -1,6 +1,5 @@
 package behaviour.shapes;
 
-import controller.MainController;
 import model.Player;
 import model.shapes.Shape;
 import util.Point;
@@ -17,7 +16,7 @@ public class FallingStateObserver implements Observer {
     public void update(final Observable fallingState, final Object shape) {
         Point point = new Point(((Shape) shape).getImageView().getX(),
                 ((Shape) shape).getImageView().getY());
-        for (Player player : ((FallingState) fallingState).getContext().getMainController()
+        for (Player player : ((FallingState) fallingState).getContext()
                 .getPlayersController().getPlayers()) {
             Point leftStack = new Point(player.getCharacter().getX() + player
                     .getLeftStackXInset(), player.getCharacter().getY() - player
@@ -34,7 +33,7 @@ public class FallingStateObserver implements Observer {
                 ((Shape) shape).setY(player.getCharacter().getY() - player.getLeftStackYInset());
                 player.addToLeftStack((Shape) shape);
                 ((FallingState) fallingState).setState(FallingState.State.FETCHED);
-                ((FallingState) fallingState).goNext((Shape) shape, player);
+                ((FallingState) fallingState).goNext(player);
             } else if (Math.abs(rightStack.getX() - point.getX()) <= ((Shape) shape).getImageView()
                     .getImage().getWidth() / 4
                     && Math.abs(rightStack.getY() - point.getY()) <= 5) {
@@ -45,7 +44,7 @@ public class FallingStateObserver implements Observer {
                 ((Shape) shape).setY(player.getCharacter().getY() - player.getRightStackYInset());
                 player.addToRightStack((Shape) shape);
                 ((FallingState) fallingState).setState(FallingState.State.FETCHED);
-                ((FallingState) fallingState).goNext((Shape) shape, player);
+                ((FallingState) fallingState).goNext(player);
             }
         }
     }

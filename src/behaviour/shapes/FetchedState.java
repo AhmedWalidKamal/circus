@@ -7,35 +7,29 @@ import model.shapes.Shape;
 
 class FetchedState implements ShapeState {
 
-	private MainController mainController = null;
 	private Player player = null;
 	private ShapeContext context = null;
 
-	protected FetchedState(final MainController mainController,
-						   final Player player, final ShapeContext context) {
-		this.mainController = mainController;
+	protected FetchedState(final ShapeContext context, final Player player) {
 		this.player = player;
 		this.context = context;
 	}
 
 	@Override
-	public final void handle(final Shape shape) {
+	public final void handle() {
 		if (player.getLeftStack().size() >= 3) {
-			if (player.getLeftStack().peek().equals(shape)) {
+			if (player.getLeftStack().peek().equals(context.getShape())) {
 				final Shape shape1 = player.popFromLeftStack();
 				final Shape shape2 = player.popFromLeftStack();
 				final Shape shape3 = player.popFromLeftStack();
 				if (shape1.getColor().equals(shape2.getColor())
 						&& shape1.getColor().
 						equals(shape3.getColor())) {
-					this.mainController.getGameUtilController().updateScore(player);
+					context.getGameUtilController().updateScore(player);
 					Platform.runLater(() -> {
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape1.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape2.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape3.getImageView());
+						context.getViewController().removeFromRootPane(shape1.getImageView());
+						context.getViewController().removeFromRootPane(shape2.getImageView());
+						context.getViewController().removeFromRootPane(shape3.getImageView());
 					});
 				} else {
 					player.addToLeftStack(shape3);
@@ -45,21 +39,19 @@ class FetchedState implements ShapeState {
 			}
 		}
 		if (player.getRightStack().size() >= 3) {
-			if (player.getRightStack().peek().equals(shape)) {
+			if (player.getRightStack().peek().equals(context.getShape())) {
 				final Shape shape1 = player.popFromRightStack();
 				final Shape shape2 = player.popFromRightStack();
 				final Shape shape3 = player.popFromRightStack();
 				if (shape1.getColor().
 						equals(shape2.getColor())
 						&& shape1.getColor().equals(shape3.getColor())) {
-					this.mainController.getGameUtilController().updateScore(player);
+					context.getGameUtilController().updateScore(player);
 					Platform.runLater(() -> {
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape1.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape2.getImageView());
-						this.mainController.getGameView().
-								getRootPane().getChildren().remove(shape3.getImageView());
+						context.getViewController().removeFromRootPane(shape1.getImageView());
+						context.getViewController().removeFromRootPane(shape2.getImageView());
+						context.getViewController().removeFromRootPane(shape3.getImageView());
+
 					});
 				} else {
 					player.addToRightStack(shape3);

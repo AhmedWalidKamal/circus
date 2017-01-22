@@ -84,8 +84,8 @@ public final class PlayersController {
 
         mainController.getInputController().addKeyMap(redClown.getKeyMap());
         mainController.getInputController().addKeyMap(greenClown.getKeyMap());
-        mainController.addToRootPane(redClown.getImageView());
-        mainController.addToRootPane(greenClown.getImageView());
+        mainController.getViewController().addToRootPane(redClown.getImageView());
+        mainController.getViewController().addToRootPane(greenClown.getImageView());
 
         player1.setCharacter(redClown);
         player2.setCharacter(greenClown);

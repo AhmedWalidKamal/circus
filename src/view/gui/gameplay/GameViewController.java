@@ -36,7 +36,7 @@ public class GameViewController implements Initializable {
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
         root.setFocusTraversable(true);
-        mainController = new MainController(this);
+        mainController = new MainController();
         gameView = new GameView();
         gameView.setRootPane(this.root);
         mainController.setGameView(gameView);

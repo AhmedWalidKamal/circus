@@ -21,9 +21,7 @@ import model.shapes.Shape;
 import util.Point;
 
 class FallingState extends Observable implements ShapeState {
-    private MainController mainController = null;
     private Path path = null;
-    //TODO: Alternate with Shelf.Orientation instead.
     private Shelf shelf = null;
     private boolean lock = false;
     private ShapeContext context = null;
@@ -34,9 +32,8 @@ class FallingState extends Observable implements ShapeState {
     private boolean horizontal = true;
     private List<Observer> observers = null;
 
-    protected FallingState(final MainController mainController, final Path path,
-                           final Shelf shelf, final ShapeContext context) {
-        this.mainController = mainController;
+    protected FallingState(final ShapeContext context,
+                           final Shelf shelf, final Path path) {
         this.path = path;
         this.shelf = shelf;
         this.context = context;
@@ -45,7 +42,8 @@ class FallingState extends Observable implements ShapeState {
     }
 
     @Override
-    public final void handle(final Shape shape) {
+    public final void handle() {
+        Shape shape = context.getShape();
         final Thread control = new Thread("Plate Control") {
             @Override
             public void run() {
@@ -54,7 +52,7 @@ class FallingState extends Observable implements ShapeState {
                         final Point nextPoint = getNextTransitionPoint(shape);
                         if (nextPoint == null) {
                             state = FallingState.State.NOT_FETCHED;
-                            goNext(shape, null);
+                            goNext(null);
                             break;
                         }
                         final Transition transition = getNextTransition(nextPoint,
@@ -98,11 +96,16 @@ class FallingState extends Observable implements ShapeState {
         this.context = context;
     }
 
-    protected final void goNext(final Shape shape, final Player player) {
+    protected final void goNext(final Player player) {
     	if (state == FallingState.State.FETCHED) {
-            new FetchedState(mainController, player, context).handle(shape);
+    	    FetchedState fetchedState = new FetchedState(context, player);
+    	    context.setShapeState(fetchedState);
+    	    context.handle();
         } else {
-            new AddedToShapePoolState(mainController, context).handle(shape);
+    	    AddedToShapePoolState addedToShapePoolState =
+                    new AddedToShapePoolState(context);
+            context.setShapeState(addedToShapePoolState);
+            context.handle();
         }
     }
 
@@ -116,7 +119,7 @@ class FallingState extends Observable implements ShapeState {
                     x = shelf.getImageView().getImage().getWidth() - 10;
                     break;
                 case RIGHT:
-                    x = mainController.getGameView().getRootPane().getPrefWidth()
+                    x = context.getViewController().getRootPanePrefWidth()
                             - shelf.getImageView().getImage().getWidth() + 10;
                     break;
                 default:
@@ -139,9 +142,8 @@ class FallingState extends Observable implements ShapeState {
                 break;
         }
         final double y = shape.getImageView().getY() + 0.1 * dt *shape.getImageView().getY();
-        final Pane root = mainController.getGameView().getRootPane();
-        if (x > root.prefWidthProperty().doubleValue() || y > root
-                .prefHeightProperty().doubleValue()) {
+        if (x > context.getViewController().getRootPanePrefWidth() || y > context
+                .getViewController().getRootPanePrefHeight()) {
             return null;
         }
         return new Point(x, y);

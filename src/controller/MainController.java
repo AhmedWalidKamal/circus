@@ -39,16 +39,16 @@ public final class MainController {
      */
     private GameView gameView = null;
 
-    public MainController(final GameViewController GameviewController) {
+    private ViewController viewController = null;
+
+    public MainController() {
+        viewController = new ViewController(this);
         inputController = new InputController(this);
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
         gameUtilController = new GameUtilController(this);
-        this.gameViewController = GameviewController;
     }
-    public GameViewController getGameViewController(){
-        return this.gameViewController;
-    }
+
     /**
      * Gets the used instance to {@link InputController} which allows control over
      * input.
@@ -86,6 +86,14 @@ public final class MainController {
     }
 
     /**
+     * Gets the used instance to {@link ViewController} which allows control over
+     * the view (add a node, remove a node, get data about view.. etc).
+     * @return {@link ViewController} instance.
+     */
+    public ViewController getViewController() {
+        return viewController;
+    }
+    /**
      * Sets {@link GameView} to the main controller of the main MVC.
      * @param gameView GameView for the controller to set nodes on.
      */
@@ -99,14 +107,6 @@ public final class MainController {
      */
     public GameView getGameView() {
         return this.gameView;
-    }
-
-    /**
-     * Adds a {@link Node} to the root {@link Pane} of a {@link GameView}.
-     * @param node Node to be added to root pane.
-     */
-    public void addToRootPane(final Node node) {
-        gameView.getRootPane().getChildren().add(node);
     }
 
     /**

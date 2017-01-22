@@ -1,24 +1,20 @@
 package behaviour.shapes;
 
-import controller.MainController;
 import javafx.application.Platform;
-import model.shapes.Shape;
 
 class AddedToShapePoolState implements ShapeState {
 
-	private final MainController mainController;
 	private ShapeContext context;
 
-	public AddedToShapePoolState(final MainController mainController, final ShapeContext context) {
-		this.mainController = mainController;
+	public AddedToShapePoolState(final ShapeContext context) {
 		this.context = context;
 	}
 	@Override
-	public void handle(final Shape shape) {
+	public void handle() {
 		Platform.runLater(() -> {
-			this.context.getShapePool().addReusableShape(shape);
-			this.mainController.getGameView().
-			getRootPane().getChildren().remove(shape.getImageView());
+			context.getShapePool().addReusableShape(context.getShape());
+			context.getViewController().removeFromRootPane(context.getShape()
+					.getImageView());
         });
 	}
     @Override

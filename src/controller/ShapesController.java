@@ -10,7 +10,7 @@ import model.shapes.Shape;
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public final class  ShapesController  {
+public final class ShapesController  {
     /**
      * {@link MainController} reference.
      */
@@ -40,9 +40,11 @@ public final class  ShapesController  {
                     final Thread thread = new Thread("Plate" + counter) {
                         @Override
                         public void run() {
-                            final Shape shape = shapePool.create();
-                            final ShapeContext context = new ShapeContext(shape, mainController, shapePool);
-
+                            Shape shape = shapePool.create();
+                            ShapeContext context = new ShapeContext(shape,
+                                    mainController.getViewController(),
+                                    mainController.getGameUtilController(),
+                                    mainController.getPlayersController(), shapePool);
                             context.handle();
                             //System.out.println("Went next");
                         }
