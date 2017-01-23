@@ -54,7 +54,7 @@ public class KeyMap {
      * @param keyCode {@link KeyCode}.
      * @return A boolean value defining if this keyMap contains this key code.
      */
-    public boolean containsKey(KeyCode keyCode) {
+    public synchronized boolean containsKey(KeyCode keyCode) {
         return keyMap.containsKey(keyCode);
     }
 
@@ -73,7 +73,7 @@ public class KeyMap {
     /**
      * Executes all contained {@link KeyHandler}s that are pressed.
      */
-    public void executeAllPressedKeyCommands() {
+    public synchronized void executeAllPressedKeyCommands() {
         for (KeyHandler handler : keyMap.values()) {
             if (handler.isPressed()) {
                 handler.execute();
@@ -88,7 +88,7 @@ public class KeyMap {
      * @param pressed A boolean value defining whether this key is pressed or
      * released.
      */
-    public void setKeyHandlerPressed(KeyCode keyCode, boolean pressed) {
+    public synchronized void setKeyHandlerPressed(KeyCode keyCode, boolean pressed) {
         if (!containsKey(keyCode)) {
             throw new RuntimeException("No equivalent key handler");
         }

@@ -104,6 +104,7 @@ public class Player implements Comparable<Player> {
     public Stack<Shape> getLeftStack() {
     	return this.leftStack;
     }
+
     public Stack<Shape> getRightStack() {
     	return this.rightStack;
     }

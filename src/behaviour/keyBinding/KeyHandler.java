@@ -1,7 +1,9 @@
 package behaviour.keyBinding;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import javafx.scene.transform.Translate;
 
 /**
  * A handler to a key input that executes a pre-defined command on its {@link KeyMap}'s
@@ -18,6 +20,7 @@ public abstract class KeyHandler {
      */
     protected KeyMap keyMap = null;
 
+    protected TranslateTransition transition = null;
     /**
      * A boolean value defining whether the key to this key handler is pressed
      * or released.

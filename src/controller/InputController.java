@@ -1,6 +1,7 @@
 package controller;
 
 import behaviour.keyBinding.KeyMap;
+import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
  * an input it signals it to {@link InputController}, having references to all
  * keymaps it can execute a command accordingly.
  */
-public final class InputController {
+public final class InputController extends Thread {
     /**
      * List for all registered {@link KeyMap}s.
      */
@@ -21,6 +22,8 @@ public final class InputController {
      * Reference to {@link MainController}.
      */
     private MainController mainController = null;
+
+    private boolean paused = false;
 
     /**
      * Creates a new instance of {@link InputController}.
@@ -45,11 +48,39 @@ public final class InputController {
      * @param pressed Boolean value to define if this key is pressed or released.
      */
     public void executeKeyCommand(final KeyCode keyCode, final boolean pressed) {
-        for (KeyMap keyMap : keyMapList) {
-            if (keyMap.containsKey(keyCode)) {
-                keyMap.setKeyHandlerPressed(keyCode, pressed);
+        System.out.println(keyCode.getName() + " " + pressed);
+        Thread executionThread = new Thread(() -> {
+            for (KeyMap keyMap : keyMapList) {
+                if (keyMap.containsKey(keyCode)) {
+                    keyMap.setKeyHandlerPressed(keyCode, pressed);
+                }
             }
-            keyMap.executeAllPressedKeyCommands();
+        });
+        executionThread.setDaemon(true);
+        executionThread.start();
+    }
+
+    public void executeKeyType(final KeyCode keyCode) {
+        if (keyCode == KeyCode.ESCAPE) {
+            if (paused) {
+                paused = false;
+            } else {
+                paused = true;
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            for (KeyMap keyMap : keyMapList) {
+                keyMap.executeAllPressedKeyCommands();
+            }
+            try {
+                this.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

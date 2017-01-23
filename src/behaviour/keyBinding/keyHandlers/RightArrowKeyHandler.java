@@ -2,6 +2,7 @@ package behaviour.keyBinding.keyHandlers;
 
 import behaviour.keyBinding.KeyHandler;
 import behaviour.keyBinding.KeyMap;
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 
@@ -20,7 +21,9 @@ public class RightArrowKeyHandler extends KeyHandler {
 
     @Override
     public void execute() {
-        Node node = super.keyMap.getNode();
-        node.setTranslateX(node.getTranslateX() + 10);
+        Platform.runLater(() -> {
+            Node node = super.keyMap.getNode();
+            node.setTranslateX(node.getTranslateX() + 1);
+        });
     }
 }

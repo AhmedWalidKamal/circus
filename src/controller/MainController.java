@@ -44,6 +44,7 @@ public final class MainController {
     public MainController() {
         viewController = new ViewController(this);
         inputController = new InputController(this);
+        inputController.start();
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
         gameUtilController = new GameUtilController(this);

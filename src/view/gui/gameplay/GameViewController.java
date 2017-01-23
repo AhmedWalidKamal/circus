@@ -49,6 +49,8 @@ public class GameViewController implements Initializable {
      * {@link javafx.scene.input.KeyCode} to {@link controller.InputController}.
      */
     private void setKeyBinding() {
+        root.setOnKeyTyped(event -> mainController.getInputController()
+                .executeKeyType(event.getCode()));
         root.setOnKeyPressed(event -> mainController.getInputController()
                 .executeKeyCommand(event.getCode(), true));
         root.setOnKeyReleased(event -> mainController.getInputController()
