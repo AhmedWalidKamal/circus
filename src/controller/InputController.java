@@ -1,7 +1,6 @@
 package controller;
 
 import behaviour.keyBinding.KeyMap;
-import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
@@ -48,7 +47,16 @@ public final class InputController extends Thread {
      * @param pressed Boolean value to define if this key is pressed or released.
      */
     public void executeKeyCommand(final KeyCode keyCode, final boolean pressed) {
-        System.out.println(keyCode.getName() + " " + pressed);
+        if (keyCode == KeyCode.ESCAPE) {
+            for (KeyMap keyMap : keyMapList) {
+                keyMap.setAllKeyHandlers(false);
+            }
+            paused = true;
+        }
+        else if (keyCode == KeyCode.ENTER)
+            paused = false;
+        if (paused)
+            return;
         Thread executionThread = new Thread(() -> {
             for (KeyMap keyMap : keyMapList) {
                 if (keyMap.containsKey(keyCode)) {
@@ -60,26 +68,18 @@ public final class InputController extends Thread {
         executionThread.start();
     }
 
-    public void executeKeyType(final KeyCode keyCode) {
-        if (keyCode == KeyCode.ESCAPE) {
-            if (paused) {
-                paused = false;
-            } else {
-                paused = true;
-            }
-        }
-    }
-
     @Override
     public void run() {
         while (true) {
-            for (KeyMap keyMap : keyMapList) {
-                keyMap.executeAllPressedKeyCommands();
-            }
             try {
                 this.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            if (paused)
+                continue;
+            for (KeyMap keyMap : keyMapList) {
+                keyMap.executeAllPressedKeyCommands();
             }
         }
     }
