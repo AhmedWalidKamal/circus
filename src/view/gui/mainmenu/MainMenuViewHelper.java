@@ -17,7 +17,9 @@ import java.io.IOException;
 public class MainMenuViewHelper {
 
     private static MainMenuViewHelper instance;
-
+    private MenuItem newGame;
+    private MenuItem loadGame;
+    private MenuItem exit;
     private MainMenuViewHelper() {
 
     }
@@ -29,30 +31,16 @@ public class MainMenuViewHelper {
         return  instance;
     }
 
-    public void configureTheMainMenu(Pane root, Text title, SceneNavigator sceneNavigator) {
+    public void configureTheMainMenu(Pane root, Text title) {
 
 
-        MenuItem newGame = new MenuItem("NEW GAME");
-        newGame.setOnMouseClicked(event -> {
-            try {
-                sceneNavigator.changeScene(Main.GAMEVIEW,
-                        (Stage) root.getScene().getWindow(),
-                        root.getScene().getWidth(),
-                        root.getScene().getHeight(),
-                        Main.GAMEVIEW_STYLESHEET
-                );
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        newGame = new MenuItem("NEW GAME");
+        loadGame = new MenuItem("LOAD GAME");
+        exit = new MenuItem("EXIT");
 
-        MenuItem exit = new MenuItem("EXIT");
-        exit.setOnMouseClicked(event -> {
-            System.exit(0);
-        });
         MenuBox menu = new MenuBox(
                 newGame,
-                new MenuItem("LOAD GAME"),
+                loadGame,
                 new MenuItem("OPTIONS"),
                 new MenuItem("HELP"),
                 exit);
@@ -63,5 +51,16 @@ public class MainMenuViewHelper {
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
 
     }
+
+    public MenuItem getNewGameButton() {
+        return newGame;
+    }
+    public MenuItem getLoadGameButton() {
+        return loadGame;
+    }
+    public MenuItem getExitButton() {
+        return exit;
+    }
+
 
 }
