@@ -5,18 +5,16 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import controller.MainController;
 import javafx.animation.PathTransition;
 import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import model.Player;
-import model.Shelf;
+import util.Shelf;
 import model.shapes.Shape;
 import util.Point;
 

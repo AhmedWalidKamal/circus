@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.scene.Node;
-import model.Shelf;
 
 public class ViewController {
     private MainController mainController = null;

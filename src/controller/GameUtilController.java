@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import model.Player;
-import model.Shelf;
+import util.Shelf;
 import util.Score;
 
 /**

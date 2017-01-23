@@ -5,8 +5,7 @@ import model.Player;
 import model.characters.Character;
 import model.characters.util.CharacterFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Acts as a controller to players behavior, has references to model that allow
@@ -20,7 +19,6 @@ public final class PlayersController {
      */
     private MainController mainController = null;
 
-
     /**
      * Distance to be set initially from the side of the screen for each
      * character, one on the right, one on the left.
@@ -33,7 +31,7 @@ public final class PlayersController {
      */
     private static final double BOTTOM_DISTANCE = 15.0;
 
-    private List<Player> players = null;
+    private Map<Character, Player> characterPlayerMap = null;
 
     /**
      * Constructs a new {@link PlayersController}
@@ -41,8 +39,7 @@ public final class PlayersController {
      */
     public PlayersController(final MainController mainController) {
         this.mainController = mainController;
-        players = new ArrayList<>();
-
+        characterPlayerMap = new HashMap<>();
     }
 
     public void prepareGame() {
@@ -60,40 +57,42 @@ public final class PlayersController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         Player player1 = new Player();
-        Player player2 = new Player();
         Character redClown = CharacterFactory.getInstance().createCharacter("redClown");
-        Character greenClown = CharacterFactory.getInstance().createCharacter("greenClown");
         redClown.instantiateCharacterControls();
-        greenClown.instantiateCharacterControls();
-        AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
-        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
+//        AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
+//        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
         redClown.setX(SIDE_DISTANCE);
-        redClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
-                .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
-                .getImage().getHeight());
-        AnchorPane.setRightAnchor(greenClown.getImageView(), SIDE_DISTANCE);
-        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
+        redClown.setY(mainController.getViewController().getRootPanePrefHeight()
+                - BOTTOM_DISTANCE - redClown.getImageView().getImage().getHeight());
+        mainController.getInputController().addKeyMap(redClown.getKeyMap());
+        mainController.getViewController().addToRootPane(redClown.getImageView());
+        attachPlayerToCharacter(redClown, player1);
+
+        Player player2 = new Player();
+        Character greenClown = CharacterFactory.getInstance().createCharacter("greenClown");
+        greenClown.instantiateCharacterControls();
+//        AnchorPane.setRightAnchor(greenClown.getImageView(), SIDE_DISTANCE);
+//        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
         greenClown.setX(mainController.getGameView().getRootPane().prefWidthProperty()
                 .doubleValue() - SIDE_DISTANCE - greenClown.getImageView()
                 .getImage().getWidth());
         greenClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
                 .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
                 .getImage().getHeight());
-
-        mainController.getInputController().addKeyMap(redClown.getKeyMap());
         mainController.getInputController().addKeyMap(greenClown.getKeyMap());
-        mainController.getViewController().addToRootPane(redClown.getImageView());
         mainController.getViewController().addToRootPane(greenClown.getImageView());
+        attachPlayerToCharacter(greenClown, player2);
 
         player1.setCharacter(redClown);
         player2.setCharacter(greenClown);
-        players.add(player1);
-        players.add(player2);
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public void attachPlayerToCharacter(Character character, Player player) {
+        characterPlayerMap.put(character, player);
+    }
+
+    public Collection<Player> getPlayers() {
+        return characterPlayerMap.values();
     }
 }

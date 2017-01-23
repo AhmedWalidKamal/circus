@@ -3,7 +3,7 @@ package behaviour.shapes;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import model.Shelf;
+import util.Shelf;
 
 //TODO: Make the actual sliding transition here.
 class SlidingState implements ShapeState {
