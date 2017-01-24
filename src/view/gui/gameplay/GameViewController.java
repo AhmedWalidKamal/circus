@@ -8,14 +8,18 @@ import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import model.shapes.Shape;
+import view.gui.app.Main;
+import view.gui.app.util.ControlledScenes;
+import view.gui.app.util.ScenesNavigator;
 
-public class GameViewController implements Initializable {
+public class GameViewController implements Initializable, ControlledScenes {
     /**
      * Root pane.
      */
     @FXML
     private AnchorPane root;
+
+    private ScenesNavigator myController;
 
     /**
      * Instance of {@link MainController} that allows control over both model
@@ -32,13 +36,8 @@ public class GameViewController implements Initializable {
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
         root.setFocusTraversable(true);
-        mainController = new MainController();
         gameView = new GameView();
         gameView.setRootPane(this.root);
-        mainController.setGameView(gameView);
-        setKeyBinding();
-        String difficultyLevel = "MEDIUM";
-        mainController.startNewGame(difficultyLevel);
     }
 
     /**
@@ -55,4 +54,20 @@ public class GameViewController implements Initializable {
     public GameView getGameView() {
         return this.gameView;
     }
+
+	public void showEndGameScene() {
+		myController.loadScreen(Main.ENDGAME_ID, Main.ENDGAME_URL, Main.ENDGAME_STYLESHEET);
+		myController.setScreen(Main.ENDGAME_ID);
+	}
+
+	@Override
+	public void setScreenParent(final ScenesNavigator screenParent) {
+		this.myController = screenParent;
+		this.mainController = myController.getMainController();
+		this.mainController.setGameViewController(this);
+        this.mainController.setGameView(gameView);
+        setKeyBinding();
+        final String difficultyLevel = "EASY";
+        this.mainController.startNewGame(difficultyLevel);
+	}
 }

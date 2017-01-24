@@ -18,7 +18,6 @@ import model.Player;
 import model.Timer;
 import util.Shelf;
 import util.Score;
-import util.Time;
 
 /**
  * Acts as a controller to all game utilities (score, shelves, ... etc).
@@ -155,6 +154,7 @@ public final class GameUtilController {
                 new KeyFrame(Duration.seconds(GAMETIME + 1),
                 new KeyValue(timer.getCurrentTimeProperty(), 0)));
         this.timeline.play();
+        this.timeline.setOnFinished(e -> this.mainController.getGameViewController().showEndGameScene());
         final StackPane stackPane = new StackPane();
         stackPane.getChildren().add(this.timerLabel);
         StackPane.setAlignment(this.timerLabel, Pos.TOP_CENTER);
