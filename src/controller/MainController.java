@@ -138,9 +138,11 @@ public final class MainController {
 
     public void pause() {
         shapesController.pauseThread();
+        gameUtilController.pauseTime();
     }
 
     public void resume() {
         shapesController.resumeThread();
+        gameUtilController.resumeTime();
     }
 }

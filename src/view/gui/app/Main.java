@@ -22,7 +22,6 @@ public class Main extends Application {
         root.prefWidthProperty().bind(primaryStage.getScene().widthProperty());
         root.prefHeightProperty().bind(primaryStage.getScene().heightProperty());
         primaryStage.show();
-        root.requestFocus();
         root.toFront();
     }
 
