@@ -2,6 +2,7 @@ package controller;
 
 import behaviour.keyBinding.KeyMap;
 import javafx.scene.input.KeyCode;
+import view.gui.pausemenu.PauseMenuViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +52,18 @@ public final class InputController extends Thread {
             for (KeyMap keyMap : keyMapList) {
                 keyMap.setAllKeyHandlers(false);
             }
+            mainController.getGameView().getPauseMenuPane().setVisible(true);
+            mainController.getGameView().getPauseMenuPane().toFront();
+            mainController.getGameView().getPauseMenuPane().requestFocus();
+
             paused = true;
             mainController.pause();
         }
         else if (keyCode == KeyCode.ENTER) {
             paused = false;
+            mainController.getGameView().getPauseMenuPane().setVisible(false);
+            mainController.getGameView().getPauseMenuPane().toBack();
+            mainController.getGameView().getRootPane().requestFocus();
             mainController.resume();
         }
         if (paused)

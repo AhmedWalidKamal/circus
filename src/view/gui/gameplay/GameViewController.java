@@ -39,6 +39,12 @@ public class GameViewController implements Initializable {
         mainController = new MainController();
         gameView = new GameView();
         gameView.setRootPane(this.root);
+<<<<<<< Updated upstream
+=======
+        gameView.setPauseMenuPane(this.pauseMenuPane);
+        PauseMenuViewHelper.getInstance().configureThePauseMenu(this.pauseMenuPane,this.pauseMenuTitle);
+        setVisibilityBindingPauseMenu();
+>>>>>>> Stashed changes
         mainController.setGameView(gameView);
         setKeyBinding();
         String difficultyLevel="HARD";
@@ -54,6 +60,11 @@ public class GameViewController implements Initializable {
                 .executeKeyCommand(event.getCode(), true));
         root.setOnKeyReleased(event -> mainController.getInputController()
                 .executeKeyCommand(event.getCode(), false));
+    }
+
+    private void setVisibilityBindingPauseMenu() {
+        pauseMenuPane.managedProperty().bind(pauseMenuPane.visibleProperty());
+        pauseMenuPane.setVisible(false);
     }
 
     public GameView getGameView() {
