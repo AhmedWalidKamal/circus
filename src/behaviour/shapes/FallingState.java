@@ -148,7 +148,7 @@ class FallingState extends Observable implements ShapeState {
             }
             return new Point(x, y);
         }
-        final double dt = context.getLevelsController().getDifficultyLevel().getFallingTime();
+        final double dt = context.getLevelsController().getDifficultyLevel().getFallingRate();
         double x = 0;
         switch (shelf.getOrientation()) {
             case LEFT:

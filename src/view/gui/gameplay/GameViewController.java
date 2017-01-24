@@ -37,7 +37,7 @@ public class GameViewController implements Initializable {
         gameView.setRootPane(this.root);
         mainController.setGameView(gameView);
         setKeyBinding();
-        String difficultyLevel="HARD";
+        String difficultyLevel = "MEDIUM";
         mainController.startNewGame(difficultyLevel);
     }
 

@@ -52,7 +52,8 @@ public final class ShapesController extends PauseableThread {
                                 ShapesController.this,
                                 mainController.getViewController(),
                                 mainController.getGameUtilController(),
-                                mainController.getPlayersController(),mainController.getLevelsController(), shapePool);
+                                mainController.getPlayersController(),
+                                mainController.getLevelsController(), shapePool);
 
                         context.handle();
                     }
@@ -61,7 +62,8 @@ public final class ShapesController extends PauseableThread {
                 Platform.runLater(plateThread);
                 counter = (counter + 1) % 1000;
                 try {
-                    sleep(2000);
+                    sleep(mainController.getLevelsController()
+                            .getDifficultyLevel().getCreationInterval());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

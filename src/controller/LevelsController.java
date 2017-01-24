@@ -3,7 +3,7 @@ package controller;
 import behaviour.difficultyLevels.EasyLevel;
 import behaviour.difficultyLevels.HardLevel;
 import behaviour.difficultyLevels.MediumLevel;
-import behaviour.difficultyLevels.Strategy;
+import behaviour.difficultyLevels.Level;
 
 public class LevelsController {
     /**
@@ -11,7 +11,7 @@ public class LevelsController {
      */
     private MainController mainController = null;
 
-    private Strategy currentLevel;
+    private Level currentLevel = null;
     /**
      * Constructs a new {@link LevelsController}
      * @param mainController
@@ -19,21 +19,27 @@ public class LevelsController {
 
     public LevelsController(final MainController mainController) {
         this.mainController = mainController;
-        currentLevel=new EasyLevel();///current level is set to easy by default.
+        currentLevel = new EasyLevel();///current level is set to easy by default.
     }
 
     public void chooseLevel(String level){
         /*choose level based on level chosen from options in the main menu
         but set the default level to easy unless changed*/
-        if (level.equals("EASY"))
-           currentLevel=new EasyLevel();
-        else if(level.equals("MEDIUM"))
-            currentLevel=new MediumLevel();
-        else if(level.equals("HARD"))
-            currentLevel=new HardLevel();
+        switch (level.toUpperCase()) {
+            case "EASY":
+                currentLevel = new EasyLevel();
+                break;
+            case "MEDIUM":
+                currentLevel = new MediumLevel();
+                break;
+            case "HARD":
+                currentLevel = new HardLevel();
+                break;
+            default:
+                break;
+        }
     }
-    public Strategy getDifficultyLevel(){
+    public Level getDifficultyLevel(){
         return this.currentLevel;
     }
-
 }
