@@ -148,7 +148,7 @@ class FallingState extends Observable implements ShapeState {
             }
             return new Point(x, y);
         }
-        final double dt = 0.1;
+        final double dt = context.getLevelsController().getDifficultyLevel().getFallingTime();
         double x = 0;
         switch (shelf.getOrientation()) {
             case LEFT:
@@ -175,14 +175,14 @@ class FallingState extends Observable implements ShapeState {
         transition.setNode(shapeImageView);
         if (horizontal) {
             transition.setPath(path);
-            transition.setDuration(Duration.seconds(0.8));
+            transition.setDuration(Duration.seconds(context.getLevelsController().getDifficultyLevel().getHorizontalDuration()));
             return transition;
         }
         final Path nextPath = new Path();
         nextPath.getElements().add(new MoveTo(shapeImageView.getX(), shapeImageView.getY()));
         nextPath.getElements().add(new LineTo(point.getX(), point.getY()));
         transition.setPath(nextPath);
-        transition.setDuration(Duration.seconds(0.0001));
+        transition.setDuration(Duration.seconds(context.getLevelsController().getDifficultyLevel().getTransitionDuration()));
         return transition;
     }
 

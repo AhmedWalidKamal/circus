@@ -5,8 +5,8 @@ public class HardLevel implements Strategy {
 
 
     private static final double TRANSITION_DURATION=0.0003;
-    private static final double HORIZONTAL_DURATION=0.2;
-    private static final double FALLING_TIME=0.3;
+    private static final double HORIZONTAL_DURATION=0.4;
+    private static final double FALLING_TIME=0.2;
     //private static final int CREATION_INTERVAL=;
 
     @Override

@@ -129,9 +129,10 @@ public final class MainController {
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
      */
-    public void startNewGame() {
+    public void startNewGame(String difficultyLevel) {
         gameUtilController.prepareGame();
         playersController.prepareGame();
+        levelsController.chooseLevel(difficultyLevel);
         inputController.start();
         shapesController.start();
     }
