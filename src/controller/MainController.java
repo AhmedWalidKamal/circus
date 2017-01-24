@@ -1,7 +1,6 @@
 package controller;
 
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import view.gui.endgame.EndGameView;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 
@@ -39,6 +38,8 @@ public final class MainController {
      */
     private GameView gameView = null;
 
+    private EndGameView endGameView = null;
+
     private ViewController viewController = null;
 
     public MainController() {
@@ -49,6 +50,14 @@ public final class MainController {
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
         gameUtilController = new GameUtilController(this);
+    }
+
+    public void setGameViewController(final GameViewController gameViewController) {
+    	this.gameViewController = gameViewController;
+    }
+
+    public GameViewController getGameViewController() {
+    	return this.gameViewController;
     }
 
     /**
@@ -111,6 +120,14 @@ public final class MainController {
         return this.gameView;
     }
 
+    public void setEndGameView(final EndGameView endGameView) {
+    	this.endGameView = endGameView;
+    }
+
+    public EndGameView getEndGameView() {
+    	return this.endGameView;
+    }
+
     /**
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
@@ -120,4 +137,13 @@ public final class MainController {
         playersController.prepareGame();
         shapesController.startGame();
     }
+
+    /**
+     * Displays the end game scene with the score of each player and who won
+     * the game, end game scene has 3 options: exit game, return to main menu
+     * and start a new game again directly (restart game).
+     */
+	public void endGame() {
+
+	}
 }

@@ -15,8 +15,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import model.Player;
-import util.Shelf;
 import util.Score;
+import util.Shelf;
 
 /**
  * Acts as a controller to all game utilities (score, shelves, ... etc).
@@ -149,6 +149,7 @@ public final class GameUtilController {
                 new KeyFrame(Duration.seconds(GAMETIME + 1),
                 new KeyValue(timeSeconds, 0)));
         this.timeline.play();
+        this.timeline.setOnFinished(e -> this.mainController.getGameViewController().showEndGameScene());
         final StackPane stackPane = new StackPane();
         stackPane.getChildren().add(this.timerLabel);
         StackPane.setAlignment(this.timerLabel, Pos.TOP_CENTER);
