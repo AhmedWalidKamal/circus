@@ -15,15 +15,12 @@ public class Main extends Application {
 	public static final String GAMEVIEW_URL = "/view/gui/gameplay/GameViewFxml.fxml";
 	public static final String GAMEVIEW_STYLESHEET = "/view/gui/gameplay/GameViewStyle.css";
 	public static final String GAMEVIEW_ID = "GAMEVIEW";
-	public static final String ENDGAME_ID = "ENDGAME";
-	public static final String ENDGAME_URL = "/view/gui/endgame/EndGameFxml.fxml";
-	public static final String ENDGAME_STYLESHEET = "/view/gui/endgame/EndGameStyle.css";
 
     @Override
     public final void start(final Stage primaryStage) throws Exception {
     	final ScenesNavigator screensController = new ScenesNavigator();
-    	screensController.loadScreen(MAINMENU_ID, MAINMENU_URL, MAINMENU_STYLESHEET);
-    	screensController.setScreen(MAINMENU_ID);
+    	screensController.loadScene(MAINMENU_ID, MAINMENU_URL, MAINMENU_STYLESHEET);
+    	screensController.setScene(MAINMENU_ID);
     	final Group root = new Group();
     	root.getChildren().addAll(screensController);
     	primaryStage.setScene(new Scene(root));

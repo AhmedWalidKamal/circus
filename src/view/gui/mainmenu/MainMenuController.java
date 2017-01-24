@@ -30,8 +30,10 @@ public class MainMenuController implements Initializable, ControlledScenes {
     @FXML
     private Text LevelsDialogTitle;
 
-    private ScenesNavigator myController;
 
+    private ScenesNavigator sceneNavigator;
+
+    private String difficultyLevel;
 
     private final static String EASY_LEVEL="EASY";
     private final static String MEDIUM_LEVEL="Medium";
@@ -55,7 +57,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     @Override
     public void setScreenParent(final ScenesNavigator screenParent) {
-    	this.myController = screenParent;
+    	this.sceneNavigator = screenParent;
     }
 
     private void setVisibilityBindingLevelsDialog() {
@@ -81,25 +83,25 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     private void configureEasyLevelButton() {
         LevelsDialogViewHelper.getInstance().getEasyLevelButton().setOnMouseClicked(event -> {
-            myController.getMainController().setDifficultyLevel(EASY_LEVEL);
-            this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.myController.setScreen(Main.GAMEVIEW_ID);
+            this.setDifficultyLevel(EASY_LEVEL);
+            this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+            this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
             manageDialogVisibility();
         });
     }
     private void configureMediumLevelButton() {
         LevelsDialogViewHelper.getInstance().getMediumLevelButton().setOnMouseClicked(event -> {
-            myController.getMainController().setDifficultyLevel(MEDIUM_LEVEL);
-            this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.myController.setScreen(Main.GAMEVIEW_ID);
+            this.setDifficultyLevel(MEDIUM_LEVEL);
+            this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+            this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
             manageDialogVisibility();
         });
     }
     private void configureHardLevelButton() {
         LevelsDialogViewHelper.getInstance().getHardLevelButton().setOnMouseClicked(event -> {
-            myController.getMainController().setDifficultyLevel(HARD_LEVEL);
-            this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.myController.setScreen(Main.GAMEVIEW_ID);
+            this.setDifficultyLevel(HARD_LEVEL);
+            this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+            this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
             manageDialogVisibility();
         });
     }
@@ -107,5 +109,11 @@ public class MainMenuController implements Initializable, ControlledScenes {
         levelsPane.setVisible(false);
         levelsPane.toBack();
         levelsPane.requestFocus();
+    }
+    private void setDifficultyLevel(String difficultyLevel){
+        this.difficultyLevel=difficultyLevel;
+    }
+    public String getDifficultyLevel(){
+        return this.difficultyLevel;
     }
 }

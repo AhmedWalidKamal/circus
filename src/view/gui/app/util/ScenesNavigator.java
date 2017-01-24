@@ -3,7 +3,6 @@ package view.gui.app.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import controller.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,42 +11,37 @@ import javafx.scene.layout.StackPane;
 public class ScenesNavigator extends StackPane {
 
     private final Map<String, Node> scenes;
-    private final MainController mainController;
 
     public ScenesNavigator() {
         super();
         this.scenes = new HashMap<String, Node>();
-        this.mainController = new MainController();
-    }
-
-    public MainController getMainController() {
-    	return this.mainController;
     }
 
     public void addScene(final String name, final Node screen) {
         scenes.put(name, screen);
     }
 
-    public Node addScene(final String name) {
+    public Node getScene(final String name) {
         return scenes.get(name);
     }
 
-    public boolean loadScreen(final String name, final String resource, final String stylesheet) {
+    public void loadScene(final String name, final String resource, final String stylesheet) {
         try {
             final FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
             final Parent loadScreen = (Parent) myLoader.load();
             final ControlledScenes myScreenController = ((ControlledScenes) myLoader.getController());
             myScreenController.setScreenParent(this);
             loadScreen.getStylesheets().add(this.getClass().getResource(stylesheet).toExternalForm());
+            if (scenes.get(name) != null) {
+            	scenes.remove(name);
+            }
             addScene(name, loadScreen);
-            return true;
         } catch (final Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 
-    public boolean setScreen(final String name) {
+    public void setScene(final String name) {
         if (scenes.get(name) != null) {
             if (!getChildren().isEmpty()) {
                 getChildren().remove(0);
@@ -55,10 +49,8 @@ public class ScenesNavigator extends StackPane {
             } else {
                 getChildren().add(scenes.get(name));
             }
-            return true;
         } else {
             System.out.println("screen hasn't been loaded!!! \n");
-            return false;
         }
 
 

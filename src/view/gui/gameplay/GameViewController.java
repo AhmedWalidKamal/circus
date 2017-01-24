@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import controller.MainController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,8 @@ import javafx.scene.text.Text;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
+import view.gui.endgame.EndGameViewHelper;
+import view.gui.mainmenu.MainMenuController;
 import view.gui.pausemenu.PauseMenuViewHelper;
 
 public class GameViewController implements Initializable, ControlledScenes {
@@ -28,9 +31,13 @@ public class GameViewController implements Initializable, ControlledScenes {
     @FXML
     private Text pauseMenuTitle;
 
-    private ScenesNavigator myController;
+    @FXML
+    private Pane endGamePane;
 
+    @FXML
+    private Text endGameTitle;
 
+    private ScenesNavigator sceneNavigator;
 
     /**
      * Instance of {@link MainController} that allows control over both model
@@ -50,11 +57,33 @@ public class GameViewController implements Initializable, ControlledScenes {
         gameView = new GameView();
         gameView.setRootPane(this.root);
         gameView.setPauseMenuPane(this.pauseMenuPane);
+        this.mainController = new MainController();
+		this.mainController.setGameViewController(this);
+        this.mainController.setGameView(gameView);
+        setKeyBinding();
+       /* FXMLLoader loader = new FXMLLoader(
+                getClass().getResource(
+                        Main.MAINMENU_URL
+                )
+        );*/
+        //MainMenuController main=(MainMenuController)loader.getController();
+        this.mainController.setDifficultyLevel("EASY");
+        this.mainController.startNewGame();
         PauseMenuViewHelper.getInstance().configureThePauseMenu(this.pauseMenuPane,this.pauseMenuTitle);
+        EndGameViewHelper.getInstance().configureEndGameScene(this.endGamePane, this.endGameTitle);
         setVisibilityBindingPauseMenu();
+        setVisibilityBindingEndGame();
+        configureExitGameButton();
+        configureRestartGameButton();
+        configureReturnToMainMenuButton();
     }
 
-    /**
+    private void setVisibilityBindingEndGame() {
+		endGamePane.managedProperty().bind(endGamePane.visibleProperty());
+		endGamePane.setVisible(false);
+	}
+
+	/**
      * Adds a key input handler to a root pane to send the entered
      * {@link javafx.scene.input.KeyCode} to {@link controller.InputController}.
      */
@@ -75,18 +104,34 @@ public class GameViewController implements Initializable, ControlledScenes {
     }
 
 	public void showEndGameScene() {
-		myController.loadScreen(Main.ENDGAME_ID, Main.ENDGAME_URL, Main.ENDGAME_STYLESHEET);
-		myController.setScreen(Main.ENDGAME_ID);
+		this.mainController.pause();
+        this.endGamePane.setVisible(true);
+        this.endGamePane.toFront();
+        this.endGamePane.requestFocus();
 	}
 
+	private void configureExitGameButton() {
+        EndGameViewHelper.getInstance().getExitGameButton().setOnMouseClicked(event -> {
+        	System.exit(0);
+        });
+    }
+
+	private void configureReturnToMainMenuButton() {
+        EndGameViewHelper.getInstance().getReturnToMenuMainButton().setOnMouseClicked(event -> {
+        	this.sceneNavigator.setScene(Main.MAINMENU_ID);
+        });
+    }
+
+	private void configureRestartGameButton() {
+	    EndGameViewHelper.getInstance().getRestartGameButton().setOnMouseClicked(event -> {
+	    	this.sceneNavigator.loadScene(Main.GAMEVIEW_ID,
+	    			Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+	    	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
+        });
+	}
 	@Override
 	public void setScreenParent(final ScenesNavigator screenParent) {
-		this.myController = screenParent;
-		this.mainController = myController.getMainController();
-		this.mainController.setGameViewController(this);
-        this.mainController.setGameView(gameView);
-        setKeyBinding();
-        //final String difficultyLevel = "EASY";
-        this.mainController.startNewGame();
+		this.sceneNavigator = screenParent;
+
 	}
 }
