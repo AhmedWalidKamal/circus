@@ -33,6 +33,10 @@ public final class MainController {
      * {@link GameViewController} instance.
      */
     private GameViewController gameViewController = null;
+    /**
+     * {@link LevelsController} instance.
+     */
+    private LevelsController levelsController = null;
 
     /**
      * Constructs new instances from sub-controllers.
@@ -49,6 +53,7 @@ public final class MainController {
         shapesController = new ShapesController(this);
         shapesController.setDaemon(true);
         gameUtilController = new GameUtilController(this);
+        levelsController = new LevelsController(this);
     }
 
     /**
@@ -86,7 +91,16 @@ public final class MainController {
     public GameUtilController getGameUtilController() {
         return this.gameUtilController;
     }
+    /**
+     * Gets the used instance to {@link LevelsController} which allows control over
+     * different game levels.
+     * @return {@link LevelsController} instance.
+     */
+    public LevelsController getLevelsController() {
+        return this.levelsController;
+    }
 
+    /**
     /**
      * Gets the used instance to {@link ViewController} which allows control over
      * the view (add a node, remove a node, get data about view.. etc).
