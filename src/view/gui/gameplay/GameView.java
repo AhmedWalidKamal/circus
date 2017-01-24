@@ -13,11 +13,13 @@ public class GameView {
      */
     private Pane rootPane = null;
 
+    private Pane pauseMenuPane = null;
+
     /**
      * Instantiates a new {@link GameView}.
      */
     public GameView() {
-        rootPane = new Pane();
+
     }
 
     /**
@@ -29,6 +31,10 @@ public class GameView {
         this.rootPane = rootPane;
     }
 
+    protected void setPauseMenuPane(final Pane pauseMenuPane) {
+        this.pauseMenuPane = pauseMenuPane;
+    }
+
     /**
      * Gets the root pane of a game view.
      * @return root pane.
@@ -36,4 +42,6 @@ public class GameView {
     public Pane getRootPane() {
         return rootPane;
     }
+
+    public Pane getPauseMenuPane() {return pauseMenuPane ;}
 }

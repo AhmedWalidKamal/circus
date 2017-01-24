@@ -6,13 +6,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import util.MenuBox;
 import util.MenuItem;
-import view.gui.app.Main;
-import view.gui.app.util.SceneNavigator;
-
-import java.io.IOException;
 
 public class MainMenuViewHelper {
 
@@ -26,19 +21,21 @@ public class MainMenuViewHelper {
 
     public static MainMenuViewHelper getInstance() {
         if (instance == null) {
-            instance = new MainMenuViewHelper();
+        	synchronized(MainMenuViewHelper.class) {
+        		if (instance == null) {
+        			instance = new MainMenuViewHelper();
+        		}
+        	}
         }
-        return  instance;
-    }
+        return instance;
+   }
 
-    public void configureTheMainMenu(Pane root, Text title) {
-
-
+   public void configureTheMainMenu(final Pane root, final Text title) {
         newGame = new MenuItem("NEW GAME");
         loadGame = new MenuItem("LOAD GAME");
         exit = new MenuItem("EXIT");
 
-        MenuBox menu = new MenuBox(
+        final MenuBox menu = new MenuBox(
                 newGame,
                 loadGame,
                 new MenuItem("OPTIONS"),
@@ -61,6 +58,4 @@ public class MainMenuViewHelper {
     public MenuItem getExitButton() {
         return exit;
     }
-
-
 }

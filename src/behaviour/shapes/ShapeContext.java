@@ -4,6 +4,7 @@ import behaviour.shapes.util.ShapePool;
 import controller.GameUtilController;
 import controller.LevelsController;
 import controller.PlayersController;
+import controller.ShapesController;
 import controller.ViewController;
 import model.shapes.Shape;
 
@@ -22,6 +23,8 @@ public final class ShapeContext {
 
     private PlayersController playersController = null;
 
+    private ShapesController shapesController = null;
+
     private LevelsController levelsController=null;
 
     /**
@@ -35,7 +38,8 @@ public final class ShapeContext {
      * Constructs a new Context for shape.
      * @param shape {@link Shape} shape to apply states on.
      */
-    public ShapeContext(final Shape shape, final ViewController viewController,
+    public ShapeContext(final Shape shape, final ShapesController shapesController,
+                        final ViewController viewController,
                         final GameUtilController gameUtilController,
                         final PlayersController playersController,
                         final LevelsController levelsController,
@@ -44,6 +48,7 @@ public final class ShapeContext {
         this.viewController = viewController;
         this.gameUtilController = gameUtilController;
         this.playersController = playersController;
+        this.shapesController = shapesController;
         this.levelsController = levelsController;
         this.shapePool = shapePool;
         shapeState = new SlidingState(this);
@@ -66,6 +71,10 @@ public final class ShapeContext {
     }
     public LevelsController getLevelsController() {
         return this.levelsController;
+    }
+
+    public ShapesController getShapesController() {
+        return shapesController;
     }
 
     public void setShapeState(final ShapeState shapeState) {

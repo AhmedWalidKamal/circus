@@ -1,24 +1,24 @@
 package behaviour.difficultyLevels;
 
-public class EasyLevel implements Strategy {
-
-    private static final double TRANSITION_DURATION=0.0001;
-    private static final double HORIZONTAL_DURATION=0.8;
-    private static final double FALLING_TIME=0.1;
-    //private static final int CREATION_INTERVAL=;
+public class EasyLevel implements Level {
+    private static final double TRANSITION_DURATION = 0.0005;
+    private static final double HORIZONTAL_DURATION = 0.8;
+    private static final double FALLING_RATE = 0.15;
+    private static final long CREATION_INTERVAL = 2000;
 
     @Override
-    public int getCreationInterval() {
-        return 0;
+    public long getCreationInterval() {
+        return CREATION_INTERVAL;
     }
 
     @Override
     public double getTransitionDuration() {
         return TRANSITION_DURATION;
     }
+
     @Override
-    public double getFallingTime() {
-        return FALLING_TIME;
+    public double getFallingRate() {
+        return FALLING_RATE;
     }
 
     @Override

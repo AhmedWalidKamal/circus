@@ -1,7 +1,6 @@
 package controller;
 
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import view.gui.endgame.EndGameView;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 
@@ -43,6 +42,8 @@ public final class MainController {
      */
     private GameView gameView = null;
 
+    private EndGameView endGameView = null;
+
     private ViewController viewController = null;
 
     public MainController() {
@@ -54,6 +55,14 @@ public final class MainController {
         shapesController.setDaemon(true);
         gameUtilController = new GameUtilController(this);
         levelsController = new LevelsController(this);
+    }
+
+    public void setGameViewController(final GameViewController gameViewController) {
+    	this.gameViewController = gameViewController;
+    }
+
+    public GameViewController getGameViewController() {
+    	return this.gameViewController;
     }
 
     /**
@@ -125,23 +134,42 @@ public final class MainController {
         return this.gameView;
     }
 
+    public void setEndGameView(final EndGameView endGameView) {
+    	this.endGameView = endGameView;
+    }
+
+    public EndGameView getEndGameView() {
+    	return this.endGameView;
+    }
+
     /**
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
      */
     public void startNewGame(String difficultyLevel) {
+        levelsController.chooseLevel(difficultyLevel);
         gameUtilController.prepareGame();
         playersController.prepareGame();
-        levelsController.chooseLevel(difficultyLevel);
         inputController.start();
         shapesController.start();
     }
 
     public void pause() {
         shapesController.pauseThread();
+        gameUtilController.pauseTime();
     }
 
     public void resume() {
         shapesController.resumeThread();
+        gameUtilController.resumeTime();
     }
+
+    /**
+     * Displays the end game scene with the score of each player and who won
+     * the game, end game scene has 3 options: exit game, return to main menu
+     * and start a new game again directly (restart game).
+     */
+	public void endGame() {
+
+	}
 }
