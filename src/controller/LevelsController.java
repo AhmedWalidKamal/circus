@@ -31,8 +31,9 @@ public class LevelsController {
             currentLevel=new MediumLevel();
         else if(level.equals("HARD"))
             currentLevel=new HardLevel();
-
-
+    }
+    public Strategy getDifficultyLevel(){
+        return this.currentLevel;
     }
 
 }

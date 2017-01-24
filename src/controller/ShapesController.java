@@ -49,7 +49,7 @@ public final class ShapesController extends PausableThread {
                         ShapeContext context = new ShapeContext(shape,
                                 mainController.getViewController(),
                                 mainController.getGameUtilController(),
-                                mainController.getPlayersController(), shapePool);
+                                mainController.getPlayersController(),mainController.getLevelsController(), shapePool);
 
                         context.handle();
                     }
