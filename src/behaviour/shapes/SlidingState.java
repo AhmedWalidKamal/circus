@@ -3,6 +3,7 @@ package behaviour.shapes;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import model.shapes.Shape;
 import util.Shelf;
 
 //TODO: Make the actual sliding transition here.
@@ -20,6 +21,7 @@ class SlidingState implements ShapeState {
 
     @Override
     public final void handle() {
+        context.getShape().setState(Shape.State.SLIDING);
         shelf = context.getGameUtilController().getNextShelf();
         double x = 0;
         switch (shelf.getOrientation()) {

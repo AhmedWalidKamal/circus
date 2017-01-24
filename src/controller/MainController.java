@@ -32,6 +32,10 @@ public final class MainController {
      * {@link GameViewController} instance.
      */
     private GameViewController gameViewController = null;
+    /**
+     * {@link LevelsController} instance.
+     */
+    private LevelsController levelsController = null;
 
     /**
      * Constructs new instances from sub-controllers.
@@ -46,10 +50,11 @@ public final class MainController {
         viewController = new ViewController(this);
         inputController = new InputController(this);
         inputController.setDaemon(true);
-        inputController.start();
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
+        shapesController.setDaemon(true);
         gameUtilController = new GameUtilController(this);
+        levelsController = new LevelsController(this);
     }
 
     public void setGameViewController(final GameViewController gameViewController) {
@@ -95,7 +100,16 @@ public final class MainController {
     public GameUtilController getGameUtilController() {
         return this.gameUtilController;
     }
+    /**
+     * Gets the used instance to {@link LevelsController} which allows control over
+     * different game levels.
+     * @return {@link LevelsController} instance.
+     */
+    public LevelsController getLevelsController() {
+        return this.levelsController;
+    }
 
+    /**
     /**
      * Gets the used instance to {@link ViewController} which allows control over
      * the view (add a node, remove a node, get data about view.. etc).
@@ -132,10 +146,20 @@ public final class MainController {
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
      */
-    public void startNewGame() {
+    public void startNewGame(String difficultyLevel) {
         gameUtilController.prepareGame();
         playersController.prepareGame();
-        shapesController.startGame();
+        levelsController.chooseLevel(difficultyLevel);
+        inputController.start();
+        shapesController.start();
+    }
+
+    public void pause() {
+        shapesController.pauseThread();
+    }
+
+    public void resume() {
+        shapesController.resumeThread();
     }
 
     /**

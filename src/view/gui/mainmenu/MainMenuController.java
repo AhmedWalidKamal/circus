@@ -24,17 +24,28 @@ public class MainMenuController implements Initializable, ControlledScenes {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
             root.setFocusTraversable(true);
-            MainMenuViewHelper.getInstance().setMainMenuController(this);
             MainMenuViewHelper.getInstance().configureTheMainMenu(root, title);
+            configureNewGameButton();
+            configureExitButton();
     }
 
-	@Override
-	public void setScreenParent(final ScenesNavigator screenParent) {
-		this.myController = screenParent;
-	}
+    @Override
+    public void setScreenParent(final ScenesNavigator screenParent) {
+    	this.myController = screenParent;
+    }
 
-	public void loadGameScene() {
-		this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-		this.myController.setScreen(Main.GAMEVIEW_ID);
-	}
+    private void configureNewGameButton() {
+        MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
+        	this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+            this.myController.setScreen(Main.GAMEVIEW_ID);
+        });
+    }
+
+    private void configureLoadGameButton() {
+
+    }
+
+    private void configureExitButton() {
+        MainMenuViewHelper.getInstance().getExitButton().setOnMouseClicked(event -> System.exit(0));
+    }
 }

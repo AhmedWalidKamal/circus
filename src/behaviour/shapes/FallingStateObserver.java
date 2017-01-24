@@ -1,5 +1,6 @@
 package behaviour.shapes;
 
+import javafx.scene.layout.AnchorPane;
 import model.Player;
 import model.shapes.Shape;
 import util.Point;
@@ -31,8 +32,11 @@ public class FallingStateObserver implements Observer {
                 ((Shape) shape).getImageView().translateXProperty().bind(player.getCharacter()
                         .getImageView().translateXProperty());
                 ((Shape) shape).setY(player.getCharacter().getY() - player.getLeftStackYInset());
+                ((Shape) shape).getImageView().translateYProperty().bind(player.getCharacter()
+                        .getImageView().translateYProperty());
                 player.addToLeftStack((Shape) shape);
-                ((FallingState) fallingState).setState(FallingState.State.FETCHED);
+                ((FallingState) fallingState).getContext().getShape().setState(
+                        Shape.State.FETCHED);
                 ((FallingState) fallingState).goNext(player);
             } else if (Math.abs(rightStack.getX() - point.getX()) <= ((Shape) shape).getImageView()
                     .getImage().getWidth() / 4
@@ -42,8 +46,12 @@ public class FallingStateObserver implements Observer {
                 ((Shape) shape).getImageView().translateXProperty().bind(player.getCharacter()
                         .getImageView().translateXProperty());
                 ((Shape) shape).setY(player.getCharacter().getY() - player.getRightStackYInset());
+                ((Shape) shape).getImageView().translateYProperty().bind(player.getCharacter()
+                        .getImageView().translateYProperty());
+                //TODO: set a bottom anchor for shape.
                 player.addToRightStack((Shape) shape);
-                ((FallingState) fallingState).setState(FallingState.State.FETCHED);
+                ((FallingState) fallingState).getContext().getShape().setState(
+                        Shape.State.FETCHED);
                 ((FallingState) fallingState).goNext(player);
             }
         }

@@ -52,9 +52,12 @@ public final class InputController extends Thread {
                 keyMap.setAllKeyHandlers(false);
             }
             paused = true;
+            mainController.pause();
         }
-        else if (keyCode == KeyCode.ENTER)
+        else if (keyCode == KeyCode.ENTER) {
             paused = false;
+            mainController.resume();
+        }
         if (paused)
             return;
         Thread executionThread = new Thread(() -> {

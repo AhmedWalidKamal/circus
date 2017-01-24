@@ -31,7 +31,7 @@ public class GreenClown implements Character {
 
     @Override
     public double getY() {
-        return imageView.getY();
+        return imageView.getY() + imageView.getTranslateY() + imageView.getLayoutY();
     }
 
     @Override

@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import model.Color;
 import model.shapes.util.ShapeFactory;
 
-public class Plate implements Shape {
+public class Plate extends Shape {
 
 	private ImageView plateImage;
 
