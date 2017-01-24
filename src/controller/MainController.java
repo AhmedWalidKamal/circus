@@ -48,6 +48,7 @@ public final class MainController {
     public MainController() {
         viewController = new ViewController(this);
         inputController = new InputController(this);
+        inputController.setDaemon(true);
         inputController.start();
         inputController.setDaemon(true);
         playersController = new PlayersController(this);

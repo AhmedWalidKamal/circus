@@ -95,4 +95,10 @@ public class KeyMap {
         KeyHandler keyHandler = keyMap.get(keyCode);
         keyHandler.setPressed(pressed);
     }
+
+    public synchronized void setAllKeyHandlers(boolean pressed) {
+        for (KeyHandler handler : keyMap.values()) {
+            handler.setPressed(pressed);
+        }
+    }
 }
