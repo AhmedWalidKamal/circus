@@ -28,9 +28,7 @@ public class GameViewController implements Initializable, ControlledScenes {
     @FXML
     private Text pauseMenuTitle;
 
-    private ScenesNavigator myController;
-
-
+    private ScenesNavigator sceneNavigator;
 
     /**
      * Instance of {@link MainController} that allows control over both model
@@ -75,14 +73,14 @@ public class GameViewController implements Initializable, ControlledScenes {
     }
 
 	public void showEndGameScene() {
-		myController.loadScreen(Main.ENDGAME_ID, Main.ENDGAME_URL, Main.ENDGAME_STYLESHEET);
-		myController.setScreen(Main.ENDGAME_ID);
+		sceneNavigator.loadScreen(Main.ENDGAME_ID, Main.ENDGAME_URL, Main.ENDGAME_STYLESHEET);
+		sceneNavigator.setScene(Main.ENDGAME_ID);
 	}
 
 	@Override
 	public void setScreenParent(final ScenesNavigator screenParent) {
-		this.myController = screenParent;
-		this.mainController = myController.getMainController();
+		this.sceneNavigator = screenParent;
+		this.mainController = sceneNavigator.getMainController();
 		this.mainController.setGameViewController(this);
         this.mainController.setGameView(gameView);
         setKeyBinding();

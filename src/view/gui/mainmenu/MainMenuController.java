@@ -37,7 +37,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
     private void configureNewGameButton() {
         MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
         	this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.myController.setScreen(Main.GAMEVIEW_ID);
+            this.myController.setScene(Main.GAMEVIEW_ID);
         });
     }
 

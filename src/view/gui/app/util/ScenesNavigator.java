@@ -28,11 +28,11 @@ public class ScenesNavigator extends StackPane {
         scenes.put(name, screen);
     }
 
-    public Node addScene(final String name) {
+    public Node getScene(final String name) {
         return scenes.get(name);
     }
 
-    public boolean loadScreen(final String name, final String resource, final String stylesheet) {
+    public void loadScreen(final String name, final String resource, final String stylesheet) {
         try {
             final FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
             final Parent loadScreen = (Parent) myLoader.load();
@@ -40,14 +40,12 @@ public class ScenesNavigator extends StackPane {
             myScreenController.setScreenParent(this);
             loadScreen.getStylesheets().add(this.getClass().getResource(stylesheet).toExternalForm());
             addScene(name, loadScreen);
-            return true;
         } catch (final Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 
-    public boolean setScreen(final String name) {
+    public void setScene(final String name) {
         if (scenes.get(name) != null) {
             if (!getChildren().isEmpty()) {
                 getChildren().remove(0);
@@ -55,10 +53,8 @@ public class ScenesNavigator extends StackPane {
             } else {
                 getChildren().add(scenes.get(name));
             }
-            return true;
         } else {
             System.out.println("screen hasn't been loaded!!! \n");
-            return false;
         }
 
 

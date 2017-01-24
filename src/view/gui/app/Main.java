@@ -22,7 +22,7 @@ public class Main extends Application {
     public final void start(final Stage primaryStage) throws Exception {
     	final ScenesNavigator screensController = new ScenesNavigator();
     	screensController.loadScreen(MAINMENU_ID, MAINMENU_URL, MAINMENU_STYLESHEET);
-    	screensController.setScreen(MAINMENU_ID);
+    	screensController.setScene(MAINMENU_ID);
     	final Group root = new Group();
     	root.getChildren().addAll(screensController);
     	primaryStage.setScene(new Scene(root));

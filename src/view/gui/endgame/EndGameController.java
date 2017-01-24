@@ -19,7 +19,7 @@ public class EndGameController implements Initializable, ControlledScenes {
 
 	private EndGameView endGameView;
 
-	private ScenesNavigator myController;
+	private ScenesNavigator sceneNavigator;
 
 	@Override
 	public void initialize(final URL location, final ResourceBundle resources) {
@@ -30,8 +30,8 @@ public class EndGameController implements Initializable, ControlledScenes {
 
 	@Override
 	public void setScreenParent(final ScenesNavigator screenParent) {
-		this.myController = screenParent;
-		this.mainController = this.myController.getMainController();
+		this.sceneNavigator = screenParent;
+		this.mainController = this.sceneNavigator.getMainController();
 		this.mainController.setEndGameView(endGameView);
         this.mainController.endGame();
 	}
