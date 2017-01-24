@@ -1,6 +1,5 @@
 package behaviour.shapes;
 
-import controller.MainController;
 import javafx.application.Platform;
 import model.Player;
 import model.shapes.Shape;
@@ -17,6 +16,7 @@ class FetchedState implements ShapeState {
 
 	@Override
 	public final void handle() {
+		context.getShape().setState(Shape.State.FETCHED);
 		if (player.getLeftStack().size() >= 3) {
 			if (player.getLeftStack().peek().equals(context.getShape())) {
 				final Shape shape1 = player.popFromLeftStack();

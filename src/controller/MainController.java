@@ -45,9 +45,9 @@ public final class MainController {
         viewController = new ViewController(this);
         inputController = new InputController(this);
         inputController.setDaemon(true);
-        inputController.start();
         playersController = new PlayersController(this);
         shapesController = new ShapesController(this);
+        shapesController.setDaemon(true);
         gameUtilController = new GameUtilController(this);
     }
 
@@ -118,6 +118,15 @@ public final class MainController {
     public void startNewGame() {
         gameUtilController.prepareGame();
         playersController.prepareGame();
-        shapesController.startGame();
+        inputController.start();
+        shapesController.start();
+    }
+
+    public void pause() {
+        shapesController.pauseThread();
+    }
+
+    public void resume() {
+        shapesController.resumeThread();
     }
 }

@@ -3,25 +3,39 @@ package model.shapes;
 import javafx.scene.image.ImageView;
 import model.Color;
 
-public interface Shape {
+public abstract class Shape {
 
-	public Color getColor();
+	public enum State {
+		CREATED, SLIDING, FALLING, FETCHED, NOT_FETCHED, IN_POOL;
+	};
 
-	public void setColor(Color color);
+	private State state;
 
-	public void setX(double x);
+	public void setState(final State state) {
+		this.state = state;
+	}
 
-	public void setY(double y);
+	public State getState() {
+		return state;
+	}
 
-	public double getX();
+	public abstract Color getColor();
 
-	public double getY();
+	public abstract void setColor(Color color);
 
-	public double getWidth();
+	public abstract void setX(double x);
 
-	public double getHeight();
+	public abstract void setY(double y);
 
-	public ImageView getImageView();
+	public abstract double getX();
 
-	public void setImageView(ImageView shapeImageView);
+	public abstract double getY();
+
+	public abstract double getWidth();
+
+	public abstract double getHeight();
+
+	public abstract ImageView getImageView();
+
+	public abstract void setImageView(ImageView shapeImageView);
 }

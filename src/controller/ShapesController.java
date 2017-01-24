@@ -2,20 +2,26 @@ package controller;
 
 import behaviour.shapes.ShapeContext;
 import behaviour.shapes.util.ShapePool;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.shape.Rectangle;
 import model.shapes.Shape;
+import util.PausableThread;
 
 /**
  * Acts as a controller to shapes behavior, using a subroutine that handles
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public final class ShapesController  {
+public final class ShapesController extends PausableThread {
     /**
      * {@link MainController} reference.
      */
     private MainController mainController = null;
     private ShapePool shapePool = null;
+    private Thread actualThread = null;
+    private boolean pause = false;
 
     /**
      * Constructs a new {@link ShapesController}.
@@ -26,43 +32,53 @@ public final class ShapesController  {
         this.shapePool = new ShapePool();
     }
 
-    public void startGame() {
+    @Override
+    public void run() {
+        int counter = 0;
         try {
             Class.forName("model.shapes.Plate");
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }
-        final Thread mainPlateThread = new Thread("Main Plate Thread") {
-            private int counter = 0;
-            @Override
-            public void run() {
-                while (true) {
-                    final Thread thread = new Thread("Plate" + counter) {
-                        @Override
-                        public void run() {
-                            Shape shape = shapePool.create();
-                            ShapeContext context = new ShapeContext(shape,
-                                    mainController.getViewController(),
-                                    mainController.getGameUtilController(),
-                                    mainController.getPlayersController(), shapePool);
-                            context.handle();
-                            //System.out.println("Went next");
-                        }
-                    };
-                    thread.setDaemon(true);
-                    Platform.runLater(thread);
-                    counter = (counter + 1) % 1000;
-                    try {
-                        sleep(2000);
-                    } catch (final InterruptedException e) {
-                        e.printStackTrace();
+        while (true) {
+            if (!pause) {
+                final Thread plateThread = new Thread("plate" + counter) {
+                    @Override
+                    public void run() {
+                        Shape shape = shapePool.create();
+                        ShapeContext context = new ShapeContext(shape,
+                                mainController.getViewController(),
+                                mainController.getGameUtilController(),
+                                mainController.getPlayersController(), shapePool);
+
+                        context.handle();
                     }
-//                    break;
+                };
+                plateThread.setDaemon(true);
+                Platform.runLater(plateThread);
+                counter = (counter + 1) % 1000;
+                try {
+                    sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-        };
-        mainPlateThread.setDaemon(true);
-        mainPlateThread.start();
+        }
     }
 
+    @Override
+    public void pauseThread() {
+        pause = true;
+    }
+
+    @Override
+    public void resumeThread() {
+        pause = false;
+    }
 }

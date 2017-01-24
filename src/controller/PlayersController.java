@@ -61,7 +61,7 @@ public final class PlayersController {
         Character redClown = CharacterFactory.getInstance().createCharacter("redClown");
         redClown.instantiateCharacterControls();
 //        AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
-//        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
+        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
         redClown.setX(SIDE_DISTANCE);
         redClown.setY(mainController.getViewController().getRootPanePrefHeight()
                 - BOTTOM_DISTANCE - redClown.getImageView().getImage().getHeight());
@@ -73,7 +73,7 @@ public final class PlayersController {
         Character greenClown = CharacterFactory.getInstance().createCharacter("greenClown");
         greenClown.instantiateCharacterControls();
 //        AnchorPane.setRightAnchor(greenClown.getImageView(), SIDE_DISTANCE);
-//        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
+        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
         greenClown.setX(mainController.getGameView().getRootPane().prefWidthProperty()
                 .doubleValue() - SIDE_DISTANCE - greenClown.getImageView()
                 .getImage().getWidth());

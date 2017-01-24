@@ -1,6 +1,7 @@
 package behaviour.shapes;
 
 import javafx.application.Platform;
+import model.shapes.Shape;
 
 class AddedToShapePoolState implements ShapeState {
 
@@ -12,6 +13,7 @@ class AddedToShapePoolState implements ShapeState {
 	@Override
 	public void handle() {
 		Platform.runLater(() -> {
+			context.getShape().setState(Shape.State.IN_POOL);
 			context.getShapePool().addReusableShape(context.getShape());
 			context.getViewController().removeFromRootPane(context.getShape()
 					.getImageView());

@@ -23,10 +23,6 @@ class FallingState extends Observable implements ShapeState {
     private Shelf shelf = null;
     private boolean lock = false;
     private ShapeContext context = null;
-    protected enum State {
-        FALLING, FETCHED, NOT_FETCHED;
-    }
-    private State state;
     private boolean horizontal = true;
     private List<Observer> observers = null;
 
@@ -35,21 +31,21 @@ class FallingState extends Observable implements ShapeState {
         this.path = path;
         this.shelf = shelf;
         this.context = context;
-        state = State.FALLING;
         observers = new ArrayList<>();
     }
 
     @Override
     public final void handle() {
         Shape shape = context.getShape();
+        shape.setState(Shape.State.FALLING);
         final Thread control = new Thread("Plate Control") {
             @Override
             public void run() {
-                while (state == FallingState.State.FALLING) {
+                while (shape.getState() == Shape.State.FALLING) {
                     if (!lock) {
                         final Point nextPoint = getNextTransitionPoint(shape);
                         if (nextPoint == null) {
-                            state = FallingState.State.NOT_FETCHED;
+                            shape.setState(Shape.State.NOT_FETCHED);
                             goNext(null);
                             break;
                         }
@@ -95,7 +91,7 @@ class FallingState extends Observable implements ShapeState {
     }
 
     protected final void goNext(final Player player) {
-    	if (state == FallingState.State.FETCHED) {
+    	if (context.getShape().getState() == Shape.State.FETCHED) {
     	    FetchedState fetchedState = new FetchedState(context, player);
     	    context.setShapeState(fetchedState);
     	    context.handle();
@@ -108,7 +104,6 @@ class FallingState extends Observable implements ShapeState {
     }
 
     private Point getNextTransitionPoint(final Shape shape) {
-        //TODO: Decrease number of lines in this method.
         if (horizontal) {
             double x = 0;
             final double y = shelf.getY();
@@ -161,10 +156,6 @@ class FallingState extends Observable implements ShapeState {
         transition.setPath(nextPath);
         transition.setDuration(Duration.seconds(0.0001));
         return transition;
-    }
-
-    protected void setState(final State state) {
-        this.state = state;
     }
 
     @Override

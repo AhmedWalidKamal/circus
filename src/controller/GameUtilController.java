@@ -156,8 +156,7 @@ public final class GameUtilController {
         AnchorPane.setLeftAnchor(stackPane, 0.0);
         AnchorPane.setTopAnchor(stackPane, 0.0);
         AnchorPane.setBottomAnchor(stackPane, 0.0);
-        this.mainController.getGameView().
-        getRootPane().getChildren().add(stackPane);
+        this.mainController.getViewController().addToRootPane(stackPane);
 	}
 
 	public Shelf getNextShelf() {
