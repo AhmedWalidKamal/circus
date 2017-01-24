@@ -54,7 +54,6 @@ public final class ShapesController extends PauseableThread {
                                 mainController.getGameUtilController(),
                                 mainController.getPlayersController(),
                                 mainController.getLevelsController(), shapePool);
-
                         context.handle();
                     }
                 };

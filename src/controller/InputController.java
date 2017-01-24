@@ -2,7 +2,6 @@ package controller;
 
 import behaviour.keyBinding.KeyMap;
 import javafx.scene.input.KeyCode;
-import view.gui.pausemenu.PauseMenuViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;

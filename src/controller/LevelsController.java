@@ -2,8 +2,8 @@ package controller;
 
 import behaviour.difficultyLevels.EasyLevel;
 import behaviour.difficultyLevels.HardLevel;
-import behaviour.difficultyLevels.MediumLevel;
 import behaviour.difficultyLevels.Level;
+import behaviour.difficultyLevels.MediumLevel;
 
 public class LevelsController {
     /**

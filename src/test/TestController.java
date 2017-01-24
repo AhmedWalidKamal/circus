@@ -19,7 +19,7 @@ public class TestController implements Initializable {
 //        rect.setY(100);
 //        KeyMap keyMap = new KeyMap(rect);
 //        keyMap.addKeyHandler(new LeftArrowKeyHandler());
-//        keyMap.addKeyHandler(new AKeyHandler());
+//        keyMap.addKeyHandler(new MoveLeftHandler());
 //
 
 //        rect1.setFill(Color.BROWN);

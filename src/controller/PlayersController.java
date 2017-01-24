@@ -1,11 +1,20 @@
 package controller;
 
+import behaviour.keyBinding.KeyMap;
+import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
+import behaviour.keyBinding.keyHandlers.MoveRightHandler;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import model.Player;
 import model.characters.Character;
+import model.characters.supportedCharacters.GreenClown;
+import model.characters.supportedCharacters.RedClown;
 import model.characters.util.CharacterFactory;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Acts as a controller to players behavior, has references to model that allow
@@ -23,7 +32,7 @@ public final class PlayersController {
      * Distance to be set initially from the side of the screen for each
      * character, one on the right, one on the left.
      */
-    private static final double SIDE_DISTANCE = 50.0;
+    private static final double SIDE_DISTANCE = 25.0;
 
     /**
      * Distance to be set initially from the bottom of the screen for both
@@ -31,7 +40,7 @@ public final class PlayersController {
      */
     private static final double BOTTOM_DISTANCE = 15.0;
 
-    private Map<Character, Player> characterPlayerMap = null;
+    private Map<Player, ImageView> playerImageMap = null;
 
     /**
      * Constructs a new {@link PlayersController}
@@ -39,60 +48,68 @@ public final class PlayersController {
      */
     public PlayersController(final MainController mainController) {
         this.mainController = mainController;
-        characterPlayerMap = new HashMap<>();
+        playerImageMap = new HashMap<>();
     }
 
     public void prepareGame() {
+        loadDefaultCharacters();
 
-        //TODO
-        // This is somehow can be considered as a dynamic way for loading these classes in
-        // order to be registered in the Character Factory so we can use it in our development
-        // cycle till we integrate it with the dynamic class loading from the game GUI itself specifically
-        // "The Game options module".
-        // so it will be edited later.
+        //Player One.
+        Character redClown = CharacterFactory.getInstance().createCharacter(
+                RedClown.KEY);
+        Player playerOne = new Player(redClown);
+        ImageView redClownImage = new ImageView(redClown.getUrl());
+        bindImageToCharacter(redClown, redClownImage);
+        redClownImage.setX(SIDE_DISTANCE);
+        KeyMap redClownKeyMap = new KeyMap(redClownImage);
+        redClownKeyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
+        redClownKeyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
+        playerImageMap.put(playerOne, redClownImage);
+        mainController.getInputController().addKeyMap(redClownKeyMap);
+        mainController.getViewController().addToRootPane(redClownImage);
 
+        //Player Two.
+        Character greenClown = CharacterFactory.getInstance().createCharacter(
+                GreenClown.KEY);
+        Player playerTwo = new Player(greenClown);
+        ImageView greenClownImage = new ImageView(greenClown.getUrl());
+        bindImageToCharacter(greenClown, greenClownImage);
+        greenClownImage.setX(mainController.getViewController().getRootPanePrefWidth()
+                - greenClown.getWidth() - SIDE_DISTANCE);
+        KeyMap greenClownKeyMap = new KeyMap(greenClownImage);
+        greenClownKeyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler());
+        greenClownKeyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler());
+        playerImageMap.put(playerTwo, greenClownImage);
+        mainController.getInputController().addKeyMap(greenClownKeyMap);
+        mainController.getViewController().addToRootPane(greenClownImage);
+    }
+
+    private void loadDefaultCharacters() {
         try {
             Class.forName("model.characters.supportedCharacters.GreenClown");
             Class.forName("model.characters.supportedCharacters.RedClown");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Player player1 = new Player();
-        Character redClown = CharacterFactory.getInstance().createCharacter("redClown");
-        redClown.instantiateCharacterControls();
-//        AnchorPane.setLeftAnchor(redClown.getImageView(), SIDE_DISTANCE);
-        AnchorPane.setBottomAnchor(redClown.getImageView(), BOTTOM_DISTANCE);
-        redClown.setX(SIDE_DISTANCE);
-        redClown.setY(mainController.getViewController().getRootPanePrefHeight()
-                - BOTTOM_DISTANCE - redClown.getImageView().getImage().getHeight());
-        mainController.getInputController().addKeyMap(redClown.getKeyMap());
-        mainController.getViewController().addToRootPane(redClown.getImageView());
-        attachPlayerToCharacter(redClown, player1);
-
-        Player player2 = new Player();
-        Character greenClown = CharacterFactory.getInstance().createCharacter("greenClown");
-        greenClown.instantiateCharacterControls();
-//        AnchorPane.setRightAnchor(greenClown.getImageView(), SIDE_DISTANCE);
-        AnchorPane.setBottomAnchor(greenClown.getImageView(), BOTTOM_DISTANCE);
-        greenClown.setX(mainController.getGameView().getRootPane().prefWidthProperty()
-                .doubleValue() - SIDE_DISTANCE - greenClown.getImageView()
-                .getImage().getWidth());
-        greenClown.setY(mainController.getGameView().getRootPane().prefHeightProperty()
-                .doubleValue() - BOTTOM_DISTANCE - greenClown.getImageView()
-                .getImage().getHeight());
-        mainController.getInputController().addKeyMap(greenClown.getKeyMap());
-        mainController.getViewController().addToRootPane(greenClown.getImageView());
-        attachPlayerToCharacter(greenClown, player2);
-
-        player1.setCharacter(redClown);
-        player2.setCharacter(greenClown);
     }
 
-    public void attachPlayerToCharacter(Character character, Player player) {
-        characterPlayerMap.put(character, player);
+    private void bindImageToCharacter(Character character, ImageView image) {
+        character.bindX(image.xProperty());
+        character.bindY(image.yProperty());
+        character.bindTranslateX(image.translateXProperty());
+        character.bindTranslateY(image.translateYProperty());
+        character.setHeight(image.getImage().getHeight());
+        character.setWidth(image.getImage().getWidth());
+        image.setY(mainController.getViewController().getRootPanePrefHeight()
+                - BOTTOM_DISTANCE - image.getImage().getHeight());
+        AnchorPane.setBottomAnchor(image, BOTTOM_DISTANCE);
     }
 
     public Collection<Player> getPlayers() {
-        return characterPlayerMap.values();
+        return playerImageMap.keySet();
+    }
+
+    public ImageView getCorrespondingImage(Player player) {
+        return playerImageMap.get(player);
     }
 }

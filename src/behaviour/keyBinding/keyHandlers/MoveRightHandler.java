@@ -6,16 +6,14 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 
-public class RightArrowKeyHandler extends KeyHandler {
+public class MoveRightHandler extends KeyHandler {
 
-    public RightArrowKeyHandler(KeyMap keyMap) {
-        super.keyCode = KeyCode.RIGHT;
+    public MoveRightHandler(KeyMap keyMap) {
         super.pressed = false;
         super.keyMap = keyMap;
     }
 
-    public RightArrowKeyHandler() {
-        super.keyCode = KeyCode.RIGHT;
+    public MoveRightHandler() {
         super.pressed = false;
     }
 

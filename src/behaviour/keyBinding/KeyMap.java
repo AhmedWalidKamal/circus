@@ -35,9 +35,9 @@ public class KeyMap {
      * Adds a new keyHandler to this node.
      * @param keyHandler {@link KeyHandler} handler to key triggering.
      */
-    public void addKeyHandler(KeyHandler keyHandler) {
+    public void addKeyHandler(KeyCode keyCode, KeyHandler keyHandler) {
         keyHandler.setKeyMap(this);
-        keyMap.put(keyHandler.getKeyCode(), keyHandler);
+        keyMap.put(keyCode, keyHandler);
     }
 
     /**

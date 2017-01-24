@@ -1,33 +1,23 @@
 package model;
 
-import java.util.Stack;
-
 import model.characters.Character;
-import model.shapes.Shape;
 import util.Score;
 
 public class Player implements Comparable<Player> {
 
-    private Score score;
-    private String name;
-    private Character character;
-    private Stack<Shape> leftStack = null;
-    private Stack<Shape> rightStack = null;
+    private Score score = null;
+    private String name = null;
+    private Character character = null;
 
-    //TODO: Separate this stuff in Character class.
-    private final double leftStackXInset = 50;
-    private final double rightStackXInset = 175;
-    private double leftStackYInset = 0;
-    private double rightStackYInset = 0;
-
-    public Player() {
+    public Player(Character character) {
         score = new Score();
-        leftStack = new Stack<>();
-        rightStack = new Stack<>();
+        this.character = character;
     }
 
-    public void setPlayerName(final String name) {
+    public Player(String name, Character character) {
+        score = new Score();
         this.name = name;
+        this.character = character;
     }
 
     public String getPlayerName() {
@@ -42,12 +32,12 @@ public class Player implements Comparable<Player> {
         return this.score;
     }
 
-    public Character getCharacter() {
-        return this.character;
-    }
-
     public void setCharacter(final Character character) {
         this.character = character;
+    }
+
+    public Character getCharacter() {
+        return this.character;
     }
 
     @Override
@@ -57,55 +47,5 @@ public class Player implements Comparable<Player> {
         } else {
             return name.compareTo(player.getPlayerName());
         }
-    }
-
-    public void addToLeftStack(final Shape shape) {
-        leftStack.add(shape);
-        leftStackYInset += shape.getImageView().getImage().getHeight();
-    }
-
-    public void addToRightStack(final Shape shape) {
-        rightStack.add(shape);
-        rightStackYInset += shape.getImageView().getImage().getHeight();
-    }
-
-    public Shape popFromLeftStack() {
-        if (leftStack.isEmpty()) {
-            return null;
-        }
-        leftStackYInset -= leftStack.peek().getImageView().getImage().getHeight();
-        return leftStack.pop();
-    }
-
-    public Shape popFromRightStack() {
-        if (rightStack.isEmpty()) {
-            return null;
-        }
-        rightStackYInset -= rightStack.peek().getImageView().getImage().getHeight();
-        return rightStack.pop();
-    }
-
-    public double getLeftStackXInset() {
-        return leftStackXInset;
-    }
-
-    public double getLeftStackYInset() {
-        return leftStackYInset;
-    }
-
-    public double getRightStackXInset() {
-        return rightStackXInset;
-    }
-
-    public double getRightStackYInset() {
-        return rightStackYInset;
-    }
-
-    public Stack<Shape> getLeftStack() {
-    	return this.leftStack;
-    }
-
-    public Stack<Shape> getRightStack() {
-    	return this.rightStack;
     }
 }

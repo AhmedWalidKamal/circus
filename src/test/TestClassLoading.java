@@ -29,9 +29,10 @@ public class TestClassLoading {
         System.out.println(CharacterFactory.getInstance().getRegisteredCharacters());
 
         // This will cause a Runtime exception as Internal Graphics are not initialized yet in an implicit way.
-        Character anas = CharacterFactory.getInstance().createCharacter("greenClown");
-        anas.instantiateCharacterControls();
-        System.out.println(anas);
+
+//        Character anas = CharacterFactory.getInstance().createCharacter("greenClown");
+//        anas.instantiateCharacterControls();
+//        System.out.println(anas);
 
         // This will cause a Runtime exception as Internal Graphics are not initialized yet in an implicit way.
         /*Character walid = new GreenClown();*/
