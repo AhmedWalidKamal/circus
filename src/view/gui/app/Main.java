@@ -9,8 +9,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static final String MAINMENU = "/view/gui/mainmenu/MainMenuFxml.fxml";
+    public static final String LEVELSDIALOG = "/view/gui/levelsdialog/LevelsDialogFxml.fxml";
 	public static final String GAMEVIEW = "/view/gui/gameplay/GameViewFxml.fxml";
 	public static final String MAINMENU_STYLESHEET = "/view/gui/mainmenu/MainMenuStyle.css";
+    public static final String LEVELSDIALOG_STYLESHEET = "/view/gui/levelsdialog/LevelsDialogStyle.css";
 	public static final String GAMEVIEW_STYLESHEET = "/view/gui/gameplay/GameViewStyle.css";
 
     @Override

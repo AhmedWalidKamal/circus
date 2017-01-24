@@ -28,10 +28,6 @@ public class GameViewController implements Initializable {
      */
     private GameView gameView = null;
 
-    private Shape shape1;
-    private Shape shape2;
-    private Shape shape3;
-
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
