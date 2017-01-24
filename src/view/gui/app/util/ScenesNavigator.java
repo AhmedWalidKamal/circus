@@ -3,7 +3,6 @@ package view.gui.app.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import controller.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,16 +11,10 @@ import javafx.scene.layout.StackPane;
 public class ScenesNavigator extends StackPane {
 
     private final Map<String, Node> scenes;
-    private final MainController mainController;
 
     public ScenesNavigator() {
         super();
         this.scenes = new HashMap<String, Node>();
-        this.mainController = new MainController();
-    }
-
-    public MainController getMainController() {
-    	return this.mainController;
     }
 
     public void addScene(final String name, final Node screen) {
@@ -32,13 +25,16 @@ public class ScenesNavigator extends StackPane {
         return scenes.get(name);
     }
 
-    public void loadScreen(final String name, final String resource, final String stylesheet) {
+    public void loadScene(final String name, final String resource, final String stylesheet) {
         try {
             final FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
             final Parent loadScreen = (Parent) myLoader.load();
             final ControlledScenes myScreenController = ((ControlledScenes) myLoader.getController());
             myScreenController.setScreenParent(this);
             loadScreen.getStylesheets().add(this.getClass().getResource(stylesheet).toExternalForm());
+            if (scenes.get(name) != null) {
+            	scenes.remove(name);
+            }
             addScene(name, loadScreen);
         } catch (final Exception e) {
             e.printStackTrace();

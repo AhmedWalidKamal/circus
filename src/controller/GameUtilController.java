@@ -16,8 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import model.Player;
 import model.Timer;
-import util.Shelf;
 import util.Score;
+import util.Shelf;
 
 /**
  * Acts as a controller to all game utilities (score, shelves, ... etc).
@@ -48,7 +48,7 @@ public final class GameUtilController {
     /**
      * The total time for the game.
      */
-    private static final Integer GAMETIME = 60;
+    private static final Integer GAMETIME = 3;
 
     /**
      * Timeline object that progresses the actual time.
