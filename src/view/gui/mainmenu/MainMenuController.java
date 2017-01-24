@@ -3,18 +3,15 @@ package view.gui.mainmenu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
 import view.gui.levelsdialog.LevelsDialogViewHelper;
-import view.gui.pausemenu.PauseMenuViewHelper;
+import view.gui.mainmenu.util.GameData;
 
 public class MainMenuController implements Initializable, ControlledScenes {
 
@@ -33,14 +30,11 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     private ScenesNavigator sceneNavigator;
 
-    private String difficultyLevel;
+    private final static String EASY_LEVEL = "EASY";
+    private final static String MEDIUM_LEVEL = "MEDIUM";
+    private final static String HARD_LEVEL = "HARD";
 
-    private final static String EASY_LEVEL="EASY";
-    private final static String MEDIUM_LEVEL="Medium";
-    private final static String HARD_LEVEL="Hard";
-
-
-
+    private GameData gameData;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -48,6 +42,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
             MainMenuViewHelper.getInstance().configureTheMainMenu(root, title);
             LevelsDialogViewHelper.getInstance().configureTheLevelsDialog(this.levelsPane,this.LevelsDialogTitle);
             setVisibilityBindingLevelsDialog();
+            gameData = new GameData();
             configureNewGameButton();
             configureExitButton();
             configureEasyLevelButton();
@@ -83,25 +78,28 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     private void configureEasyLevelButton() {
         LevelsDialogViewHelper.getInstance().getEasyLevelButton().setOnMouseClicked(event -> {
-            this.setDifficultyLevel(EASY_LEVEL);
-            this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+            this.gameData.setGameDifficulty(EASY_LEVEL);
+            this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+            		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
             this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
             manageDialogVisibility();
         });
     }
     private void configureMediumLevelButton() {
         LevelsDialogViewHelper.getInstance().getMediumLevelButton().setOnMouseClicked(event -> {
-            this.setDifficultyLevel(MEDIUM_LEVEL);
-            this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
+        	this.gameData.setGameDifficulty(MEDIUM_LEVEL);
+        	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+            		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
+        	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
             manageDialogVisibility();
         });
     }
     private void configureHardLevelButton() {
         LevelsDialogViewHelper.getInstance().getHardLevelButton().setOnMouseClicked(event -> {
-            this.setDifficultyLevel(HARD_LEVEL);
-            this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
+        	this.gameData.setGameDifficulty(HARD_LEVEL);
+        	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+            		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
+        	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
             manageDialogVisibility();
         });
     }
@@ -109,11 +107,5 @@ public class MainMenuController implements Initializable, ControlledScenes {
         levelsPane.setVisible(false);
         levelsPane.toBack();
         levelsPane.requestFocus();
-    }
-    private void setDifficultyLevel(String difficultyLevel){
-        this.difficultyLevel=difficultyLevel;
-    }
-    public String getDifficultyLevel(){
-        return this.difficultyLevel;
     }
 }

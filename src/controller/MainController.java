@@ -144,7 +144,7 @@ public final class MainController {
     	return this.endGameView;
     }
 
-    public void setDifficultyLevel(String difficultyLevel){
+    public void setDifficultyLevel(final String difficultyLevel){
         this.difficultyLevel=difficultyLevel;
     }
     /**
@@ -168,13 +168,4 @@ public final class MainController {
         shapesController.resumeThread();
         gameUtilController.resumeTime();
     }
-
-    /**
-     * Displays the end game scene with the score of each player and who won
-     * the game, end game scene has 3 options: exit game, return to main menu
-     * and start a new game again directly (restart game).
-     */
-	public void endGame() {
-
-	}
 }

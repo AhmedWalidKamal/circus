@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import controller.MainController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -15,7 +14,7 @@ import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
 import view.gui.endgame.EndGameViewHelper;
-import view.gui.mainmenu.MainMenuController;
+import view.gui.mainmenu.util.GameData;
 import view.gui.pausemenu.PauseMenuViewHelper;
 
 public class GameViewController implements Initializable, ControlledScenes {
@@ -39,6 +38,8 @@ public class GameViewController implements Initializable, ControlledScenes {
 
     private ScenesNavigator sceneNavigator;
 
+    private GameData gameData;
+
     /**
      * Instance of {@link MainController} that allows control over both model
      * and view.
@@ -57,18 +58,6 @@ public class GameViewController implements Initializable, ControlledScenes {
         gameView = new GameView();
         gameView.setRootPane(this.root);
         gameView.setPauseMenuPane(this.pauseMenuPane);
-        this.mainController = new MainController();
-		this.mainController.setGameViewController(this);
-        this.mainController.setGameView(gameView);
-        setKeyBinding();
-       /* FXMLLoader loader = new FXMLLoader(
-                getClass().getResource(
-                        Main.MAINMENU_URL
-                )
-        );*/
-        //MainMenuController main=(MainMenuController)loader.getController();
-        this.mainController.setDifficultyLevel("EASY");
-        this.mainController.startNewGame();
         PauseMenuViewHelper.getInstance().configureThePauseMenu(this.pauseMenuPane,this.pauseMenuTitle);
         EndGameViewHelper.getInstance().configureEndGameScene(this.endGamePane, this.endGameTitle);
         setVisibilityBindingPauseMenu();
@@ -78,6 +67,16 @@ public class GameViewController implements Initializable, ControlledScenes {
         configureReturnToMainMenuButton();
     }
 
+    public void startNewGame(final GameData gameData) {
+    	this.gameData = gameData;
+    	this.mainController = new MainController();
+		this.mainController.setGameViewController(this);
+        this.mainController.setGameView(gameView);
+        setKeyBinding();
+        this.mainController.setDifficultyLevel(this.gameData.getGameDifficulty());
+        this.mainController.startNewGame();
+
+    }
     private void setVisibilityBindingEndGame() {
 		endGamePane.managedProperty().bind(endGamePane.visibleProperty());
 		endGamePane.setVisible(false);
@@ -124,14 +123,13 @@ public class GameViewController implements Initializable, ControlledScenes {
 
 	private void configureRestartGameButton() {
 	    EndGameViewHelper.getInstance().getRestartGameButton().setOnMouseClicked(event -> {
-	    	this.sceneNavigator.loadScene(Main.GAMEVIEW_ID,
-	    			Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+	    	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+	    			Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
 	    	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
         });
 	}
 	@Override
 	public void setScreenParent(final ScenesNavigator screenParent) {
 		this.sceneNavigator = screenParent;
-
 	}
 }
