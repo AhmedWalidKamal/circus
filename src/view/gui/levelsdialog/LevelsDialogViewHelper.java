@@ -29,14 +29,13 @@ public class LevelsDialogViewHelper {
         medium = new MenuItem("MEDIUM");
         hard = new MenuItem("HARD");
 
-        MenuBox menu = new MenuBox(
+        MenuBox levelsDialog = new MenuBox(
                 easy,
                 medium,
                 hard);
-        menu.setTranslateX(100);
-        menu.setTranslateY(450);
-        root.getChildren().add(menu);
-
+        levelsDialog.setTranslateX(170);
+        levelsDialog.setTranslateY(200);
+        root.getChildren().add(levelsDialog);
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
 
     }
