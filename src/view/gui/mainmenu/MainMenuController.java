@@ -19,7 +19,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
     @FXML
     private Text title;
 
-    private ScenesNavigator myController;
+    private ScenesNavigator sceneNavigator;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -31,13 +31,13 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     @Override
     public void setScreenParent(final ScenesNavigator screenParent) {
-    	this.myController = screenParent;
+    	this.sceneNavigator = screenParent;
     }
 
     private void configureNewGameButton() {
         MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
-        	this.myController.loadScreen(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
-            this.myController.setScene(Main.GAMEVIEW_ID);
+        	this.sceneNavigator.loadScene(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET);
+            this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
         });
     }
 

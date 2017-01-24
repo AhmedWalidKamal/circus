@@ -27,14 +27,14 @@ public class PauseMenuViewHelper {
         return  instance;
     }
 
-    public void configureThePauseMenu(Pane root, Text title) {
+    public void configureThePauseMenu(final Pane root, final Text title) {
         resumeButton = new MenuItem("RESUME");
         scoreboardButton = new MenuItem("SCOREBOARD");
         optionsButton = new MenuItem("OPTIONS");
         saveButton = new MenuItem("SAVE");
         returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU");
 
-        MenuBox pauseMenu = new MenuBox(
+        final MenuBox pauseMenu = new MenuBox(
                 resumeButton,
                 scoreboardButton,
                 optionsButton,
@@ -65,6 +65,4 @@ public class PauseMenuViewHelper {
     public MenuItem getReturnToMenuMainButton() {
         return returnToMenuMainButton;
     }
-
-
 }
