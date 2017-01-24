@@ -7,14 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import view.gui.gameplay.GameViewController;
+import view.gui.mainmenu.util.GameData;
 
 public class ScenesNavigator extends StackPane {
 
     private final Map<String, Node> scenes;
+    private Map<String, ControlledScenes> controllers;
 
     public ScenesNavigator() {
         super();
         this.scenes = new HashMap<String, Node>();
+        this.controllers = new HashMap<>();
     }
 
     public void addScene(final String name, final Node screen) {
@@ -23,6 +27,25 @@ public class ScenesNavigator extends StackPane {
 
     public Node getScene(final String name) {
         return scenes.get(name);
+    }
+
+    public void loadGame(final String name,
+    		final String resource, final String stylesheet, final GameData gameData) {
+        try {
+            final FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
+            final Parent loadScreen = (Parent) myLoader.load();
+            final GameViewController gameViewController = ((GameViewController) myLoader.getController());
+            gameViewController.setScreenParent(this);
+            gameViewController.startNewGame(gameData);
+            loadScreen.getStylesheets().add(this.getClass().getResource(stylesheet).toExternalForm());
+            if (scenes.get(name) != null) {
+            	scenes.remove(name);
+            }
+            addScene(name, loadScreen);
+            addController(name, gameViewController);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadScene(final String name, final String resource, final String stylesheet) {
@@ -36,12 +59,21 @@ public class ScenesNavigator extends StackPane {
             	scenes.remove(name);
             }
             addScene(name, loadScreen);
+            addController(name, myScreenController);
         } catch (final Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setScene(final String name) {
+    private void addController(final String name, final ControlledScenes myScreenController) {
+		this.controllers.put(name, myScreenController);
+	}
+
+    public ControlledScenes getController(final String sceneID) {
+    	return this.controllers.get(sceneID);
+    }
+
+	public void setScene(final String name) {
         if (scenes.get(name) != null) {
             if (!getChildren().isEmpty()) {
                 getChildren().remove(0);
