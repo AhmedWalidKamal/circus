@@ -8,9 +8,12 @@ import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
+import view.gui.pausemenu.PauseMenuViewHelper;
 
 public class GameViewController implements Initializable, ControlledScenes {
     /**
@@ -19,7 +22,15 @@ public class GameViewController implements Initializable, ControlledScenes {
     @FXML
     private AnchorPane root;
 
+    @FXML
+    private Pane pauseMenuPane;
+
+    @FXML
+    private Text pauseMenuTitle;
+
     private ScenesNavigator myController;
+
+
 
     /**
      * Instance of {@link MainController} that allows control over both model
@@ -38,6 +49,9 @@ public class GameViewController implements Initializable, ControlledScenes {
         root.setFocusTraversable(true);
         gameView = new GameView();
         gameView.setRootPane(this.root);
+        gameView.setPauseMenuPane(this.pauseMenuPane);
+        PauseMenuViewHelper.getInstance().configureThePauseMenu(this.pauseMenuPane,this.pauseMenuTitle);
+        setVisibilityBindingPauseMenu();
     }
 
     /**
@@ -49,6 +63,11 @@ public class GameViewController implements Initializable, ControlledScenes {
                 .executeKeyCommand(event.getCode(), true));
         root.setOnKeyReleased(event -> mainController.getInputController()
                 .executeKeyCommand(event.getCode(), false));
+    }
+
+    private void setVisibilityBindingPauseMenu() {
+        pauseMenuPane.managedProperty().bind(pauseMenuPane.visibleProperty());
+        pauseMenuPane.setVisible(false);
     }
 
     public GameView getGameView() {
