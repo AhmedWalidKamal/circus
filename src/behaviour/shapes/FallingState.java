@@ -1,9 +1,6 @@
 package behaviour.shapes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 import javafx.animation.PathTransition;
 import javafx.animation.Transition;
@@ -14,6 +11,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import model.Player;
+import util.PauseableThread;
 import util.Shelf;
 import model.shapes.Shape;
 import util.Point;
@@ -25,6 +23,8 @@ class FallingState extends Observable implements ShapeState {
     private ShapeContext context = null;
     private boolean horizontal = true;
     private List<Observer> observers = null;
+    Queue<Transition> transitionQueue = new LinkedList<>();
+    private boolean paused = false;
 
     protected FallingState(final ShapeContext context,
                            final Shelf shelf, final Path path) {
@@ -32,16 +32,25 @@ class FallingState extends Observable implements ShapeState {
         this.shelf = shelf;
         this.context = context;
         observers = new ArrayList<>();
+        transitionQueue = new LinkedList<>();
     }
 
     @Override
     public final void handle() {
         Shape shape = context.getShape();
         shape.setState(Shape.State.FALLING);
-        final Thread control = new Thread("Plate Control") {
+        final PauseableThread control = new PauseableThread() {
             @Override
             public void run() {
                 while (shape.getState() == Shape.State.FALLING) {
+                    if (paused) {
+                        try {
+                            sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        continue;
+                    }
                     if (!lock) {
                         final Point nextPoint = getNextTransitionPoint(shape);
                         if (nextPoint == null) {
@@ -51,9 +60,11 @@ class FallingState extends Observable implements ShapeState {
                         }
                         final Transition transition = getNextTransition(nextPoint,
                                 shape.getImageView());
+                        transitionQueue.add(transition);
                         lock = true;
                         transition.setOnFinished(event -> {
                             lock = false;
+                            transitionQueue.poll();
                             notifyObservers(shape);
                             interrupt();
                         });
@@ -73,9 +84,27 @@ class FallingState extends Observable implements ShapeState {
                         }
                     }
                 }
+                context.getShapesController().removeRunningShapeThread(this);
+            }
+
+            @Override
+            public void pauseThread() {
+                if (!transitionQueue.isEmpty()) {
+                    transitionQueue.peek().pause();
+                }
+                paused = true;
+            }
+
+            @Override
+            public void resumeThread() {
+                if (!transitionQueue.isEmpty()) {
+                    transitionQueue.peek().play();
+                }
+                paused = false;
             }
         };
         control.setDaemon(true);
+        context.getShapesController().addRunningShapeThread(control);
         control.start();
     }
 
@@ -83,7 +112,6 @@ class FallingState extends Observable implements ShapeState {
     public ShapeContext getContext() {
         return this.context;
     }
-
 
     @Override
     public void setContext(final ShapeContext context) {
@@ -120,7 +148,7 @@ class FallingState extends Observable implements ShapeState {
             }
             return new Point(x, y);
         }
-        final double dt = context.getLevelsController().getDifficultyLevel().getFallingTime();
+        final double dt = context.getLevelsController().getDifficultyLevel().getFallingRate();
         double x = 0;
         switch (shelf.getOrientation()) {
             case LEFT:
