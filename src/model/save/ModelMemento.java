@@ -1,6 +1,7 @@
 package model.save;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Player;
@@ -13,7 +14,10 @@ public class ModelMemento {
     private String level = null;
 
     public ModelMemento() {
-
+        players = new ArrayList<>();
+        timer = new Timer();
+        localDateTime = LocalDateTime.now();
+        level = "";
     }
     public ModelMemento(final List<Player> players,
     		final Timer timer,

@@ -22,6 +22,7 @@ public class ShapeCreator {
 		final String randomShape
 		= (String)supportedShapes[genRandomNumber(supportedShapes.length)];
 		final String url = ShapeCreatorHelper.getUrl(randomShape + "_" + randomColor);
+		System.out.println(url);
 		final Shape newShape = ShapeFactory.
 				getInstance().createShape(randomShape, randomColor);
 		newShape.setUrl(url);

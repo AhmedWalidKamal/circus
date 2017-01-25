@@ -43,6 +43,7 @@ public class ProtoReader implements Reader {
 	}
 
 	private ModelMemento createModelMemento(final ProtoGame protoGame) {
+    	loadDefaultClasses();
 		ModelMemento loadedMemento = new ModelMemento();
 		loadedMemento.setTimer(new Timer(protoGame.getCurrentTime()));
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -108,6 +109,17 @@ public class ProtoReader implements Reader {
 		}
 		loadedMemento.setPlayers(players);
 		return loadedMemento;
+	}
+
+	private void loadDefaultClasses() {
+		try {
+			Class.forName("model.shapes.Lego");
+			Class.forName("model.shapes.Plate");
+			Class.forName("model.characters.supportedCharacters.GreenClown");
+			Class.forName("model.characters.supportedCharacters.RedClown");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private State getState(final String state) {

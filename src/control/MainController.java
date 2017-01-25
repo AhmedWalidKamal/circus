@@ -1,8 +1,11 @@
 package control;
 
+import model.save.ModelMemento;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 import view.gui.mainmenu.util.GameData;
+
+import java.io.IOException;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -37,6 +40,8 @@ public final class MainController {
      */
     private LevelsController levelsController = null;
 
+    private FileController fileController = null;
+
     /**
      * Constructs new instances from sub-controllers.
      */
@@ -53,6 +58,7 @@ public final class MainController {
         shapesController.setDaemon(true);
         gameUtilController = new GameUtilController(this);
         levelsController = new LevelsController(this);
+        fileController = new FileController(this);
     }
 
     public void setGameViewController(final GameViewController gameViewController) {
@@ -132,19 +138,18 @@ public final class MainController {
         return this.gameView;
     }
 
+    public FileController getFileController() {
+        return fileController;
+    }
+
     /**
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
      */
     public void startNewGame(final GameData gameData) {
-
         levelsController.chooseLevel(gameData.getGameDifficulty());
-        gameUtilController.prepareGame();
         playersController.prepareGame();
-        inputController.start();
-        shapesController.start();
-
-
+        prepareGame();
     }
 
     public void pause() {
@@ -159,8 +164,25 @@ public final class MainController {
         gameUtilController.resumeTime();
     }
 
-	public void loadGame(final String path) {
+    public void saveGame(final String path) throws IOException {
+        ModelMemento memento = new ModelMemento();
+        playersController.collectMemento(memento);
+        gameUtilController.collectMemento(memento);
+        levelsController.collectMemento(memento);
+        fileController.save(memento, path);
+    }
 
+	public void loadGame(final String path) throws IOException {
+        ModelMemento memento = fileController.load(path);
+        playersController.loadFromMemento(memento);
+        gameUtilController.loadFromMemento(memento);
+        levelsController.loadFromMemento(memento);
+        prepareGame();
 	}
 
+    private void prepareGame() {
+        gameUtilController.prepareGame();
+        inputController.start();
+        shapesController.start();
+    }
 }

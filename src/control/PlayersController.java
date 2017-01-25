@@ -1,12 +1,11 @@
 package control;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
 import behaviour.keyBinding.keyHandlers.MoveRightHandler;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +15,7 @@ import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
 import model.characters.util.CharacterFactory;
+import model.save.ModelMemento;
 
 /**
  * Acts as a control to players behavior, has references to model that allow
@@ -63,11 +63,8 @@ public final class PlayersController {
         bindImageToCharacter(greenClown, greenClownImage);
         greenClownImage.setX(mainController.getViewController().getRootPanePrefWidth()
                 - greenClown.getWidth() - SIDE_DISTANCE);
-        KeyMap greenClownKeyMap = new KeyMap(greenClownImage);
-        greenClownKeyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler());
-        greenClownKeyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler());
         playerImageMap.put(playerOne, greenClownImage);
-        mainController.getInputController().addKeyMap(greenClownKeyMap);
+        attachFirstKeyMap(greenClownImage);
         mainController.getViewController().addToRootPane(greenClownImage);
 
         //Player Two.
@@ -77,12 +74,23 @@ public final class PlayersController {
         ImageView redClownImage = new ImageView(redClown.getUrl());
         bindImageToCharacter(redClown, redClownImage);
         redClownImage.setX(SIDE_DISTANCE);
-        KeyMap redClownKeyMap = new KeyMap(redClownImage);
-        redClownKeyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
-        redClownKeyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
         playerImageMap.put(playerTwo, redClownImage);
-        mainController.getInputController().addKeyMap(redClownKeyMap);
+        attachSecondKeyMap(redClownImage);
         mainController.getViewController().addToRootPane(redClownImage);
+    }
+
+    private void attachFirstKeyMap(ImageView imageView) {
+        KeyMap keyMap = new KeyMap(imageView);
+        keyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler());
+        keyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler());
+        mainController.getInputController().addKeyMap(keyMap);
+    }
+
+    private void attachSecondKeyMap(ImageView imageView) {
+        KeyMap keyMap = new KeyMap(imageView);
+        keyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
+        keyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
+        mainController.getInputController().addKeyMap(keyMap);
     }
 
     private void loadDefaultCharacters() {
@@ -107,11 +115,35 @@ public final class PlayersController {
         AnchorPane.setBottomAnchor(image, BOTTOM_DISTANCE);
     }
 
-    public Collection<Player> getPlayers() {
-        return playerImageMap.keySet();
+    public List<Player> getPlayers() {
+        List<Player> ret = new ArrayList<>();
+        ret.addAll(playerImageMap.keySet());
+        return ret;
     }
 
     public ImageView getCorrespondingImage(final Player player) {
         return playerImageMap.get(player);
+    }
+
+    public void collectMemento(final ModelMemento memento) {
+        memento.setPlayers((List) getPlayers());
+    }
+
+    public void loadFromMemento(final ModelMemento memento) {
+        loadDefaultCharacters();
+        boolean f = false;
+        for (Player player : memento.getPlayers()) {
+            ImageView imageView = new ImageView(player.getCharacter().getUrl());
+            bindImageToCharacter(player.getCharacter(), imageView);
+            playerImageMap.put(player, imageView);
+            if (!f) {
+                attachFirstKeyMap(imageView);
+                f ^= true;
+            } else {
+                attachSecondKeyMap(imageView);
+            }
+            mainController.getViewController().addToRootPane(imageView);
+        }
+
     }
 }

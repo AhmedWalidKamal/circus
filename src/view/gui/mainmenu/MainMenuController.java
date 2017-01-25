@@ -83,6 +83,7 @@ implements Initializable, ControlledScenes {
             configureEasyLevelButton();
             configureNormalLevelButton();
             configureHardLevelButton();
+            configureLoadGameButton();
             configureAddCharacterAndShapeButtons();
     }
 
@@ -120,11 +121,13 @@ implements Initializable, ControlledScenes {
      */
     private void configureLoadGameButton() {
         MainMenuViewHelper.getInstance().getLoadGameButton().setOnMouseClicked(event -> {
-            File filePath = fileChooser.showOpenDialog(null);
-            if (filePath.toString().endsWith(".protobuff")) {
-                //TODO PASSING TO READER..
+            File file = fileChooser.showOpenDialog(null);
+            if (file.toString().endsWith(".protobuff")) {
+                sceneNavigator.loadGame(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL,
+                        Main.GAMEVIEW_STYLESHEET, file.getPath());
+                sceneNavigator.setScene(Main.GAMEVIEW_ID);
             } else {
-                // TODO HANDLE AN ERROR OF UNSUPPORTED FORMAT
+                LoggingManager.getInstance().error("Unsupported format.");
             }
         });
     }

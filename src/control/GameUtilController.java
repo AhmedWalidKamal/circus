@@ -1,7 +1,5 @@
 package control;
 
-import java.util.ArrayList;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -17,8 +15,11 @@ import javafx.util.Duration;
 import logs.LoggingManager;
 import model.Player;
 import model.Timer;
+import model.save.ModelMemento;
 import util.Score;
 import util.Shelf;
+
+import java.util.ArrayList;
 
 /**
  * Acts as a control to all game utilities (score, shelves, ... etc).
@@ -49,7 +50,7 @@ public final class GameUtilController {
     /**
      * The total time for the game.
      */
-    private static final Integer GAMETIME = 20;
+    private Integer gameTime = 20;
 
     /**
      * Timeline object that progresses the actual time.
@@ -86,7 +87,7 @@ public final class GameUtilController {
         this.secondPlayerLabel = new Label();
         this.firstPlayerScore = new SimpleIntegerProperty(0);
         this.secondPlayerScore = new SimpleIntegerProperty(0);
-        this.timer = new Timer(GAMETIME);
+        this.timer = new Timer(gameTime);
         this.counter = -1;
     }
 
@@ -129,8 +130,10 @@ public final class GameUtilController {
 		this.firstPlayerLabel.setStyle("-fx-font-size: 4em;");
 		this.secondPlayerLabel.setTextFill(Color.RED);
 		this.secondPlayerLabel.setStyle("-fx-font-size: 4em;");
-        this.firstPlayerScore.set(0);
-        this.secondPlayerScore.set(0);
+        this.firstPlayerScore.set(mainController.getPlayersController()
+                .getPlayers().get(0).getScore().getCurrentScore());
+        this.secondPlayerScore.set(mainController.getPlayersController()
+                .getPlayers().get(1).getScore().getCurrentScore());
         final StackPane pane1 = new StackPane();
         pane1.getChildren().add(this.firstPlayerLabel);
         StackPane.setAlignment(this.firstPlayerLabel, Pos.TOP_LEFT);
@@ -160,7 +163,7 @@ public final class GameUtilController {
         this.timerLabel.setTextFill(Color.RED);
         this.timerLabel.setStyle("-fx-font-size: 4em;");
         this.timeline.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(GAMETIME + 1),
+                new KeyFrame(Duration.seconds(gameTime + 1),
                 new KeyValue(timer.getCurrentTimeProperty(), 0)));
         this.timeline.play();
         this.timeline.setOnFinished(e -> this.mainController.getGameViewController().showEndGameScene());
@@ -209,5 +212,14 @@ public final class GameUtilController {
 	 */
     public void resumeTime() {
         timeline.play();
+    }
+
+    public void collectMemento(final ModelMemento memento) {
+        memento.setTimer(timer);
+    }
+
+    public void loadFromMemento(final ModelMemento memento) {
+        timer = memento.getTimer();
+        gameTime = timer.getCurrentTime();
     }
 }

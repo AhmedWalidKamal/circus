@@ -2,10 +2,12 @@ package view.gui.gameplay;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import control.MainController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -82,7 +84,7 @@ implements Initializable, ControlledScenes {
         gameView = new GameView();
         gameView.setRootPane(this.root);
         gameView.setPauseMenuPane(this.pauseMenuPane);
-
+		fileChooser = new FileChooser();
         PauseMenuViewHelper.getInstance().
         configureThePauseMenu(this.pauseMenuPane,
         		this.pauseMenuTitle);
@@ -109,13 +111,14 @@ implements Initializable, ControlledScenes {
         this.mainController.startNewGame(this.gameData);
     }
 
-	public void loadGame(final String path) {
+	public void loadGame(final String path) throws IOException {
 		this.mainController = new MainController();
 		this.mainController.setGameViewController(this);
 		this.mainController.setGameView(gameView);
 		setKeyBinding();
 		this.mainController.loadGame(path);
 	}
+
 	/**
 	 * Binds the pane's visibility with the managed property.
 	 */
@@ -238,11 +241,17 @@ implements Initializable, ControlledScenes {
     	PauseMenuViewHelper.
     	getInstance().getSaveButton().
     	setOnMouseClicked(event -> {
-
-    		///TODO complete this.
-    		FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PROTOCOL BUFFER files(*.protobuff)","*.protobuff");
-    		fileChooser.getExtensionFilters().addAll(extensionFilter);
-    		File file = fileChooser.showSaveDialog(null);
+			Platform.runLater(() -> {
+				FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
+						"PROTOCOL BUFFER files(*.protobuff)","*.protobuff");
+				fileChooser.getExtensionFilters().addAll(extensionFilter);
+				File file = fileChooser.showSaveDialog(null);
+				try {
+					mainController.saveGame(file.getPath());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
 
 			LoggingManager.getInstance().info("GAME SAVED");
     	});
