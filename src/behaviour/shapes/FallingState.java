@@ -10,6 +10,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
+import javafx.util.Pair;
 import model.Player;
 import util.PauseableThread;
 import util.Shelf;
@@ -23,7 +24,7 @@ class FallingState extends Observable implements ShapeState {
     private ShapeContext context = null;
     private boolean horizontal = true;
     private List<Observer> observers = null;
-    Queue<Transition> transitionQueue = new LinkedList<>();
+    private Queue<Transition> transitionQueue = new LinkedList<>();
     private boolean paused = false;
 
     protected FallingState(final ShapeContext context,
@@ -39,6 +40,7 @@ class FallingState extends Observable implements ShapeState {
     public final void handle() {
         Shape shape = context.getShape();
         shape.setState(Shape.State.FALLING);
+        ImageView shapeImageView = context.getShapeImageView();
         final PauseableThread control = new PauseableThread() {
             @Override
             public void run() {
@@ -52,28 +54,28 @@ class FallingState extends Observable implements ShapeState {
                         continue;
                     }
                     if (!lock) {
-                        final Point nextPoint = getNextTransitionPoint(shape);
+                        final Point nextPoint = getNextTransitionPoint(shapeImageView);
                         if (nextPoint == null) {
                             shape.setState(Shape.State.NOT_FETCHED);
                             goNext(null);
                             break;
                         }
                         final Transition transition = getNextTransition(nextPoint,
-                                shape.getImageView());
+                                shapeImageView);
                         transitionQueue.add(transition);
                         lock = true;
                         transition.setOnFinished(event -> {
                             lock = false;
                             transitionQueue.poll();
-                            notifyObservers(shape);
+                            notifyObservers(new Pair<>(shape, shapeImageView));
                             interrupt();
                         });
                         Platform.runLater(() -> {
                             lock = true;
                             horizontal = false;
                             transition.play();
-                            shape.getImageView().setX(nextPoint.getX());
-                            shape.getImageView().setY(nextPoint.getY());
+                            shapeImageView.setX(nextPoint.getX());
+                            shapeImageView.setY(nextPoint.getY());
                         });
                         synchronized (this) {
                             try {
@@ -122,6 +124,8 @@ class FallingState extends Observable implements ShapeState {
     	if (context.getShape().getState() == Shape.State.FETCHED) {
     	    FetchedState fetchedState = new FetchedState(context, player);
     	    context.setShapeState(fetchedState);
+    	    context.getShapesController().putFetchedShape(context.getShapeImageView()
+                    , context.getShape());
     	    context.handle();
         } else {
     	    AddedToShapePoolState addedToShapePoolState =
@@ -131,7 +135,7 @@ class FallingState extends Observable implements ShapeState {
         }
     }
 
-    private Point getNextTransitionPoint(final Shape shape) {
+    private Point getNextTransitionPoint(final ImageView shapeImage) {
         if (horizontal) {
             double x = 0;
             final double y = shelf.getY();
@@ -152,17 +156,17 @@ class FallingState extends Observable implements ShapeState {
         double x = 0;
         switch (shelf.getOrientation()) {
             case LEFT:
-                x = shape.getImageView().getX()
-                        + 0.04 * dt * shape.getImageView().getX();
+                x = shapeImage.getX()
+                        + 0.04 * dt * shapeImage.getX();
                 break;
             case RIGHT:
-                x = shape.getImageView().getX()
-                        - 0.04 * dt * shape.getImageView().getX();
+                x = shapeImage.getX()
+                        - 0.04 * dt * shapeImage.getX();
                 break;
             default:
                 break;
         }
-        final double y = shape.getImageView().getY() + 0.1 * dt *shape.getImageView().getY();
+        final double y = shapeImage.getY() + 0.1 * dt * shapeImage.getY();
         if (x > context.getViewController().getRootPanePrefWidth() || y > context
                 .getViewController().getRootPanePrefHeight()) {
             return null;
@@ -192,9 +196,9 @@ class FallingState extends Observable implements ShapeState {
     }
 
     @Override
-    public void notifyObservers(final Object shape) {
+    public void notifyObservers(final Object shapeImageViewPair) {
         for (final Observer o : observers) {
-            o.update(this, shape);
+            o.update(this, shapeImageViewPair);
         }
     }
 }

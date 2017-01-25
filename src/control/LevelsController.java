@@ -1,4 +1,4 @@
-package controller;
+package control;
 
 import behaviour.difficultyLevels.EasyLevel;
 import behaviour.difficultyLevels.HardLevel;

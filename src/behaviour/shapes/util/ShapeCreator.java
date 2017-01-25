@@ -20,13 +20,10 @@ public class ShapeCreator {
 				getInstance().getRegisteredShapes().toArray();
 		final String randomShape
 		= (String)supportedShapes[genRandomNumber(supportedShapes.length)];
-		final double initialX = genRandomNumber(SCREEN_WIDTH);
-		final double initialY = 0;
 		final String url = ShapeCreatorHelper.getUrl(randomShape + "_" + randomColor);
 		final Shape newShape = ShapeFactory.
-				getInstance().createShape(randomShape, randomColor, new ImageView(url));
-		newShape.setX(initialX);
-		newShape.setY(initialY);
+				getInstance().createShape(randomShape, randomColor);
+		newShape.setUrl(url);
 		return newShape;
 	}
 

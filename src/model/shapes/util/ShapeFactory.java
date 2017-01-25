@@ -51,16 +51,15 @@ public class ShapeFactory {
      * Creates a new Shape object.
      * @param shapeID the shape id
      * @param color the shape color
-     * @param shapeImageView the shape imageview
      * @return the shape object
      */
-    public Shape createShape(final String shapeID, final Color color, final ImageView shapeImageView) {
+    public Shape createShape(final String shapeID, final Color color) {
         final Class<? extends Shape> shapeClass =
                 registeredShapes.get(shapeID);
         try {
             final Constructor<? extends Shape> shapeConstructor =
-                    shapeClass.getConstructor(Color.class, ImageView.class);
-            return shapeConstructor.newInstance(color, shapeImageView);
+                    shapeClass.getConstructor(Color.class);
+            return shapeConstructor.newInstance(color);
         } catch (NoSuchMethodException | SecurityException
                 | InstantiationException
                 | IllegalAccessException

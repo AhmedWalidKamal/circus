@@ -27,9 +27,15 @@ class FetchedState implements ShapeState {
 						equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
 					Platform.runLater(() -> {
-						context.getViewController().removeFromRootPane(shape1.getImageView());
-						context.getViewController().removeFromRootPane(shape2.getImageView());
-						context.getViewController().removeFromRootPane(shape3.getImageView());
+						context.getViewController().removeFromRootPane(context
+								.getShapesController().getCorrespondingShape(shape1));
+						context.getShapesController().removeShape(shape1);
+						context.getViewController().removeFromRootPane(context
+								.getShapesController().getCorrespondingShape(shape2));
+						context.getShapesController().removeShape(shape2);
+						context.getViewController().removeFromRootPane(context
+								.getShapesController().getCorrespondingShape(shape3));
+						context.getShapesController().removeShape(shape3);
 					});
 				} else {
 					player.getCharacter().addToLeftStack(shape3);
@@ -48,10 +54,15 @@ class FetchedState implements ShapeState {
 						&& shape1.getColor().equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
 					Platform.runLater(() -> {
-						context.getViewController().removeFromRootPane(shape1.getImageView());
-						context.getViewController().removeFromRootPane(shape2.getImageView());
-						context.getViewController().removeFromRootPane(shape3.getImageView());
-
+						context.getViewController().removeFromRootPane(context
+								.getShapesController().getCorrespondingShape(shape1));
+						context.getShapesController().removeShape(shape1);
+						context.getViewController().removeFromRootPane(context
+								.getShapesController().getCorrespondingShape(shape2));
+						context.getShapesController().removeShape(shape2);
+						context.getViewController().removeFromRootPane(context
+								.getShapesController().getCorrespondingShape(shape3));
+						context.getShapesController().removeShape(shape3);
 					});
 				} else {
 					player.getCharacter().addToRightStack(shape3);
