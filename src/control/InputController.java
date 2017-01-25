@@ -25,6 +25,9 @@ public final class InputController extends PauseableThread {
 
     private boolean paused = false;
 
+    private static final String EASY_LEVEL = "EASY";
+    private static final String NORMAL_LEVEL = "NORMAL";
+
     /**
      * Creates a new instance of {@link InputController}.
      */
@@ -73,7 +76,19 @@ public final class InputController extends PauseableThread {
     public void run() {
         while (true) {
             try {
-                InputController.sleep(5);
+            	if (mainController.
+            			getLevelsController().
+            			getDifficultyLevel().getLevelKey().
+            			equals(EASY_LEVEL)) {
+            		InputController.sleep(5);
+            	} else if (mainController.
+            			getLevelsController().
+            			getDifficultyLevel().getLevelKey().
+            			equals(NORMAL_LEVEL)) {
+            		InputController.sleep(3);
+            	} else {
+            		InputController.sleep(1);
+            	}
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

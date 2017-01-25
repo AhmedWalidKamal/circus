@@ -28,5 +28,19 @@
             </Pane>
          </children>
       </Pane>
+      <Pane fx:id="optionsPane" layoutX="360.0" layoutY="202.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.7" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DARKGRAY" height="600.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+            <Pane layoutX="123.0" layoutY="76.0" prefHeight="60.0" prefWidth="350.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="60.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
+                  <Text fx:id="optionsDialogTitle" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="2.0" text="OPTIONS" textAlignment="CENTER" wrappingWidth="350.0">
+                     <font>
+                        <Font size="48.0" />
+                     </font></Text>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </children>
 </Pane>

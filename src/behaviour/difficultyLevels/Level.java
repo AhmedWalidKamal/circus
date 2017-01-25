@@ -2,8 +2,9 @@ package behaviour.difficultyLevels;
 
 public interface Level {
 
-    long getCreationInterval();
-    double getTransitionDuration();
-    double getFallingRate();
-    double getHorizontalDuration();
+    public long getCreationInterval();
+    public double getTransitionDuration();
+    public double getFallingRate();
+    public double getHorizontalDuration();
+    public String getLevelKey();
 }

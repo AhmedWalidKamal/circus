@@ -15,6 +15,8 @@ public class MainMenuViewHelper {
     private MenuItem newGame;
     private MenuItem loadGame;
     private MenuItem exit;
+    private MenuItem options;
+    private MenuItem help;
     private MainMenuViewHelper() {
 
     }
@@ -34,16 +36,19 @@ public class MainMenuViewHelper {
         newGame = new MenuItem("NEW GAME",0.65);
         loadGame = new MenuItem("LOAD GAME", 0.65);
         exit = new MenuItem("EXIT", 0.65);
+        options = new MenuItem("OPTIONS",0.65);
+        help = new MenuItem("HELP",0.65);
 
-        final MenuBox menu = new MenuBox(
+        final MenuBox mainMenu = new MenuBox(
                 newGame,
                 loadGame,
-                new MenuItem("OPTIONS", 0.65),
-                new MenuItem("HELP", 0.65),
+                options,
+                help,
                 exit);
-        menu.setTranslateX(100);
-        menu.setTranslateY(450);
-        root.getChildren().add(menu);
+        mainMenu.setTranslateX(100);
+        mainMenu.setTranslateY(450);
+        mainMenu.setId("mainMenu");
+        root.getChildren().add(mainMenu);
 
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
 
@@ -55,6 +60,8 @@ public class MainMenuViewHelper {
     public MenuItem getLoadGameButton() {
         return loadGame;
     }
+    public MenuItem getOptionsButton() {return options;}
+    public MenuItem getHelpButton() {return help;}
     public MenuItem getExitButton() {
         return exit;
     }
