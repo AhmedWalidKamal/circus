@@ -37,3 +37,73 @@
 [INFO ] 2017-01-25 18:00:32.798 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
 [INFO ] 2017-01-25 18:38:37.696 [JavaFX Application Thread] LogsManager - GAME OPENED 
 [INFO ] 2017-01-25 18:38:58.700 [JavaFX Application Thread] LogsManager - NEW GAME STARTED 
+[INFO ] 2017-01-25 20:12:06.077 [JavaFX Application Thread] LogsManager - GAME OPENED 
+[INFO ] 2017-01-25 20:40:43.240 [JavaFX Application Thread] LogsManager - GAME OPENED 
+[INFO ] 2017-01-25 20:41:11.878 [JavaFX Application Thread] LogsManager - NEW GAME STARTED 
+[INFO ] 2017-01-25 20:41:15.714 [JavaFX Application Thread] LogsManager - EASY LEVEL SELECTED 
+[INFO ] 2017-01-25 20:42:00.147 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:26.337 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:40.835 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:40.839 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:40.843 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:40.848 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:40.852 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:41.321 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:41.324 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:41.328 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:43.977 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:43.979 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:43.984 [JavaFX Application Thread] LogsManager - GAME ENDED 
+[INFO ] 2017-01-25 20:42:43.985 [JavaFX Application Thread] LogsManager - TWO PLAYERS TIED 
+[INFO ] 2017-01-25 20:42:43.988 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:43.992 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:43.997 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.000 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.003 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.007 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.011 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.014 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.017 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.019 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.022 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.025 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.027 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.030 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.033 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.035 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.037 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.039 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:44.042 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:46.606 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:46.609 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:46.613 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:53.275 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:53.281 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:53.286 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:42:53.288 [JavaFX Application Thread] LogsManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 20:44:06.421 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.422 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.423 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.424 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.425 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.426 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.427 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.428 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.429 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.430 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.430 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.431 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.432 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.432 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.433 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.434 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.434 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.435 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.435 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.436 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.437 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.437 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.438 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:06.439 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:07.220 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 20:44:07.805 [JavaFX Application Thread] LogsManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 

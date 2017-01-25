@@ -1,8 +1,13 @@
 package control;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 import view.gui.mainmenu.util.GameData;
+
+import java.io.File;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -137,11 +142,13 @@ public final class MainController {
      * create shapes and move them.. etc).
      */
     public void startNewGame(final GameData gameData) {
+        this.playMusic();
         levelsController.chooseLevel(gameData.getGameDifficulty());
         gameUtilController.prepareGame();
         playersController.prepareGame();
         inputController.start();
         shapesController.start();
+
 
     }
 
@@ -155,5 +162,12 @@ public final class MainController {
         inputController.resumeThread();
         shapesController.resumeThread();
         gameUtilController.resumeTime();
+    }
+    public void playMusic(){
+        String path = "C:\\Users\\Samsung\\git\\circus-of-plates\\The_Lights_Galaxia_-_02_-_While_She_Sleeps_Morning_Edit.mp3";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+       // MediaView mediaView = new MediaView(mediaPlayer);
     }
 }
