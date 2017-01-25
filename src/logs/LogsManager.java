@@ -1,8 +1,6 @@
 package logs;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 
 public class LogsManager {
 
@@ -23,7 +21,7 @@ public class LogsManager {
         return instance;
     }
 
-   // private static final Logger logger = LogManager.getLogger(LogsManager.class.getName());
+    // private static final Logger logger = LogManager.getLogger(LogsManager.class.getName());
 
     public void info (String message) {
         LogManager.getLogger(LogsManager.class.getName()).info(message);
