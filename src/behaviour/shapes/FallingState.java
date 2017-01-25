@@ -123,7 +123,7 @@ class FallingState extends Observable implements ShapeState {
 
     protected final void goNext(final Player player) {
     	if (context.getShape().getState() == Shape.State.FETCHED) {
-            LogsManager.getInstance().info("SHAPE FETCHED BY "+player.getPlayerName());
+            LogsManager.getInstance().info("SHAPE FETCHED BY " + player.getName());
     	    FetchedState fetchedState = new FetchedState(context, player);
     	    context.setShapeState(fetchedState);
     	    context.getShapesController().putFetchedShape(context.getShapeImageView()

@@ -19,24 +19,29 @@ public class Player implements Comparable<Player> {
         this.character = character;
     }
 
-    public String getPlayerName() {
-        return this.name;
+
+    public Score getScore() {
+        return this.score;
     }
 
     public void setScore(final Score score) {
         this.score = score;
     }
 
-    public Score getScore() {
-        return this.score;
+    public String getName() {
+        return name;
     }
 
-    public void setCharacter(final Character character) {
-        this.character = character;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public Character getCharacter() {
         return this.character;
+    }
+
+    public void setCharacter(final Character character) {
+        this.character = character;
     }
 
     @Override
@@ -44,7 +49,7 @@ public class Player implements Comparable<Player> {
         if (score.compareTo(player.getScore()) != 0) {
             return score.compareTo(player.getScore());
         } else {
-            return name.compareTo(player.getPlayerName());
+            return name.compareTo(player.getName());
         }
     }
 }

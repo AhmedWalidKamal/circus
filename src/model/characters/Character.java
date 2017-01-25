@@ -19,6 +19,8 @@ public abstract class Character {
     protected DoubleProperty yProperty = null;
     protected DoubleProperty translateXProperty = null;
     protected DoubleProperty translateYProperty = null;
+    protected String url = null;
+    protected String key = null;
 
     public Character() {
         leftStack = new Stack<>();
@@ -27,6 +29,8 @@ public abstract class Character {
         yProperty = new SimpleDoubleProperty(0);
         translateXProperty = new SimpleDoubleProperty(0);
         translateYProperty = new SimpleDoubleProperty(0);
+        url = "";
+        key = "";
     }
 
     public double getX() {
@@ -77,20 +81,36 @@ public abstract class Character {
         translateYProperty.bind(translateY);
     }
 
-    public DoubleProperty getXProperty() {
+    public DoubleProperty getxProperty() {
         return xProperty;
     }
 
-    public DoubleProperty getYProperty() {
+    public void setxProperty(final double xProperty) {
+        this.xProperty.set(xProperty);
+    }
+
+    public DoubleProperty getyProperty() {
         return yProperty;
+    }
+
+    public void setyProperty(final double yProperty) {
+        this.yProperty.set(yProperty);
     }
 
     public DoubleProperty getTranslateXProperty() {
         return translateXProperty;
     }
 
+    public void setTranslateXProperty(final double translateXProperty) {
+        this.translateXProperty.set(translateXProperty);
+    }
+
     public DoubleProperty getTranslateYProperty() {
         return translateYProperty;
+    }
+
+    public void setTranslateYProperty(final double translateYProperty) {
+        this.translateYProperty.set(translateYProperty);
     }
 
     public void addToLeftStack(final Shape shape) {
@@ -123,16 +143,32 @@ public abstract class Character {
         return leftStackXInset;
     }
 
+    public void setLeftStackXInset(final double leftStackXInset) {
+        this.leftStackXInset = leftStackXInset;
+    }
+
     public double getLeftStackYInset() {
         return leftStackYInset;
+    }
+
+    public void setLeftStackYInset(final double leftStackYInset) {
+        this.leftStackYInset = leftStackYInset;
     }
 
     public double getRightStackXInset() {
         return rightStackXInset;
     }
 
+    public void setRightStackXInset(final double rightStackXInset) {
+        this.rightStackXInset = rightStackXInset;
+    }
+
     public double getRightStackYInset() {
         return rightStackYInset;
+    }
+
+    public void setRightStackYInset(final double rightStackYInset) {
+        this.rightStackYInset = rightStackYInset;
     }
 
     public double getHeight() {
@@ -155,11 +191,31 @@ public abstract class Character {
         return this.leftStack;
     }
 
+    public void setLeftStack(final Stack<Shape> leftStack) {
+        this.leftStack = leftStack;
+    }
+
     public Stack<Shape> getRightStack() {
         return this.rightStack;
     }
 
-    public abstract String getUrl();
+    public void setRightStack(final Stack<Shape> rightStack) {
+        this.rightStack = rightStack;
+    }
 
-    public abstract String getKey();
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(final String url) {
+        this.url = url;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(final String key) {
+        this.key = key;
+    }
 }

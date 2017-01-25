@@ -27,7 +27,7 @@ class FetchedState implements ShapeState {
 						&& shape1.getColor().
 						equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
-					LogsManager.getInstance().info( player.getPlayerName()+" SCORED POINTS");
+					LogsManager.getInstance().info( player.getName()+" SCORED POINTS");
 					Platform.runLater(() -> {
 						context.getViewController().removeFromRootPane(context
 								.getShapesController().getCorrespondingShape(shape1));
@@ -55,7 +55,7 @@ class FetchedState implements ShapeState {
 						equals(shape2.getColor())
 						&& shape1.getColor().equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
-					LogsManager.getInstance().info( player.getPlayerName()+" SCORED POINTS");
+					LogsManager.getInstance().info( player.getName()+" SCORED POINTS");
 					Platform.runLater(() -> {
 						context.getViewController().removeFromRootPane(context
 								.getShapesController().getCorrespondingShape(shape1));

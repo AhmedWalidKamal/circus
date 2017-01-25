@@ -187,7 +187,7 @@ public final class GameUtilController {
 		final Score currentScore = player.getScore();
 		currentScore.setCurrentScore(currentScore.getCurrentScore() + 100);
 		player.setScore(currentScore);
-        LogsManager.getInstance().info(player.getPlayerName() + "`S SCORE IS NOW "+ currentScore);
+        LogsManager.getInstance().info(player.getName() + "`S SCORE IS NOW "+ currentScore);
 		Platform.runLater(() -> {
 			if (player.getCharacter().getKey().equals("greenClown")) {
 				secondPlayerScore.set(player.getScore().getCurrentScore());

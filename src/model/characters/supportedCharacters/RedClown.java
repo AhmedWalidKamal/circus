@@ -17,15 +17,7 @@ public class RedClown extends Character {
         super();
         super.leftStackXInset = LEFT_STACK_X_INSET;
         super.rightStackXInset = RIGHT_STACK_X_INSET;
-    }
-
-    @Override
-    public String getUrl() {
-        return URL;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
+        super.url = URL;
+        super.key = KEY;
     }
 }
