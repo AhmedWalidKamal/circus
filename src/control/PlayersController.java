@@ -1,7 +1,7 @@
 package control;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import behaviour.keyBinding.KeyMap;
@@ -49,7 +49,7 @@ public final class PlayersController {
      */
     public PlayersController(final MainController mainController) {
         this.mainController = mainController;
-        playerImageMap = new HashMap<>();
+        playerImageMap = new LinkedHashMap<>();
     }
 
     public void prepareGame() {

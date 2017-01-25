@@ -1,10 +1,10 @@
 package model.characters;
 
+import java.util.Stack;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import model.shapes.Shape;
-
-import java.util.Stack;
 
 public abstract class Character {
     protected Stack<Shape> leftStack = null;
@@ -61,7 +61,7 @@ public abstract class Character {
         return translateXProperty.doubleValue();
     }
 
-    public void setTranslateX(double translateX) {
+    public void setTranslateX(final double translateX) {
         translateXProperty.set(translateX);
     }
 
@@ -69,15 +69,15 @@ public abstract class Character {
         return translateYProperty.doubleValue();
     }
 
-    public void setTranslateY(double translateY) {
+    public void setTranslateY(final double translateY) {
         translateYProperty.set(translateY);
     }
 
-    public void bindTranslateX(DoubleProperty translateX) {
+    public void bindTranslateX(final DoubleProperty translateX) {
         translateXProperty.bind(translateX);
     }
 
-    public void bindTranslateY(DoubleProperty translateY) {
+    public void bindTranslateY(final DoubleProperty translateY) {
         translateYProperty.bind(translateY);
     }
 

@@ -8,10 +8,39 @@ public abstract class Shape {
 
 	public enum State {
 		CREATED, SLIDING, FALLING, FETCHED, NOT_FETCHED, IN_POOL;
+
+		@Override
+		public String toString() {
+			String ret = null;
+			switch (this) {
+				case CREATED:
+					ret = "created";
+					break;
+				case SLIDING:
+					ret = "sliding";
+					break;
+				case FALLING:
+					ret = "falling";
+					break;
+				case FETCHED:
+					ret = "fetched";
+					break;
+				case NOT_FETCHED:
+					ret = "not_fetched";
+					break;
+				case IN_POOL:
+					ret = "in_pool";
+					break;
+				default:
+					break;
+			}
+			return ret;
+		}
 	};
 
 	protected State state = null;
 	protected String url = "";
+	protected String key = "";
 	protected double width = 0;
 	protected double height = 0;
 	protected Color color = null;
@@ -84,6 +113,14 @@ public abstract class Shape {
 		return translateY;
 	}
 
+	public void setTranslateXProperty(final double translateX) {
+		this.translateX.set(translateX);
+	}
+
+	public void setTranslateYProperty(final double translateY) {
+		this.translateY.set(translateY);
+	}
+
 	public DoubleProperty getXProperty() {
 		return x;
 	}
@@ -100,5 +137,11 @@ public abstract class Shape {
 		this.url = url;
 	}
 
-	public abstract String getKey();
+	public String getKey() {
+		return key;
+	}
+
+	public void setkey(final String key) {
+		this.key = key;
+	}
 }

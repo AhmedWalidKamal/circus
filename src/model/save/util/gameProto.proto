@@ -1,0 +1,47 @@
+package circus;
+
+option java_package = "";
+option java_outer_classname = "ProtoBuffGame";
+
+message ProtoGame {
+	optional int32 currentTime = 1;
+	optional string localDateTime = 2;
+	
+	message ProtoPlayer {
+		optional string playerName = 1;
+		optional int32 playerScore = 2;
+		
+		message ProtoCharacter {
+			optional double height = 1;
+			optional double width = 2;
+			optional double leftStackXInset = 3;
+			optional double leftStackYInset = 4;
+			optional double rightStackXInset = 5;
+			optional double rightStackYInset = 6;
+			optional double xProperty = 7;
+			optional double yProperty = 8;
+			optional double translateXProperty = 9;
+			optional double translateYProperty = 10;
+			optional string url = 11;
+			optional string key = 12;
+			
+			message ProtoShape {
+				optional string state = 1;
+				optional string url = 2;
+				optional double width = 3;
+				optional double height = 4;
+				optional string color = 5;
+				optional double x = 6;
+				optional double y = 7;
+				optional double translateX = 8;
+				optional double translateY = 9;
+				optional string key = 10;
+			}
+			repeated ProtoShape leftStack = 13;
+			repeated ProtoShape rightStack = 14;
+			
+		}
+		optional ProtoCharacter playerCharacter = 3;
+	}
+	repeated ProtoPlayer players = 3;
+}

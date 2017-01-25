@@ -1,10 +1,9 @@
 package model.save.writer;
 
+import java.io.IOException;
+
 import model.save.ModelMemento;
 
-import java.time.LocalDateTime;
-
 public interface Writer {
-    void saveMemento(ModelMemento memento);
-    ModelMemento loadMemento(LocalDateTime localDateTime);
+    void saveMemento(ModelMemento memento) throws IOException;
 }

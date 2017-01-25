@@ -3,14 +3,9 @@ package view.gui.app;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import logs.LoggingManager;
 import view.gui.app.util.ScenesNavigator;
-
-import java.io.File;
 
 public class Main extends Application {
 

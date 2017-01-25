@@ -1,19 +1,22 @@
 package model.save;
 
-import model.Player;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
-//TODO: Get a better name.
+import model.Player;
+import model.Timer;
+
 public class ModelMemento {
     private List<Player> players = null;
-    private double time;
+    private Timer timer;
     private LocalDateTime localDateTime = null;
 
-    public ModelMemento(List<Player> players, double time, LocalDateTime localDateTime) {
+    public ModelMemento() {
+
+    }
+    public ModelMemento(final List<Player> players, final Timer timer, final LocalDateTime localDateTime) {
         this.players = players;
-        this.time = time;
+        this.timer = timer;
         this.localDateTime = localDateTime;
     }
 
@@ -25,12 +28,12 @@ public class ModelMemento {
         this.players = players;
     }
 
-    public double getTime() {
-        return time;
+    public Timer getTimer() {
+        return this.timer;
     }
 
-    public void setTime(final double time) {
-        this.time = time;
+    public void setTimer(final Timer timer) {
+        this.timer = timer;
     }
 
     public LocalDateTime getLocalDateTime() {
