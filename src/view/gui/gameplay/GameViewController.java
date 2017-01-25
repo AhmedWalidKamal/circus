@@ -1,6 +1,7 @@
 package view.gui.gameplay;
 
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import logs.LoggingManager;
 import model.Player;
 import util.Score;
@@ -51,6 +53,8 @@ implements Initializable, ControlledScenes {
     private ScenesNavigator sceneNavigator;
 
     private GameData gameData;
+
+    private FileChooser fileChooser = null;
 
     private static final String TIE_RESULT = "IT'S A TIE!";
     private static final String PLAYER_ONE_WINS = "PLAYER ONE WINS!";
@@ -227,6 +231,12 @@ implements Initializable, ControlledScenes {
     	PauseMenuViewHelper.
     	getInstance().getSaveButton().
     	setOnMouseClicked(event -> {
+
+    		///TODO complete this.
+    		FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("PROTOCOL BUFFER files(*.protobuff)","*.protobuff");
+    		fileChooser.getExtensionFilters().addAll(extensionFilter);
+    		File file = fileChooser.showSaveDialog(null);
+
 			LoggingManager.getInstance().info("GAME SAVED");
     	});
 	}
