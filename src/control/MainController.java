@@ -43,8 +43,6 @@ public final class MainController {
 
     private ViewController viewController = null;
 
-    private String difficultyLevel;
-
     public MainController() {
         viewController = new ViewController(this);
         inputController = new InputController(this);
@@ -133,15 +131,11 @@ public final class MainController {
         return this.gameView;
     }
 
-    public void setDifficultyLevel(final String difficultyLevel){
-        this.difficultyLevel=difficultyLevel;
-    }
     /**
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
      */
     public void startNewGame() {
-        levelsController.chooseLevel(difficultyLevel);
         gameUtilController.prepareGame();
         playersController.prepareGame();
         inputController.start();

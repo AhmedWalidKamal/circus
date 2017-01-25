@@ -81,7 +81,8 @@ public class GameViewController implements Initializable, ControlledScenes {
 		this.mainController.setGameViewController(this);
         this.mainController.setGameView(gameView);
         setKeyBinding();
-        this.mainController.setDifficultyLevel(this.gameData.getGameDifficulty());
+        this.mainController.getLevelsController().chooseLevel(gameData
+				.getGameDifficulty());
         this.mainController.startNewGame();
 
     }

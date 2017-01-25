@@ -73,7 +73,7 @@ public final class InputController extends PauseableThread {
     public void run() {
         while (true) {
             try {
-                InputController.sleep(5);
+                InputController.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
