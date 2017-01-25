@@ -7,7 +7,7 @@ import javafx.scene.shape.Line;
 
 public class MenuBox extends VBox{
 
-    public MenuBox(MenuItem... items) {
+    public MenuBox(final MenuItem... items) {
         getChildren().add(createSeparator());
 
         for (MenuItem item : items) {
@@ -22,5 +22,5 @@ public class MenuBox extends VBox{
         return separator;
     }
 
-    }
+}
 

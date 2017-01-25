@@ -31,15 +31,15 @@ public class MainMenuViewHelper {
    }
 
    public void configureTheMainMenu(final Pane root, final Text title) {
-        newGame = new MenuItem("NEW GAME");
-        loadGame = new MenuItem("LOAD GAME");
-        exit = new MenuItem("EXIT");
+        newGame = new MenuItem("NEW GAME", 0.65);
+        loadGame = new MenuItem("LOAD GAME", 0.65);
+        exit = new MenuItem("EXIT", 0.65);
 
         final MenuBox menu = new MenuBox(
                 newGame,
                 loadGame,
-                new MenuItem("OPTIONS"),
-                new MenuItem("HELP"),
+                new MenuItem("OPTIONS", 0.65),
+                new MenuItem("HELP", 0.65),
                 exit);
         menu.setTranslateX(100);
         menu.setTranslateY(450);

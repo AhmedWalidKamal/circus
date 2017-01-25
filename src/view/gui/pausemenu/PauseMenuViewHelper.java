@@ -27,10 +27,10 @@ public class PauseMenuViewHelper {
     }
 
     public void configureThePauseMenu(final Pane root, final Text title) {
-        resumeButton = new MenuItem("RESUME");
-        optionsButton = new MenuItem("OPTIONS");
-        saveButton = new MenuItem("SAVE");
-        returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU");
+        resumeButton = new MenuItem("RESUME", 0.5);
+        optionsButton = new MenuItem("OPTIONS", 0.5);
+        saveButton = new MenuItem("SAVE", 0.5);
+        returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU", 0.5);
 
         final MenuBox pauseMenu = new MenuBox(
                 resumeButton,

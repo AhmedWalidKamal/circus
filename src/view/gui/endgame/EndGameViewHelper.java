@@ -26,9 +26,9 @@ public class EndGameViewHelper {
     }
 
     public void configureEndGameScene(final Pane root, final Text title, final Text winner) {
-        this.restartGameButton = new MenuItem("RESTART GAME");
-        this.returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU");
-        this.exitGameButton = new MenuItem("EXIT GAME");
+        this.restartGameButton = new MenuItem("RESTART GAME", 0.9);
+        this.returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU", 0.9);
+        this.exitGameButton = new MenuItem("EXIT GAME", 0.9);
         MenuBox endGameMenu = new MenuBox(
                 restartGameButton,
                 returnToMenuMainButton,

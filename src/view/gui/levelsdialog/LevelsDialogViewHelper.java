@@ -24,10 +24,10 @@ public class LevelsDialogViewHelper {
         return  instance;
     }
 
-    public void configureTheLevelsDialog(Pane root, Text title) {
-        easy = new MenuItem("EASY");
-        medium = new MenuItem("MEDIUM");
-        hard = new MenuItem("HARD");
+    public void configureTheLevelsDialog(final Pane root, final Text title) {
+        easy = new MenuItem("EASY", 0.8);
+        medium = new MenuItem("MEDIUM", 0.8);
+        hard = new MenuItem("HARD", 0.8);
 
         MenuBox levelsDialog = new MenuBox(
                 easy,
