@@ -81,10 +81,7 @@ public class GameViewController implements Initializable, ControlledScenes {
 		this.mainController.setGameViewController(this);
         this.mainController.setGameView(gameView);
         setKeyBinding();
-        this.mainController.getLevelsController().chooseLevel(gameData
-				.getGameDifficulty());
-        this.mainController.startNewGame();
-
+        this.mainController.startNewGame(this.gameData);
     }
     private void setVisibilityBindingEndGame() {
 		endGamePane.managedProperty().bind(endGamePane.visibleProperty());

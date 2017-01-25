@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import view.gui.app.Main;
@@ -12,6 +13,7 @@ import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
 import view.gui.levelsdialog.LevelsDialogViewHelper;
 import view.gui.mainmenu.util.GameData;
+import view.gui.options.OptionsDialogViewHelper;
 
 public class MainMenuController implements Initializable, ControlledScenes {
 
@@ -26,6 +28,12 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     @FXML
     private Text LevelsDialogTitle;
+
+    @FXML
+    private Pane optionsPane;
+
+    @FXML
+    private Text optionsDialogTitle;
 
 
     private ScenesNavigator sceneNavigator;
@@ -44,10 +52,14 @@ public class MainMenuController implements Initializable, ControlledScenes {
             LevelsDialogViewHelper.
             getInstance().configureTheLevelsDialog(this.levelsPane,
             		this.LevelsDialogTitle);
-            setVisibilityBindingLevelsDialog();
+            OptionsDialogViewHelper.getInstance().
+                    configureTheLevelsDialog(this.optionsPane, this.optionsDialogTitle);
+            setVisibilityBindingLevelsDialogAndOptionsDialog();
             gameData = new GameData();
             configureNewGameButton();
+            configureOptionsButton();
             configureExitButton();
+            configureCloseButton();
             configureEasyLevelButton();
             configureMediumLevelButton();
             configureHardLevelButton();
@@ -58,16 +70,22 @@ public class MainMenuController implements Initializable, ControlledScenes {
     	this.sceneNavigator = screenParent;
     }
 
-    private void setVisibilityBindingLevelsDialog() {
+    private void setVisibilityBindingLevelsDialogAndOptionsDialog() {
         levelsPane.managedProperty().bind(levelsPane.visibleProperty());
         levelsPane.setVisible(false);
+        optionsPane.managedProperty().bind(optionsPane.visibleProperty());
+        optionsPane.setVisible(false);
+
     }
+
+
 
     private void configureNewGameButton() {
         MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
-            levelsPane.setVisible(true);
-            levelsPane.toFront();
-            levelsPane.requestFocus();
+            this.root.lookup("#mainMenu").setDisable(true);
+            this.levelsPane.setVisible(true);
+            this.levelsPane.toFront();
+            this.levelsPane.requestFocus();
         });
     }
 
@@ -77,6 +95,24 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     private void configureExitButton() {
         MainMenuViewHelper.getInstance().getExitButton().setOnMouseClicked(event -> System.exit(0));
+    }
+
+    private void configureOptionsButton() {
+         MainMenuViewHelper.getInstance().getOptionsButton().setOnMouseClicked(event -> {
+             this.root.lookup("#mainMenu").setDisable(true);
+             this.optionsPane.setVisible(true);
+             this.optionsPane.toFront();
+             this.optionsPane.requestFocus();
+         });
+    }
+
+    private void configureCloseButton() {
+        OptionsDialogViewHelper.getInstance().getCloseButton().setOnMouseClicked(event -> {
+            this.root.lookup("#mainMenu").setDisable(false);
+            this.optionsPane.setVisible(false);
+            this.optionsPane.toBack();
+            this.root.requestFocus();
+        });
     }
 
     private void configureEasyLevelButton() {

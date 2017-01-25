@@ -49,5 +49,4 @@ public class LevelsDialogViewHelper {
     public MenuItem getHardLevelButton() {
         return hard;
     }
-
 }
