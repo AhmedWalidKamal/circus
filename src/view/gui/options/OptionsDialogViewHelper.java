@@ -28,7 +28,7 @@ public class OptionsDialogViewHelper {
         return  instance;
     }
 
-    public void configureTheLevelsDialog(final Pane root, final Text title) {
+    public void configureOptionsDialog(final Pane root, final Text title) {
         addCharacters = new MenuItem("ADD CHARACTER", 0.8);
         addShapes = new MenuItem("ADD SHAPE", 0.8);
         close = new MenuItem("CLOSE",0.8);

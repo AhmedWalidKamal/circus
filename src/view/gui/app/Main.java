@@ -27,6 +27,7 @@ public class Main extends Application {
     	primaryStage.setScene(new Scene(root));
     	primaryStage.show();
         root.toFront();
+		LogsManager.getInstance().info("GAME OPENED");
     }
 
  	public static final void main(final String[] args) {

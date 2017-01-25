@@ -1,5 +1,6 @@
 package plugins;
 
+import logs.LogsManager;
 import model.characters.Character;
 import model.shapes.Shape;
 
@@ -77,6 +78,7 @@ public class PluginLoader {
 
             loader.close();
         } catch (ClassNotFoundException | IOException e) {
+            LogsManager.getInstance().info("FAILED TO LOAD CLASS");
             e.printStackTrace();
         }
     }

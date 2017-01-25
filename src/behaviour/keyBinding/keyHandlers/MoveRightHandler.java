@@ -5,6 +5,7 @@ import behaviour.keyBinding.KeyMap;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import logs.LogsManager;
 
 public class MoveRightHandler extends KeyHandler {
 
@@ -22,6 +23,7 @@ public class MoveRightHandler extends KeyHandler {
         Platform.runLater(() -> {
             Node node = super.keyMap.getNode();
             node.setTranslateX(node.getTranslateX() + 1);
+            LogsManager.getInstance().info("PLAYER MOVED TO THE RIGHT");
         });
     }
 }

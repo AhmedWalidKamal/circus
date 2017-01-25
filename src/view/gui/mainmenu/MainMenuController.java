@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import logs.LogsManager;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
@@ -53,7 +54,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
             getInstance().configureTheLevelsDialog(this.levelsPane,
             		this.LevelsDialogTitle);
             OptionsDialogViewHelper.getInstance().
-                    configureTheLevelsDialog(this.optionsPane, this.optionsDialogTitle);
+                    configureOptionsDialog(this.optionsPane, this.optionsDialogTitle);
             setVisibilityBindingLevelsDialogAndOptionsDialog();
             gameData = new GameData();
             configureNewGameButton();
@@ -82,6 +83,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     private void configureNewGameButton() {
         MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
+            LogsManager.getInstance().info("NEW GAME STARTED");
             this.root.lookup("#mainMenu").setDisable(true);
             this.levelsPane.setVisible(true);
             this.levelsPane.toFront();
@@ -117,6 +119,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
 
     private void configureEasyLevelButton() {
         LevelsDialogViewHelper.getInstance().getEasyLevelButton().setOnMouseClicked(event -> {
+            LogsManager.getInstance().info("EASY LEVEL SELECTED");
             this.gameData.setGameDifficulty(EASY_LEVEL);
             this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
@@ -126,6 +129,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
     }
     private void configureMediumLevelButton() {
         LevelsDialogViewHelper.getInstance().getMediumLevelButton().setOnMouseClicked(event -> {
+            LogsManager.getInstance().info("NORMAL LEVEL SELECTED");
         	this.gameData.setGameDifficulty(MEDIUM_LEVEL);
         	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
@@ -135,6 +139,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
     }
     private void configureHardLevelButton() {
         LevelsDialogViewHelper.getInstance().getHardLevelButton().setOnMouseClicked(event -> {
+            LogsManager.getInstance().info("HARD LEVEL SELECTED");
         	this.gameData.setGameDifficulty(HARD_LEVEL);
         	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);

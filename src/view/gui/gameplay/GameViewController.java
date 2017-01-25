@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import logs.LogsManager;
 import model.Player;
 import util.Score;
 import view.gui.app.Main;
@@ -109,6 +110,7 @@ public class GameViewController implements Initializable, ControlledScenes {
     }
 
 	public void showEndGameScene() {
+		LogsManager.getInstance().info("GAME ENDED");
 		this.mainController.pause();
 		determineWinner();
         this.endGamePane.setVisible(true);
@@ -130,10 +132,13 @@ public class GameViewController implements Initializable, ControlledScenes {
 		}
 		if (playerOneScore.compareTo(playerTwoScore) == 0) {
 			gameWinnerText.setText("IT'S A TIE!");
+			LogsManager.getInstance().info("TWO PLAYERS TIED");
 		} else if (playerOneScore.compareTo(playerTwoScore) > 0) {
 			gameWinnerText.setText("PLAYER ONE WINS!");
+			LogsManager.getInstance().info("PLAYER ONE WINS");
 		} else {
 			gameWinnerText.setText("PLAYER TWO WINS!");
+			LogsManager.getInstance().info("PLAYER TWO WINS");
 		}
 		gameWinnerText.setOpacity(1.0);
 	}
@@ -143,12 +148,15 @@ public class GameViewController implements Initializable, ControlledScenes {
 	    	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
 	    			Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
 	    	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
+			LogsManager.getInstance().info("GAME RESTARTED");
         });
 	    EndGameViewHelper.getInstance().getReturnToMenuMainButton().setOnMouseClicked(event -> {
         	this.sceneNavigator.setScene(Main.MAINMENU_ID);
+			LogsManager.getInstance().info("RETURNED TO MAIN MENU");
         });
 	    EndGameViewHelper.getInstance().getExitGameButton().setOnMouseClicked(event -> {
         	System.exit(0);
+			LogsManager.getInstance().info("GAME EXITED");
         });
 	}
 
@@ -160,24 +168,26 @@ public class GameViewController implements Initializable, ControlledScenes {
             this.pauseMenuPane.toBack();
             this.root.requestFocus();
             mainController.resume();
+			LogsManager.getInstance().info("GAME RESUMED");
     	});
 
     	PauseMenuViewHelper.
     	getInstance().getOptionsButton().
     	setOnMouseClicked(event -> {
-
+			LogsManager.getInstance().info("GAME OPTIONS CONFIGURED");
     	});
 
     	PauseMenuViewHelper.
     	getInstance().getReturnToMenuMainButton().
     	setOnMouseClicked(event -> {
     		this.sceneNavigator.setScene(Main.MAINMENU_ID);
+			LogsManager.getInstance().info("RETURNED TO MAIN MENU");
     	});
 
     	PauseMenuViewHelper.
     	getInstance().getSaveButton().
     	setOnMouseClicked(event -> {
-
+			LogsManager.getInstance().info("GAME SAVED");
     	});
 	}
 
