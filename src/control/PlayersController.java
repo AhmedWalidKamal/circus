@@ -1,11 +1,8 @@
 package control;
 
-import java.util.*;
-
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
 import behaviour.keyBinding.keyHandlers.MoveRightHandler;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +13,11 @@ import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
 import model.characters.util.CharacterFactory;
 import model.save.ModelMemento;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Acts as a control to players behavior, has references to model that allow

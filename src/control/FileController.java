@@ -27,5 +27,4 @@ public class FileController {
         ModelMemento memento = reader.loadMemento(path);
         return memento;
     }
-
 }
