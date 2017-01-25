@@ -5,6 +5,9 @@ import behaviour.shapes.util.ShapePool;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import logs.LoggingManager;
+import model.Player;
+import model.characters.Character;
+import model.save.ModelMemento;
 import model.shapes.Shape;
 import util.PauseableThread;
 
@@ -128,5 +131,39 @@ public final class ShapesController extends PauseableThread {
         paused = false;
     }
 
+    public void loadFromMemento(final ModelMemento memento) {
+        int counter = 0;
+        for (Player player : memento.getPlayers()) {
+            for (Shape shape : player.getCharacter().getLeftStack()) {
+                setUpShape(shape, player);
+                counter++;
+            }
+            for (Shape shape : player.getCharacter().getRightStack()) {
+                setUpShape(shape, player);
+                counter++;
+            }
+        }
+    }
 
+    private void setUpShape(Shape shape, Player player) {
+        ImageView imageView = new ImageView(shape.getUrl());
+        copyShape(imageView, shape);
+        bindImageWithShape(shape, imageView);
+        bindImageWithCharacter(imageView, player.getCharacter());
+        putFetchedShape(imageView, shape);
+        mainController.getViewController().addToRootPane(imageView);
+    }
+
+    private void bindImageWithCharacter(final ImageView imageView, final Character
+            character) {
+        imageView.translateXProperty().bind(character.getTranslateXProperty());
+        imageView.translateYProperty().bind(character.getTranslateYProperty());
+    }
+
+    private void copyShape(final ImageView imageView, final Shape shape) {
+        imageView.setX(shape.getX());
+        imageView.setY(shape.getY());
+        imageView.setTranslateX(shape.getTranslateX().doubleValue());
+        imageView.setTranslateY(shape.getTranslateY().doubleValue());
+    }
 }

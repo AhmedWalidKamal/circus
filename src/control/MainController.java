@@ -175,6 +175,7 @@ public final class MainController {
 	public void loadGame(final String path) throws IOException {
         ModelMemento memento = fileController.load(path);
         playersController.loadFromMemento(memento);
+        shapesController.loadFromMemento(memento);
         gameUtilController.loadFromMemento(memento);
         levelsController.loadFromMemento(memento);
         prepareGame();

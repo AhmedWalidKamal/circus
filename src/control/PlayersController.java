@@ -128,7 +128,9 @@ public final class PlayersController {
     }
 
     public void collectMemento(final ModelMemento memento) {
-        memento.setPlayers((List) getPlayers());
+        memento.setPlayers(getPlayers());
+        for (Player player : getPlayers()) {
+        }
     }
 
     public void loadFromMemento(final ModelMemento memento) {
@@ -136,6 +138,7 @@ public final class PlayersController {
         boolean f = false;
         for (Player player : memento.getPlayers()) {
             ImageView imageView = new ImageView(player.getCharacter().getUrl());
+            copyCharacter(imageView, player.getCharacter());
             bindImageToCharacter(player.getCharacter(), imageView);
             playerImageMap.put(player, imageView);
             if (!f) {
@@ -147,5 +150,13 @@ public final class PlayersController {
             mainController.getViewController().addToRootPane(imageView);
         }
 
+    }
+
+    private void copyCharacter(final ImageView imageView, final Character
+            character) {
+        imageView.setX(character.getX());
+        imageView.setY(character.getY());
+        imageView.setTranslateX(character.getTranslateX());
+        imageView.setTranslateY(character.getTranslateY());
     }
 }
