@@ -109,6 +109,13 @@ implements Initializable, ControlledScenes {
         this.mainController.startNewGame(this.gameData);
     }
 
+	public void loadGame(final String path) {
+		this.mainController = new MainController();
+		this.mainController.setGameViewController(this);
+		this.mainController.setGameView(gameView);
+		setKeyBinding();
+		this.mainController.loadGame(path);
+	}
 	/**
 	 * Binds the pane's visibility with the managed property.
 	 */
@@ -185,7 +192,7 @@ implements Initializable, ControlledScenes {
 	 */
 	private void configureEndGameButtons() {
 	    EndGameViewHelper.getInstance().getRestartGameButton().setOnMouseClicked(event -> {
-	    	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+	    	this.sceneNavigator.startGame(Main.GAMEVIEW_ID,
 	    			Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
 	    	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
 			LoggingManager.getInstance().info("GAME RESTARTED");

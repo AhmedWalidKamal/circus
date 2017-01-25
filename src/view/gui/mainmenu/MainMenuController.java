@@ -184,7 +184,7 @@ implements Initializable, ControlledScenes {
         LevelsDialogViewHelper.getInstance().getEasyLevelButton().setOnMouseClicked(event -> {
             LoggingManager.getInstance().info("EASY LEVEL SELECTED");
             this.gameData.setGameDifficulty(EASY_LEVEL);
-            this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+            this.sceneNavigator.startGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL,
             		Main.GAMEVIEW_STYLESHEET, this.gameData);
             this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
@@ -200,7 +200,7 @@ implements Initializable, ControlledScenes {
         getNormalLevelButton().setOnMouseClicked(event -> {
         	this.gameData.setGameDifficulty(NORMAL_LEVEL);
             LoggingManager.getInstance().info("NORMAL LEVEL SELECTED");
-        	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+        	this.sceneNavigator.startGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL,
             		Main.GAMEVIEW_STYLESHEET, this.gameData);
         	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
@@ -215,7 +215,7 @@ implements Initializable, ControlledScenes {
         LevelsDialogViewHelper.getInstance().getHardLevelButton().setOnMouseClicked(event -> {
             LoggingManager.getInstance().info("HARD LEVEL SELECTED");
         	this.gameData.setGameDifficulty(HARD_LEVEL);
-        	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
+        	this.sceneNavigator.startGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL,
             		Main.GAMEVIEW_STYLESHEET, this.gameData);
         	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);

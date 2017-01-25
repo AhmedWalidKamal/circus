@@ -47,7 +47,7 @@ public class ScenesNavigator extends StackPane {
      * @param gameData, the data to be passed to the
      * game for initialzing
      */
-    public void loadGame(final String name,
+    public void startGame(final String name,
     		final String resource,
     		final String stylesheet, final GameData gameData) {
         try {
@@ -70,6 +70,28 @@ public class ScenesNavigator extends StackPane {
         }
     }
 
+    public void loadGame(final String name,
+    		final String resource,
+    		final String stylesheet, final String path) {
+    	try {
+            final FXMLLoader myLoader
+            = new FXMLLoader(getClass().getResource(resource));
+            final Parent loadScreen
+            = (Parent) myLoader.load();
+            final GameViewController gameViewController
+            = ((GameViewController) myLoader.getController());
+            gameViewController.setScreenParent(this);
+            gameViewController.loadGame(path);
+            loadScreen.getStylesheets().add(this.getClass().
+            		getResource(stylesheet).toExternalForm());
+            if (scenes.get(name) != null) {
+            	scenes.remove(name);
+            }
+            addScene(name, loadScreen);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Loads the required scene and adds it to the map/
      * @param name, the name of the scene
