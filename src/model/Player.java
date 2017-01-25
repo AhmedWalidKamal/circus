@@ -4,7 +4,6 @@ import model.characters.Character;
 import util.Score;
 
 public class Player implements Comparable<Player> {
-
     private Score score = null;
     private String name = null;
     private Character character = null;

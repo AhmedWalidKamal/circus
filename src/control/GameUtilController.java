@@ -100,6 +100,10 @@ public final class GameUtilController {
         initializePlayersScores();
     }
 
+    /**
+     * Initializes the shelves in the game and adds the to the
+     * root pane.
+     */
     private void initializeShelves() {
         final Shelf leftShelf = new Shelf(Y_SHELF, Shelf.Orientation.LEFT);
         shelves.add(leftShelf);
@@ -114,6 +118,10 @@ public final class GameUtilController {
                 rightShelf.getImageView());
     }
 
+    /**
+     * Initializes the players' scores displayed
+     * on the top corners of the screen.
+     */
 	private void initializePlayersScores() {
 		this.firstPlayerLabel.textProperty().bind(firstPlayerScore.asString());
 		this.secondPlayerLabel.textProperty().bind(secondPlayerScore.asString());
@@ -171,6 +179,10 @@ public final class GameUtilController {
         return shelves.get(counter);
     }
 
+	/**
+	 * Updates the player's score.
+	 * @param player, the player to add the score to.
+	 */
 	public void updateScore(final Player player) {
 		final Score currentScore = player.getScore();
 		currentScore.setCurrentScore(currentScore.getCurrentScore() + 100);
@@ -185,10 +197,16 @@ public final class GameUtilController {
 		});
 	}
 
+	/**
+	 * Pauses the timer.
+	 */
 	public void pauseTime() {
         timeline.pause();
     }
 
+	/**
+	 * Resumes the timer.
+	 */
     public void resumeTime() {
         timeline.play();
     }

@@ -7,13 +7,23 @@ import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import logs.LogsManager;
 
+/**
+ * * Moves {@link Node} in {@link KeyMap} to the right by 1 pixel.
+ */
 public class MoveRightHandler extends KeyHandler {
 
+    /**
+     * Constructor to the keyHandler.
+     * @param keyMap {@link KeyMap} containing this handler.
+     */
     public MoveRightHandler(KeyMap keyMap) {
         super.pressed = false;
         super.keyMap = keyMap;
     }
 
+    /**
+     * Constructor to the keyHandler.
+     */
     public MoveRightHandler() {
         super.pressed = false;
     }

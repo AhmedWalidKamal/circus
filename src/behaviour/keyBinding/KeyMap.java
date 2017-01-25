@@ -96,6 +96,10 @@ public class KeyMap {
         keyHandler.setPressed(pressed);
     }
 
+    /**
+     * Sets all key handlers to be pressed or released by defining the boolean value.
+     * @param pressed boolean value representing key pressing.
+     */
     public synchronized void setAllKeyHandlers(boolean pressed) {
         for (KeyHandler handler : keyMap.values()) {
             handler.setPressed(pressed);

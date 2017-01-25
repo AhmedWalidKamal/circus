@@ -6,13 +6,23 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import logs.LogsManager;
 
+/**
+ * Moves {@link Node} in {@link KeyMap} to the left by 1 pixel.
+ */
 public class MoveLeftHandler extends KeyHandler {
 
+    /**
+     * Constructor to the keyHandler.
+     * @param keyMap {@link KeyMap} containing this handler.
+     */
     public MoveLeftHandler(KeyMap keyMap) {
         super.pressed = false;
         super.keyMap = keyMap;
     }
 
+    /**
+     * Constructor to the keyHandler.
+     */
     public MoveLeftHandler() {
         super.pressed = false;
     }

@@ -19,20 +19,39 @@ public abstract class KeyHandler {
      */
     protected boolean pressed;
 
+    /**
+     * Executes key command upon the node in the {@link KeyMap}.
+     */
     public abstract void execute();
 
+    /**
+     * Gets {@link KeyMap} containing this {@link KeyHandler}.
+     * @return
+     */
     public KeyMap getKeyMap() {
         return this.keyMap;
     }
 
+    /**
+     * Sets KeyMap to this KeyHandler.
+     * @param keyMap keyMap.
+     */
     public void setKeyMap(KeyMap keyMap) {
         this.keyMap = keyMap;
     }
 
+    /**
+     * Sets a boolean value representing whether this key is pressed or not.
+     * @param pressed boolean value.
+     */
     public void setPressed(final boolean pressed) {
         this.pressed = pressed;
     }
 
+    /**
+     * Checks whether the corresponding key is pressed or not.
+     * @return boolean value.
+     */
     public boolean isPressed() {
         return pressed;
     }
