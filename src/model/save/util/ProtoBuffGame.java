@@ -58,6 +58,20 @@ public final class ProtoBuffGame {
      */
     ProtoBuffGame.ProtoGame.ProtoPlayerOrBuilder getPlayersOrBuilder(
         int index);
+
+    /**
+     * <code>optional string levelDifficulty = 4;</code>
+     */
+    boolean hasLevelDifficulty();
+    /**
+     * <code>optional string levelDifficulty = 4;</code>
+     */
+    java.lang.String getLevelDifficulty();
+    /**
+     * <code>optional string levelDifficulty = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getLevelDifficultyBytes();
   }
   /**
    * Protobuf type {@code circus.ProtoGame}
@@ -129,6 +143,12 @@ public final class ProtoBuffGame {
                 mutable_bitField0_ |= 0x00000004;
               }
               players_.add(input.readMessage(ProtoBuffGame.ProtoGame.ProtoPlayer.PARSER, extensionRegistry));
+              break;
+            }
+            case 34: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000004;
+              levelDifficulty_ = bs;
               break;
             }
           }
@@ -4759,10 +4779,56 @@ public final class ProtoBuffGame {
       return players_.get(index);
     }
 
+    public static final int LEVELDIFFICULTY_FIELD_NUMBER = 4;
+    private java.lang.Object levelDifficulty_;
+    /**
+     * <code>optional string levelDifficulty = 4;</code>
+     */
+    @Override
+	public boolean hasLevelDifficulty() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string levelDifficulty = 4;</code>
+     */
+    @Override
+	public java.lang.String getLevelDifficulty() {
+      java.lang.Object ref = levelDifficulty_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          levelDifficulty_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string levelDifficulty = 4;</code>
+     */
+    @Override
+	public com.google.protobuf.ByteString
+        getLevelDifficultyBytes() {
+      java.lang.Object ref = levelDifficulty_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        levelDifficulty_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private void initFields() {
       currentTime_ = 0;
       localDateTime_ = "";
       players_ = java.util.Collections.emptyList();
+      levelDifficulty_ = "";
     }
     private byte memoizedIsInitialized = -1;
     @Override
@@ -4788,6 +4854,9 @@ public final class ProtoBuffGame {
       for (int i = 0; i < players_.size(); i++) {
         output.writeMessage(3, players_.get(i));
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(4, getLevelDifficultyBytes());
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -4809,6 +4878,10 @@ public final class ProtoBuffGame {
       for (int i = 0; i < players_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, players_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getLevelDifficultyBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4942,6 +5015,8 @@ public final class ProtoBuffGame {
         } else {
           playersBuilder_.clear();
         }
+        levelDifficulty_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -4992,6 +5067,10 @@ public final class ProtoBuffGame {
         } else {
           result.players_ = playersBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.levelDifficulty_ = levelDifficulty_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5042,6 +5121,11 @@ public final class ProtoBuffGame {
               playersBuilder_.addAllMessages(other.players_);
             }
           }
+        }
+        if (other.hasLevelDifficulty()) {
+          bitField0_ |= 0x00000008;
+          levelDifficulty_ = other.levelDifficulty_;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5430,6 +5514,85 @@ public final class ProtoBuffGame {
         return playersBuilder_;
       }
 
+      private java.lang.Object levelDifficulty_ = "";
+      /**
+       * <code>optional string levelDifficulty = 4;</code>
+       */
+      @Override
+	public boolean hasLevelDifficulty() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string levelDifficulty = 4;</code>
+       */
+      @Override
+	public java.lang.String getLevelDifficulty() {
+        java.lang.Object ref = levelDifficulty_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            levelDifficulty_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string levelDifficulty = 4;</code>
+       */
+      @Override
+	public com.google.protobuf.ByteString
+          getLevelDifficultyBytes() {
+        java.lang.Object ref = levelDifficulty_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b =
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          levelDifficulty_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string levelDifficulty = 4;</code>
+       */
+      public Builder setLevelDifficulty(
+          final java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        levelDifficulty_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string levelDifficulty = 4;</code>
+       */
+      public Builder clearLevelDifficulty() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        levelDifficulty_ = getDefaultInstance().getLevelDifficulty();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string levelDifficulty = 4;</code>
+       */
+      public Builder setLevelDifficultyBytes(
+          final com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        levelDifficulty_ = value;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:circus.ProtoGame)
     }
 
@@ -5470,28 +5633,29 @@ public final class ProtoBuffGame {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017gameProto.proto\022\006circus\"\264\006\n\tProtoGame\022" +
+      "\n\017gameProto.proto\022\006circus\"\315\006\n\tProtoGame\022" +
       "\023\n\013currentTime\030\001 \001(\005\022\025\n\rlocalDateTime\030\002 " +
       "\001(\t\022.\n\007players\030\003 \003(\0132\035.circus.ProtoGame." +
-      "ProtoPlayer\032\312\005\n\013ProtoPlayer\022\022\n\nplayerNam" +
-      "e\030\001 \001(\t\022\023\n\013playerScore\030\002 \001(\005\022E\n\017playerCh" +
-      "aracter\030\003 \001(\0132,.circus.ProtoGame.ProtoPl" +
-      "ayer.ProtoCharacter\032\312\004\n\016ProtoCharacter\022\016" +
-      "\n\006height\030\001 \001(\001\022\r\n\005width\030\002 \001(\001\022\027\n\017leftSta" +
-      "ckXInset\030\003 \001(\001\022\027\n\017leftStackYInset\030\004 \001(\001\022" +
-      "\030\n\020rightStackXInset\030\005 \001(\001\022\030\n\020rightStackY",
-      "Inset\030\006 \001(\001\022\021\n\txProperty\030\007 \001(\001\022\021\n\tyPrope" +
-      "rty\030\010 \001(\001\022\032\n\022translateXProperty\030\t \001(\001\022\032\n" +
-      "\022translateYProperty\030\n \001(\001\022\013\n\003url\030\013 \001(\t\022\013" +
-      "\n\003key\030\014 \001(\t\022J\n\tleftStack\030\r \003(\01327.circus." +
-      "ProtoGame.ProtoPlayer.ProtoCharacter.Pro" +
-      "toShape\022K\n\nrightStack\030\016 \003(\01327.circus.Pro" +
-      "toGame.ProtoPlayer.ProtoCharacter.ProtoS" +
-      "hape\032\241\001\n\nProtoShape\022\r\n\005state\030\001 \001(\t\022\013\n\003ur" +
-      "l\030\002 \001(\t\022\r\n\005width\030\003 \001(\001\022\016\n\006height\030\004 \001(\001\022\r" +
-      "\n\005color\030\005 \001(\t\022\t\n\001x\030\006 \001(\001\022\t\n\001y\030\007 \001(\001\022\022\n\nt",
-      "ranslateX\030\010 \001(\001\022\022\n\ntranslateY\030\t \001(\001\022\013\n\003k" +
-      "ey\030\n \001(\tB\021\n\000B\rProtoBuffGame"
+      "ProtoPlayer\022\027\n\017levelDifficulty\030\004 \001(\t\032\312\005\n" +
+      "\013ProtoPlayer\022\022\n\nplayerName\030\001 \001(\t\022\023\n\013play" +
+      "erScore\030\002 \001(\005\022E\n\017playerCharacter\030\003 \001(\0132," +
+      ".circus.ProtoGame.ProtoPlayer.ProtoChara" +
+      "cter\032\312\004\n\016ProtoCharacter\022\016\n\006height\030\001 \001(\001\022" +
+      "\r\n\005width\030\002 \001(\001\022\027\n\017leftStackXInset\030\003 \001(\001\022" +
+      "\027\n\017leftStackYInset\030\004 \001(\001\022\030\n\020rightStackXI",
+      "nset\030\005 \001(\001\022\030\n\020rightStackYInset\030\006 \001(\001\022\021\n\t" +
+      "xProperty\030\007 \001(\001\022\021\n\tyProperty\030\010 \001(\001\022\032\n\022tr" +
+      "anslateXProperty\030\t \001(\001\022\032\n\022translateYProp" +
+      "erty\030\n \001(\001\022\013\n\003url\030\013 \001(\t\022\013\n\003key\030\014 \001(\t\022J\n\t" +
+      "leftStack\030\r \003(\01327.circus.ProtoGame.Proto" +
+      "Player.ProtoCharacter.ProtoShape\022K\n\nrigh" +
+      "tStack\030\016 \003(\01327.circus.ProtoGame.ProtoPla" +
+      "yer.ProtoCharacter.ProtoShape\032\241\001\n\nProtoS" +
+      "hape\022\r\n\005state\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\022\r\n\005widt" +
+      "h\030\003 \001(\001\022\016\n\006height\030\004 \001(\001\022\r\n\005color\030\005 \001(\t\022\t",
+      "\n\001x\030\006 \001(\001\022\t\n\001y\030\007 \001(\001\022\022\n\ntranslateX\030\010 \001(\001" +
+      "\022\022\n\ntranslateY\030\t \001(\001\022\013\n\003key\030\n \001(\tB\021\n\000B\rP" +
+      "rotoBuffGame"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5511,7 +5675,7 @@ public final class ProtoBuffGame {
     internal_static_circus_ProtoGame_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_circus_ProtoGame_descriptor,
-        new java.lang.String[] { "CurrentTime", "LocalDateTime", "Players", });
+        new java.lang.String[] { "CurrentTime", "LocalDateTime", "Players", "LevelDifficulty", });
     internal_static_circus_ProtoGame_ProtoPlayer_descriptor =
       internal_static_circus_ProtoGame_descriptor.getNestedTypes().get(0);
     internal_static_circus_ProtoGame_ProtoPlayer_fieldAccessorTable = new

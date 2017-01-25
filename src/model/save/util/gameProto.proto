@@ -44,4 +44,5 @@ message ProtoGame {
 		optional ProtoCharacter playerCharacter = 3;
 	}
 	repeated ProtoPlayer players = 3;
+	optional string levelDifficulty = 4;
 }

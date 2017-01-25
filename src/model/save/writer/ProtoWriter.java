@@ -15,20 +15,15 @@ import model.shapes.Shape;
 
 public class ProtoWriter implements Writer {
 
-    /**
-     * The Protocol Buffer Extenstion.
-     */
-    private static final String PROTOCOL_BUFFER_EXTENSION
-            = ".protobuff";
-
 	public ProtoWriter() {
 
 	}
 
 	@Override
-	public void saveMemento(final ModelMemento memento) throws IOException {
+	public void saveMemento(final ModelMemento memento, final String path)
+			throws IOException {
 		final ProtoGame protoGame = createProtoGame(memento);
-        final File protoBuffFile = new File("." + File.separator + PROTOCOL_BUFFER_EXTENSION);
+        final File protoBuffFile = new File(path);
         if (!protoBuffFile.exists()) {
             protoBuffFile.createNewFile();
         }
@@ -42,6 +37,7 @@ public class ProtoWriter implements Writer {
 		protoGameBuilder.setCurrentTime(memento.getTimer().getCurrentTime());
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		protoGameBuilder.setLocalDateTime(memento.getLocalDateTime().format(formatter));
+		protoGameBuilder.setLevelDifficulty(memento.getDifficultyLevel());
 		for (Player player : memento.getPlayers()) {
 			ProtoPlayer.Builder protoPlayerBuilder = ProtoPlayer.newBuilder();
 			protoPlayerBuilder.setPlayerName(player.getName());

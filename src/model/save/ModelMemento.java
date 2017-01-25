@@ -10,14 +10,27 @@ public class ModelMemento {
     private List<Player> players = null;
     private Timer timer;
     private LocalDateTime localDateTime = null;
+    private String level = null;
 
     public ModelMemento() {
 
     }
-    public ModelMemento(final List<Player> players, final Timer timer, final LocalDateTime localDateTime) {
+    public ModelMemento(final List<Player> players,
+    		final Timer timer,
+    		final LocalDateTime localDateTime, final String level) {
         this.players = players;
         this.timer = timer;
         this.localDateTime = localDateTime;
+        this.level = level;
+
+    }
+
+    public void setDifficultyLevel(final String level) {
+    	this.level = level;
+    }
+
+    public String getDifficultyLevel() {
+    	return this.level;
     }
 
     public List<Player> getPlayers() {

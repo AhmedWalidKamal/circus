@@ -27,12 +27,6 @@ import util.Score;
 public class ProtoReader implements Reader {
 
     /**
-     * The protocol buffer extension.
-     */
-    private static final String PROTOCOL_BUFFER_EXTENSION
-            = ".protobuff";
-
-    /**
      * Instantiates a new protocol buffer reader.
      */
     public ProtoReader() {
@@ -40,8 +34,9 @@ public class ProtoReader implements Reader {
     }
 
 	@Override
-	public ModelMemento loadMemento(final LocalDateTime localDateTime) throws FileNotFoundException, IOException {
-		final File protoBuffFile = new File("." + File.separator + PROTOCOL_BUFFER_EXTENSION);
+	public ModelMemento loadMemento(final String path)
+			throws FileNotFoundException, IOException {
+		final File protoBuffFile = new File(path);
         ProtoGame protoGame = ProtoGame.
 		        parseFrom(new FileInputStream(protoBuffFile));
         return createModelMemento(protoGame);
@@ -52,6 +47,7 @@ public class ProtoReader implements Reader {
 		loadedMemento.setTimer(new Timer(protoGame.getCurrentTime()));
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		loadedMemento.setLocalDateTime(LocalDateTime.parse(protoGame.getLocalDateTime(), formatter));
+		loadedMemento.setDifficultyLevel(protoGame.getLevelDifficulty());
 		List<Player> players = new ArrayList<>();
 		for (ProtoPlayer protoPlayer : protoGame.getPlayersList()) {
 			Player player = new Player();
