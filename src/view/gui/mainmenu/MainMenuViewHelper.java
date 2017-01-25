@@ -31,7 +31,7 @@ public class MainMenuViewHelper {
    }
 
    public void configureTheMainMenu(final Pane root, final Text title) {
-        newGame = new MenuItem("NEW GAME", 0.65);
+        newGame = new MenuItem("NEW GAME",0.65);
         loadGame = new MenuItem("LOAD GAME", 0.65);
         exit = new MenuItem("EXIT", 0.65);
 
