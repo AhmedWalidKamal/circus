@@ -1,6 +1,7 @@
 package model.shapes;
 
-import javafx.scene.image.ImageView;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import model.Color;
 
 public abstract class Shape {
@@ -9,7 +10,23 @@ public abstract class Shape {
 		CREATED, SLIDING, FALLING, FETCHED, NOT_FETCHED, IN_POOL;
 	};
 
-	private State state;
+	protected State state = null;
+	protected String url = "";
+	protected double width = 0;
+	protected double height = 0;
+	protected Color color = null;
+	protected DoubleProperty x = null;
+	protected DoubleProperty y = null;
+	protected DoubleProperty translateX = null;
+	protected DoubleProperty translateY = null;
+
+	public Shape() {
+		state = State.CREATED;
+		x = new SimpleDoubleProperty();
+		y = new SimpleDoubleProperty();
+		translateX = new SimpleDoubleProperty();
+		translateY = new SimpleDoubleProperty();
+	}
 
 	public void setState(final State state) {
 		this.state = state;
@@ -19,23 +36,69 @@ public abstract class Shape {
 		return state;
 	}
 
-	public abstract Color getColor();
+	public Color getColor() {
+		return color;
+	}
 
-	public abstract void setColor(Color color);
+	public void setColor(final Color color) {
+		this.color = color;
+	}
 
-	public abstract void setX(double x);
+	public double getHeight() {
+		return height;
+	}
 
-	public abstract void setY(double y);
+	public void setHeight(final double height) {
+		this.height = height;
+	}
 
-	public abstract double getX();
+	public double getWidth() {
+		return width;
+	}
 
-	public abstract double getY();
+	public void setWidth(final double width) {
+		this.width = width;
+	}
 
-	public abstract double getWidth();
+	public double getX() {
+		return x.intValue();
+	}
 
-	public abstract double getHeight();
+	public void setX(final double x) {
+		this.x.set(x);
+	}
 
-	public abstract ImageView getImageView();
+	public double getY() {
+		return y.intValue();
+	}
 
-	public abstract void setImageView(ImageView shapeImageView);
+	public void setY(final double y) {
+		this.y.set(y);
+	}
+
+	public DoubleProperty getTranslateX() {
+		return translateX;
+	}
+
+	public DoubleProperty getTranslateY() {
+		return translateY;
+	}
+
+	public DoubleProperty getXProperty() {
+		return x;
+	}
+
+	public DoubleProperty getYProperty() {
+		return y;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(final String url) {
+		this.url = url;
+	}
+
+	public abstract String getKey();
 }

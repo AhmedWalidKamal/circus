@@ -1,4 +1,4 @@
-package controller;
+package control;
 
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Acts as a controller to players behavior, has references to model that allow
+ * Acts as a control to players behavior, has references to model that allow
  * it to create new players and updates them whenever it is required (e.g:
  * a signal from {@link InputController} to move a player, update some player's
  * score... etc) and update the view accordingly.

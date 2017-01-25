@@ -23,13 +23,13 @@ class SlidingState implements ShapeState {
     public final void handle() {
         context.getShape().setState(Shape.State.SLIDING);
         shelf = context.getGameUtilController().getNextShelf();
-        double x = 0;
+        double x;
         switch (shelf.getOrientation()) {
             case LEFT:
                 x = shelf.getImageView().getImage().getWidth() - EDGE_DISTANCE;
                 path.getElements().add(new MoveTo(0, shelf.getY()));
-                context.getShape().setX(0);
-                context.getShape().setY(shelf.getY());
+                context.getShapeImageView().setX(0);
+                context.getShapeImageView().setY(shelf.getY());
                 path.getElements().add(new LineTo(x, shelf.getY()));
                 break;
             case RIGHT:
@@ -37,14 +37,14 @@ class SlidingState implements ShapeState {
                         - shelf.getImageView().getImage().getWidth() + EDGE_DISTANCE;
                 path.getElements().add(new MoveTo(context.getViewController()
                         .getRootPanePrefWidth(), shelf.getY()));
-                context.getShape().setX(context.getViewController().getRootPanePrefWidth());
-                context.getShape().setY(shelf.getY());
+                context.getShapeImageView().setX(context.getViewController().getRootPanePrefWidth());
+                context.getShapeImageView().setY(shelf.getY());
                 path.getElements().add(new LineTo(x, shelf.getY()));
                 break;
             default:
                 break;
         }
-        context.getViewController().addToRootPane(context.getShape().getImageView());
+        context.getViewController().addToRootPane(context.getShapeImageView());
         goNext();
     }
 

@@ -11,14 +11,14 @@ public abstract class Character {
     protected Stack<Shape> rightStack = null;
     protected double height = 0;
     protected double width = 0;
+    protected double leftStackXInset = 0;
     protected double leftStackYInset = 0;
+    protected double rightStackXInset = 0;
+    protected double rightStackYInset = 0;
     protected DoubleProperty xProperty = null;
     protected DoubleProperty yProperty = null;
     protected DoubleProperty translateXProperty = null;
     protected DoubleProperty translateYProperty = null;
-    protected double rightStackYInset = 0;
-    protected double leftStackXInset = 0;
-    protected double rightStackXInset = 0;
 
     public Character() {
         leftStack = new Stack<>();
@@ -95,19 +95,19 @@ public abstract class Character {
 
     public void addToLeftStack(final Shape shape) {
         leftStack.add(shape);
-        leftStackYInset += shape.getImageView().getImage().getHeight();
+        leftStackYInset += shape.getHeight();
     }
 
     public void addToRightStack(final Shape shape) {
         rightStack.add(shape);
-        rightStackYInset += shape.getImageView().getImage().getHeight();
+        rightStackYInset += shape.getHeight();
     }
 
     public Shape popFromLeftStack() {
         if (leftStack.isEmpty()) {
             return null;
         }
-        leftStackYInset -= leftStack.peek().getImageView().getImage().getHeight();
+        leftStackYInset -= leftStack.peek().getHeight();
         return leftStack.pop();
     }
 
@@ -115,7 +115,7 @@ public abstract class Character {
         if (rightStack.isEmpty()) {
             return null;
         }
-        rightStackYInset -= rightStack.peek().getImageView().getImage().getHeight();
+        rightStackYInset -= rightStack.peek().getHeight();
         return rightStack.pop();
     }
 

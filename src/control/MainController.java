@@ -1,4 +1,4 @@
-package controller;
+package control;
 
 import view.gui.endgame.EndGameView;
 import view.gui.gameplay.GameView;
@@ -121,8 +121,8 @@ public final class MainController {
         return viewController;
     }
     /**
-     * Sets {@link GameView} to the main controller of the main MVC.
-     * @param gameView GameView for the controller to set nodes on.
+     * Sets {@link GameView} to the main control of the main MVC.
+     * @param gameView GameView for the control to set nodes on.
      */
     public void setGameView(final GameView gameView) {
         this.gameView = gameView;
@@ -160,11 +160,13 @@ public final class MainController {
     }
 
     public void pause() {
+        inputController.pauseThread();
         shapesController.pauseThread();
         gameUtilController.pauseTime();
     }
 
     public void resume() {
+        inputController.resumeThread();
         shapesController.resumeThread();
         gameUtilController.resumeTime();
     }

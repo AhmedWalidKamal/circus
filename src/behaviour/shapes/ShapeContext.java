@@ -1,15 +1,16 @@
 package behaviour.shapes;
 
 import behaviour.shapes.util.ShapePool;
-import controller.GameUtilController;
-import controller.LevelsController;
-import controller.PlayersController;
-import controller.ShapesController;
-import controller.ViewController;
+import control.GameUtilController;
+import control.LevelsController;
+import control.PlayersController;
+import control.ShapesController;
+import control.ViewController;
+import javafx.scene.image.ImageView;
 import model.shapes.Shape;
 
 /**
- * Acts as a controller for the many consequent states a shape can be in,
+ * Acts as a control for the many consequent states a shape can be in,
  */
 public final class ShapeContext {
     /**
@@ -32,23 +33,27 @@ public final class ShapeContext {
      */
     private Shape shape = null;
 
+    private ImageView shapeImageView = null;
+
     private ShapePool shapePool = null;
 
     /**
      * Constructs a new Context for shape.
      * @param shape {@link Shape} shape to apply states on.
      */
-    public ShapeContext(final Shape shape, final ShapesController shapesController,
+    public ShapeContext(final Shape shape, final ImageView shapeImageView,
+                        final ShapesController shapesController,
                         final ViewController viewController,
                         final GameUtilController gameUtilController,
                         final PlayersController playersController,
                         final LevelsController levelsController,
                         final ShapePool shapePool) {
         this.shape = shape;
+        this.shapeImageView = shapeImageView;
+        this.shapesController = shapesController;
         this.viewController = viewController;
         this.gameUtilController = gameUtilController;
         this.playersController = playersController;
-        this.shapesController = shapesController;
         this.levelsController = levelsController;
         this.shapePool = shapePool;
         shapeState = new SlidingState(this);
@@ -83,6 +88,10 @@ public final class ShapeContext {
 
     public Shape getShape() {
         return shape;
+    }
+
+    public ImageView getShapeImageView() {
+        return shapeImageView;
     }
 
     /**

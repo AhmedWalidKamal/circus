@@ -1,4 +1,4 @@
-package controller;
+package control;
 
 public class EndGameController {
 

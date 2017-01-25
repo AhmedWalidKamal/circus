@@ -15,8 +15,7 @@ class AddedToShapePoolState implements ShapeState {
 		Platform.runLater(() -> {
 			context.getShape().setState(Shape.State.IN_POOL);
 			context.getShapePool().addReusableShape(context.getShape());
-			context.getViewController().removeFromRootPane(context.getShape()
-					.getImageView());
+			context.getViewController().removeFromRootPane(context.getShapeImageView());
         });
 	}
     @Override

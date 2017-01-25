@@ -1,4 +1,4 @@
-package controller;
+package control;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ import util.Score;
 import util.Shelf;
 
 /**
- * Acts as a controller to all game utilities (score, shelves, ... etc).
+ * Acts as a control to all game utilities (score, shelves, ... etc).
  */
 public final class GameUtilController {
     /**

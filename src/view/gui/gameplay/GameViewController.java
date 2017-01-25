@@ -4,7 +4,7 @@ package view.gui.gameplay;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.MainController;
+import control.MainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -84,7 +84,7 @@ public class GameViewController implements Initializable, ControlledScenes {
 
 	/**
      * Adds a key input handler to a root pane to send the entered
-     * {@link javafx.scene.input.KeyCode} to {@link controller.InputController}.
+     * {@link javafx.scene.input.KeyCode} to {@link control.InputController}.
      */
     private void setKeyBinding() {
         root.setOnKeyPressed(event -> mainController.getInputController()
