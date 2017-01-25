@@ -35,8 +35,6 @@ public final class ShapeContext {
 
     private ImageView shapeImageView = null;
 
-    private ShapePool shapePool = null;
-
     /**
      * Constructs a new Context for shape.
      * @param shape {@link Shape} shape to apply states on.
@@ -46,8 +44,7 @@ public final class ShapeContext {
                         final ViewController viewController,
                         final GameUtilController gameUtilController,
                         final PlayersController playersController,
-                        final LevelsController levelsController,
-                        final ShapePool shapePool) {
+                        final LevelsController levelsController) {
         this.shape = shape;
         this.shapeImageView = shapeImageView;
         this.shapesController = shapesController;
@@ -55,12 +52,7 @@ public final class ShapeContext {
         this.gameUtilController = gameUtilController;
         this.playersController = playersController;
         this.levelsController = levelsController;
-        this.shapePool = shapePool;
         shapeState = new SlidingState(this);
-    }
-
-    public ShapePool getShapePool() {
-    	return this.shapePool;
     }
 
     public GameUtilController getGameUtilController() {
