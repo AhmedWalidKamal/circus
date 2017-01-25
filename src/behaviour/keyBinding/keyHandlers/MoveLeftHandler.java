@@ -32,7 +32,6 @@ public class MoveLeftHandler extends KeyHandler {
         Platform.runLater(() -> {
             Node node = super.keyMap.getNode();
             node.setTranslateX(node.getTranslateX() - 1);
-            LogsManager.getInstance().info("PLAYER MOVED TO THE LEFT");
         });
     }
 }
