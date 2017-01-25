@@ -1,7 +1,5 @@
 package view.gui.mainmenu;
 
-
-
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -10,6 +8,10 @@ import javafx.scene.text.Text;
 import util.MenuBox;
 import util.MenuItem;
 
+/**
+ * Helper class for configuring the main menu buttons.
+ * @author Mohamed Tolba
+ */
 public class MainMenuViewHelper {
 
     private static MainMenuViewHelper instance;
@@ -34,6 +36,11 @@ public class MainMenuViewHelper {
         return instance;
    }
 
+    /**
+     * Configures the main menu scene.
+     * @param root, the root pane for the scene
+     * @param title, the title of the scene
+     */
    public void configureTheMainMenu(final Pane root, final Text title) {
         newGame = new MenuItem("NEW GAME", 0.65);
         loadGame = new MenuItem("LOAD GAME", 0.65);
@@ -52,21 +59,50 @@ public class MainMenuViewHelper {
         mainMenu.setId("mainMenu");
         this.root = root;
         root.getChildren().add(mainMenu);
-
-        title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
-
+        title.setFont(Font.font("Tw Cen MT Condensed",
+        		FontWeight.SEMI_BOLD, 50));
     }
 
+   /**
+    * Returns the new game button.
+    * @return new game button
+    */
     public MenuItem getNewGameButton() {
         return newGame;
     }
+    /**
+     * Returns the load game button.
+     * @return load button
+     */
     public MenuItem getLoadGameButton() {
         return loadGame;
     }
-    public MenuItem getOptionsButton() {return options;}
-    public MenuItem getHelpButton() {return help;}
+    /**
+     * Returns the options button.
+     * @return options button
+     */
+    public MenuItem getOptionsButton() {
+    	return options;
+    }
+    /**
+     * Returns the help button.
+     * @return help button
+     */
+    public MenuItem getHelpButton() {
+    	return help;
+    }
+    /**
+     * Returns the exit game button.
+     * @return exit button
+     */
     public MenuItem getExitButton() {
         return exit;
     }
-    public Node getMainMenuPane() {return root;}
+    /**
+     * Returns the main menu root pane.
+     * @return the root pane
+     */
+    public Node getMainMenuPane() {
+    	return root;
+    }
 }
