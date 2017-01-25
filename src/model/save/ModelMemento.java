@@ -2,7 +2,6 @@ package model.save;
 
 import model.Player;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +21,23 @@ public class ModelMemento {
         return players;
     }
 
+    public void setPlayers(final List<Player> players) {
+        this.players = players;
+    }
+
     public double getTime() {
         return time;
+    }
+
+    public void setTime(final double time) {
+        this.time = time;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(final LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }
