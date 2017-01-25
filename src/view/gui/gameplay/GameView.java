@@ -15,6 +15,8 @@ public class GameView {
 
     private Pane pauseMenuPane = null;
 
+    private Pane mainMenuPane = null;
+
     /**
      * Instantiates a new {@link GameView}.
      */
@@ -35,6 +37,7 @@ public class GameView {
         this.pauseMenuPane = pauseMenuPane;
     }
 
+
     /**
      * Gets the root pane of a game view.
      * @return root pane.
@@ -44,4 +47,5 @@ public class GameView {
     }
 
     public Pane getPauseMenuPane() {return pauseMenuPane ;}
+
 }
