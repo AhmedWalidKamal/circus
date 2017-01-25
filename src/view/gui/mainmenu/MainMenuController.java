@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import logs.LogsManager;
+import logs.LoggingManager;
 
 import javafx.stage.FileChooser;
 import plugins.PluginLoader;
@@ -107,7 +107,7 @@ implements Initializable, ControlledScenes {
      */
     private void configureNewGameButton() {
         MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
-            LogsManager.getInstance().info("NEW GAME STARTED");
+            LoggingManager.getInstance().info("NEW GAME STARTED");
             this.root.lookup("#mainMenu").setDisable(true);
             this.levelsPane.setVisible(true);
             this.levelsPane.toFront();
@@ -173,7 +173,7 @@ implements Initializable, ControlledScenes {
      */
     private void configureEasyLevelButton() {
         LevelsDialogViewHelper.getInstance().getEasyLevelButton().setOnMouseClicked(event -> {
-            LogsManager.getInstance().info("EASY LEVEL SELECTED");
+            LoggingManager.getInstance().info("EASY LEVEL SELECTED");
             this.gameData.setGameDifficulty(EASY_LEVEL);
             this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL,
@@ -190,7 +190,7 @@ implements Initializable, ControlledScenes {
         LevelsDialogViewHelper.getInstance().
         getNormalLevelButton().setOnMouseClicked(event -> {
         	this.gameData.setGameDifficulty(NORMAL_LEVEL);
-            LogsManager.getInstance().info("NORMAL LEVEL SELECTED");
+            LoggingManager.getInstance().info("NORMAL LEVEL SELECTED");
         	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL,
             		Main.GAMEVIEW_STYLESHEET, this.gameData);
@@ -204,7 +204,7 @@ implements Initializable, ControlledScenes {
      */
     private void configureHardLevelButton() {
         LevelsDialogViewHelper.getInstance().getHardLevelButton().setOnMouseClicked(event -> {
-            LogsManager.getInstance().info("HARD LEVEL SELECTED");
+            LoggingManager.getInstance().info("HARD LEVEL SELECTED");
         	this.gameData.setGameDifficulty(HARD_LEVEL);
         	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL,

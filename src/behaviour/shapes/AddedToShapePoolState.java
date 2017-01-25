@@ -1,7 +1,7 @@
 package behaviour.shapes;
 
 import javafx.application.Platform;
-import logs.LogsManager;
+import logs.LoggingManager;
 import model.shapes.Shape;
 
 class AddedToShapePoolState implements ShapeState {
@@ -17,7 +17,7 @@ class AddedToShapePoolState implements ShapeState {
 			context.getShape().setState(Shape.State.IN_POOL);
 			context.getShapePool().addReusableShape(context.getShape());
 			context.getViewController().removeFromRootPane(context.getShapeImageView());
-			LogsManager.getInstance().info("FALLEN SHAPE ADDED BACK TO THE SHAPE POOL");
+			LoggingManager.getInstance().info("FALLEN SHAPE ADDED BACK TO THE SHAPE POOL");
         });
 	}
     @Override
