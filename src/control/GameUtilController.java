@@ -49,7 +49,7 @@ public final class GameUtilController {
     /**
      * The total time for the game.
      */
-    private static final Integer GAMETIME = 60;
+    private static final Integer GAMETIME = 20;
 
     /**
      * Timeline object that progresses the actual time.

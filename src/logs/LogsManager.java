@@ -1,7 +1,6 @@
 package logs;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 public class LogsManager {
@@ -14,7 +13,7 @@ public class LogsManager {
 
     public static LogsManager getInstance() {
         if (instance == null) {
-            synchronized(LogsManager .class) {
+            synchronized(LogsManager.class) {
                 if (instance == null) {
                     instance = new LogsManager();
                 }
@@ -25,11 +24,11 @@ public class LogsManager {
 
    // private static final Logger logger = LogManager.getLogger(LogsManager.class.getName());
 
-    public void info (String message) {
+    public void info (final String message) {
         LogManager.getLogger(LogsManager.class.getName()).info(message);
     }
 
-    public void error (String message) {
+    public void error (final String message) {
         LogManager.getLogger(LogsManager.class.getName()).error(message);
     }
 }

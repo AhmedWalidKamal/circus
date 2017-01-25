@@ -165,15 +165,14 @@ implements Initializable, ControlledScenes {
 			}
 		}
 		if (playerOneScore.compareTo(playerTwoScore) == 0) {
-			gameWinnerText.setText("IT'S A TIE!");
+			gameWinnerText.setText(TIE_RESULT);
 			LogsManager.getInstance().info("TWO PLAYERS TIED");
 		} else if (playerOneScore.compareTo(playerTwoScore) > 0) {
-			gameWinnerText.setText("PLAYER ONE WINS!");
+			gameWinnerText.setText(PLAYER_ONE_WINS);
 			LogsManager.getInstance().info("PLAYER ONE WINS");
 		} else {
-			gameWinnerText.setText("PLAYER TWO WINS!");
+			gameWinnerText.setText(PLAYER_TWO_WINS);
 			LogsManager.getInstance().info("PLAYER TWO WINS");
-			gameWinnerText.setText(TIE_RESULT);
 		}
 	}
 
