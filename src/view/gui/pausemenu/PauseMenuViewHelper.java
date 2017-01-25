@@ -7,6 +7,9 @@ import javafx.scene.text.Text;
 import util.MenuBox;
 import util.MenuItem;
 
+/**
+ * Helper class for configuring the pause menu.
+ */
 public class PauseMenuViewHelper {
 
     private static PauseMenuViewHelper instance;

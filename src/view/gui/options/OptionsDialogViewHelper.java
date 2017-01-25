@@ -8,6 +8,10 @@ import javafx.scene.text.Text;
 import util.MenuBox;
 import util.MenuItem;
 
+/**
+ * Helper class for configuring the options dialog menu.
+ * @author Mohamed Tolba
+ */
 public class OptionsDialogViewHelper {
 
     private static OptionsDialogViewHelper instance;
@@ -25,10 +29,15 @@ public class OptionsDialogViewHelper {
         if (instance == null) {
             instance = new OptionsDialogViewHelper();
         }
-        return  instance;
+        return instance;
     }
 
-    public void configureTheLevelsDialog(final Pane root, final Text title) {
+    /**
+     * Configures the options dialog.
+     * @param root, the root pane for the dialog
+     * @param title, the title for the scene
+     */
+    public void configureOptionsDialog(final Pane root, final Text title) {
         addCharacters = new MenuItem("ADD CHARACTER", 0.8);
         addShapes = new MenuItem("ADD SHAPE", 0.8);
         close = new MenuItem("CLOSE",0.8);
@@ -44,11 +53,25 @@ public class OptionsDialogViewHelper {
 
     }
 
+    /**
+     * Returns the character button.
+     * @return add characters button
+     */
     public MenuItem getAddCharactersButton() {
         return addCharacters;
     }
+    /**
+     * Returns add shapes button
+     * @return add shapes button
+     */
     public MenuItem getAddShapesButton() {
         return addShapes;
     }
-    public MenuItem getCloseButton() {return close;}
+    /**
+     * Returns the close button
+     * @return close button
+     */
+    public MenuItem getCloseButton() {
+    	return close;
+    }
 }

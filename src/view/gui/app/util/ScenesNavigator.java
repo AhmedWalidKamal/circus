@@ -10,15 +10,25 @@ import javafx.scene.layout.StackPane;
 import view.gui.gameplay.GameViewController;
 import view.gui.mainmenu.util.GameData;
 
+/**
+ * The parent pane that holds all scenes' panes inside it, also
+ * connects all scenes with each other by keeping a map of loaded
+ * scenes and setting the current scene whenever required.
+ * @author Ahmed Walid
+ */
 public class ScenesNavigator extends StackPane {
 
+	/**
+	 * The map storing each scene by its name.
+	 */
     private final Map<String, Node> scenes;
-    private Map<String, ControlledScenes> controllers;
 
+    /**
+     * Initializes a new scenes navigator.
+     */
     public ScenesNavigator() {
         super();
         this.scenes = new HashMap<String, Node>();
-        this.controllers = new HashMap<>();
     }
 
     public void addScene(final String name, final Node screen) {
@@ -29,50 +39,71 @@ public class ScenesNavigator extends StackPane {
         return scenes.get(name);
     }
 
+    /**
+     * Loads the game view scene with its css file.
+     * @param name, the name of the scene
+     * @param resource, the url to the fxml file
+     * @param stylesheet, the url to the css file
+     * @param gameData, the data to be passed to the
+     * game for initialzing
+     */
     public void loadGame(final String name,
-    		final String resource, final String stylesheet, final GameData gameData) {
+    		final String resource,
+    		final String stylesheet, final GameData gameData) {
         try {
-            final FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
-            final Parent loadScreen = (Parent) myLoader.load();
-            final GameViewController gameViewController = ((GameViewController) myLoader.getController());
+            final FXMLLoader myLoader
+            = new FXMLLoader(getClass().getResource(resource));
+            final Parent loadScreen
+            = (Parent) myLoader.load();
+            final GameViewController gameViewController
+            = ((GameViewController) myLoader.getController());
             gameViewController.setScreenParent(this);
             gameViewController.startNewGame(gameData);
-            loadScreen.getStylesheets().add(this.getClass().getResource(stylesheet).toExternalForm());
+            loadScreen.getStylesheets().add(this.getClass().
+            		getResource(stylesheet).toExternalForm());
             if (scenes.get(name) != null) {
             	scenes.remove(name);
             }
             addScene(name, loadScreen);
-            addController(name, gameViewController);
         } catch (final Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void loadScene(final String name, final String resource, final String stylesheet) {
+    /**
+     * Loads the required scene and adds it to the map/
+     * @param name, the name of the scene
+     * @param resource, the url to the fxml file
+     * @param stylesheet, the url to the css file
+     */
+    public void loadScene(final String name,
+    		final String resource, final String stylesheet) {
         try {
-            final FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
-            final Parent loadScreen = (Parent) myLoader.load();
-            final ControlledScenes myScreenController = ((ControlledScenes) myLoader.getController());
+            final FXMLLoader myLoader
+            = new FXMLLoader(getClass().getResource(resource));
+            final Parent loadScreen
+            = (Parent) myLoader.load();
+            final ControlledScenes myScreenController
+            = ((ControlledScenes) myLoader.getController());
             myScreenController.setScreenParent(this);
-            loadScreen.getStylesheets().add(this.getClass().getResource(stylesheet).toExternalForm());
+            loadScreen.getStylesheets().add(this.
+            		getClass().
+            		getResource(stylesheet).toExternalForm());
             if (scenes.get(name) != null) {
             	scenes.remove(name);
             }
             addScene(name, loadScreen);
-            addController(name, myScreenController);
         } catch (final Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void addController(final String name, final ControlledScenes myScreenController) {
-		this.controllers.put(name, myScreenController);
-	}
-
-    public ControlledScenes getController(final String sceneID) {
-    	return this.controllers.get(sceneID);
-    }
-
+    /**
+     * Removes the current scene from the top layer
+     * and sets the scene with the required name
+     * as the current scene.
+     * @param name, the name of the scene to get on top
+     */
 	public void setScene(final String name) {
         if (scenes.get(name) != null) {
             if (!getChildren().isEmpty()) {
@@ -84,30 +115,15 @@ public class ScenesNavigator extends StackPane {
         } else {
             System.out.println("screen hasn't been loaded!!! \n");
         }
-
-
-        /*Node screenToRemove;
-         if(screens.get(name) != null){   //screen loaded
-         if(!getChildren().isEmpty()){    //if there is more than one screen
-         getChildren().add(0, screens.get(name));     //add the screen
-         screenToRemove = getChildren().get(1);
-         getChildren().remove(1);                    //remove the displayed screen
-         }else{
-         getChildren().add(screens.get(name));       //no one else been displayed, then just show
-         }
-         return true;
-         }else {
-         System.out.println("screen hasn't been loaded!!! \n");
-         return false;
-         }*/
     }
 
-    public boolean unloadScene(final String name) {
+	/**
+	 * Unloads a scene from the top of the scenes' stack.
+	 * @param name, the name of the scene to be unloaded.
+	 */
+    public void unloadScene(final String name) {
         if (scenes.remove(name) == null) {
             System.out.println("Screen didn't exist");
-            return false;
-        } else {
-            return true;
         }
     }
 }

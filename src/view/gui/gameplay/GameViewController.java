@@ -20,7 +20,12 @@ import view.gui.mainmenu.MainMenuViewHelper;
 import view.gui.mainmenu.util.GameData;
 import view.gui.pausemenu.PauseMenuViewHelper;
 
-public class GameViewController implements Initializable, ControlledScenes {
+/**
+ * The controller responsible for the game view and
+ * the pause and end scenes.
+ */
+public class GameViewController
+implements Initializable, ControlledScenes {
     /**
      * Root pane.
      */
@@ -46,6 +51,10 @@ public class GameViewController implements Initializable, ControlledScenes {
 
     private GameData gameData;
 
+    private static final String TIE_RESULT = "IT'S A TIE!";
+    private static final String PLAYER_ONE_WINS = "PLAYER ONE WINS!";
+    private static final String PLAYER_TWO_WINS = "PLAYER TWO WINS!";
+
     /**
      * Instance of {@link MainController} that allows control over both model
      * and view.
@@ -57,6 +66,10 @@ public class GameViewController implements Initializable, ControlledScenes {
      */
     private GameView gameView = null;
 
+    /**
+     * Initialzing the game view and configures pause and
+     * end scene buttons.
+     */
     @Override
     public final void initialize(final URL location,
                                  final ResourceBundle resources) {
@@ -77,6 +90,11 @@ public class GameViewController implements Initializable, ControlledScenes {
         configureEndGameButtons();
     }
 
+    /**
+     * Starts a new game by sending the data to the main controller
+     * and initialzing the initial view of the game.
+     * @param gameData
+     */
 	public void startNewGame(final GameData gameData) {
     	this.gameData = gameData;
     	this.mainController = new MainController();
@@ -85,6 +103,10 @@ public class GameViewController implements Initializable, ControlledScenes {
         setKeyBinding();
         this.mainController.startNewGame(this.gameData);
     }
+
+	/**
+	 * Binds the pane's visibility with the managed property.
+	 */
     private void setVisibilityBindingEndGame() {
 		endGamePane.managedProperty().bind(endGamePane.visibleProperty());
 		endGamePane.setVisible(false);
@@ -101,6 +123,9 @@ public class GameViewController implements Initializable, ControlledScenes {
                 .executeKeyCommand(event.getCode(), false));
     }
 
+    /**
+	 * Binds the pane's visibility with the managed property.
+	 */
     private void setVisibilityBindingPauseMenu() {
         pauseMenuPane.managedProperty().bind(pauseMenuPane.visibleProperty());
         pauseMenuPane.setVisible(false);
@@ -110,6 +135,9 @@ public class GameViewController implements Initializable, ControlledScenes {
         return this.gameView;
     }
 
+    /**
+     * Displays the end game scene.
+     */
 	public void showEndGameScene() {
 		this.mainController.pause();
 		determineWinner();
@@ -118,6 +146,10 @@ public class GameViewController implements Initializable, ControlledScenes {
         this.endGamePane.requestFocus();
 	}
 
+	/**
+	 * Determines the message to be displayed according to
+	 * who scored more points.
+	 */
 	private void determineWinner() {
 		Score playerOneScore = new Score();
 		Score playerTwoScore = new Score();
@@ -131,15 +163,17 @@ public class GameViewController implements Initializable, ControlledScenes {
 			}
 		}
 		if (playerOneScore.compareTo(playerTwoScore) == 0) {
-			gameWinnerText.setText("IT'S A TIE!");
+			gameWinnerText.setText(TIE_RESULT);
 		} else if (playerOneScore.compareTo(playerTwoScore) > 0) {
-			gameWinnerText.setText("PLAYER ONE WINS!");
+			gameWinnerText.setText(PLAYER_ONE_WINS);
 		} else {
-			gameWinnerText.setText("PLAYER TWO WINS!");
+			gameWinnerText.setText(PLAYER_TWO_WINS);
 		}
-		gameWinnerText.setOpacity(1.0);
 	}
 
+	/**
+	 * Configures the end game scene buttons' actions.
+	 */
 	private void configureEndGameButtons() {
 	    EndGameViewHelper.getInstance().getRestartGameButton().setOnMouseClicked(event -> {
 	    	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
@@ -154,6 +188,9 @@ public class GameViewController implements Initializable, ControlledScenes {
         });
 	}
 
+	/**
+	 * Configures the pause menu buttons' actions.
+	 */
     private void configurePauseMenuButtons() {
     	PauseMenuViewHelper.
     	getInstance().getResumeButton().

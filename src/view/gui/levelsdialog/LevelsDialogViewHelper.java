@@ -7,11 +7,16 @@ import javafx.scene.text.Text;
 import util.MenuBox;
 import util.MenuItem;
 
+/**
+ * The class resposible for displaying the difficulty menu
+ * to the user.
+ * @author Salma Ahmed
+ */
 public class LevelsDialogViewHelper {
 
     private static LevelsDialogViewHelper instance;
     private MenuItem easy;
-    private MenuItem medium;
+    private MenuItem normal;
     private MenuItem hard;
     private LevelsDialogViewHelper() {
 
@@ -21,17 +26,22 @@ public class LevelsDialogViewHelper {
         if (instance == null) {
             instance = new LevelsDialogViewHelper();
         }
-        return  instance;
+        return instance;
     }
 
+    /**
+     * Configures the difficulty menu scene.
+     * @param root, the root pane of the scene
+     * @param title, the title text of the scene
+     */
     public void configureTheLevelsDialog(final Pane root, final Text title) {
         easy = new MenuItem("EASY", 0.8);
-        medium = new MenuItem("MEDIUM", 0.8);
+        normal = new MenuItem("NORMAL", 0.8);
         hard = new MenuItem("HARD", 0.8);
 
         MenuBox levelsDialog = new MenuBox(
                 easy,
-                medium,
+                normal,
                 hard);
         levelsDialog.setTranslateX(170);
         levelsDialog.setTranslateY(200);
@@ -40,12 +50,24 @@ public class LevelsDialogViewHelper {
 
     }
 
+    /**
+     * Return the easy level button.
+     * @return easy level button
+     */
     public MenuItem getEasyLevelButton() {
         return easy;
     }
-    public MenuItem getMediumLevelButton() {
-        return medium;
+    /**
+     * Return the normal level button.
+     * @return normal level button
+     */
+    public MenuItem getNormalLevelButton() {
+        return normal;
     }
+    /**
+     * Return the hard level button.
+     * @return hard level button
+     */
     public MenuItem getHardLevelButton() {
         return hard;
     }
