@@ -30,7 +30,7 @@ public class LevelsController {
             case "EASY":
                 currentLevel = new EasyLevel();
                 break;
-            case "MEDIUM":
+            case "NORMAL":
                 currentLevel = new NormalLevel();
                 break;
             case "HARD":

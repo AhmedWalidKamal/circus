@@ -1,5 +1,7 @@
 package control;
 
+import java.util.ArrayList;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -18,8 +20,6 @@ import model.Timer;
 import model.save.ModelMemento;
 import util.Score;
 import util.Shelf;
-
-import java.util.ArrayList;
 
 /**
  * Acts as a control to all game utilities (score, shelves, ... etc).
@@ -50,7 +50,7 @@ public final class GameUtilController {
     /**
      * The total time for the game.
      */
-    private Integer gameTime = 20;
+    private Integer gameTime = 60;
 
     /**
      * Timeline object that progresses the actual time.
@@ -131,9 +131,9 @@ public final class GameUtilController {
 		this.secondPlayerLabel.setTextFill(Color.RED);
 		this.secondPlayerLabel.setStyle("-fx-font-size: 4em;");
         this.firstPlayerScore.set(mainController.getPlayersController()
-                .getPlayers().get(0).getScore().getCurrentScore());
-        this.secondPlayerScore.set(mainController.getPlayersController()
                 .getPlayers().get(1).getScore().getCurrentScore());
+        this.secondPlayerScore.set(mainController.getPlayersController()
+                .getPlayers().get(0).getScore().getCurrentScore());
         final StackPane pane1 = new StackPane();
         pane1.getChildren().add(this.firstPlayerLabel);
         StackPane.setAlignment(this.firstPlayerLabel, Pos.TOP_LEFT);

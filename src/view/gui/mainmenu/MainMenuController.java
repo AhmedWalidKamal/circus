@@ -9,10 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
-import logs.LoggingManager;
-
 import javafx.stage.FileChooser;
+import logs.LoggingManager;
 import plugins.PluginLoader;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
@@ -51,7 +49,7 @@ implements Initializable, ControlledScenes {
     private FileChooser fileChooser;
 
     private static final String EASY_LEVEL = "EASY";
-    private static final String NORMAL_LEVEL = "MEDIUM";
+    private static final String NORMAL_LEVEL = "NORMAL";
     private static final String HARD_LEVEL = "HARD";
     private static final String CHARACTER = "CHARACTER";
     private static final String SHAPE = "SHAPE";

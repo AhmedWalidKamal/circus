@@ -27,7 +27,7 @@ class FetchedState implements ShapeState {
 						&& shape1.getColor().
 						equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
-					LoggingManager.getInstance().info( player.getName()+" SCORED POINTS");
+					LoggingManager.getInstance().info( player.getName() + " SCORED POINTS");
 					Platform.runLater(() -> {
 						context.getViewController().removeFromRootPane(context
 								.getShapesController().getCorrespondingShape(shape1));

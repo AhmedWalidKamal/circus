@@ -1,5 +1,10 @@
 package control;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
 import behaviour.keyBinding.keyHandlers.MoveRightHandler;
@@ -13,11 +18,6 @@ import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
 import model.characters.util.CharacterFactory;
 import model.save.ModelMemento;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Acts as a control to players behavior, has references to model that allow
@@ -81,14 +81,14 @@ public final class PlayersController {
         mainController.getViewController().addToRootPane(redClownImage);
     }
 
-    private void attachFirstKeyMap(ImageView imageView) {
+    private void attachFirstKeyMap(final ImageView imageView) {
         KeyMap keyMap = new KeyMap(imageView);
         keyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler());
         keyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler());
         mainController.getInputController().addKeyMap(keyMap);
     }
 
-    private void attachSecondKeyMap(ImageView imageView) {
+    private void attachSecondKeyMap(final ImageView imageView) {
         KeyMap keyMap = new KeyMap(imageView);
         keyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
         keyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
@@ -128,7 +128,7 @@ public final class PlayersController {
     }
 
     public void collectMemento(final ModelMemento memento) {
-        memento.setPlayers((List) getPlayers());
+        memento.setPlayers(getPlayers());
     }
 
     public void loadFromMemento(final ModelMemento memento) {
