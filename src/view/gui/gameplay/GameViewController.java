@@ -45,6 +45,10 @@ public class GameViewController implements Initializable, ControlledScenes {
 
     private GameData gameData;
 
+    private static final String TIE_RESULT = "IT'S A TIE!";
+    private static final String PLAYER_ONE_WINS = "PLAYER ONE WINS!";
+    private static final String PLAYER_TWO_WINS = "PLAYER TWO WINS!";
+
     /**
      * Instance of {@link MainController} that allows control over both model
      * and view.
@@ -129,13 +133,12 @@ public class GameViewController implements Initializable, ControlledScenes {
 			}
 		}
 		if (playerOneScore.compareTo(playerTwoScore) == 0) {
-			gameWinnerText.setText("IT'S A TIE!");
+			gameWinnerText.setText(TIE_RESULT);
 		} else if (playerOneScore.compareTo(playerTwoScore) > 0) {
-			gameWinnerText.setText("PLAYER ONE WINS!");
+			gameWinnerText.setText(PLAYER_ONE_WINS);
 		} else {
-			gameWinnerText.setText("PLAYER TWO WINS!");
+			gameWinnerText.setText(PLAYER_TWO_WINS);
 		}
-		gameWinnerText.setOpacity(1.0);
 	}
 
 	private void configureEndGameButtons() {
