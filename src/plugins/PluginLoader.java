@@ -2,16 +2,13 @@ package plugins;
 
 
 
-import logs.LogsManager;
+import logs.LoggingManager;
 import model.characters.util.CharacterFactory;
-import model.shapes.Shape;
 import model.shapes.util.ShapeFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -85,7 +82,7 @@ public class PluginLoader {
                     | IOException
                     | IllegalAccessException
                     | NoSuchFieldException e) {
-                LogsManager.getInstance().info("FAILED TO LOAD CLASS");
+                LoggingManager.getInstance().info("FAILED TO LOAD CLASS");
                 e.printStackTrace();
             }
         }

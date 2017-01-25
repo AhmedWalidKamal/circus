@@ -1,1 +1,21 @@
-[INFO ] 2017-01-25 21:06:46.405 [JavaFX Application Thread] LogsManager - GAME OPENED 
+[INFO ] 2017-01-25 22:07:12.128 [JavaFX Application Thread] LoggingManager - GAME OPENED 
+[INFO ] 2017-01-25 22:07:38.491 [JavaFX Application Thread] LoggingManager - NEW GAME STARTED 
+[INFO ] 2017-01-25 22:07:40.144 [JavaFX Application Thread] LoggingManager - EASY LEVEL SELECTED 
+[INFO ] 2017-01-25 22:07:43.016 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:07:46.401 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:07:46.867 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:07:46.876 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:08:25.077 [JavaFX Application Thread] LoggingManager - GAME OPENED 
+[INFO ] 2017-01-25 22:08:55.103 [JavaFX Application Thread] LoggingManager - NEW GAME STARTED 
+[INFO ] 2017-01-25 22:08:56.583 [JavaFX Application Thread] LoggingManager - EASY LEVEL SELECTED 
+[INFO ] 2017-01-25 22:08:57.360 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:08:58.788 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:09:00.783 [JavaFX Application Thread] LoggingManager - NEW SHAPE CREATED 
+[INFO ] 2017-01-25 22:09:01.363 [JavaFX Application Thread] LoggingManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 22:09:02.381 [JavaFX Application Thread] LoggingManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 22:09:02.784 [JavaFX Application Thread] LoggingManager - SHAPE REUSED FROM SHAPE POOL 
+[INFO ] 2017-01-25 22:09:04.302 [JavaFX Application Thread] LoggingManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 22:09:04.787 [JavaFX Application Thread] LoggingManager - SHAPE REUSED FROM SHAPE POOL 
+[INFO ] 2017-01-25 22:09:06.291 [JavaFX Application Thread] LoggingManager - FALLEN SHAPE ADDED BACK TO THE SHAPE POOL 
+[INFO ] 2017-01-25 22:09:06.786 [JavaFX Application Thread] LoggingManager - SHAPE REUSED FROM SHAPE POOL 
+[INFO ] 2017-01-25 22:09:08.048 [JavaFX Application Thread] LoggingManager - GAME PAUSED 

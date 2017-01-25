@@ -1,6 +1,6 @@
 package behaviour.shapes.util;
 
-import logs.LogsManager;
+import logs.LoggingManager;
 import model.shapes.Shape;
 
 import java.util.LinkedList;
@@ -16,18 +16,18 @@ public class ShapePool {
 
     public Shape create() {
         if (!isEmpty()) {
-            LogsManager.getInstance().info( "SHAPE REUSED FROM SHAPE POOL");
+            LoggingManager.getInstance().info( "SHAPE REUSED FROM SHAPE POOL");
             return reusableShapes.poll();
         }
         Shape shape = ShapeCreator.createShape();
         shape.setState(Shape.State.CREATED);
-        LogsManager.getInstance().info( "NEW SHAPE CREATED");
+        LoggingManager.getInstance().info( "NEW SHAPE CREATED");
         return shape;
     }
 
     public synchronized void addReusableShape(final Shape shape) {
         if (isFull()) {
-            LogsManager.getInstance().error("SHAPE POOL IS FULL !");
+            LoggingManager.getInstance().error("SHAPE POOL IS FULL !");
             throw new RuntimeException("Pool is full!");
         }
         reusableShapes.add(shape);

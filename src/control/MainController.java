@@ -142,7 +142,7 @@ public final class MainController {
      * create shapes and move them.. etc).
      */
     public void startNewGame(final GameData gameData) {
-        this.playMusic();
+
         levelsController.chooseLevel(gameData.getGameDifficulty());
         gameUtilController.prepareGame();
         playersController.prepareGame();
@@ -163,11 +163,5 @@ public final class MainController {
         shapesController.resumeThread();
         gameUtilController.resumeTime();
     }
-    public void playMusic(){
-        /*String path = "C:\\Users\\Samsung\\git\\circus-of-plates\\The_Lights_Galaxia_-_02_-_While_She_Sleeps_Morning_Edit.mp3";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        MediaView mediaView = new MediaView(mediaPlayer);*/
-    }
+
 }
