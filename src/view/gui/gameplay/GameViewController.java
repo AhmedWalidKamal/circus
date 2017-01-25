@@ -16,6 +16,7 @@ import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
 import view.gui.endgame.EndGameViewHelper;
+import view.gui.mainmenu.MainMenuViewHelper;
 import view.gui.mainmenu.util.GameData;
 import view.gui.pausemenu.PauseMenuViewHelper;
 
@@ -63,6 +64,7 @@ public class GameViewController implements Initializable, ControlledScenes {
         gameView = new GameView();
         gameView.setRootPane(this.root);
         gameView.setPauseMenuPane(this.pauseMenuPane);
+
         PauseMenuViewHelper.getInstance().
         configureThePauseMenu(this.pauseMenuPane,
         		this.pauseMenuTitle);
@@ -171,6 +173,7 @@ public class GameViewController implements Initializable, ControlledScenes {
     	PauseMenuViewHelper.
     	getInstance().getReturnToMenuMainButton().
     	setOnMouseClicked(event -> {
+			MainMenuViewHelper.getInstance().getMainMenuPane().lookup("#mainMenu").setDisable(false);
     		this.sceneNavigator.setScene(Main.MAINMENU_ID);
     	});
 

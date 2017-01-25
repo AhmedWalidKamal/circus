@@ -147,4 +147,8 @@ public class MainMenuController implements Initializable, ControlledScenes {
         levelsPane.toBack();
         levelsPane.requestFocus();
     }
+
+    public Node getRootPane() {
+        return this.root;
+    }
 }

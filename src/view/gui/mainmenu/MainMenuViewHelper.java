@@ -2,6 +2,7 @@ package view.gui.mainmenu;
 
 
 
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -17,6 +18,7 @@ public class MainMenuViewHelper {
     private MenuItem exit;
     private MenuItem options;
     private MenuItem help;
+    private Pane root = null;
     private MainMenuViewHelper() {
 
     }
@@ -48,6 +50,7 @@ public class MainMenuViewHelper {
         mainMenu.setTranslateX(100);
         mainMenu.setTranslateY(450);
         mainMenu.setId("mainMenu");
+        this.root = root;
         root.getChildren().add(mainMenu);
 
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
@@ -65,4 +68,5 @@ public class MainMenuViewHelper {
     public MenuItem getExitButton() {
         return exit;
     }
+    public Node getMainMenuPane() {return root;}
 }
