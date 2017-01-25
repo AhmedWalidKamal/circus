@@ -2,6 +2,7 @@
 /out/
 /temp/
 /log/
+/.log/
 /.idea/
 /.classpath/
 /.project/
