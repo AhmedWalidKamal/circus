@@ -119,7 +119,14 @@ implements Initializable, ControlledScenes {
      * Configures load game button's action.
      */
     private void configureLoadGameButton() {
-
+        MainMenuViewHelper.getInstance().getLoadGameButton().setOnMouseClicked(event -> {
+            File filePath = fileChooser.showOpenDialog(null);
+            if (filePath.toString().endsWith(".protobuff")) {
+                //TODO PASSING TO READER..
+            } else {
+                // TODO HANDLE AN ERROR OF UNSUPPORTED FORMAT
+            }
+        });
     }
 
     /**
@@ -167,6 +174,8 @@ implements Initializable, ControlledScenes {
             this.root.requestFocus();
         });
     }
+
+
 
     /**
      * Configures easy level button's action.
