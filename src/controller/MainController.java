@@ -1,6 +1,5 @@
 package controller;
 
-import view.gui.endgame.EndGameView;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 
@@ -41,8 +40,6 @@ public final class MainController {
      * Constructs new instances from sub-controllers.
      */
     private GameView gameView = null;
-
-    private EndGameView endGameView = null;
 
     private ViewController viewController = null;
 
@@ -134,14 +131,6 @@ public final class MainController {
      */
     public GameView getGameView() {
         return this.gameView;
-    }
-
-    public void setEndGameView(final EndGameView endGameView) {
-    	this.endGameView = endGameView;
-    }
-
-    public EndGameView getEndGameView() {
-    	return this.endGameView;
     }
 
     public void setDifficultyLevel(final String difficultyLevel){

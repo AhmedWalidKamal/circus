@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import model.Player;
+import util.Score;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
@@ -36,6 +38,9 @@ public class GameViewController implements Initializable, ControlledScenes {
     @FXML
     private Text endGameTitle;
 
+    @FXML
+    private Text gameWinnerText;
+
     private ScenesNavigator sceneNavigator;
 
     private GameData gameData;
@@ -58,8 +63,12 @@ public class GameViewController implements Initializable, ControlledScenes {
         gameView = new GameView();
         gameView.setRootPane(this.root);
         gameView.setPauseMenuPane(this.pauseMenuPane);
-        PauseMenuViewHelper.getInstance().configureThePauseMenu(this.pauseMenuPane,this.pauseMenuTitle);
-        EndGameViewHelper.getInstance().configureEndGameScene(this.endGamePane, this.endGameTitle);
+        PauseMenuViewHelper.getInstance().
+        configureThePauseMenu(this.pauseMenuPane,
+        		this.pauseMenuTitle);
+        EndGameViewHelper.getInstance().
+        configureEndGameScene(this.endGamePane,
+        		this.endGameTitle, this.gameWinnerText);
         setVisibilityBindingPauseMenu();
         setVisibilityBindingEndGame();
         configureExitGameButton();
@@ -104,9 +113,32 @@ public class GameViewController implements Initializable, ControlledScenes {
 
 	public void showEndGameScene() {
 		this.mainController.pause();
+		determineWinner();
         this.endGamePane.setVisible(true);
         this.endGamePane.toFront();
         this.endGamePane.requestFocus();
+	}
+
+	private void determineWinner() {
+		Score playerOneScore = new Score();
+		Score playerTwoScore = new Score();
+		boolean firstPlayer = true;
+		for (Player player : mainController.getPlayersController().getPlayers()) {
+			if (firstPlayer) {
+				playerOneScore = player.getScore();
+				firstPlayer = false;
+			} else {
+				playerTwoScore = player.getScore();
+			}
+		}
+		if (playerOneScore.compareTo(playerTwoScore) == 0) {
+			gameWinnerText.setText("IT'S A TIE!");
+		} else if (playerOneScore.compareTo(playerTwoScore) > 0) {
+			gameWinnerText.setText("PLAYER ONE WINS!");
+		} else {
+			gameWinnerText.setText("PLAYER TWO WINS!");
+		}
+		gameWinnerText.setOpacity(1.0);
 	}
 
 	private void configureExitGameButton() {

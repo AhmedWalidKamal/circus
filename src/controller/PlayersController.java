@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
 import behaviour.keyBinding.keyHandlers.MoveRightHandler;
@@ -11,10 +15,6 @@ import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
 import model.characters.util.CharacterFactory;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Acts as a controller to players behavior, has references to model that allow
@@ -55,23 +55,9 @@ public final class PlayersController {
         loadDefaultCharacters();
 
         //Player One.
-        Character redClown = CharacterFactory.getInstance().createCharacter(
-                RedClown.KEY);
-        Player playerOne = new Player(redClown);
-        ImageView redClownImage = new ImageView(redClown.getUrl());
-        bindImageToCharacter(redClown, redClownImage);
-        redClownImage.setX(SIDE_DISTANCE);
-        KeyMap redClownKeyMap = new KeyMap(redClownImage);
-        redClownKeyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
-        redClownKeyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
-        playerImageMap.put(playerOne, redClownImage);
-        mainController.getInputController().addKeyMap(redClownKeyMap);
-        mainController.getViewController().addToRootPane(redClownImage);
-
-        //Player Two.
         Character greenClown = CharacterFactory.getInstance().createCharacter(
                 GreenClown.KEY);
-        Player playerTwo = new Player(greenClown);
+        Player playerOne = new Player("PLAYER ONE", greenClown);
         ImageView greenClownImage = new ImageView(greenClown.getUrl());
         bindImageToCharacter(greenClown, greenClownImage);
         greenClownImage.setX(mainController.getViewController().getRootPanePrefWidth()
@@ -79,9 +65,23 @@ public final class PlayersController {
         KeyMap greenClownKeyMap = new KeyMap(greenClownImage);
         greenClownKeyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler());
         greenClownKeyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler());
-        playerImageMap.put(playerTwo, greenClownImage);
+        playerImageMap.put(playerOne, greenClownImage);
         mainController.getInputController().addKeyMap(greenClownKeyMap);
         mainController.getViewController().addToRootPane(greenClownImage);
+
+        //Player Two.
+        Character redClown = CharacterFactory.getInstance().createCharacter(
+                RedClown.KEY);
+        Player playerTwo = new Player("PLAYER TWO", redClown);
+        ImageView redClownImage = new ImageView(redClown.getUrl());
+        bindImageToCharacter(redClown, redClownImage);
+        redClownImage.setX(SIDE_DISTANCE);
+        KeyMap redClownKeyMap = new KeyMap(redClownImage);
+        redClownKeyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
+        redClownKeyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
+        playerImageMap.put(playerTwo, redClownImage);
+        mainController.getInputController().addKeyMap(redClownKeyMap);
+        mainController.getViewController().addToRootPane(redClownImage);
     }
 
     private void loadDefaultCharacters() {
@@ -93,7 +93,7 @@ public final class PlayersController {
         }
     }
 
-    private void bindImageToCharacter(Character character, ImageView image) {
+    private void bindImageToCharacter(final Character character, final ImageView image) {
         character.bindX(image.xProperty());
         character.bindY(image.yProperty());
         character.bindTranslateX(image.translateXProperty());
@@ -109,7 +109,7 @@ public final class PlayersController {
         return playerImageMap.keySet();
     }
 
-    public ImageView getCorrespondingImage(Player player) {
+    public ImageView getCorrespondingImage(final Player player) {
         return playerImageMap.get(player);
     }
 }

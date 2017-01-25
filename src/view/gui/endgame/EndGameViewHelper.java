@@ -25,7 +25,7 @@ public class EndGameViewHelper {
         return instance;
     }
 
-    public void configureEndGameScene(final Pane root, final Text title) {
+    public void configureEndGameScene(final Pane root, final Text title, final Text winner) {
         this.restartGameButton = new MenuItem("RESTART GAME");
         this.returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU");
         this.exitGameButton = new MenuItem("EXIT GAME");
@@ -34,12 +34,13 @@ public class EndGameViewHelper {
                 returnToMenuMainButton,
                 exitGameButton);
         endGameMenu.setLayoutX(170);
-        endGameMenu.setLayoutY(200);
+        endGameMenu.setLayoutY(350);
         root.getChildren().add(endGameMenu);
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD,50));
+        winner.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD,50));
     }
 
-    public MenuItem getRestartGameButton() {
+	public MenuItem getRestartGameButton() {
         return this.restartGameButton;
     }
 

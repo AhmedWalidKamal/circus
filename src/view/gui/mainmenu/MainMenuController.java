@@ -39,8 +39,11 @@ public class MainMenuController implements Initializable, ControlledScenes {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
             root.setFocusTraversable(true);
-            MainMenuViewHelper.getInstance().configureTheMainMenu(root, title);
-            LevelsDialogViewHelper.getInstance().configureTheLevelsDialog(this.levelsPane,this.LevelsDialogTitle);
+            MainMenuViewHelper.getInstance().
+            configureTheMainMenu(root, title);
+            LevelsDialogViewHelper.
+            getInstance().configureTheLevelsDialog(this.levelsPane,
+            		this.LevelsDialogTitle);
             setVisibilityBindingLevelsDialog();
             gameData = new GameData();
             configureNewGameButton();
