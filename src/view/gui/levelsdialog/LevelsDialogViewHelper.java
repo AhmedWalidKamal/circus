@@ -16,7 +16,7 @@ public class LevelsDialogViewHelper {
 
     private static LevelsDialogViewHelper instance;
     private MenuItem easy;
-    private MenuItem medium;
+    private MenuItem normal;
     private MenuItem hard;
     private LevelsDialogViewHelper() {
 
@@ -36,12 +36,12 @@ public class LevelsDialogViewHelper {
      */
     public void configureTheLevelsDialog(final Pane root, final Text title) {
         easy = new MenuItem("EASY", 0.8);
-        medium = new MenuItem("MEDIUM", 0.8);
+        normal = new MenuItem("NORMAL", 0.8);
         hard = new MenuItem("HARD", 0.8);
 
         MenuBox levelsDialog = new MenuBox(
                 easy,
-                medium,
+                normal,
                 hard);
         levelsDialog.setTranslateX(170);
         levelsDialog.setTranslateY(200);
@@ -58,11 +58,11 @@ public class LevelsDialogViewHelper {
         return easy;
     }
     /**
-     * Return the medium level button.
-     * @return medium level button
+     * Return the normal level button.
+     * @return normal level button
      */
-    public MenuItem getMediumLevelButton() {
-        return medium;
+    public MenuItem getNormalLevelButton() {
+        return normal;
     }
     /**
      * Return the hard level button.
