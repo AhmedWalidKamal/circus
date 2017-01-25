@@ -1,6 +1,7 @@
 /bin/
 /out/
 /temp/
+/log/
 /.idea/
 /.classpath/
 /.project/
