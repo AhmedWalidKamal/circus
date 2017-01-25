@@ -11,6 +11,7 @@ public class ShapeCreator {
 	private static final int SCREEN_WIDTH = 1000;
 
 	public ShapeCreator() {
+
 	}
 
 	public static Shape createShape() {

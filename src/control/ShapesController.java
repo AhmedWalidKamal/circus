@@ -43,6 +43,7 @@ public final class ShapesController extends PauseableThread {
         int counter = 0;
         try {
             Class.forName("model.shapes.Plate");
+            Class.forName("model.shapes.Lego");
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
         }
