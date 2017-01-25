@@ -23,7 +23,6 @@ public final class ShapesController extends PauseableThread {
      * {@link MainController} reference.
      */
     private MainController mainController = null;
-    private ShapePool shapePool = null;
     private boolean paused = false;
     private List<PauseableThread> runningThreads = null;
     private Map<Shape, ImageView> shapeImageViewMap = null;
@@ -34,7 +33,6 @@ public final class ShapesController extends PauseableThread {
      */
     public ShapesController(final MainController mainController) {
         this.mainController = mainController;
-        this.shapePool = new ShapePool();
         runningThreads = new ArrayList<>();
         shapeImageViewMap = new HashMap<>();
     }
@@ -54,7 +52,7 @@ public final class ShapesController extends PauseableThread {
                 final Thread plateThread = new Thread("plate" + counter) {
                     @Override
                     public void run() {
-                        Shape shape = shapePool.create();
+                        Shape shape = ShapePool.getInstance().create();
                         ImageView shapeImage = new ImageView(shape.getUrl());
                         bindImageWithShape(shape, shapeImage);
                         ShapeContext context = new ShapeContext(shape, shapeImage,
@@ -62,7 +60,7 @@ public final class ShapesController extends PauseableThread {
                                 mainController.getViewController(),
                                 mainController.getGameUtilController(),
                                 mainController.getPlayersController(),
-                                mainController.getLevelsController(), shapePool);
+                                mainController.getLevelsController());
                         context.handle();
                     }
                 };

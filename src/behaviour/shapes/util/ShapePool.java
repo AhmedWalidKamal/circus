@@ -8,9 +8,16 @@ import java.util.Queue;
 
 public class ShapePool {
     private static final int MAX_SIZE = 100;
+    private static ShapePool shapePool = null;
     private Queue<Shape> reusableShapes = null;
 
-    public ShapePool() {
+    public synchronized static ShapePool getInstance() {
+        if (shapePool == null) {
+            shapePool = new ShapePool();
+        }
+        return shapePool;
+    }
+    private ShapePool() {
         reusableShapes = new LinkedList<>();
     }
 
