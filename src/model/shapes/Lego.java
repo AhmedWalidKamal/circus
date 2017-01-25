@@ -10,13 +10,9 @@ public class Lego extends Shape {
         ShapeFactory.getInstance().registerShape(KEY, Lego.class);
     }
 
-    public Lego(Color color) {
+    public Lego(final Color color) {
         super();
         super.color = color;
-    }
-
-    @Override
-    public String getKey() {
-        return KEY;
+        super.key = KEY;
     }
 }

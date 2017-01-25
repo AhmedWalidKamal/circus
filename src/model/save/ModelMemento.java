@@ -11,6 +11,9 @@ public class ModelMemento {
     private Timer timer;
     private LocalDateTime localDateTime = null;
 
+    public ModelMemento() {
+
+    }
     public ModelMemento(final List<Player> players, final Timer timer, final LocalDateTime localDateTime) {
         this.players = players;
         this.timer = timer;
@@ -25,7 +28,7 @@ public class ModelMemento {
         this.players = players;
     }
 
-    public Timer getTime() {
+    public Timer getTimer() {
         return this.timer;
     }
 

@@ -8,12 +8,16 @@ public class Player implements Comparable<Player> {
     private String name = null;
     private Character character = null;
 
-    public Player(Character character) {
+    public Player() {
+    	this.score = new Score();
+    }
+
+    public Player(final Character character) {
         score = new Score();
         this.character = character;
     }
 
-    public Player(String name, Character character) {
+    public Player(final String name, final Character character) {
         score = new Score();
         this.name = name;
         this.character = character;
