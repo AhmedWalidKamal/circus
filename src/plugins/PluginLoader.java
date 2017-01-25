@@ -2,6 +2,8 @@ package plugins;
 
 
 
+import logs.LogsManager;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -67,16 +69,15 @@ public class PluginLoader {
                     getKeyMethod = loadedClass.getMethod("getKey", (Class<?>) null);
                 }
 
-
                 String loadedClassKey = (String) getKeyMethod.invoke(null);
                 System.out.println(loadedClassKey);
-
                 loader.close();
             } catch (ClassNotFoundException
                     | IOException
                     | NoSuchMethodException
                     | IllegalAccessException
                     | InvocationTargetException e) {
+                LogsManager.getInstance().info("FAILED TO LOAD CLASS");
                 e.printStackTrace();
             }
         }

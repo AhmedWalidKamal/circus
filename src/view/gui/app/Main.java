@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import logs.LogsManager;
 import view.gui.app.util.ScenesNavigator;
 
 public class Main extends Application {
@@ -26,6 +27,7 @@ public class Main extends Application {
     	primaryStage.setScene(new Scene(root));
     	primaryStage.show();
         root.toFront();
+		LogsManager.getInstance().info("GAME OPENED");
     }
 
  	public static final void main(final String[] args) {

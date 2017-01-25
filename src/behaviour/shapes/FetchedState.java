@@ -1,6 +1,7 @@
 package behaviour.shapes;
 
 import javafx.application.Platform;
+import logs.LogsManager;
 import model.Player;
 import model.shapes.Shape;
 
@@ -26,6 +27,7 @@ class FetchedState implements ShapeState {
 						&& shape1.getColor().
 						equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
+					LogsManager.getInstance().info( player.getPlayerName()+" SCORED POINTS");
 					Platform.runLater(() -> {
 						context.getViewController().removeFromRootPane(context
 								.getShapesController().getCorrespondingShape(shape1));
@@ -53,6 +55,7 @@ class FetchedState implements ShapeState {
 						equals(shape2.getColor())
 						&& shape1.getColor().equals(shape3.getColor())) {
 					context.getGameUtilController().updateScore(player);
+					LogsManager.getInstance().info( player.getPlayerName()+" SCORED POINTS");
 					Platform.runLater(() -> {
 						context.getViewController().removeFromRootPane(context
 								.getShapesController().getCorrespondingShape(shape1));

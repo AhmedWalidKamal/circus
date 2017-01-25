@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import logs.LogsManager;
 import model.Player;
 import model.Timer;
 import util.Score;
@@ -186,6 +187,7 @@ public final class GameUtilController {
 		final Score currentScore = player.getScore();
 		currentScore.setCurrentScore(currentScore.getCurrentScore() + 100);
 		player.setScore(currentScore);
+        LogsManager.getInstance().info(player.getPlayerName() + "`S SCORE IS NOW "+ currentScore);
 		Platform.runLater(() -> {
 			if (player.getCharacter().getKey().equals("greenClown")) {
 				secondPlayerScore.set(player.getScore().getCurrentScore());

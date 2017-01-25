@@ -42,7 +42,7 @@ public class MainMenuViewHelper {
      * @param title, the title of the scene
      */
    public void configureTheMainMenu(final Pane root, final Text title) {
-        newGame = new MenuItem("NEW GAME", 0.65);
+        newGame = new MenuItem("NEW GAME",0.65);
         loadGame = new MenuItem("LOAD GAME", 0.65);
         exit = new MenuItem("EXIT", 0.65);
         options = new MenuItem("OPTIONS",0.65);

@@ -142,6 +142,7 @@ public final class MainController {
         playersController.prepareGame();
         inputController.start();
         shapesController.start();
+
     }
 
     public void pause() {

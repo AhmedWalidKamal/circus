@@ -10,6 +10,7 @@ import behaviour.keyBinding.keyHandlers.MoveRightHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import logs.LogsManager;
 import model.Player;
 import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
@@ -90,6 +91,7 @@ public final class PlayersController {
             Class.forName("model.characters.supportedCharacters.RedClown");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            LogsManager.getInstance().info("FAILED TO LOAD CLASS");
         }
     }
 
