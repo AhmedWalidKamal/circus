@@ -164,10 +164,10 @@ public final class MainController {
         gameUtilController.resumeTime();
     }
     public void playMusic(){
-        String path = "C:\\Users\\Samsung\\git\\circus-of-plates\\The_Lights_Galaxia_-_02_-_While_She_Sleeps_Morning_Edit.mp3";
+        /*String path = "C:\\Users\\Samsung\\git\\circus-of-plates\\The_Lights_Galaxia_-_02_-_While_She_Sleeps_Morning_Edit.mp3";
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
-       // MediaView mediaView = new MediaView(mediaPlayer);
+        MediaView mediaView = new MediaView(mediaPlayer);*/
     }
 }
