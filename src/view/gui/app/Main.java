@@ -3,9 +3,14 @@ package view.gui.app;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import logs.LogsManager;
+import logs.LoggingManager;
 import view.gui.app.util.ScenesNavigator;
+
+import java.io.File;
 
 public class Main extends Application {
 
@@ -27,7 +32,12 @@ public class Main extends Application {
     	primaryStage.setScene(new Scene(root));
     	primaryStage.show();
         root.toFront();
-		LogsManager.getInstance().info("GAME OPENED");
+//		String path = "C:\\Users\\Samsung\\git\\circus-of-plates\\lib\\backgroundMusic.mp3";
+//		Media media = new Media(new File(path).toURI().toString());
+//		MediaPlayer mediaPlayer = new MediaPlayer(media);
+//		mediaPlayer.setAutoPlay(true);
+//		MediaView mediaView = new MediaView(mediaPlayer);
+		LoggingManager.getInstance().info("GAME OPENED");
     }
 
  	public static final void main(final String[] args) {

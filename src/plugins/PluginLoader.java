@@ -2,12 +2,13 @@ package plugins;
 
 
 
-import logs.LogsManager;
+import logs.LoggingManager;
+import model.characters.util.CharacterFactory;
+import model.shapes.util.ShapeFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -44,10 +45,10 @@ public class PluginLoader {
                     className = classFile.replaceAll(CLASS_EXTENSION, "");
 
                     if (filePath.contains(PACKAGE_DIR_CHAR)) {
-                        file = new File(filePath.substring(filePath.
+                        file = new File(filePath.substring(0,filePath.
                                 indexOf(PACKAGE_DIR_CHAR)));
                     } else if (filePath.contains(PACKAGE_DIR_SHAPE)) {
-                        file = new File(filePath.substring(filePath.
+                        file = new File(filePath.substring(0, filePath.
                                 indexOf(PACKAGE_DIR_SHAPE)));
                     }
                 }
@@ -56,28 +57,32 @@ public class PluginLoader {
                 }
                 URLClassLoader loader = URLClassLoader.newInstance(
                         new URL[]{file.toURI().toURL()});
-                Method getKeyMethod;
                 if (key.equalsIgnoreCase("character")) {
                     @SuppressWarnings("unchecked")
                     Class<? extends model.characters.Character> loadedClass = (Class<? extends model.characters.Character>) (loader.
                             loadClass(PACKAGE_NAME_CHAR + className));
-                    getKeyMethod = loadedClass.getMethod("getKey", (Class<?>) null);
+                    Field field = loadedClass.getDeclaredField("KEY");
+                    field.setAccessible(true);
+                    System.out.println(field.get(null));
+                    System.out.println(CharacterFactory.getInstance().getRegisteredCharacters());
                 } else {
                     @SuppressWarnings("unchecked")
                     Class<? extends model.shapes.Shape> loadedClass = (Class<? extends model.shapes.Shape>) (loader.
                             loadClass(PACKAGE_NAME_SHAPE + className));
-                    getKeyMethod = loadedClass.getMethod("getKey", (Class<?>) null);
+                    Field field = loadedClass.getDeclaredField("KEY");
+                    field.setAccessible(true);
+                    System.out.println(field.get(null));
+                    System.out.println(ShapeFactory.getInstance().getRegisteredShapes());
+
                 }
 
-                String loadedClassKey = (String) getKeyMethod.invoke(null);
-                System.out.println(loadedClassKey);
+
                 loader.close();
             } catch (ClassNotFoundException
                     | IOException
-                    | NoSuchMethodException
                     | IllegalAccessException
-                    | InvocationTargetException e) {
-                LogsManager.getInstance().info("FAILED TO LOAD CLASS");
+                    | NoSuchFieldException e) {
+                LoggingManager.getInstance().info("FAILED TO LOAD CLASS");
                 e.printStackTrace();
             }
         }

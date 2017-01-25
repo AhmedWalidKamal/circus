@@ -5,7 +5,7 @@ import java.util.List;
 
 import behaviour.keyBinding.KeyMap;
 import javafx.scene.input.KeyCode;
-import logs.LogsManager;
+import logs.LoggingManager;
 import util.PauseableThread;
 
 /**
@@ -61,7 +61,7 @@ public final class InputController extends PauseableThread {
             mainController.getGameView().getPauseMenuPane().requestFocus();
 
             mainController.pause();
-            LogsManager.getInstance().info("GAME PAUSED");
+            LoggingManager.getInstance().info("GAME PAUSED");
         }
         Thread executionThread = new Thread(() -> {
             for (KeyMap keyMap : keyMapList) {

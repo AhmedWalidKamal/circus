@@ -4,7 +4,6 @@ import behaviour.keyBinding.KeyHandler;
 import behaviour.keyBinding.KeyMap;
 import javafx.application.Platform;
 import javafx.scene.Node;
-import logs.LogsManager;
 
 /**
  * Moves {@link Node} in {@link KeyMap} to the left by 1 pixel.

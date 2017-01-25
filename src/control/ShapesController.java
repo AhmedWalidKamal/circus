@@ -4,7 +4,7 @@ import behaviour.shapes.ShapeContext;
 import behaviour.shapes.util.ShapePool;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
-import logs.LogsManager;
+import logs.LoggingManager;
 import model.shapes.Shape;
 import util.PauseableThread;
 
@@ -42,9 +42,9 @@ public final class ShapesController extends PauseableThread {
         int counter = 0;
         try {
             Class.forName("model.shapes.Plate");
-            Class.forName("model.shapes.Lego");
+            /*Class.forName("model.shapes.Lego");*/
         } catch (final ClassNotFoundException e) {
-            LogsManager.getInstance().info("FAILED TO LOAD CLASS");
+            LoggingManager.getInstance().info("FAILED TO LOAD CLASS");
             e.printStackTrace();
         }
         while (true) {

@@ -11,7 +11,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import logs.LogsManager;
+import logs.LoggingManager;
 import model.Player;
 import util.PauseableThread;
 import util.Shelf;
@@ -123,7 +123,7 @@ class FallingState extends Observable implements ShapeState {
 
     protected final void goNext(final Player player) {
     	if (context.getShape().getState() == Shape.State.FETCHED) {
-            LogsManager.getInstance().info("SHAPE FETCHED BY " + player.getName());
+            LoggingManager.getInstance().info("SHAPE FETCHED BY " + player.getName());
     	    FetchedState fetchedState = new FetchedState(context, player);
     	    context.setShapeState(fetchedState);
     	    context.getShapesController().putFetchedShape(context.getShapeImageView()

@@ -1,8 +1,13 @@
 package control;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 import view.gui.mainmenu.util.GameData;
+
+import java.io.File;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -137,11 +142,13 @@ public final class MainController {
      * create shapes and move them.. etc).
      */
     public void startNewGame(final GameData gameData) {
+
         levelsController.chooseLevel(gameData.getGameDifficulty());
         gameUtilController.prepareGame();
         playersController.prepareGame();
         inputController.start();
         shapesController.start();
+
 
     }
 
@@ -156,4 +163,5 @@ public final class MainController {
         shapesController.resumeThread();
         gameUtilController.resumeTime();
     }
+
 }
