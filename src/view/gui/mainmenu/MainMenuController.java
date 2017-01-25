@@ -39,7 +39,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
     private ScenesNavigator sceneNavigator;
 
     private final static String EASY_LEVEL = "EASY";
-    private final static String MEDIUM_LEVEL = "MEDIUM";
+    private final static String NORMAL_LEVEL = "NORMAL";
     private final static String HARD_LEVEL = "HARD";
 
     private GameData gameData;
@@ -61,7 +61,7 @@ public class MainMenuController implements Initializable, ControlledScenes {
             configureExitButton();
             configureCloseButton();
             configureEasyLevelButton();
-            configureMediumLevelButton();
+            configureNormalLevelButton();
             configureHardLevelButton();
     }
 
@@ -77,8 +77,6 @@ public class MainMenuController implements Initializable, ControlledScenes {
         optionsPane.setVisible(false);
 
     }
-
-
 
     private void configureNewGameButton() {
         MainMenuViewHelper.getInstance().getNewGameButton().setOnMouseClicked(event -> {
@@ -124,9 +122,9 @@ public class MainMenuController implements Initializable, ControlledScenes {
             manageDialogVisibility();
         });
     }
-    private void configureMediumLevelButton() {
+    private void configureNormalLevelButton() {
         LevelsDialogViewHelper.getInstance().getMediumLevelButton().setOnMouseClicked(event -> {
-        	this.gameData.setGameDifficulty(MEDIUM_LEVEL);
+        	this.gameData.setGameDifficulty(NORMAL_LEVEL);
         	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
             		Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
         	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);

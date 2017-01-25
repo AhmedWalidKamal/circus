@@ -1,7 +1,5 @@
 package view.gui.mainmenu;
 
-
-
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -52,9 +50,7 @@ public class MainMenuViewHelper {
         mainMenu.setId("mainMenu");
         this.root = root;
         root.getChildren().add(mainMenu);
-
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD, 50));
-
     }
 
     public MenuItem getNewGameButton() {
@@ -63,10 +59,16 @@ public class MainMenuViewHelper {
     public MenuItem getLoadGameButton() {
         return loadGame;
     }
-    public MenuItem getOptionsButton() {return options;}
-    public MenuItem getHelpButton() {return help;}
+    public MenuItem getOptionsButton() {
+    	return options;
+    }
+    public MenuItem getHelpButton() {
+    	return help;
+    }
     public MenuItem getExitButton() {
         return exit;
     }
-    public Node getMainMenuPane() {return root;}
+    public Node getMainMenuPane() {
+    	return root;
+    }
 }
