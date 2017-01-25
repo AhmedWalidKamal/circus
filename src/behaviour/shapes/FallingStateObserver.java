@@ -1,15 +1,14 @@
 package behaviour.shapes;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Pair;
 import model.Player;
 import model.characters.Character;
 import model.shapes.Shape;
 import util.Point;
-
-import java.util.Observable;
-import java.util.Observer;
 
 public class FallingStateObserver implements Observer {
 
@@ -44,6 +43,7 @@ public class FallingStateObserver implements Observer {
                 character.addToLeftStack(shape);
                 state.getContext().getShape().setState(Shape.State.FETCHED);
                 state.goNext(player);
+                return;
             } else if (Math.abs(rightStack.getX() - position.getX()) <= shapeImageView
                     .getImage().getWidth() / 4 && Math.abs(rightStack
                     .getY() - position.getY()) <= 5) {
@@ -57,6 +57,7 @@ public class FallingStateObserver implements Observer {
                 character.addToRightStack(shape);
                 state.getContext().getShape().setState(Shape.State.FETCHED);
                 state.goNext(player);
+                return;
             }
         }
     }

@@ -2,6 +2,7 @@ package control;
 
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
+import view.gui.mainmenu.util.GameData;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -42,8 +43,6 @@ public final class MainController {
     private GameView gameView = null;
 
     private ViewController viewController = null;
-
-    private String difficultyLevel;
 
     public MainController() {
         viewController = new ViewController(this);
@@ -133,15 +132,12 @@ public final class MainController {
         return this.gameView;
     }
 
-    public void setDifficultyLevel(final String difficultyLevel){
-        this.difficultyLevel=difficultyLevel;
-    }
     /**
      * Starts a new game, calls control to run over view (e.g: render players,
      * create shapes and move them.. etc).
      */
-    public void startNewGame() {
-        levelsController.chooseLevel(difficultyLevel);
+    public void startNewGame(final GameData gameData) {
+        levelsController.chooseLevel(gameData.getGameDifficulty());
         gameUtilController.prepareGame();
         playersController.prepareGame();
         inputController.start();

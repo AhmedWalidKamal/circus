@@ -6,6 +6,7 @@ public class HardLevel implements Level {
     private static final double HORIZONTAL_DURATION = 0.4;
     private static final double FALLING_RATE = 0.15;
     private static final long CREATION_INTERVAL = 500;
+    private static final String KEY = "HARD";
 
     @Override
     public long getCreationInterval() {
@@ -24,5 +25,10 @@ public class HardLevel implements Level {
     @Override
     public double getHorizontalDuration() {
         return HORIZONTAL_DURATION;
+    }
+
+    @Override
+    public String getLevelKey() {
+    	return KEY;
     }
 }
