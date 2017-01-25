@@ -11,7 +11,6 @@ public class PauseMenuViewHelper {
 
     private static PauseMenuViewHelper instance;
     private MenuItem resumeButton;
-    private MenuItem scoreboardButton;
     private MenuItem optionsButton;
     private MenuItem saveButton;
     private MenuItem returnToMenuMainButton;
@@ -24,19 +23,17 @@ public class PauseMenuViewHelper {
         if (instance == null) {
             instance = new PauseMenuViewHelper();
         }
-        return  instance;
+        return instance;
     }
 
     public void configureThePauseMenu(final Pane root, final Text title) {
         resumeButton = new MenuItem("RESUME");
-        scoreboardButton = new MenuItem("SCOREBOARD");
         optionsButton = new MenuItem("OPTIONS");
         saveButton = new MenuItem("SAVE");
         returnToMenuMainButton = new MenuItem("RETURN TO MAIN MENU");
 
         final MenuBox pauseMenu = new MenuBox(
                 resumeButton,
-                scoreboardButton,
                 optionsButton,
                 saveButton,
                 returnToMenuMainButton);
@@ -46,22 +43,18 @@ public class PauseMenuViewHelper {
         title.setFont(Font.font("Tw Cen MT Condensed", FontWeight.SEMI_BOLD,50));
     }
 
-    public void showThePauseMenu() {
-
-    }
-
     public MenuItem getResumeButton() {
         return resumeButton;
     }
-    public MenuItem getScoreboardButton() {
-        return scoreboardButton;
-    }
+
     public MenuItem getOptionsButton() {
         return optionsButton;
     }
+
     public MenuItem getSaveButton() {
         return saveButton;
     }
+
     public MenuItem getReturnToMenuMainButton() {
         return returnToMenuMainButton;
     }

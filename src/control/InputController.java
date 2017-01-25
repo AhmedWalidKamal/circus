@@ -1,11 +1,11 @@
 package control;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import behaviour.keyBinding.KeyMap;
 import javafx.scene.input.KeyCode;
 import util.PauseableThread;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Acts as a link between view and registered keymaps, whenever view takes in
@@ -37,7 +37,7 @@ public final class InputController extends PauseableThread {
      * Adds a new {@link KeyMap} to List of registered keyMaps.
      * @param keyMap
      */
-    public void addKeyMap(KeyMap keyMap) {
+    public void addKeyMap(final KeyMap keyMap) {
         keyMapList.add(keyMap);
     }
 
@@ -48,12 +48,6 @@ public final class InputController extends PauseableThread {
      * @param pressed Boolean value to define if this key is pressed or released.
      */
     public void executeKeyCommand(final KeyCode keyCode, final boolean pressed) {
-        if (keyCode == KeyCode.ENTER) {
-            mainController.getGameView().getPauseMenuPane().setVisible(false);
-            mainController.getGameView().getPauseMenuPane().toBack();
-            mainController.getGameView().getRootPane().requestFocus();
-            mainController.resume();
-        }
         if (paused) {
             return;
         }
@@ -79,7 +73,7 @@ public final class InputController extends PauseableThread {
     public void run() {
         while (true) {
             try {
-                this.sleep(5);
+                InputController.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

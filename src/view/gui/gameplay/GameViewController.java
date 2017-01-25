@@ -71,12 +71,11 @@ public class GameViewController implements Initializable, ControlledScenes {
         		this.endGameTitle, this.gameWinnerText);
         setVisibilityBindingPauseMenu();
         setVisibilityBindingEndGame();
-        configureExitGameButton();
-        configureRestartGameButton();
-        configureReturnToMainMenuButton();
+        configurePauseMenuButtons();
+        configureEndGameButtons();
     }
 
-    public void startNewGame(final GameData gameData) {
+	public void startNewGame(final GameData gameData) {
     	this.gameData = gameData;
     	this.mainController = new MainController();
 		this.mainController.setGameViewController(this);
@@ -141,25 +140,49 @@ public class GameViewController implements Initializable, ControlledScenes {
 		gameWinnerText.setOpacity(1.0);
 	}
 
-	private void configureExitGameButton() {
-        EndGameViewHelper.getInstance().getExitGameButton().setOnMouseClicked(event -> {
-        	System.exit(0);
-        });
-    }
-
-	private void configureReturnToMainMenuButton() {
-        EndGameViewHelper.getInstance().getReturnToMenuMainButton().setOnMouseClicked(event -> {
-        	this.sceneNavigator.setScene(Main.MAINMENU_ID);
-        });
-    }
-
-	private void configureRestartGameButton() {
+	private void configureEndGameButtons() {
 	    EndGameViewHelper.getInstance().getRestartGameButton().setOnMouseClicked(event -> {
 	    	this.sceneNavigator.loadGame(Main.GAMEVIEW_ID,
 	    			Main.GAMEVIEW_URL, Main.GAMEVIEW_STYLESHEET, this.gameData);
 	    	this.sceneNavigator.setScene(Main.GAMEVIEW_ID);
         });
+	    EndGameViewHelper.getInstance().getReturnToMenuMainButton().setOnMouseClicked(event -> {
+        	this.sceneNavigator.setScene(Main.MAINMENU_ID);
+        });
+	    EndGameViewHelper.getInstance().getExitGameButton().setOnMouseClicked(event -> {
+        	System.exit(0);
+        });
 	}
+
+    private void configurePauseMenuButtons() {
+    	PauseMenuViewHelper.
+    	getInstance().getResumeButton().
+    	setOnMouseClicked(event -> {
+    		this.pauseMenuPane.setVisible(false);
+            this.pauseMenuPane.toBack();
+            this.root.requestFocus();
+            mainController.resume();
+    	});
+
+    	PauseMenuViewHelper.
+    	getInstance().getOptionsButton().
+    	setOnMouseClicked(event -> {
+
+    	});
+
+    	PauseMenuViewHelper.
+    	getInstance().getReturnToMenuMainButton().
+    	setOnMouseClicked(event -> {
+    		this.sceneNavigator.setScene(Main.MAINMENU_ID);
+    	});
+
+    	PauseMenuViewHelper.
+    	getInstance().getSaveButton().
+    	setOnMouseClicked(event -> {
+
+    	});
+	}
+
 	@Override
 	public void setScreenParent(final ScenesNavigator screenParent) {
 		this.sceneNavigator = screenParent;
