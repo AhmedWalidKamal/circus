@@ -28,11 +28,6 @@ public class Main extends Application {
     	primaryStage.show();
 		primaryStage.setResizable(false);
 		root.toFront();
-//		String path = "C:\\Users\\Samsung\\git\\circus-of-plates\\lib\\backgroundMusic.mp3";
-//		Media media = new Media(new File(path).toURI().toString());
-//		MediaPlayer mediaPlayer = new MediaPlayer(media);
-//		mediaPlayer.setAutoPlay(true);
-//		MediaView mediaView = new MediaView(mediaPlayer);
 		LoggingManager.getInstance().info("GAME OPENED");
     }
 
