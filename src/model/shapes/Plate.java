@@ -10,13 +10,9 @@ public class Plate extends Shape {
 		ShapeFactory.getInstance().registerShape(KEY, Plate.class);
 	}
 
-	public Plate(Color color) {
+	public Plate(final Color color) {
 		super();
 		super.color = color;
-	}
-
-	@Override
-	public String getKey() {
-		return KEY;
+		super.key = KEY;
 	}
 }
