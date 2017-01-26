@@ -19,6 +19,7 @@ public class ModelMemento {
         localDateTime = LocalDateTime.now();
         level = "";
     }
+
     public ModelMemento(final List<Player> players,
     		final Timer timer,
     		final LocalDateTime localDateTime, final String level) {

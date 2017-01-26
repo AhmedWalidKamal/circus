@@ -18,13 +18,14 @@ import logs.LoggingManager;
 import model.Player;
 import model.Timer;
 import model.save.ModelMemento;
+import model.save.MementoOriginator;
 import util.Score;
 import util.Shelf;
 
 /**
  * Acts as a control to all game utilities (score, shelves, ... etc).
  */
-public final class GameUtilController {
+public final class GameUtilController implements MementoOriginator {
     /**
      * Reference to {@link MainController}.
      */
@@ -214,10 +215,12 @@ public final class GameUtilController {
         timeline.play();
     }
 
+    @Override
     public void collectMemento(final ModelMemento memento) {
         memento.setTimer(timer);
     }
 
+    @Override
     public void loadFromMemento(final ModelMemento memento) {
         timer = memento.getTimer();
         gameTime = timer.getCurrentTime();

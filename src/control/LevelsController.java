@@ -5,8 +5,9 @@ import behaviour.difficultyLevels.HardLevel;
 import behaviour.difficultyLevels.Level;
 import behaviour.difficultyLevels.NormalLevel;
 import model.save.ModelMemento;
+import model.save.MementoOriginator;
 
-public class LevelsController {
+public class LevelsController implements MementoOriginator {
     /**
      * Reference to {@link MainController}.
      */
@@ -44,10 +45,12 @@ public class LevelsController {
         return this.currentLevel;
     }
 
+    @Override
     public void collectMemento(final ModelMemento memento) {
         memento.setDifficultyLevel(currentLevel.getLevelKey());
     }
 
+    @Override
     public void loadFromMemento(final ModelMemento memento) {
         chooseLevel(memento.getDifficultyLevel());
     }

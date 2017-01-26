@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import logs.LoggingManager;
 import model.Player;
 import model.characters.Character;
+import model.save.MementoOriginator;
 import model.save.ModelMemento;
 import model.shapes.Shape;
 import util.PauseableThread;
@@ -21,7 +22,7 @@ import java.util.Map;
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public final class ShapesController extends PauseableThread {
+public final class ShapesController extends PauseableThread implements MementoOriginator {
     /**
      * {@link MainController} reference.
      */
@@ -131,16 +132,19 @@ public final class ShapesController extends PauseableThread {
         paused = false;
     }
 
+    @Override
+    public void collectMemento(final ModelMemento memento) {
+        return;
+    }
+
+    @Override
     public void loadFromMemento(final ModelMemento memento) {
-        int counter = 0;
         for (Player player : memento.getPlayers()) {
             for (Shape shape : player.getCharacter().getLeftStack()) {
                 setUpShape(shape, player);
-                counter++;
             }
             for (Shape shape : player.getCharacter().getRightStack()) {
                 setUpShape(shape, player);
-                counter++;
             }
         }
     }

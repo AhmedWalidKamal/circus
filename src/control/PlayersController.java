@@ -1,10 +1,5 @@
 package control;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import behaviour.keyBinding.KeyMap;
 import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
 import behaviour.keyBinding.keyHandlers.MoveRightHandler;
@@ -17,7 +12,13 @@ import model.characters.Character;
 import model.characters.supportedCharacters.GreenClown;
 import model.characters.supportedCharacters.RedClown;
 import model.characters.util.CharacterFactory;
+import model.save.MementoOriginator;
 import model.save.ModelMemento;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Acts as a control to players behavior, has references to model that allow
@@ -25,7 +26,7 @@ import model.save.ModelMemento;
  * a signal from {@link InputController} to move a player, update some player's
  * score... etc) and update the view accordingly.
  */
-public final class PlayersController {
+public final class PlayersController implements MementoOriginator {
     /**
      * Reference to {@link MainController}.
      */
@@ -83,15 +84,17 @@ public final class PlayersController {
 
     private void attachFirstKeyMap(final ImageView imageView) {
         KeyMap keyMap = new KeyMap(imageView);
-        keyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler());
-        keyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler());
+        keyMap.addKeyHandler(KeyCode.LEFT, new MoveLeftHandler(imageView));
+        keyMap.addKeyHandler(KeyCode.RIGHT, new MoveRightHandler(imageView,
+                mainController.getViewController().getRootPanePrefWidth()));
         mainController.getInputController().addKeyMap(keyMap);
     }
 
     private void attachSecondKeyMap(final ImageView imageView) {
         KeyMap keyMap = new KeyMap(imageView);
-        keyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler());
-        keyMap.addKeyHandler(KeyCode.D, new MoveRightHandler());
+        keyMap.addKeyHandler(KeyCode.A, new MoveLeftHandler(imageView));
+        keyMap.addKeyHandler(KeyCode.D, new MoveRightHandler(imageView,
+                mainController.getViewController().getRootPanePrefWidth()));
         mainController.getInputController().addKeyMap(keyMap);
     }
 
@@ -127,10 +130,12 @@ public final class PlayersController {
         return playerImageMap.get(player);
     }
 
+    @Override
     public void collectMemento(final ModelMemento memento) {
         memento.setPlayers(getPlayers());
     }
 
+    @Override
     public void loadFromMemento(final ModelMemento memento) {
         loadDefaultCharacters();
         boolean f = false;
