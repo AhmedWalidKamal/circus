@@ -17,8 +17,8 @@ import javafx.util.Duration;
 import logs.LoggingManager;
 import model.Player;
 import model.Timer;
-import model.save.ModelMemento;
 import model.save.MementoOriginator;
+import model.save.ModelMemento;
 import util.Score;
 import util.Shelf;
 
@@ -191,7 +191,7 @@ public final class GameUtilController implements MementoOriginator {
 		final Score currentScore = player.getScore();
 		currentScore.setCurrentScore(currentScore.getCurrentScore() + 100);
 		player.setScore(currentScore);
-        LoggingManager.getInstance().info(player.getName() + "`S SCORE IS NOW "+ currentScore);
+        LoggingManager.getInstance().info(player.getName() + "'S SCORE IS NOW "+ currentScore.getCurrentScore());
 		Platform.runLater(() -> {
 			if (player.getCharacter().getKey().equals("greenClown")) {
 				secondPlayerScore.set(player.getScore().getCurrentScore());
