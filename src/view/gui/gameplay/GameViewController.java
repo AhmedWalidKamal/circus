@@ -83,6 +83,7 @@ implements Initializable, ControlledScenes {
         root.setFocusTraversable(true);
         gameView = new GameView();
         gameView.setRootPane(this.root);
+        this.gameData = new GameData();
         gameView.setPauseMenuPane(this.pauseMenuPane);
 		fileChooser = new FileChooser();
         PauseMenuViewHelper.getInstance().
@@ -243,13 +244,15 @@ implements Initializable, ControlledScenes {
     	setOnMouseClicked(event -> {
 			Platform.runLater(() -> {
 				FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
-						"PROTOCOL BUFFER files(*.protobuff)","*.protobuff");
+						"PROTOCOL BUFFER files(*.protobuff)", "*.protobuff");
 				fileChooser.getExtensionFilters().addAll(extensionFilter);
 				File file = fileChooser.showSaveDialog(null);
-				try {
-					mainController.saveGame(file.getPath());
-				} catch (IOException e) {
-					e.printStackTrace();
+				if (file != null) {
+					try {
+						mainController.saveGame(file.getPath());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			});
 
@@ -260,5 +263,9 @@ implements Initializable, ControlledScenes {
 	@Override
 	public void setScreenParent(final ScenesNavigator screenParent) {
 		this.sceneNavigator = screenParent;
+	}
+
+	public GameData getGameData() {
+		return this.gameData;
 	}
 }

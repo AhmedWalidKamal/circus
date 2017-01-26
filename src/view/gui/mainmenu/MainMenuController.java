@@ -120,12 +120,14 @@ implements Initializable, ControlledScenes {
     private void configureLoadGameButton() {
         MainMenuViewHelper.getInstance().getLoadGameButton().setOnMouseClicked(event -> {
             File file = fileChooser.showOpenDialog(null);
-            if (file.toString().endsWith(".protobuff")) {
-                sceneNavigator.loadGame(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL,
-                        Main.GAMEVIEW_STYLESHEET, file.getPath());
-                sceneNavigator.setScene(Main.GAMEVIEW_ID);
-            } else {
-                LoggingManager.getInstance().error("Unsupported format.");
+            if (file != null) {
+            	if (file.toString().endsWith(".protobuff")) {
+                    sceneNavigator.loadGame(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL,
+                            Main.GAMEVIEW_STYLESHEET, file.getPath());
+                    sceneNavigator.setScene(Main.GAMEVIEW_ID);
+                } else {
+                    LoggingManager.getInstance().error("Unsupported format.");
+                }
             }
         });
     }
@@ -175,8 +177,6 @@ implements Initializable, ControlledScenes {
             this.root.requestFocus();
         });
     }
-
-
 
     /**
      * Configures easy level button's action.
