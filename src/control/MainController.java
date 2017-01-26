@@ -1,11 +1,11 @@
 package control;
 
+import java.io.IOException;
+
 import model.save.ModelMemento;
 import view.gui.gameplay.GameView;
 import view.gui.gameplay.GameViewController;
 import view.gui.mainmenu.util.GameData;
-
-import java.io.IOException;
 
 /**
  * Acts as the Main Controller for MVC, has references to sub-controllers each
@@ -178,6 +178,9 @@ public final class MainController {
         shapesController.loadFromMemento(memento);
         gameUtilController.loadFromMemento(memento);
         levelsController.loadFromMemento(memento);
+        gameViewController.
+        getGameData().setGameDifficulty(levelsController.
+        		getDifficultyLevel().getLevelKey());
         prepareGame();
 	}
 
