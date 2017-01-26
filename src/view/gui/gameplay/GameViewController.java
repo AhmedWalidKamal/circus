@@ -202,8 +202,9 @@ implements Initializable, ControlledScenes {
 			LoggingManager.getInstance().info("GAME RESTARTED");
         });
 	    EndGameViewHelper.getInstance().getReturnToMenuMainButton().setOnMouseClicked(event -> {
-        	this.sceneNavigator.setScene(Main.MAINMENU_ID);
-			LoggingManager.getInstance().info("RETURNED TO MAIN MENU");
+	    	MainMenuViewHelper.getInstance().getMainMenuPane().lookup("#mainMenu").setDisable(false);
+	    	this.sceneNavigator.setScene(Main.MAINMENU_ID);
+        	LoggingManager.getInstance().info("RETURNED TO MAIN MENU");
         });
 	    EndGameViewHelper.getInstance().getExitGameButton().setOnMouseClicked(event -> {
         	System.exit(0);
