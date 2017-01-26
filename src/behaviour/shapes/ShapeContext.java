@@ -1,8 +1,8 @@
 package behaviour.shapes;
 
-import behaviour.shapes.util.ShapePool;
 import control.GameUtilController;
 import control.LevelsController;
+import control.MainController;
 import control.PlayersController;
 import control.ShapesController;
 import control.ViewController;
@@ -18,16 +18,7 @@ public final class ShapeContext {
      */
     private ShapeState shapeState = null;
 
-    private ViewController viewController = null;
-
-    private GameUtilController gameUtilController = null;
-
-    private PlayersController playersController = null;
-
-    private ShapesController shapesController = null;
-
-    private LevelsController levelsController=null;
-
+    private MainController mainController = null;
     /**
      * {@link Shape} to apply states on.
      */
@@ -40,38 +31,30 @@ public final class ShapeContext {
      * @param shape {@link Shape} shape to apply states on.
      */
     public ShapeContext(final Shape shape, final ImageView shapeImageView,
-                        final ShapesController shapesController,
-                        final ViewController viewController,
-                        final GameUtilController gameUtilController,
-                        final PlayersController playersController,
-                        final LevelsController levelsController) {
+                        final MainController mainController) {
         this.shape = shape;
         this.shapeImageView = shapeImageView;
-        this.shapesController = shapesController;
-        this.viewController = viewController;
-        this.gameUtilController = gameUtilController;
-        this.playersController = playersController;
-        this.levelsController = levelsController;
+        this.mainController = mainController;
         shapeState = new SlidingState(this);
     }
 
     public GameUtilController getGameUtilController() {
-        return this.gameUtilController;
+        return this.mainController.getGameUtilController();
     }
 
     public ViewController getViewController() {
-        return this.viewController;
+        return this.mainController.getViewController();
     }
 
     public PlayersController getPlayersController() {
-        return playersController;
+        return this.mainController.getPlayersController();
     }
     public LevelsController getLevelsController() {
-        return this.levelsController;
+        return this.mainController.getLevelsController();
     }
 
     public ShapesController getShapesController() {
-        return shapesController;
+        return this.mainController.getShapesController();
     }
 
     public void setShapeState(final ShapeState shapeState) {

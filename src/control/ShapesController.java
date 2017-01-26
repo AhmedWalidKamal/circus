@@ -1,5 +1,10 @@
 package control;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import behaviour.shapes.ShapeContext;
 import behaviour.shapes.util.ShapePool;
 import javafx.application.Platform;
@@ -11,11 +16,6 @@ import model.save.MementoOriginator;
 import model.save.ModelMemento;
 import model.shapes.Shape;
 import util.PauseableThread;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Acts as a control to shapes behavior, using a subroutine that handles
@@ -59,12 +59,8 @@ public final class ShapesController extends PauseableThread implements MementoOr
                         Shape shape = ShapePool.getInstance().create();
                         ImageView shapeImage = new ImageView(shape.getUrl());
                         bindImageWithShape(shape, shapeImage);
-                        ShapeContext context = new ShapeContext(shape, shapeImage,
-                                ShapesController.this,
-                                mainController.getViewController(),
-                                mainController.getGameUtilController(),
-                                mainController.getPlayersController(),
-                                mainController.getLevelsController());
+                        ShapeContext context
+                        = new ShapeContext(shape, shapeImage, mainController);
                         context.handle();
                     }
                 };
@@ -87,7 +83,7 @@ public final class ShapesController extends PauseableThread implements MementoOr
         }
     }
 
-    private void bindImageWithShape(Shape shape, ImageView imageView) {
+    private void bindImageWithShape(final Shape shape, final ImageView imageView) {
         shape.getXProperty().bind(imageView.xProperty());
         shape.getYProperty().bind(imageView.yProperty());
         shape.getTranslateX().bind(imageView.translateXProperty());
@@ -96,11 +92,11 @@ public final class ShapesController extends PauseableThread implements MementoOr
         shape.setHeight(imageView.getImage().getHeight());
     }
 
-    public void addRunningShapeThread(PauseableThread thread) {
+    public void addRunningShapeThread(final PauseableThread thread) {
         runningThreads.add(thread);
     }
 
-    public void removeRunningShapeThread(PauseableThread thread) {
+    public void removeRunningShapeThread(final PauseableThread thread) {
         runningThreads.remove(thread);
     }
 
@@ -112,15 +108,15 @@ public final class ShapesController extends PauseableThread implements MementoOr
         paused = true;
     }
 
-    public void putFetchedShape(ImageView imageView, Shape shape) {
+    public void putFetchedShape(final ImageView imageView, final Shape shape) {
         shapeImageViewMap.put(shape, imageView);
     }
 
-    public void removeShape(Shape shape) {
+    public void removeShape(final Shape shape) {
         shapeImageViewMap.remove(shape);
     }
 
-    public ImageView getCorrespondingShape(Shape shape) {
+    public ImageView getCorrespondingShape(final Shape shape) {
         return shapeImageViewMap.get(shape);
     }
 
@@ -149,7 +145,7 @@ public final class ShapesController extends PauseableThread implements MementoOr
         }
     }
 
-    private void setUpShape(Shape shape, Player player) {
+    private void setUpShape(final Shape shape, final Player player) {
         ImageView imageView = new ImageView(shape.getUrl());
         copyShape(imageView, shape);
         bindImageWithShape(shape, imageView);

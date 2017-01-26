@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.11" icons="true">  
+  <object id="1" language="java" name="control.ShapesController" project="circus-of-plates" 
+    file="/circus-of-plates/src/control/ShapesController.java" binary="false" label="shapesController" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="440" y="0"/>    
+    <execution id="2">      
+      <position height="72" width="148" x="5" y="119"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="72" width="148" x="5" y="214"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="254" width="148" x="5" y="399"/>    
+    </execution>  
+  </object>  
+  <object id="11" language="java" name="behaviour.shapes.ShapeContext" project="circus-of-plates" 
+    file="/circus-of-plates/src/behaviour/shapes/ShapeContext.java" binary="false" label="shapeContext" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="1178" y="0"/>    
+    <execution id="7">      
+      <position height="24" width="124" x="157" y="238"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="72" width="124" x="157" y="303"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="206" width="124" x="157" y="423"/>    
+    </execution>  
+  </object>  
+  <object id="17" language="java" name="behaviour.shapes.util.ShapePool" project="circus-of-plates" 
+    file="/circus-of-plates/src/behaviour/shapes/util/ShapePool.java" binary="false" label="shapePool" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="484" y="0"/>    
+    <execution id="4">      
+      <position height="24" width="124" x="157" y="143"/>    
+    </execution>  
+  </object>  
+  <object id="18" language="java" name="behaviour.shapes.SlidingState" project="circus-of-plates" 
+    file="/circus-of-plates/src/behaviour/shapes/SlidingState.java" binary="false" label="slidingState" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="668" y="0"/>    
+    <execution id="14">      
+      <position height="24" width="109" x="413" y="327"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="158" width="109" x="413" y="447"/>    
+    </execution>  
+  </object>  
+  <object id="21" language="java" name="behaviour.shapes.FallingState" project="circus-of-plates" 
+    file="/circus-of-plates/src/behaviour/shapes/FallingState.java" binary="false" label="fallingState" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="826" y="0"/>    
+    <execution id="20">      
+      <position height="110" width="107" x="526" y="471"/>    
+    </execution>  
+  </object>  
+  <object id="26" language="java" name="behaviour.shapes.FetchedState" project="circus-of-plates" 
+    file="/circus-of-plates/src/behaviour/shapes/FetchedState.java" binary="false" label="fetchedState" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="968" y="0"/>    
+    <execution id="23">      
+      <position height="24" width="118" x="637" y="495"/>    
+    </execution>  
+  </object>  
+  <object id="27" language="java" name="behaviour.shapes.AddedToShapePoolState" project="circus-of-plates" 
+    file="/circus-of-plates/src/behaviour/shapes/AddedToShapePoolState.java" binary="false" 
+    label="addedToShapePoolState" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="1170" y="0"/>    
+    <execution id="25">      
+      <position height="24" width="200" x="759" y="533"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="create():model.shapes.Shape" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="ShapeContext(model.shapes.Shape,javafx.scene.image.ImageView,control.MainController)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="9" operation="handle():void" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="13" operation="SlidingState(behaviour.shapes.ShapeContext)" asynchronous="false">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="handle():void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="19" operation="handle():void" asynchronous="false">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="22" operation="handle():void" asynchronous="false">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="24" operation="handle():void" asynchronous="false">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="25"/>  
+  </message>
+</sequence-diagram>
