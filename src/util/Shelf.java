@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 
 public class Shelf {
     private ImageView imageView = null;
-    private static final String URL = "File:src/assets/shelf.png";
+    private static final String URL = "File:src/assets/shelves/shelf.png";
 
     public enum Orientation {
         LEFT,

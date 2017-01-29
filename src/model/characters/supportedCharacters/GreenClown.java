@@ -5,7 +5,7 @@ import model.characters.util.CharacterFactory;
 
 public class GreenClown extends Character {
     public static final String KEY = "greenClown";
-    private static final String URL = "File:src/assets/green_clown.png";
+    private static final String URL = "File:src/assets/characters/green_clown.png";
     private static final double LEFT_STACK_X_INSET = 50;
     private static final double RIGHT_STACK_X_INSET = 175;
 
