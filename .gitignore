@@ -3,6 +3,7 @@
 /logs/
 /.log/
 /.idea/
+/.ucls/
 /.classpath/
 /.project/
 /Circus.iml/
