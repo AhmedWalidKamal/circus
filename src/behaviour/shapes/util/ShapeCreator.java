@@ -2,13 +2,11 @@ package behaviour.shapes.util;
 
 import java.util.Random;
 
-import javafx.scene.image.ImageView;
 import model.Color;
 import model.shapes.Shape;
 import model.shapes.util.ShapeFactory;
 
 public class ShapeCreator {
-	private static final int SCREEN_WIDTH = 1000;
 
 	public ShapeCreator() {
 
