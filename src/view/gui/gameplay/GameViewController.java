@@ -96,6 +96,7 @@ implements Initializable, ControlledScenes {
         setVisibilityBindingEndGame();
         configurePauseMenuButtons();
         configureEndGameButtons();
+        configureFileChooser();
     }
 
     /**
@@ -244,9 +245,7 @@ implements Initializable, ControlledScenes {
     	getInstance().getSaveButton().
     	setOnMouseClicked(event -> {
 			Platform.runLater(() -> {
-				FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
-						"PROTOCOL BUFFER files(*.protobuff)", "*.protobuff");
-				fileChooser.getExtensionFilters().addAll(extensionFilter);
+
 				File file = fileChooser.showSaveDialog(null);
 				if (file != null) {
 					try {
@@ -268,5 +267,13 @@ implements Initializable, ControlledScenes {
 
 	public GameData getGameData() {
 		return this.gameData;
+	}
+
+	private void configureFileChooser() {
+		FileChooser.ExtensionFilter extensionFilter1 = new FileChooser.ExtensionFilter(
+				"Protocol Buffer files (*.protobuff)", "*.protobuff");
+		FileChooser.ExtensionFilter extensionFilter2 = new FileChooser.ExtensionFilter(
+				"JSON files(*.JSON)","*.JSON");
+		fileChooser.getExtensionFilters().addAll(extensionFilter1,extensionFilter2);
 	}
 }

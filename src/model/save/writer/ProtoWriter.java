@@ -7,11 +7,10 @@ import java.time.format.DateTimeFormatter;
 
 import model.Player;
 import model.save.ModelMemento;
-import model.save.util.ProtoBuffGame.ProtoGame;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer.Builder;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter.ProtoShape;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter.ProtoShape;
 import model.shapes.Shape;
 
 public class ProtoWriter implements Writer {
@@ -57,7 +56,7 @@ public class ProtoWriter implements Writer {
 				getDifficultyLevel());
 	}
 
-	private void setProtoPlayerAttributes(final Builder protoPlayerBuilder, final Player player) {
+	private void setProtoPlayerAttributes(final ProtoPlayer.Builder protoPlayerBuilder, final Player player) {
 		protoPlayerBuilder.setPlayerName(player.getName());
 		protoPlayerBuilder.setPlayerScore(player.
 				getScore().getCurrentScore());

@@ -2,7 +2,6 @@ package model.save.reader;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,9 +15,9 @@ import model.Timer;
 import model.characters.Character;
 import model.characters.util.CharacterFactory;
 import model.save.ModelMemento;
-import model.save.util.ProtoBuffGame.ProtoGame;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter.ProtoShape;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter.ProtoShape;
 import model.shapes.Shape;
 import model.shapes.Shape.State;
 import model.shapes.util.ShapeFactory;
@@ -37,7 +36,7 @@ public class ProtoReader implements Reader {
 
 	@Override
 	public ModelMemento loadMemento(final String path)
-			throws FileNotFoundException, IOException {
+			throws IOException {
 		final File protoBuffFile = new File(path);
         ProtoGame protoGame = ProtoGame.
 		        parseFrom(new FileInputStream(protoBuffFile));
