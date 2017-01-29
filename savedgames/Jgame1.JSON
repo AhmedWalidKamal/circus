@@ -1,0 +1,459 @@
+{
+  "players": [
+    {
+      "Player Name": "PLAYER ONE",
+      "Score": 100,
+      "Character": {
+        "Height": 400.0,
+        "Width": 235.0,
+        "Left Stack X Inset": 50.0,
+        "Left Stack Y Inset": 0.0,
+        "Right Stack X Inset": 175.0,
+        "Right Stack Y Inset": 224.0,
+        "X Property": 1020.0,
+        "Y Property": 609.0,
+        "Translate X Property": -473.0,
+        "Translate Y Property": 0.0,
+        "Image URL": "File:src/assets/green_clown.png",
+        "Key": "greenClown",
+        "Left Stack Shapes": [],
+        "Right Stack Shapes": [
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/red_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "RED",
+            "X": 1145.0,
+            "Y": 609.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 1145.0,
+            "Y": 595.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 1145.0,
+            "Y": 581.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 1145.0,
+            "Y": 567.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 1145.0,
+            "Y": 553.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 1145.0,
+            "Y": 539.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 1145.0,
+            "Y": 525.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 1145.0,
+            "Y": 511.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 1145.0,
+            "Y": 497.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/red_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "RED",
+            "X": 1145.0,
+            "Y": 483.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/red_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "RED",
+            "X": 1145.0,
+            "Y": 469.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 1145.0,
+            "Y": 455.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 1145.0,
+            "Y": 441.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/red_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "RED",
+            "X": 1145.0,
+            "Y": 427.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 1145.0,
+            "Y": 413.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 1145.0,
+            "Y": 399.0,
+            "Translate X": -473.0,
+            "Translate Y": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "Player Name": "PLAYER TWO",
+      "Score": 100,
+      "Character": {
+        "Height": 400.0,
+        "Width": 238.0,
+        "Left Stack X Inset": 50.0,
+        "Left Stack Y Inset": 0.0,
+        "Right Stack X Inset": 175.0,
+        "Right Stack Y Inset": 238.0,
+        "X Property": 25.0,
+        "Y Property": 609.0,
+        "Translate X Property": 293.0,
+        "Translate Y Property": 0.0,
+        "Image URL": "File:src/assets/red_clown.png",
+        "Key": "redClown",
+        "Left Stack Shapes": [],
+        "Right Stack Shapes": [
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 150.0,
+            "Y": 609.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 150.0,
+            "Y": 595.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 150.0,
+            "Y": 581.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 150.0,
+            "Y": 567.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 150.0,
+            "Y": 553.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 150.0,
+            "Y": 539.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 150.0,
+            "Y": 525.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 150.0,
+            "Y": 511.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 150.0,
+            "Y": 497.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 150.0,
+            "Y": 483.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/red_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "RED",
+            "X": 150.0,
+            "Y": 469.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 150.0,
+            "Y": 455.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 150.0,
+            "Y": 441.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "LEGO",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_lego.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 150.0,
+            "Y": 427.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/purple_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "PURPLE",
+            "X": 150.0,
+            "Y": 413.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/green_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "GREEN",
+            "X": 150.0,
+            "Y": 399.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          },
+          {
+            "Key": "PLATE",
+            "State": "fetched",
+            "Image URL": "File:src/assets/blue_plate.png",
+            "Width": 100.0,
+            "Height": 14.0,
+            "Color": "BLUE",
+            "X": 150.0,
+            "Y": 385.0,
+            "Translate X": 293.0,
+            "Translate Y": 0.0
+          }
+        ]
+      }
+    }
+  ],
+  "timer": {
+    "Timer Value": 18
+  },
+  "localDateTime": {
+    "date": {
+      "year": 2017,
+      "month": 1,
+      "day": 29
+    },
+    "time": {
+      "hour": 5,
+      "minute": 8,
+      "second": 33,
+      "nano": 923000000
+    }
+  },
+  "level": "HARD"
+}

@@ -35,7 +35,7 @@ public class ProtoReader implements Reader {
 
 	@Override
 	public ModelMemento loadMemento(final String path)
-			throws FileNotFoundException, IOException {
+			throws IOException {
 		final File protoBuffFile = new File(path);
         ProtoGame protoGame = ProtoGame.
 		        parseFrom(new FileInputStream(protoBuffFile));

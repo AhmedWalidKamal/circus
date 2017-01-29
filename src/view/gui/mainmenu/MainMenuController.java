@@ -20,7 +20,7 @@ import view.gui.mainmenu.util.GameData;
 import view.gui.options.OptionsDialogViewHelper;
 
 /**
- * The Controller resposible for the main menu.
+ * The Controller responsible for the main menu.
  * @author Mohamed Tolba
  */
 public class MainMenuController
@@ -121,7 +121,8 @@ implements Initializable, ControlledScenes {
         MainMenuViewHelper.getInstance().getLoadGameButton().setOnMouseClicked(event -> {
             File file = fileChooser.showOpenDialog(null);
             if (file != null) {
-            	if (file.toString().endsWith(".protobuff")) {
+            	if (file.toString().endsWith(".protobuff")
+                        || file.toString().endsWith(".JSON")) {
                     sceneNavigator.loadGame(Main.GAMEVIEW_ID, Main.GAMEVIEW_URL,
                             Main.GAMEVIEW_STYLESHEET, file.getPath());
                     sceneNavigator.setScene(Main.GAMEVIEW_ID);

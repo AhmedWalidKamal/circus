@@ -18,14 +18,14 @@ public class ShapeAdapter implements JsonSerializer<Shape>,JsonDeserializer<Shap
         JsonObject jsonShape = new JsonObject();
         jsonShape.addProperty("Key",shape.getKey());
         jsonShape.addProperty("State",shape.getState().toString());
-        jsonShape.addProperty("ImageURL",shape.getUrl());
+        jsonShape.addProperty("Image URL",shape.getUrl());
         jsonShape.addProperty("Width",shape.getWidth());
         jsonShape.addProperty("Height",shape.getHeight());
         jsonShape.addProperty("Color",shape.getColor().toString());
         jsonShape.addProperty("X",shape.getX());
         jsonShape.addProperty("Y",shape.getY());
-        jsonShape.addProperty("TranslateX",shape.getTranslateX().doubleValue());
-        jsonShape.addProperty("TranslateY",shape.getTranslateY().doubleValue());
+        jsonShape.addProperty("Translate X",shape.getTranslateX().doubleValue());
+        jsonShape.addProperty("Translate Y",shape.getTranslateY().doubleValue());
         return jsonShape;
     }
 
@@ -38,14 +38,14 @@ public class ShapeAdapter implements JsonSerializer<Shape>,JsonDeserializer<Shap
         Shape shape = ShapeFactory.getInstance().createShape(key,color);
         shape.setkey(key);
         shape.setState(getState(jsonObject.getAsJsonPrimitive("State").getAsString()));
-        shape.setUrl(jsonObject.getAsJsonPrimitive("ImageURL").getAsString());
+        shape.setUrl(jsonObject.getAsJsonPrimitive("Image URL").getAsString());
         shape.setWidth(jsonObject.getAsJsonPrimitive("Width").getAsDouble());
         shape.setHeight(jsonObject.getAsJsonPrimitive("Height").getAsDouble());
         shape.setColor(color);
         shape.setX(jsonObject.getAsJsonPrimitive("X").getAsDouble());
         shape.setY(jsonObject.getAsJsonPrimitive("Y").getAsDouble());
-        shape.setTranslateXProperty(jsonObject.getAsJsonPrimitive("TranslateX").getAsDouble());
-        shape.setTranslateYProperty(jsonObject.getAsJsonPrimitive("TranslateY").getAsDouble());
+        shape.setTranslateXProperty(jsonObject.getAsJsonPrimitive("Translate X").getAsDouble());
+        shape.setTranslateYProperty(jsonObject.getAsJsonPrimitive("Translate Y").getAsDouble());
         return shape;
     }
 

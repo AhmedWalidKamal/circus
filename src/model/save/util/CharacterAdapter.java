@@ -11,8 +11,8 @@ import java.util.Stack;
 public class CharacterAdapter implements JsonSerializer<Character>,
         JsonDeserializer<Character> {
 
-    private ShapeAdapter shapeAdapter = null;
 
+    private ShapeAdapter shapeAdapter;
     public CharacterAdapter() {
         shapeAdapter = new ShapeAdapter();
     }
@@ -22,21 +22,27 @@ public class CharacterAdapter implements JsonSerializer<Character>,
         JsonObject jsonCharacter = new JsonObject();
         jsonCharacter.addProperty("Height",character.getHeight());
         jsonCharacter.addProperty("Width",character.getWidth());
-        jsonCharacter.addProperty("LeftStackXInset",character.getLeftStackXInset());
-        jsonCharacter.addProperty("LeftStackYInset",character.getLeftStackYInset());
-        jsonCharacter.addProperty("RightStackXInset",character.getRightStackXInset());
-        jsonCharacter.addProperty("RightStackYInset",character.getRightStackYInset());
-        jsonCharacter.addProperty("XProperty",character.getxProperty().doubleValue());
-        jsonCharacter.addProperty("YProperty",character.getyProperty().doubleValue());
-        jsonCharacter.addProperty("TranslateXProperty",character.getTranslateXProperty().doubleValue());
-        jsonCharacter.addProperty("TranslateYProperty",character.getTranslateYProperty().doubleValue());
-        jsonCharacter.addProperty("ImageURL",character.getUrl());
+        jsonCharacter.addProperty("Left Stack X Inset",character.getLeftStackXInset());
+        jsonCharacter.addProperty("Left Stack Y Inset",character.getLeftStackYInset());
+        jsonCharacter.addProperty("Right Stack X Inset",character.getRightStackXInset());
+        jsonCharacter.addProperty("Right Stack Y Inset",character.getRightStackYInset());
+        jsonCharacter.addProperty("X Property",character.getxProperty().doubleValue());
+        jsonCharacter.addProperty("Y Property",character.getyProperty().doubleValue());
+        jsonCharacter.addProperty("Translate X Property",character.getTranslateXProperty().doubleValue());
+        jsonCharacter.addProperty("Translate Y Property",character.getTranslateYProperty().doubleValue());
+        jsonCharacter.addProperty("Image URL",character.getUrl());
         jsonCharacter.addProperty("Key",character.getKey());
-        JsonElement jsonArray;
-        jsonArray = jsonSerializationContext.serialize(character.getLeftStack().toArray());
-        jsonCharacter.add("LeftStackShapes",jsonArray);
-        jsonArray = jsonSerializationContext.serialize(character.getRightStack().toArray());
-        jsonCharacter.add("RightStackShapes",jsonArray);
+
+        JsonArray jsonArray = new JsonArray();
+        for (Shape shape : character.getLeftStack()) {
+            jsonArray.add(shapeAdapter.serialize(shape,Shape.class,jsonSerializationContext));
+        }
+        jsonCharacter.add("Left Stack Shapes",jsonArray);
+        jsonArray = new JsonArray();
+        for (Shape shape : character.getRightStack()) {
+            jsonArray.add(shapeAdapter.serialize(shape,Shape.class,jsonSerializationContext));
+        }
+        jsonCharacter.add("Right Stack Shapes",jsonArray);
         return jsonCharacter;
     }
 
@@ -49,28 +55,28 @@ public class CharacterAdapter implements JsonSerializer<Character>,
         Character character = CharacterFactory.getInstance().
                 createCharacter(key);
         character.setKey(key);
-        character.setUrl(jsonObject.getAsJsonPrimitive("ImageURL").getAsString());
+        character.setUrl(jsonObject.getAsJsonPrimitive("Image URL").getAsString());
         character.setHeight(jsonObject.getAsJsonPrimitive("Height").getAsDouble());
         character.setWidth(jsonObject.getAsJsonPrimitive("Width").getAsDouble());
-        character.setLeftStackXInset(jsonObject.getAsJsonPrimitive("LeftStackXInset").getAsDouble());
-        character.setLeftStackYInset(jsonObject.getAsJsonPrimitive("LeftStackYInset").getAsDouble());
-        character.setRightStackXInset(jsonObject.getAsJsonPrimitive("RightStackXInset").getAsDouble());
-        character.setRightStackYInset(jsonObject.getAsJsonPrimitive("RightStackYInset").getAsDouble());
-        character.setxProperty(jsonObject.getAsJsonPrimitive("XProperty").getAsDouble());
-        character.setyProperty(jsonObject.getAsJsonPrimitive("YProperty").getAsDouble());
-        character.setTranslateXProperty(jsonObject.getAsJsonPrimitive("TranslateXProperty").getAsDouble());
-        character.setTranslateYProperty(jsonObject.getAsJsonPrimitive("TranslateYProperty").getAsDouble());
+        character.setLeftStackXInset(jsonObject.getAsJsonPrimitive("Left Stack X Inset").getAsDouble());
+        character.setLeftStackYInset(jsonObject.getAsJsonPrimitive("Left Stack Y Inset").getAsDouble());
+        character.setRightStackXInset(jsonObject.getAsJsonPrimitive("Right Stack X Inset").getAsDouble());
+        character.setRightStackYInset(jsonObject.getAsJsonPrimitive("Right Stack Y Inset").getAsDouble());
+        character.setxProperty(jsonObject.getAsJsonPrimitive("X Property").getAsDouble());
+        character.setyProperty(jsonObject.getAsJsonPrimitive("Y Property").getAsDouble());
+        character.setTranslateXProperty(jsonObject.getAsJsonPrimitive("Translate X Property").getAsDouble());
+        character.setTranslateYProperty(jsonObject.getAsJsonPrimitive("Translate Y Property").getAsDouble());
         Stack<Shape> leftStack = new Stack<>();
         Stack<Shape> rightStack = new Stack<>();
-        JsonArray shapesArray = jsonObject.getAsJsonArray("LeftStackShapes");
+        JsonArray shapesArray = jsonObject.getAsJsonArray("Left Stack Shapes");
         for (JsonElement jsonShape : shapesArray) {
-            Shape shape = jsonDeserializationContext.deserialize(jsonShape,Shape.class);
+            Shape shape = shapeAdapter.deserialize(jsonShape,Shape.class,jsonDeserializationContext);
             leftStack.push(shape);
         }
         character.setLeftStack(leftStack);
-        shapesArray = jsonObject.getAsJsonArray("RightStackShapes");
+        shapesArray = jsonObject.getAsJsonArray("Right Stack Shapes");
         for (JsonElement jsonShape : shapesArray) {
-            Shape shape = jsonDeserializationContext.deserialize(jsonShape,Shape.class);
+            Shape shape = shapeAdapter.deserialize(jsonShape,Shape.class,jsonDeserializationContext);
             rightStack.push(shape);
         }
         character.setRightStack(rightStack);
