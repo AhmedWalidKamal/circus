@@ -23,8 +23,6 @@ public class JSONWriter implements Writer{
                 .serializeNulls()
                 .disableHtmlEscaping()
                 .registerTypeAdapter(Player.class,new PlayerAdapter())
-                .registerTypeAdapter(Character.class,new CharacterAdapter())
-                .registerTypeAdapter(Shape.class,new ShapeAdapter())
                 .registerTypeAdapter(Timer.class,new TimerAdapter())
                 .setPrettyPrinting()
                 .create();
