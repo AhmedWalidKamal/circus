@@ -7,10 +7,10 @@ import java.time.format.DateTimeFormatter;
 
 import model.Player;
 import model.save.ModelMemento;
-import model.save.util.ProtoBuffGame.ProtoGame;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter;
-import model.save.util.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter.ProtoShape;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter;
+import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharacter.ProtoShape;
 import model.shapes.Shape;
 
 public class ProtoWriter implements Writer {

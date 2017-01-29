@@ -4,10 +4,10 @@ import com.google.gson.*;
 import model.Player;
 import model.Timer;
 import model.save.ModelMemento;
-import model.save.util.CharacterAdapter;
-import model.save.util.PlayerAdapter;
-import model.save.util.ShapeAdapter;
-import model.save.util.TimerAdapter;
+import model.save.util.json.CharacterAdapter;
+import model.save.util.json.PlayerAdapter;
+import model.save.util.json.ShapeAdapter;
+import model.save.util.json.TimerAdapter;
 import model.shapes.Shape;
 
 import java.io.File;

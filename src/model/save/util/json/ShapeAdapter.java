@@ -1,4 +1,4 @@
-package model.save.util;
+package model.save.util.json;
 
 import com.google.gson.*;
 import model.Color;

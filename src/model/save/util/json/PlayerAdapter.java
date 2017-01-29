@@ -1,8 +1,9 @@
-package model.save.util;
+package model.save.util.json;
 
 import com.google.gson.*;
 import model.Player;
 import model.characters.Character;
+import model.save.util.json.CharacterAdapter;
 import util.Score;
 
 import java.lang.reflect.Type;
