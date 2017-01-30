@@ -61,8 +61,8 @@ public class ProtoReader implements Reader {
 		try {
 			Class.forName("model.shapes.Lego");
 			Class.forName("model.shapes.Plate");
-			Class.forName("model.characters.supportedCharacters.GreenClown");
-			Class.forName("model.characters.supportedCharacters.RedClown");
+			Class.forName("model.characters.supported_characters.GreenClown");
+			Class.forName("model.characters.supported_characters.RedClown");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

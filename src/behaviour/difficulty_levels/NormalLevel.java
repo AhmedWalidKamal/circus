@@ -1,11 +1,12 @@
-package behaviour.difficultyLevels;
+package behaviour.difficulty_levels;
 
-public class EasyLevel implements Level {
-    private static final double TRANSITION_DURATION = 0.0005;
-    private static final double HORIZONTAL_DURATION = 0.8;
-    private static final double FALLING_RATE = 0.15;
-    private static final long CREATION_INTERVAL = 2000;
-    private static final String KEY = "EASY";
+
+public class NormalLevel implements Level {
+    private static final double TRANSITION_DURATION = 0.0002;
+    private static final double HORIZONTAL_DURATION = 0.6;
+    private static final double FALLING_RATE = 0.2;
+    private static final long CREATION_INTERVAL = 1000;
+    private static final String KEY = "NORMAL";
 
     @Override
     public long getCreationInterval() {
@@ -16,7 +17,6 @@ public class EasyLevel implements Level {
     public double getTransitionDuration() {
         return TRANSITION_DURATION;
     }
-
     @Override
     public double getFallingRate() {
         return FALLING_RATE;

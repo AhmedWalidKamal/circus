@@ -3,17 +3,17 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
-import behaviour.keyBinding.KeyMap;
+import behaviour.key_binding.KeyMap;
 import javafx.scene.input.KeyCode;
 import logs.LoggingManager;
-import util.PauseableThread;
+import util.PausableThread;
 
 /**
  * Acts as a link between view and registered keymaps, whenever view takes in
  * an input it signals it to {@link InputController}, having references to all
  * keymaps it can execute a command accordingly.
  */
-public final class InputController extends PauseableThread {
+public final class InputController extends PausableThread {
     /**
      * List for all registered {@link KeyMap}s.
      */

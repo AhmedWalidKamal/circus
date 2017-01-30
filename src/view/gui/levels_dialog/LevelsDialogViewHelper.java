@@ -1,4 +1,4 @@
-package view.gui.levelsdialog;
+package view.gui.levels_dialog;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;

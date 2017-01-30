@@ -9,15 +9,11 @@ public class GameData {
 	/**
 	 * The difficulty of the game, easy, normal or hard.
 	 */
-	private String gameDifficulty;
-
-	public GameData() {
-		this.gameDifficulty = new String();
-	}
+	private String gameDifficulty = "";
 
 	/**
 	 * Sets the difficulty level of the game.
-	 * @param the game difficulty
+	 * @param gameDifficulty Game difficulty
 	 */
 	public void setGameDifficulty(final String gameDifficulty) {
 		this.gameDifficulty = gameDifficulty;

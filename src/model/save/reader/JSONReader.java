@@ -5,18 +5,14 @@ import com.google.gson.GsonBuilder;
 import model.Player;
 import model.Timer;
 import model.save.ModelMemento;
-import model.save.util.json.CharacterAdapter;
 import model.save.util.json.PlayerAdapter;
-import model.save.util.json.ShapeAdapter;
 import model.save.util.json.TimerAdapter;
-import model.shapes.Shape;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class JSONReader implements Reader {
-
     private Gson gson;
 
     public JSONReader() {

@@ -1,4 +1,4 @@
-package behaviour.difficultyLevels;
+package behaviour.difficulty_levels;
 
 
 public class HardLevel implements Level {

@@ -3,6 +3,7 @@ package behaviour.shapes.util;
 import logs.LoggingManager;
 import model.shapes.Shape;
 
+import javax.naming.SizeLimitExceededException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -32,10 +33,11 @@ public class ShapePool {
         return shape;
     }
 
-    public synchronized void addReusableShape(final Shape shape) {
+    public synchronized void addReusableShape(final Shape shape) throws
+            SizeLimitExceededException {
         if (isFull()) {
             LoggingManager.getInstance().error("SHAPE POOL IS FULL !");
-            throw new RuntimeException("Pool is full!");
+            throw new SizeLimitExceededException();
         }
         reusableShapes.add(shape);
     }

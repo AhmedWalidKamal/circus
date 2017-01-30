@@ -13,7 +13,7 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import logs.LoggingManager;
 import model.Player;
-import util.PauseableThread;
+import util.PausableThread;
 import util.Shelf;
 import model.shapes.Shape;
 import util.Point;
@@ -42,7 +42,7 @@ class FallingState extends Observable implements ShapeState {
         Shape shape = context.getShape();
         shape.setState(Shape.State.FALLING);
         ImageView shapeImageView = context.getShapeImageView();
-        final PauseableThread control = new PauseableThread() {
+        final PausableThread control = new PausableThread() {
             @Override
             public void run() {
                 while (shape.getState() == Shape.State.FALLING) {

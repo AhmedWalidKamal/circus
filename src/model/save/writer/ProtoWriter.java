@@ -14,11 +14,7 @@ import model.save.util.protobuff.ProtoBuffGame.ProtoGame.ProtoPlayer.ProtoCharac
 import model.shapes.Shape;
 
 public class ProtoWriter implements Writer {
-
 	private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
-	public ProtoWriter() {
-
-	}
 
 	@Override
 	public void saveMemento(final ModelMemento memento, final String path)

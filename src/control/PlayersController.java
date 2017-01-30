@@ -1,16 +1,16 @@
 package control;
 
-import behaviour.keyBinding.KeyMap;
-import behaviour.keyBinding.keyHandlers.MoveLeftHandler;
-import behaviour.keyBinding.keyHandlers.MoveRightHandler;
+import behaviour.key_binding.KeyMap;
+import behaviour.key_binding.key_handling.MoveLeftHandler;
+import behaviour.key_binding.key_handling.MoveRightHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import logs.LoggingManager;
 import model.Player;
 import model.characters.Character;
-import model.characters.supportedCharacters.GreenClown;
-import model.characters.supportedCharacters.RedClown;
+import model.characters.supported_characters.GreenClown;
+import model.characters.supported_characters.RedClown;
 import model.characters.util.CharacterFactory;
 import model.save.MementoOriginator;
 import model.save.ModelMemento;
@@ -100,8 +100,8 @@ public final class PlayersController implements MementoOriginator {
 
     private void loadDefaultCharacters() {
         try {
-            Class.forName("model.characters.supportedCharacters.GreenClown");
-            Class.forName("model.characters.supportedCharacters.RedClown");
+            Class.forName("model.characters.supported_characters.GreenClown");
+            Class.forName("model.characters.supported_characters.RedClown");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             LoggingManager.getInstance().info("FAILED TO LOAD CLASS");

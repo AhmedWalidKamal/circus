@@ -1,7 +1,7 @@
-package behaviour.keyBinding.keyHandlers;
+package behaviour.key_binding.key_handling;
 
-import behaviour.keyBinding.KeyHandler;
-import behaviour.keyBinding.KeyMap;
+import behaviour.key_binding.KeyHandler;
+import behaviour.key_binding.KeyMap;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;

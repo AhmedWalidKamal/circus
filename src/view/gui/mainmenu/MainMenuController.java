@@ -15,7 +15,7 @@ import plugins.PluginLoader;
 import view.gui.app.Main;
 import view.gui.app.util.ControlledScenes;
 import view.gui.app.util.ScenesNavigator;
-import view.gui.levelsdialog.LevelsDialogViewHelper;
+import view.gui.levels_dialog.LevelsDialogViewHelper;
 import view.gui.mainmenu.util.GameData;
 import view.gui.options.OptionsDialogViewHelper;
 

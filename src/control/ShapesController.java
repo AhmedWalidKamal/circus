@@ -15,20 +15,20 @@ import model.characters.Character;
 import model.save.MementoOriginator;
 import model.save.ModelMemento;
 import model.shapes.Shape;
-import util.PauseableThread;
+import util.PausableThread;
 
 /**
  * Acts as a control to shapes behavior, using a subroutine that handles
  * creation, falling, fetching... etc and sends data to other controllers
  * accordingly, or directly update the view.
  */
-public final class ShapesController extends PauseableThread implements MementoOriginator {
+public final class ShapesController extends PausableThread implements MementoOriginator {
     /**
      * {@link MainController} reference.
      */
     private MainController mainController = null;
     private boolean paused = false;
-    private List<PauseableThread> runningThreads = null;
+    private List<PausableThread> runningThreads = null;
     private Map<Shape, ImageView> shapeImageViewMap = null;
 
     /**
@@ -92,17 +92,17 @@ public final class ShapesController extends PauseableThread implements MementoOr
         shape.setHeight(imageView.getImage().getHeight());
     }
 
-    public void addRunningShapeThread(final PauseableThread thread) {
+    public void addRunningShapeThread(final PausableThread thread) {
         runningThreads.add(thread);
     }
 
-    public void removeRunningShapeThread(final PauseableThread thread) {
+    public void removeRunningShapeThread(final PausableThread thread) {
         runningThreads.remove(thread);
     }
 
     @Override
     public void pauseThread() {
-        for (PauseableThread thread : runningThreads) {
+        for (PausableThread thread : runningThreads) {
             thread.pauseThread();
         }
         paused = true;
@@ -122,7 +122,7 @@ public final class ShapesController extends PauseableThread implements MementoOr
 
     @Override
     public void resumeThread() {
-        for (PauseableThread thread : runningThreads) {
+        for (PausableThread thread : runningThreads) {
             thread.resumeThread();
         }
         paused = false;
@@ -130,6 +130,7 @@ public final class ShapesController extends PauseableThread implements MementoOr
 
     @Override
     public void collectMemento(final ModelMemento memento) {
+        //TODO: Collect falling shapes.
         return;
     }
 

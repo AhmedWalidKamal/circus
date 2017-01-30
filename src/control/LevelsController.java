@@ -1,9 +1,9 @@
 package control;
 
-import behaviour.difficultyLevels.EasyLevel;
-import behaviour.difficultyLevels.HardLevel;
-import behaviour.difficultyLevels.Level;
-import behaviour.difficultyLevels.NormalLevel;
+import behaviour.difficulty_levels.EasyLevel;
+import behaviour.difficulty_levels.HardLevel;
+import behaviour.difficulty_levels.Level;
+import behaviour.difficulty_levels.NormalLevel;
 import model.save.ModelMemento;
 import model.save.MementoOriginator;
 

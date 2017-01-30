@@ -16,10 +16,10 @@ public class PluginLoader {
 
     private static final String JAR_EXTENSION = ".jar";
     private static final String PACKAGE_NAME_CHAR = "model.characters." +
-            "supportedCharacters.";
+            "supported_characters.";
     private static final String PACKAGE_NAME_SHAPE = "model.shapes.";
     private static final String CLASS_EXTENSION = ".class";
-    private static final String PACKAGE_DIR_CHAR = "model\\character\\supportedCharacters\\";
+    private static final String PACKAGE_DIR_CHAR = "model\\character\\supported_characters\\";
     private static final String PACKAGE_DIR_SHAPE = "model\\shapes\\";
     private static PluginLoader instance;
 

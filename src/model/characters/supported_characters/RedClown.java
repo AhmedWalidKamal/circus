@@ -1,4 +1,4 @@
-package model.characters.supportedCharacters;
+package model.characters.supported_characters;
 
 import model.characters.Character;
 import model.characters.util.CharacterFactory;

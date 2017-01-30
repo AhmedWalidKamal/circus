@@ -1,4 +1,4 @@
-package behaviour.keyBinding;
+package behaviour.key_binding;
 
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;

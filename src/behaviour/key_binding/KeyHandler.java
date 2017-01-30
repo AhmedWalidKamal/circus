@@ -1,7 +1,6 @@
-package behaviour.keyBinding;
+package behaviour.key_binding;
 
 import javafx.scene.Node;
-import javafx.scene.input.KeyCode;
 
 /**
  * A handler to a key input that executes a pre-defined command on its {@link KeyMap}'s
