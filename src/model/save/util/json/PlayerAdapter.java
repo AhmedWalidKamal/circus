@@ -9,11 +9,12 @@ import util.Score;
 import java.lang.reflect.Type;
 
 public class PlayerAdapter implements JsonSerializer<Player>,JsonDeserializer<Player> {
-
     private CharacterAdapter characterAdapter;
+
     public PlayerAdapter() {
         characterAdapter = new CharacterAdapter();
     }
+
     @Override
     public JsonElement serialize(Player player, Type type,
                                  JsonSerializationContext jsonSerializationContext) {
@@ -35,6 +36,4 @@ public class PlayerAdapter implements JsonSerializer<Player>,JsonDeserializer<Pl
                 .get("Character"), Character.class,jsonDeserializationContext));
         return player;
     }
-
-
 }

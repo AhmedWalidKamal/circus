@@ -1,7 +1,5 @@
 package behaviour.shapes;
 
-import model.shapes.Shape;
-
 public interface ShapeState {
 
     /**

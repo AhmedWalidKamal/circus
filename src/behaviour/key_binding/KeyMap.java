@@ -65,7 +65,8 @@ public class KeyMap {
      * @param pressed A boolean value defining whether the given key is pressed
      * or released.
      */
-    public void executeKeyCommand(KeyCode keyCode, boolean pressed) {
+    public void executeKeyCommand(KeyCode keyCode, boolean pressed) throws
+            IllegalAccessException {
         setKeyHandlerPressed(keyCode, pressed);
         executeAllPressedKeyCommands();
     }
@@ -88,9 +89,10 @@ public class KeyMap {
      * @param pressed A boolean value defining whether this key is pressed or
      * released.
      */
-    public synchronized void setKeyHandlerPressed(KeyCode keyCode, boolean pressed) {
+    public synchronized void setKeyHandlerPressed(KeyCode keyCode, boolean pressed)
+            throws IllegalAccessException {
         if (!containsKey(keyCode)) {
-            throw new RuntimeException("No equivalent key handler");
+            throw new IllegalAccessException("No equivalent key handler!");
         }
         KeyHandler keyHandler = keyMap.get(keyCode);
         keyHandler.setPressed(pressed);

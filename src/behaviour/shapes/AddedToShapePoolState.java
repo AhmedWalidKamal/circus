@@ -5,6 +5,8 @@ import javafx.application.Platform;
 import logs.LoggingManager;
 import model.shapes.Shape;
 
+import javax.naming.SizeLimitExceededException;
+
 class AddedToShapePoolState implements ShapeState {
 
 	private ShapeContext context;
@@ -16,7 +18,11 @@ class AddedToShapePoolState implements ShapeState {
 	public void handle() {
 		Platform.runLater(() -> {
 			context.getShape().setState(Shape.State.IN_POOL);
-			ShapePool.getInstance().addReusableShape(context.getShape());
+			try {
+				ShapePool.getInstance().addReusableShape(context.getShape());
+			} catch (SizeLimitExceededException e) {
+				e.printStackTrace();
+			}
 			context.getViewController().removeFromRootPane(context.getShapeImageView());
 			LoggingManager.getInstance().info("FALLEN SHAPE ADDED BACK TO THE SHAPE POOL");
         });

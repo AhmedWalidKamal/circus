@@ -7,11 +7,6 @@ import model.shapes.Shape;
 import model.shapes.util.ShapeFactory;
 
 public class ShapeCreator {
-
-	public ShapeCreator() {
-
-	}
-
 	public static Shape createShape() {
 		final Color randomColor = Color.values()
 				[genRandomNumber(Color.values().length)];

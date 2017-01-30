@@ -10,12 +10,12 @@ import java.util.Stack;
 
 public class CharacterAdapter implements JsonSerializer<Character>,
         JsonDeserializer<Character> {
-
-
     private ShapeAdapter shapeAdapter;
+
     public CharacterAdapter() {
         shapeAdapter = new ShapeAdapter();
     }
+
     @Override
     public JsonElement serialize(Character character, Type type,
                                  JsonSerializationContext jsonSerializationContext) {

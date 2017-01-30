@@ -9,10 +9,6 @@ import java.lang.reflect.Type;
 
 public class ShapeAdapter implements JsonSerializer<Shape>,JsonDeserializer<Shape> {
 
-    public ShapeAdapter() {
-
-    }
-
     @Override
     public JsonElement serialize(Shape shape, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonShape = new JsonObject();
@@ -66,6 +62,4 @@ public class ShapeAdapter implements JsonSerializer<Shape>,JsonDeserializer<Shap
         }
         return null;
     }
-
-
 }

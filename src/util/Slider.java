@@ -2,9 +2,9 @@ package util;
 
 import javafx.scene.image.ImageView;
 
-public class Shelf {
+public class Slider {
     private ImageView imageView = null;
-    private static final String URL = "File:src/assets/shelves/shelf.png";
+    private static final String URL = "File:src/assets/sliders/slider.png";
 
     public enum Orientation {
         LEFT,
@@ -13,13 +13,13 @@ public class Shelf {
 
     private Orientation orientation;
 
-    public Shelf(final double y, final Orientation orientation) {
+    public Slider(final double y, final Orientation orientation) {
         imageView = new ImageView(URL);
         imageView.setY(y);
         this.orientation = orientation;
     }
 
-    public Shelf() {
+    public Slider() {
         imageView = new ImageView(URL);
     }
 

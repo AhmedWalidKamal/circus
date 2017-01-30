@@ -14,13 +14,13 @@ import javafx.util.Pair;
 import logs.LoggingManager;
 import model.Player;
 import util.PausableThread;
-import util.Shelf;
+import util.Slider;
 import model.shapes.Shape;
 import util.Point;
 
 class FallingState extends Observable implements ShapeState {
     private Path path = null;
-    private Shelf shelf = null;
+    private Slider slider = null;
     private boolean lock = false;
     private ShapeContext context = null;
     private boolean horizontal = true;
@@ -29,9 +29,9 @@ class FallingState extends Observable implements ShapeState {
     private boolean paused = false;
 
     protected FallingState(final ShapeContext context,
-                           final Shelf shelf, final Path path) {
+                           final Slider slider, final Path path) {
         this.path = path;
-        this.shelf = shelf;
+        this.slider = slider;
         this.context = context;
         observers = new ArrayList<>();
         transitionQueue = new LinkedList<>();
@@ -140,14 +140,14 @@ class FallingState extends Observable implements ShapeState {
     private Point getNextTransitionPoint(final ImageView shapeImage) {
         if (horizontal) {
             double x = 0;
-            final double y = shelf.getY();
-            switch (shelf.getOrientation()) {
+            final double y = slider.getY();
+            switch (slider.getOrientation()) {
                 case LEFT:
-                    x = shelf.getImageView().getImage().getWidth() - 10;
+                    x = slider.getImageView().getImage().getWidth() - 10;
                     break;
                 case RIGHT:
                     x = context.getViewController().getRootPanePrefWidth()
-                            - shelf.getImageView().getImage().getWidth() + 10;
+                            - slider.getImageView().getImage().getWidth() + 10;
                     break;
                 default:
                     break;
@@ -156,7 +156,7 @@ class FallingState extends Observable implements ShapeState {
         }
         final double dt = context.getLevelsController().getDifficultyLevel().getFallingRate();
         double x = 0;
-        switch (shelf.getOrientation()) {
+        switch (slider.getOrientation()) {
             case LEFT:
                 x = shapeImage.getX()
                         + 0.04 * dt * shapeImage.getX();

@@ -1,7 +1,5 @@
 package plugins;
 
-
-
 import logs.LoggingManager;
 import model.characters.util.CharacterFactory;
 import model.shapes.util.ShapeFactory;
@@ -13,7 +11,6 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 public class PluginLoader {
-
     private static final String JAR_EXTENSION = ".jar";
     private static final String PACKAGE_NAME_CHAR = "model.characters." +
             "supported_characters.";
@@ -21,7 +18,7 @@ public class PluginLoader {
     private static final String CLASS_EXTENSION = ".class";
     private static final String PACKAGE_DIR_CHAR = "model\\character\\supported_characters\\";
     private static final String PACKAGE_DIR_SHAPE = "model\\shapes\\";
-    private static PluginLoader instance;
+    private static PluginLoader instance = null;
 
     private PluginLoader () {
 
@@ -73,10 +70,7 @@ public class PluginLoader {
                     field.setAccessible(true);
                     System.out.println(field.get(null));
                     System.out.println(ShapeFactory.getInstance().getRegisteredShapes());
-
                 }
-
-
                 loader.close();
             } catch (ClassNotFoundException
                     | IOException
@@ -87,7 +81,4 @@ public class PluginLoader {
             }
         }
     }
-
-
-    //TODO Test this method.
 }

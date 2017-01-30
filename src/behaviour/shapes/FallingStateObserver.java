@@ -12,10 +12,6 @@ import util.Point;
 
 public class FallingStateObserver implements Observer {
 
-    public FallingStateObserver() {
-
-    }
-
     @Override
     public void update(final Observable fallingState, final Object shapeImageViewPair) {
         FallingState state = (FallingState) fallingState;

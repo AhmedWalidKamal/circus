@@ -8,25 +8,21 @@ import model.save.ModelMemento;
 import model.save.MementoOriginator;
 
 public class LevelsController implements MementoOriginator {
-    /**
-     * Reference to {@link MainController}.
-     */
-    private MainController mainController = null;
-
     private Level currentLevel = null;
+
     /**
      * Constructs a new {@link LevelsController}
-     * @param mainController
      */
-
-    public LevelsController(final MainController mainController) {
-        this.mainController = mainController;
+    public LevelsController() {
         currentLevel = new EasyLevel(); ///current level is set to easy by default.
     }
 
+    /**
+     * Choose level based on level chosen from options in the main menu
+     * but set the default level to easy unless changed.
+     * @param level Key string representing level.
+     */
     public void chooseLevel(final String level){
-        /*choose level based on level chosen from options in the main menu
-        but set the default level to easy unless changed*/
         switch (level.toUpperCase()) {
             case "EASY":
                 currentLevel = new EasyLevel();
@@ -41,6 +37,7 @@ public class LevelsController implements MementoOriginator {
                 break;
         }
     }
+
     public Level getDifficultyLevel(){
         return this.currentLevel;
     }

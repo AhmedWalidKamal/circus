@@ -1,23 +1,20 @@
 package model.shapes.util;
 
+import model.Color;
+import model.shapes.Shape;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashMap;
 
-import javafx.scene.image.ImageView;
-import model.Color;
-import model.shapes.Shape;
-
 /**
  * A Singleton factory that is
  * responsible for creating shape
  * objects.
- * @author Ahmed Walid
  */
 public class ShapeFactory {
-	private static ShapeFactory factoryInstance = new
-            ShapeFactory();
+	private static ShapeFactory factoryInstance = null;
     private HashMap<String, Class<? extends Shape>>
 			registeredShapes = null;
 
@@ -33,6 +30,9 @@ public class ShapeFactory {
      * @return single instance of ShapeFactory
      */
     public static ShapeFactory getInstance() {
+        if (factoryInstance == null) {
+            factoryInstance = new ShapeFactory();
+        }
         return factoryInstance;
     }
 

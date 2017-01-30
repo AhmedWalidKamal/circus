@@ -11,14 +11,12 @@ import model.save.writer.Writer;
 import java.io.IOException;
 
 public class FileController {
-    private MainController mainController = null;
     private Writer writerProtoBuff = null;
     private Reader readerProtoBuff = null;
     private Writer writerJSON = null;
     private Reader readerJSON = null;
 
-    public FileController(final MainController mainController) {
-        this.mainController = mainController;
+    public FileController() {
         writerProtoBuff = new ProtoWriter();
         readerProtoBuff = new ProtoReader();
         writerJSON = new JSONWriter();

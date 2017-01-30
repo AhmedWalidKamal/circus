@@ -66,7 +66,11 @@ public final class InputController extends PausableThread {
         Thread executionThread = new Thread(() -> {
             for (KeyMap keyMap : keyMapList) {
                 if (keyMap.containsKey(keyCode)) {
-                    keyMap.setKeyHandlerPressed(keyCode, pressed);
+                    try {
+                        keyMap.setKeyHandlerPressed(keyCode, pressed);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

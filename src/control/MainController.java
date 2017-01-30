@@ -57,8 +57,8 @@ public final class MainController {
         shapesController = new ShapesController(this);
         shapesController.setDaemon(true);
         gameUtilController = new GameUtilController(this);
-        levelsController = new LevelsController(this);
-        fileController = new FileController(this);
+        levelsController = new LevelsController();
+        fileController = new FileController();
     }
 
     public void setGameViewController(final GameViewController gameViewController) {
@@ -98,7 +98,7 @@ public final class MainController {
 
     /**
      * Gets the used instance to {@link GameUtilController} which allows control
-     * over all game utilities (Score, Shelves... etc).
+     * over all game utilities (Score, Sliders... etc).
      * @return {@link GameUtilController} instance.
      */
     public GameUtilController getGameUtilController() {

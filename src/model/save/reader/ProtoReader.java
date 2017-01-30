@@ -24,14 +24,6 @@ import model.shapes.util.ShapeFactory;
 import util.Score;
 
 public class ProtoReader implements Reader {
-
-    /**
-     * Instantiates a new protocol buffer reader.
-     */
-    public ProtoReader() {
-
-    }
-
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
 	@Override

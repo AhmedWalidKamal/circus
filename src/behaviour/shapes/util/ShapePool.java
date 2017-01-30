@@ -42,10 +42,6 @@ public class ShapePool {
         reusableShapes.add(shape);
     }
 
-    public synchronized void releaseShape(Shape shape) {
-        shape = null;
-    }
-
     public boolean isEmpty() {
         return reusableShapes.isEmpty();
     }

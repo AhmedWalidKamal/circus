@@ -23,13 +23,6 @@ public class GameView {
     private Pane pauseMenuPane = null;
 
     /**
-     * Instantiates a new {@link GameView}.
-     */
-    public GameView() {
-
-    }
-
-    /**
      * Sets root {@link Pane} which is
      * the root for all elements inside a FXML
      * view.

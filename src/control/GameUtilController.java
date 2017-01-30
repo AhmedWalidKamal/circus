@@ -20,10 +20,10 @@ import model.Timer;
 import model.save.MementoOriginator;
 import model.save.ModelMemento;
 import util.Score;
-import util.Shelf;
+import util.Slider;
 
 /**
- * Acts as a control to all game utilities (score, shelves, ... etc).
+ * Acts as a control to all game utilities (score, sliders, ... etc).
  */
 public final class GameUtilController implements MementoOriginator {
     /**
@@ -32,19 +32,19 @@ public final class GameUtilController implements MementoOriginator {
     private MainController mainController = null;
 
     /**
-     * List of {@link Shelf} to be put in view.
+     * List of {@link Slider} to be put in view.
      */
-    private ArrayList<Shelf> shelves = null;
+    private ArrayList<Slider> sliders = null;
 
     /**
-     * Distance to be set from side anchors for shelves.
+     * Distance to be set from side anchors for sliders.
      */
     private static final double SIDE_ANCHOR_DISTANCE = -50;
 
     /**
-     * Value of Y-Axis for the shelf to be put in view.
+     * Value of Y-Axis for the slider to be put in view.
      */
-    private static final double Y_SHELF = 100;
+    private static final double Y_SLIDER = 100;
 
     private int counter;
 
@@ -81,7 +81,7 @@ public final class GameUtilController implements MementoOriginator {
      */
     public GameUtilController(final MainController mainController) {
         this.mainController = mainController;
-        this.shelves = new ArrayList<>();
+        this.sliders = new ArrayList<>();
         this.timeline = new Timeline();
         this.timerLabel = new Label();
         this.firstPlayerLabel = new Label();
@@ -94,30 +94,30 @@ public final class GameUtilController implements MementoOriginator {
 
     /**
      * Prepares game before the beginning of starting any actual behavior (adds
-     * shelves, score... etc.).
+     * sliders, score... etc.).
      */
     public void prepareGame() {
-        initializeShelves();
+        initializeSliders();
         initializeGameTimer();
         initializePlayersScores();
     }
 
     /**
-     * Initializes the shelves in the game and adds the to the
+     * Initializes the sliders in the game and adds the to the
      * root pane.
      */
-    private void initializeShelves() {
-        final Shelf leftShelf = new Shelf(Y_SHELF, Shelf.Orientation.LEFT);
-        shelves.add(leftShelf);
-        AnchorPane.setLeftAnchor(leftShelf.getImageView(), SIDE_ANCHOR_DISTANCE);
+    private void initializeSliders() {
+        final Slider leftSlider = new Slider(Y_SLIDER, Slider.Orientation.LEFT);
+        sliders.add(leftSlider);
+        AnchorPane.setLeftAnchor(leftSlider.getImageView(), SIDE_ANCHOR_DISTANCE);
         mainController.getGameView().getRootPane().getChildren().add(
-                leftShelf.getImageView());
+                leftSlider.getImageView());
 
-        final Shelf rightShelf = new Shelf(Y_SHELF, Shelf.Orientation.RIGHT);
-        shelves.add(rightShelf);
-        AnchorPane.setRightAnchor(rightShelf.getImageView(), SIDE_ANCHOR_DISTANCE);
+        final Slider rightSlider = new Slider(Y_SLIDER, Slider.Orientation.RIGHT);
+        sliders.add(rightSlider);
+        AnchorPane.setRightAnchor(rightSlider.getImageView(), SIDE_ANCHOR_DISTANCE);
         mainController.getGameView().getRootPane().getChildren().add(
-                rightShelf.getImageView());
+                rightSlider.getImageView());
     }
 
     /**
@@ -178,9 +178,9 @@ public final class GameUtilController implements MementoOriginator {
         this.mainController.getViewController().addToRootPane(stackPane);
 	}
 
-	public Shelf getNextShelf() {
-        counter = (counter + 1) % shelves.size();
-        return shelves.get(counter);
+	public Slider getNextSlider() {
+        counter = (counter + 1) % sliders.size();
+        return sliders.get(counter);
     }
 
 	/**
